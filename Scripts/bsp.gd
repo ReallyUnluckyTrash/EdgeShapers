@@ -26,16 +26,16 @@ func _draw():
 		)
 		
 		#outline the split spaces
-		draw_rect(
-			Rect2(
-				leaf.position.x * tile_size, # x
-				leaf.position.y * tile_size, # y
-				leaf.size.x * tile_size, # width
-				leaf.size.y * tile_size # height
-			), 
-			Color.GREEN, # colour
-			false # is filled
-		)
+		#draw_rect(
+			#Rect2(
+				#leaf.position.x * tile_size, # x
+				#leaf.position.y * tile_size, # y
+				#leaf.size.x * tile_size, # width
+				#leaf.size.y * tile_size # height
+			#), 
+			#Color.GREEN, # colour
+			#false # is filled
+		#)
 		
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
