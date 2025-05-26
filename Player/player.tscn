@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://bc0hyu7yps2kh"]
+
+[ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Art/player/player_idle.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://ca45giadvu0dt" path="res://Art/player/player_down.png" id="3_5htga"]
+[ext_resource type="Script" uid="uid://cfd4cs3ly7d4r" path="res://Player/player_state_machine.gd" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://nglxsihcymas" path="res://Art/player/player_left.png" id="4_p5o4e"]
+[ext_resource type="Script" uid="uid://cg4ityikkyls2" path="res://Player/state_idle.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://cffojyfyn15ni" path="res://Player/state_walk.gd" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://nbchdqo6j37d" path="res://Art/player/player_right.png" id="5_gu6f8"]
+[ext_resource type="Texture2D" uid="uid://d232pertt6jlr" path="res://Art/player/player_up.png" id="6_dkpta"]
+[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Art/weapons/pixil-frame-0.png" id="6_vtle1"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="7_vtle1"]
+[ext_resource type="Script" uid="uid://dp6cgg8gt3r7a" path="res://Player/interactions.gd" id="8_od3ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
+size = Vector2(100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5htga")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p5o4e")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gu6f8")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dkpta")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
+size = Vector2(42, 22)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_v0iea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cvnsp")
+animation = &"left"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_6t5aa")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_vgqql")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_fkybt")
+move_speed = 400.0
+
+[node name="Interactions" type="Node2D" parent="."]
+script = ExtResource("8_od3ui")
+
+[node name="Spear" type="Node2D" parent="Interactions"]
+position = Vector2(51, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactions/Spear"]
+texture = ExtResource("6_vtle1")
+
+[node name="SpearHurtBox" parent="Interactions/Spear" instance=ExtResource("7_vtle1")]
+collision_mask = 256
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Spear/SpearHurtBox"]
+position = Vector2(-1, -68)
+shape = SubResource("RectangleShape2D_od3ui")
+
+[node name="Camera2D" type="Camera2D" parent="."]

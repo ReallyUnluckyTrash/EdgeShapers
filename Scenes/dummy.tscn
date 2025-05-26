@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://df0wnbcv7sr2c"]
+
+[ext_resource type="Texture2D" uid="uid://cuwn16by7dx4r" path="res://Art/enemySwimming_1.png" id="1_gtj52"]
+[ext_resource type="Script" uid="uid://xg4qxljy240i" path="res://Scripts/dummy.gd" id="1_xmspm"]
+[ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="3_s0uyp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtj52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gtj52")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmspm"]
+size = Vector2(133.5, 103.5)
+
+[node name="Dummy" type="Node2D"]
+script = ExtResource("1_xmspm")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gtj52")
+
+[node name="HitBox" parent="." instance=ExtResource("3_s0uyp")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.25, -2.75)
+shape = SubResource("RectangleShape2D_xmspm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.25, -2.75)
+shape = SubResource("RectangleShape2D_xmspm")

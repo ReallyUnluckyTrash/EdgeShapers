@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7vi7ofwvn7oj"]
+
+[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Art/weapons/pixil-frame-0.png" id="1_o1icd"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="2_npwse"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ej6d"]
+size = Vector2(43, 23)
+
+[node name="Spear" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o1icd")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_npwse")]
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-2.5, -68.5)
+shape = SubResource("RectangleShape2D_3ej6d")
