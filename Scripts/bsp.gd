@@ -14,7 +14,7 @@ var floor_tile = Vector2i(17, 8)
 
 func _ready() -> void:
 	tilemaplayer = get_node("TileMapLayer")
-	min_cell_size = Vector2i(map_width/3, map_height/3)
+	min_cell_size = Vector2i(map_width/4, map_height/4)
 	generate_dungeon()
 	
 func generate_dungeon():
@@ -63,21 +63,21 @@ func _draw_rooms():
 	for leaf in leaves:
 		if leaf.has_room:
 			# Draw room outline
-			draw_rect(
-				Rect2(
-					leaf.room_top_left.x * tile_size,
-					leaf.room_top_left.y * tile_size,
-					(leaf.room_bottom_right.x - leaf.room_top_left.x) * tile_size,
-					(leaf.room_bottom_right.y - leaf.room_top_left.y) * tile_size
-				),
-				Color.BLUE,
-				false
-			)
+			#draw_rect(
+				#Rect2(
+					#leaf.room_top_left.x * tile_size,
+					#leaf.room_top_left.y * tile_size,
+					#(leaf.room_bottom_right.x - leaf.room_top_left.x) * tile_size,
+					#(leaf.room_bottom_right.y - leaf.room_top_left.y) * tile_size
+				#),
+				#Color.BLUE,
+				#false
+			#)
 		
 		#tile placement
-		for x in range(leaf.room_top_left.x, leaf.room_bottom_right.x):
-				for y in range(leaf.room_top_left.y, leaf.room_bottom_right.y):
-					tilemaplayer.set_cell(Vector2i(x, y), 4, floor_tile)
+			for x in range(leaf.room_top_left.x, leaf.room_bottom_right.x):
+					for y in range(leaf.room_top_left.y, leaf.room_bottom_right.y):
+						tilemaplayer.set_cell(Vector2i(x, y), 4, floor_tile)
 			
 	pass
 
@@ -88,13 +88,13 @@ func _draw_corridors():
 		var start = corridor['start']
 		var end = corridor['end']
 		
-		# Draw corridor outline for visualization
-		draw_line(
-			Vector2(start.x * tile_size + tile_size/2, start.y * tile_size + tile_size/2),
-			Vector2(end.x * tile_size + tile_size/2, end.y * tile_size + tile_size/2),
-			Color.RED,
-			3
-		)
+		## Draw corridor outline for visualization
+		#draw_line(
+			#Vector2(start.x * tile_size + tile_size/2, start.y * tile_size + tile_size/2),
+			#Vector2(end.x * tile_size + tile_size/2, end.y * tile_size + tile_size/2),
+			#Color.RED,
+			#3
+		#)
 		
 		# Create L-shaped corridor (horizontal then vertical)
 		_create_corridor_tiles(start, end)

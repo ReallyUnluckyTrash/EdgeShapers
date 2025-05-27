@@ -70,8 +70,18 @@ func split(min_size: Vector2i):
 func create_room():
 	var rng = RandomNumberGenerator.new()
 	
-	var min_room_size = Vector2i(4,4)
+	
 	var padding = Vector2i(1,1)
+	var available_space = Vector2i(size.x - padding.x * 2, size.y - padding.y * 2)
+	var min_room_size = Vector2i(
+		max(4, available_space.x / 2),
+		max(4, available_space.y / 2)
+	)
+	
+	#var min_room_size = Vector2i(
+		#available_space.x / 2,
+		#available_space.y / 2
+	#)
 	
 	var max_room_size = Vector2i(
 		max(min_room_size.x, size.x - padding.x * 2),
