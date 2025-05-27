@@ -4,6 +4,7 @@ var root_node: Branch
 var tile_size: int = 64
 var tilemaplayer: TileMapLayer
 
+var floor_tile = Vector2i(17, 8)
 var paths: Array = []
 
 func _ready() -> void:
@@ -41,15 +42,15 @@ func _draw():
 			for y in range(leaf.size.y):
 				#check if placed layer will be inside padding or not
 				if not inside_padding(x, y, leaf, padding):
-					tilemaplayer.set_cell(Vector2i(x + leaf.position.x, y + leaf.position.y), 4, Vector2i(17, 8))
+					tilemaplayer.set_cell(Vector2i(x + leaf.position.x, y + leaf.position.y), 4, floor_tile)
 		
 		for path in paths:
 			if path['left'].y == path['right'].y:
 				for i in range(path['right'].x - path['left'].x):
-					tilemaplayer.set_cell(Vector2i(path['left'].x + i, path['left'].y ), 4, Vector2i(17, 8))
+					tilemaplayer.set_cell(Vector2i(path['left'].x + i, path['left'].y ), 4, floor_tile)
 			else:
 				for i in range(path['right'].y - path['left'].y):
-					tilemaplayer.set_cell(Vector2i(path['left'].x, path['left'].y + i ), 4, Vector2i(17, 8))
+					tilemaplayer.set_cell(Vector2i(path['left'].x, path['left'].y + i ), 4, floor_tile)
 	pass
 	
 func inside_padding(x, y, leaf, padding):
