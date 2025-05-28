@@ -11,4 +11,3 @@ script = ExtResource("1_d7dhw")
 tile_set = ExtResource("3_vcduu")
 
 [node name="Player" parent="." instance=ExtResource("2_gx62w")]
-position = Vector2(641, 361)

@@ -10,10 +10,13 @@ var room_top_left: Vector2i
 var room_bottom_right: Vector2i 
 var has_room: bool = false
 
+#refactor candidates
+var chest_positions: Array = []
 
-func _init(position, size) -> void:
-	self.position = position
-	self.size = size
+
+func _init(_position, _size) -> void:
+	self.position = _position
+	self.size = _size
 	
 func get_leaves():
 	if not(left_child && right_child):
@@ -144,3 +147,13 @@ func _get_descendant_room_center(node:Branch) -> Vector2i:
 		return _get_descendant_room_center(node.right_child)
 	
 	return Vector2.ZERO
+
+#refactor candidate
+func place_chest():
+	if has_room && randf() < 0.2:
+		var rng = RandomNumberGenerator.new()
+		var chest_pos = Vector2i(
+			rng.randi_range(room_top_left.x + 1, room_bottom_right.x - 2),
+			rng.randi_range(room_top_left.y + 1, room_bottom_right.y - 2)
+			)
+		chest_positions.append(chest_pos)

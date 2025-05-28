@@ -3,13 +3,26 @@ extends Node2D
 var root_node: Branch
 var tile_size: int = 64
 var tilemaplayer: TileMapLayer
-var floor_tile = Vector2i(17, 8)
-var wall_tile = Vector2i(16, 5)
-var floor_tiles: Array = []
+
 var map_width: int = 60
 var map_height: int = 30
 var min_cell_size: Vector2i
 
+var floor_tile = Vector2i(17, 8)
+var wall_tile = Vector2i(16, 5)
+var floor_tiles: Array = []
+
+#placeholders for spawning enemies and chests
+var chest_tile = Vector2i(17,5)
+var enemy_tile = Vector2i(17,6)
+
+var entrance_tile = Vector2i(0,1)
+var exit_tile = Vector2i(0,2)
+
+var entrance_pos: Vector2i
+var exit_pos: Vector2i
+
+@onready var player: Player = $Player
 
 func _ready() -> void:
 	tilemaplayer = get_node("TileMapLayer")
@@ -35,6 +48,11 @@ func generate_dungeon():
 	
 	# Generate walls around floor tiles
 	_place_wall_tiles()
+	
+	_place_chests()
+	_place_entrance_exit()
+	
+	#_set_player_pos()
 	
 	queue_redraw()
 
@@ -157,3 +175,24 @@ func _create_corridor_tiles(start: Vector2i, end: Vector2i):
 		tilemaplayer.set_cell(pos, 4, floor_tile)
 		if pos not in floor_tiles:
 			floor_tiles.append(pos)
+			
+func _place_chests():
+	var leaves = root_node.get_leaves()
+	for leaf in leaves:
+		leaf.place_chest()
+		for chest_pos in leaf.chest_positions:
+			tilemaplayer.set_cell(chest_pos, 4, chest_tile)
+
+func _place_entrance_exit():
+	var leaves = root_node.get_leaves()
+	if leaves.size() >= 2:
+		var entrance_room = leaves[0]
+		entrance_pos = entrance_room.get_room_center()
+		tilemaplayer.set_cell(entrance_pos, 4, entrance_tile)
+		player.position = tilemaplayer.map_to_local(entrance_pos)
+		
+		var exit_room = leaves[-1]
+		exit_pos = exit_room.get_room_center()
+		tilemaplayer.set_cell(exit_pos, 4, exit_tile)
+		
+	pass
