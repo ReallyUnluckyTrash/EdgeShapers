@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=18 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Art/player/player_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/player.gd" id="1_onrkg"]
@@ -9,9 +9,11 @@
 [ext_resource type="Script" uid="uid://cffojyfyn15ni" path="res://Player/state_walk.gd" id="5_fkybt"]
 [ext_resource type="Texture2D" uid="uid://nbchdqo6j37d" path="res://Art/player/player_right.png" id="5_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://d232pertt6jlr" path="res://Art/player/player_up.png" id="6_dkpta"]
-[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Art/weapons/pixil-frame-0.png" id="6_vtle1"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://dp6cgg8gt3r7a" path="res://Player/interactions.gd" id="8_od3ui"]
+[ext_resource type="Script" uid="uid://dohwnjdksj4um" path="res://Player/state_attack.gd" id="10_5htga"]
+[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Scenes/slash_weapon.tscn" id="11_apopc"]
+[ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/weapon_position.gd" id="12_p5o4e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0iea"]
 size = Vector2(100, 100)
@@ -59,11 +61,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_od3ui"]
-size = Vector2(42, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_gu6f8"]
+radius = 62.1289
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -72,7 +73,7 @@ shape = SubResource("RectangleShape2D_v0iea")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cvnsp")
-animation = &"left"
+animation = &"down"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_6t5aa")
@@ -84,21 +85,26 @@ script = ExtResource("4_vgqql")
 script = ExtResource("5_fkybt")
 move_speed = 400.0
 
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("10_5htga")
+
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("8_od3ui")
 
-[node name="Spear" type="Node2D" parent="Interactions"]
-position = Vector2(51, -1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactions/Spear"]
-texture = ExtResource("6_vtle1")
-
-[node name="SpearHurtBox" parent="Interactions/Spear" instance=ExtResource("7_vtle1")]
+[node name="HurtBox" parent="Interactions" instance=ExtResource("7_vtle1")]
 collision_mask = 256
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Spear/SpearHurtBox"]
-position = Vector2(-1, -68)
-shape = SubResource("RectangleShape2D_od3ui")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
+position = Vector2(-2, -82)
+scale = Vector2(-1.326, 1)
+shape = SubResource("CircleShape2D_gu6f8")
+debug_color = Color(0.990741, 0, 0.274537, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WeaponPosition" type="Node2D" parent="."]
+position = Vector2(60, 0)
+script = ExtResource("12_p5o4e")
+
+[node name="Sword" parent="WeaponPosition" instance=ExtResource("11_apopc")]
