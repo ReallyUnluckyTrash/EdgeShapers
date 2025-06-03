@@ -31,7 +31,7 @@ func SetDirection():
 	if direction == Vector2.ZERO:
 		return 
 	
-	var direction_id : int = int( round( (direction).angle() / TAU * DIR_4.size() )	)
+	var direction_id : int = int( round( (direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size() )	)
 	var new_dir = DIR_4[direction_id]
 	
 	if new_dir == cardinal_direction:
