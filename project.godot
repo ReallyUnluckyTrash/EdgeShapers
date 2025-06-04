@@ -16,7 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerVariables="*res://Player/player_variables.gd"
+PlayerVariables="*res://00_Globals/player_variables.gd"
+LevelManager="*res://00_Globals/level_manager.gd"
 
 [display]
 
