@@ -1,10 +1,10 @@
 class_name Player_Camera extends Camera2D
 
 func _ready() -> void:
-	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
-	UpdateLimits(LevelManager.current_tilemap_bounds)
+	LevelManager.tilemap_bounds_changed.connect(update_limits)
+	update_limits(LevelManager.current_tilemap_bounds)
 
-func UpdateLimits( bounds : Array[Vector2] ):
+func update_limits( bounds : Array[Vector2] ):
 	if bounds == []:
 		return
 	limit_left = int(bounds[0].x )

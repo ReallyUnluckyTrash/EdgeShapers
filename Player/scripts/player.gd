@@ -1,22 +1,22 @@
-class_name Player extends CharacterBody2D
+class_name Player extends Entity
 
-var cardinal_direction : Vector2 = Vector2.DOWN
-var direction: Vector2 = Vector2.ZERO
-const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
-
 #signal hit
 
-signal DirectionChange(new_direction : Vector2)
+
+#var cardinal_direction : Vector2 = Vector2.DOWN
+#var direction: Vector2 = Vector2.ZERO
+#const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+#signal direction_change(new_direction : Vector2)
 
 func _ready():
-	state_machine.Initialize(self)
+	PlayerManager.player = self
+	state_machine.initialize(self)
 	pass
 
-func _process(delta):
+func _process(_delta):
 	
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -24,40 +24,10 @@ func _process(delta):
 	
 	pass
 	
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	move_and_slide()
-	
-func SetDirection():
-	if direction == Vector2.ZERO:
-		return 
-	
-	var direction_id : int = int( round( (direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size() )	)
-	var new_dir = DIR_4[direction_id]
-	
-	if new_dir == cardinal_direction:
-		return false
-	
-	cardinal_direction = new_dir
-	DirectionChange.emit(new_dir)
-	
-	#sprite code goes here
-	
-	return true
 
-func AnimDirection() -> String:
-	if cardinal_direction == Vector2.DOWN:
-		return "down"
-	elif cardinal_direction == Vector2.UP:
-		return "up"
-	elif cardinal_direction == Vector2.RIGHT:
-		return "right"
-	elif cardinal_direction == Vector2.LEFT:
-		return "left"
-	else:
-		return "idle"
-
-
-func UpdateAnimation(anim_name : String):
+func update_animation(anim_name : String):
 	animated_sprite_2d.play()
 	animated_sprite_2d.animation = anim_name
 

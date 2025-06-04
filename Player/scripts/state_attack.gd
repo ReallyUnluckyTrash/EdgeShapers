@@ -10,22 +10,22 @@ class_name State_Attack extends State
 
 var attacking: bool = false
 
-func Enter() -> void:
+func enter() -> void:
 	weapon_animation_player.play("sword_animations/sword_swing")
-	weapon_animation_player.animation_finished.connect(EndAttack)
+	weapon_animation_player.animation_finished.connect(end_attack)
 	attacking = true
 	
 	await get_tree().create_timer( 0.15).timeout
 	slash_hurtbox.monitoring = true
 	pass
 	
-func Exit() -> void:
-	weapon_animation_player.animation_finished.disconnect(EndAttack)
+func exit() -> void:
+	weapon_animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
 	slash_hurtbox.monitoring = false
 	pass
 	
-func Process(_delta : float) -> State:
+func process(_delta : float) -> State:
 	player.velocity -= player.velocity * decelerate_speed * _delta
 	
 	if attacking == false:
@@ -36,11 +36,11 @@ func Process(_delta : float) -> State:
 			return walk
 	return null
 	
-func Physics(_delta : float) -> State:
+func physics(_delta : float) -> State:
 	return null
 	
-func HandleInput(_event: InputEvent) -> State:
+func handle_input(_event: InputEvent) -> State:
 	return null
 
-func EndAttack( _NewAnimName:String) -> void:
+func end_attack( _NewAnimName:String) -> void:
 	attacking = false

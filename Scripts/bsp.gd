@@ -53,7 +53,7 @@ func generate_dungeon():
 	_place_chests()
 	_place_entrance_exit()
 	
-	LevelManager.ChangeTileMapBounds(_set_camera_bounds())
+	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 	
 	#_set_player_pos()
 	
@@ -91,8 +91,8 @@ func _draw_partitions(node: Branch):
 	if node.right_child:
 		_draw_partitions(node.right_child)
 
-func _draw_rooms():
-	var leaves = root_node.get_leaves()
+#func _draw_rooms():
+	#var leaves = root_node.get_leaves()
 	
 	#for leaf in leaves:
 		#if leaf.has_room:
@@ -108,13 +108,13 @@ func _draw_rooms():
 				#false
 			#)
 
-func _draw_corridors():
-	var corridors = root_node.get_corridors()
-	
-	for corridor in corridors:
-		var start = corridor['start']
-		var end = corridor['end']
-		
+#func _draw_corridors():
+	#var corridors = root_node.get_corridors()
+	#
+	#for corridor in corridors:
+		#var start = corridor['start']
+		#var end = corridor['end']
+		#
 		
 
 func _place_floor_tiles():
@@ -216,9 +216,9 @@ func _set_camera_bounds() -> Array[Vector2]:
 	var top_left = tilemaplayer.map_to_local(used_rect.position)
 	var bottom_right = tilemaplayer.map_to_local(used_rect.end - Vector2i.ONE)
 	
-	var tile_size = tilemaplayer.tile_set.tile_size
-	top_left -= Vector2(tile_size) / 2
-	bottom_right += Vector2(tile_size) / 2
+	#var tile_size = tilemaplayer.tile_set.tile_size
+	top_left -= Vector2(tile_size, tile_size) / 2
+	bottom_right += Vector2(tile_size, tile_size) / 2
 	
 	bounds.append(top_left)
 	bounds.append(bottom_right)

@@ -8,38 +8,36 @@ class_name State_Walk extends State
 
 #@onready var spear_hurt_box: HurtBox = $"../../Interactions/Spear/SpearHurtBox"
 
-func Enter() -> void:
-	print("Entered Walk State")
+func enter() -> void:
+	#print("Entered Walk State")
 	#spear_hurt_box.monitoring = true
 	player.animated_sprite_2d.stop()
 	#print("hurt box on")
-	print(player.cardinal_direction)
+	#print(player.cardinal_direction)
 	pass
 	
-func Exit() -> void:
+func exit() -> void:
 	#spear_hurt_box.monitoring = false
 	#print("hurt box off")
 	pass
 	
-func Process(_delta : float) -> State:
+func process(_delta : float) -> State:
 	if player.direction == Vector2.ZERO:	
 		return idle
 	
 	player.velocity = player.direction * move_speed
 	
-	#insert change animation code here lol
-	if player.SetDirection():
-		player.UpdateAnimation(player.AnimDirection())
-		weapon.UpdatePosition(player.AnimDirection())
-	
-	player.UpdateAnimation(player.AnimDirection())
+
+	player.set_direction(player.direction)
+	weapon.UpdatePosition(player.anim_direction())	
+	player.update_animation(player.anim_direction())
 		
 	return null
 	
-func Physics(_delta : float) -> State:
+func physics(_delta : float) -> State:
 	return null
 	
-func HandleInput(_event: InputEvent) -> State:
+func handle_input(_event: InputEvent) -> State:
 	if _event.is_action_pressed("attack"):
 		return attack
 	return null

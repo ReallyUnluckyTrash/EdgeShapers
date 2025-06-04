@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://byi200slmbtmx"]
+[gd_scene load_steps=7 format=4 uid="uid://byi200slmbtmx"]
 
 [ext_resource type="PackedScene" uid="uid://df0wnbcv7sr2c" path="res://Scenes/dummy.tscn" id="1_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://bc0hyu7yps2kh" path="res://Player/player.tscn" id="1_37kl0"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="1_ys1qc"]
 [ext_resource type="PackedScene" uid="uid://cci1lo3koekkt" path="res://Scenes/hud.tscn" id="2_8uh7m"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Scripts/level_tilemap.gd" id="2_35xla"]
+[ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="6_i3aeo"]
 
 [node name="Test" type="Node"]
 
@@ -19,10 +20,13 @@ tile_set = ExtResource("1_ys1qc")
 rendering_quadrant_size = 64
 script = ExtResource("2_35xla")
 
-[node name="Dummy" parent="." instance=ExtResource("1_6uqi0")]
-position = Vector2(622, 173)
-
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
 position = Vector2(629, 608)
 
+[node name="Dummy" parent="." instance=ExtResource("1_6uqi0")]
+position = Vector2(120, 132)
+
 [node name="HUD" parent="." instance=ExtResource("2_8uh7m")]
+
+[node name="TriSlime" parent="." instance=ExtResource("6_i3aeo")]
+position = Vector2(635, 205)

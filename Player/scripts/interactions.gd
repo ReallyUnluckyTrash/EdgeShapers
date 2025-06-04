@@ -4,10 +4,10 @@ class_name PlayerInteractionHost extends Node2D
 
 
 func _ready() -> void:
-	player.DirectionChange.connect(UpdateDirection)
+	player.direction_change.connect(update_direction)
 	pass
 	
-func UpdateDirection(new_direction : Vector2) -> void:
+func update_direction(new_direction : Vector2) -> void:
 	match new_direction:
 		Vector2.DOWN:
 			rotation_degrees = 180

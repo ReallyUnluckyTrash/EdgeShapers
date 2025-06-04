@@ -1,8 +1,8 @@
 extends Node2D
 
 func _ready():
-	$HitBox.Damaged.connect(takeDamage)
+	$HitBox.damaged.connect(take_damage)
 	pass
 
-func takeDamage(_damage:int) -> void:
+func take_damage(_damage:int) -> void:
 	pass
