@@ -15,7 +15,12 @@ var floor_tiles: Array = []
 
 #placeholders for spawning enemies and chests
 var chest_tile = Vector2i(17,5)
-var enemy_tile = Vector2i(17,6)
+
+var enemy_scenes = {
+	1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn")
+}
+
+var spawned_enemies: Array = []
 
 var entrance_tile = Vector2i(0,1)
 var exit_tile = Vector2i(0,2)
@@ -51,12 +56,12 @@ func generate_dungeon():
 	_place_wall_tiles()
 	
 	_place_chests()
+	_place_enemies()
 	_place_entrance_exit()
 	
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 	
-	#_set_player_pos()
-	
+
 	queue_redraw()
 
 func _draw():
@@ -65,12 +70,6 @@ func _draw():
 	
 	# Draw partition boundaries (for debugging)
 	_draw_partitions(root_node)
-	
-	# Draw rooms
-	#_draw_rooms()
-	
-	# Draw corridors
-	#_draw_corridors()
 
 func _draw_partitions(node: Branch):
 	# Draw outline of current partition
@@ -91,31 +90,6 @@ func _draw_partitions(node: Branch):
 	if node.right_child:
 		_draw_partitions(node.right_child)
 
-#func _draw_rooms():
-	#var leaves = root_node.get_leaves()
-	
-	#for leaf in leaves:
-		#if leaf.has_room:
-			## Draw room outline
-			#draw_rect(
-				#Rect2(
-					#leaf.room_top_left.x * tile_size,
-					#leaf.room_top_left.y * tile_size,
-					#(leaf.room_bottom_right.x - leaf.room_top_left.x) * tile_size,
-					#(leaf.room_bottom_right.y - leaf.room_top_left.y) * tile_size
-				#),
-				#Color.BLUE,
-				#false
-			#)
-
-#func _draw_corridors():
-	#var corridors = root_node.get_corridors()
-	#
-	#for corridor in corridors:
-		#var start = corridor['start']
-		#var end = corridor['end']
-		#
-		
 
 func _place_floor_tiles():
 	# Place floor tiles for rooms
@@ -224,3 +198,21 @@ func _set_camera_bounds() -> Array[Vector2]:
 	bounds.append(bottom_right)
 	
 	return bounds
+
+func _place_enemies():
+	var leaves = root_node.get_leaves()
+	for leaf in leaves:
+		leaf.spawn_enemies()
+		for enemy_data in leaf.enemy_positions:
+			var enemy_level = enemy_data['level']
+			var enemy_pos = enemy_data['position']
+			
+			var enemy_instance = enemy_scenes[enemy_level].instantiate()
+			enemy_instance.position = Vector2(
+				enemy_pos.x * tile_size + tile_size/2,
+				enemy_pos.y * tile_size + tile_size/2,
+			)
+			enemy_instance.level = enemy_level
+			add_child(enemy_instance)
+			spawned_enemies.append(enemy_instance)
+	pass

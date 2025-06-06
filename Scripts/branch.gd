@@ -13,6 +13,9 @@ var has_room: bool = false
 #refactor candidates
 var chest_positions: Array = []
 
+var enemy_positions: Array = []
+var challenge_rating:int = 0
+
 
 func _init(_position, _size) -> void:
 	self.position = _position
@@ -76,15 +79,11 @@ func create_room():
 	
 	var padding = Vector2i(1,1)
 	var available_space = Vector2i(size.x - padding.x * 2, size.y - padding.y * 2)
+	
 	var min_room_size = Vector2i(
 		max(4, available_space.x / 2),
 		max(4, available_space.y / 2)
 	)
-	
-	#var min_room_size = Vector2i(
-		#available_space.x / 2,
-		#available_space.y / 2
-	#)
 	
 	var max_room_size = Vector2i(
 		max(min_room_size.x, size.x - padding.x * 2),
@@ -157,3 +156,84 @@ func place_chest():
 			rng.randi_range(room_top_left.y + 1, room_bottom_right.y - 2)
 			)
 		chest_positions.append(chest_pos)
+
+func calculate_challenge_rating():
+	if not has_room:
+		return
+	
+	var room_area = (room_bottom_right.x - room_top_left.x) * (room_bottom_right.y - room_top_left.y)
+	var depth = _get_depth_from_root()
+	
+	challenge_rating = min(3, max(1, (room_area/10) + (depth/2) ))
+
+func _get_depth_from_root()->int:
+	return 1 if size.x * size.y >100 else 2
+
+func spawn_enemies():
+	if not has_room:
+		return
+	
+	calculate_challenge_rating()
+	var remaining_cr = challenge_rating
+	var max_spawn_attempts = 20  # Prevent infinite loops
+	var spawn_attempts = 0
+	
+	while remaining_cr > 0 and spawn_attempts < max_spawn_attempts:
+		var enemy_level = 1
+		var spawn_pos = _find_valid_enemy_position()
+		
+		if spawn_pos != Vector2i.ZERO:
+			enemy_positions.append({
+				'position': spawn_pos,
+				'level': enemy_level
+			})
+			remaining_cr -= enemy_level
+		
+		spawn_attempts += 1
+		
+		# If we can't find valid positions, break out
+		if spawn_pos == Vector2i.ZERO:
+			break
+
+func _find_valid_enemy_position() -> Vector2i:
+	var rng = RandomNumberGenerator.new()
+	var attempts = 10
+	
+	while attempts > 0:
+		var pos = Vector2i(
+			rng.randi_range(room_top_left.x + 1, room_bottom_right.x - 2),
+			rng.randi_range(room_top_left.y + 1, room_bottom_right.y - 2)
+		)
+		
+		# Check if position is valid (less strict distance requirement)
+		var room_center = get_room_center()
+		var min_distance_from_center = 1  # Reduced from 2
+		
+		if pos.distance_to(room_center) >= min_distance_from_center:
+			var valid = true
+			
+			# Check distance from chests
+			for chest_pos in chest_positions:
+				if pos.distance_to(chest_pos) < 1.5:  # Reduced from 2
+					valid = false
+					break
+			
+			# Check distance from other enemies
+			for enemy_data in enemy_positions:
+				var enemy_pos = enemy_data['position']
+				if pos.distance_to(enemy_pos) < 1.5:
+					valid = false
+					break
+			
+			if valid:
+				return pos
+		
+		attempts -= 1
+	
+	return Vector2i.ZERO
+	
+	
+	
+	
+	
+	

@@ -7,6 +7,7 @@ signal enemy_destroyed(hurt_box: HurtBox)
 
 var player: Player
 var invulnerable : bool = false
+var level : int = 1
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box: HitBox = $HitBox

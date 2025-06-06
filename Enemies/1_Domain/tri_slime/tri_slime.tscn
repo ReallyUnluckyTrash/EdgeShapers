@@ -136,28 +136,32 @@ _data = {
 
 [node name="TriSlime" type="CharacterBody2D"]
 collision_layer = 256
-collision_mask = 16
+collision_mask = 272
 script = ExtResource("1_afyoi")
 
 [node name="HitBox" parent="." instance=ExtResource("2_kqywf")]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+scale = Vector2(0.64, 0.64)
 shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.997101, 0, 0.173241, 0.42)
 
 [node name="HurtBox" parent="." instance=ExtResource("10_t5kmb")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(0.64, 0.64)
 shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.817399, 0.4054, 0, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.64, 0.64)
 sprite_frames = SubResource("SpriteFrames_t5kmb")
 animation = &"stun"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
+scale = Vector2(0.64, 0.64)
 shape = SubResource("RectangleShape2D_quokb")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
