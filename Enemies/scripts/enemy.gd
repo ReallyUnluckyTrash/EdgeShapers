@@ -1,7 +1,7 @@
 class_name Enemy extends Entity
 
-signal enemy_damaged()
-signal enemy_destroyed()
+signal enemy_damaged(hurt_box: HurtBox)
+signal enemy_destroyed(hurt_box: HurtBox)
 
 @export var hp: int = 3
 
@@ -25,15 +25,15 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func _take_damage(damage: int) -> void:
+func _take_damage(hurt_box: HurtBox) -> void:
 	if invulnerable == true:
 		return
-	hp -= damage
+	hp -= hurt_box.damage
 	print(hp)
 	if hp > 0:
-		enemy_damaged.emit()
+		enemy_damaged.emit(hurt_box)
 	else:
-		enemy_destroyed.emit()
+		enemy_destroyed.emit(hurt_box)
 	pass
 
 func update_animation(anim_name : String):

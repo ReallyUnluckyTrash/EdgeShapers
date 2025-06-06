@@ -12,4 +12,4 @@ tile_set = ExtResource("3_vcduu")
 rendering_quadrant_size = 64
 
 [node name="Player" parent="." instance=ExtResource("2_gx62w")]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.63, 0.63)

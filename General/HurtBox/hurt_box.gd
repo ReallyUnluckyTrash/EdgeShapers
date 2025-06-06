@@ -8,5 +8,5 @@ func _ready():
 	
 func hurtbox_entered(area : Area2D):
 	if area is HitBox:
-		area.take_damage(damage)
+		area.take_damage(self)
 	pass

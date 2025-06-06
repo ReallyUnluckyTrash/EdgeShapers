@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 PlayerVariables="*res://00_Globals/player_variables.gd"
 LevelManager="*res://00_Globals/level_manager.gd"
 PlayerManager="*res://00_Globals/player_manager.gd"
+PlayerHud="*res://GUI/player_hud/player_hud.tscn"
 
 [display]
 
