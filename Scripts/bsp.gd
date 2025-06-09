@@ -55,8 +55,10 @@ func generate_dungeon():
 	# Generate walls around floor tiles
 	_place_wall_tiles()
 	
-	_place_chests()
-	_place_enemies()
+	#_place_chests()
+	#_place_enemies()
+	
+	_place_objects()
 	_place_entrance_exit()
 	
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
@@ -153,13 +155,6 @@ func _create_corridor_tiles(start: Vector2i, end: Vector2i):
 		if pos not in floor_tiles:
 			floor_tiles.append(pos)
 			
-func _place_chests():
-	var leaves = root_node.get_leaves()
-	for leaf in leaves:
-		leaf.place_chest()
-		for chest_pos in leaf.chest_positions:
-			tilemaplayer.set_cell(chest_pos, 4, chest_tile)
-
 func _place_entrance_exit():
 	var leaves = root_node.get_leaves()
 	var bounds : Array[Vector2] = []
@@ -199,10 +194,15 @@ func _set_camera_bounds() -> Array[Vector2]:
 	
 	return bounds
 
-func _place_enemies():
+func _place_objects():
 	var leaves = root_node.get_leaves()
-	for leaf in leaves:
-		leaf.spawn_enemies()
+	for i in range(1, leaves.size() - 1):
+		var leaf = leaves[i]
+		leaf.set_object_spawn_positions()
+		
+		for chest_pos in leaf.chest_positions:
+			tilemaplayer.set_cell(chest_pos, 4, chest_tile)
+		
 		for enemy_data in leaf.enemy_positions:
 			var enemy_level = enemy_data['level']
 			var enemy_pos = enemy_data['position']
@@ -215,4 +215,32 @@ func _place_enemies():
 			enemy_instance.level = enemy_level
 			add_child(enemy_instance)
 			spawned_enemies.append(enemy_instance)
-	pass
+			
+			
+
+#func _place_chests():
+	#var leaves = root_node.get_leaves()
+	#for i in range(1, leaves.size()):
+		#var leaf = leaves[i]
+		#leaf.place_chest()
+		#for chest_pos in leaf.chest_positions:
+			#tilemaplayer.set_cell(chest_pos, 4, chest_tile)
+#
+#func _place_enemies():
+	#var leaves = root_node.get_leaves()
+	#for i in range(1, leaves.size()):
+		#var leaf = leaves[i]
+		#leaf.spawn_enemies()
+		#for enemy_data in leaf.enemy_positions:
+			#var enemy_level = enemy_data['level']
+			#var enemy_pos = enemy_data['position']
+			#
+			#var enemy_instance = enemy_scenes[enemy_level].instantiate()
+			#enemy_instance.position = Vector2(
+				#enemy_pos.x * tile_size + tile_size/2,
+				#enemy_pos.y * tile_size + tile_size/2,
+			#)
+			#enemy_instance.level = enemy_level
+			#add_child(enemy_instance)
+			#spawned_enemies.append(enemy_instance)
+	#pass
