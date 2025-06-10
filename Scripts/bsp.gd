@@ -17,7 +17,9 @@ var floor_tiles: Array = []
 var chest_tile = Vector2i(17,5)
 
 var enemy_scenes = {
-	1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn")
+	1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn"),
+	2: preload("res://Enemies/1_Domain/tri_slime/tri_slime2.tscn"),
+	3: preload("res://Enemies/1_Domain/tri_slime/tri_slime3.tscn")
 }
 
 var spawned_enemies: Array = []

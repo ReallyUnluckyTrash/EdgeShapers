@@ -268,8 +268,8 @@ func spawn_enemies_from_positions(available_positions: Array):
 	var remaining_cr = challenge_rating  
 	
 	while remaining_cr > 0 and available_positions.size() > 0:
-		#var enemy_level = randi_range(1, 3)
-		var enemy_level = 1
+		var enemy_level = randi_range(1, 3)
+		#var enemy_level = 1
 		enemy_positions.append({
 			'position': available_positions.pop_front(),
 			'level': enemy_level
