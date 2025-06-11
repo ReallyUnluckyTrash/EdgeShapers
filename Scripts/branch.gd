@@ -157,83 +157,12 @@ func calculate_challenge_rating():
 	var room_area = (room_bottom_right.x - room_top_left.x) * (room_bottom_right.y - room_top_left.y)
 	var depth = _get_depth_from_root()
 	
-	challenge_rating = min(3, max(1, (room_area/10) + (depth/2) ))
+	
+	challenge_rating = min(room_area/10 , max(1, (room_area/10) + (depth/2) ))
 
 func _get_depth_from_root()->int:
 	return 1 if size.x * size.y >100 else 2
 	
-#func place_chest():
-	#if has_room && randf() < 0.2:
-		#var rng = RandomNumberGenerator.new()
-		#var chest_pos = Vector2i(
-			#rng.randi_range(room_top_left.x + 1, room_bottom_right.x - 2),
-			#rng.randi_range(room_top_left.y + 1, room_bottom_right.y - 2)
-			#)
-		#chest_positions.append(chest_pos)
-#
-#func spawn_enemies():
-	#if not has_room:
-		#return
-	#
-	#calculate_challenge_rating()
-	#var remaining_cr = challenge_rating
-	##var max_spawn_attempts = 20  # Prevent infinite loops
-	##var spawn_attempts = 0
-	#
-	#while remaining_cr > 0:
-		#var enemy_level = 1
-		#var spawn_pos = _find_valid_enemy_position()
-		#
-		#if spawn_pos != Vector2i.ZERO:
-			#enemy_positions.append({
-				#'position': spawn_pos,
-				#'level': enemy_level
-			#})
-			#remaining_cr -= enemy_level
-		#
-		##spawn_attempts += 1
-		#
-		## If we can't find valid positions, break out
-		#if spawn_pos == Vector2i.ZERO:
-			#break
-#
-#func _find_valid_enemy_position() -> Vector2i:
-	#var rng = RandomNumberGenerator.new()
-	#var attempts = 10
-	#
-	#while attempts > 0:
-		#var pos = Vector2i(
-			#rng.randi_range(room_top_left.x + 1, room_bottom_right.x - 2),
-			#rng.randi_range(room_top_left.y + 1, room_bottom_right.y - 2)
-		#)
-		#
-		## Check if position is valid (less strict distance requirement)
-		#var room_center = get_room_center()
-		#var min_distance_from_center = 1  # Reduced from 2
-		#
-		#if pos.distance_to(room_center) >= min_distance_from_center:
-			#var valid = true
-			#
-			## Check distance from chests
-			#for chest_pos in chest_positions:
-				#if pos.distance_to(chest_pos) < 1.5:  # Reduced from 2
-					#valid = false
-					#break
-			#
-			## Check distance from other enemies
-			#for enemy_data in enemy_positions:
-				#var enemy_pos = enemy_data['position']
-				#if pos.distance_to(enemy_pos) < 1.5:
-					#valid = false
-					#break
-			#
-			#if valid:
-				#return pos
-		#
-		#attempts -= 1
-	#
-	#return Vector2i.ZERO
-	#
 	
 func get_all_valid_positions() -> Array:
 	var valid_positions = []

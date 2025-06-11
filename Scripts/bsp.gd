@@ -30,9 +30,10 @@ var exit_tile = Vector2i(0,2)
 var entrance_pos: Vector2i
 var exit_pos: Vector2i
 
-@onready var player: Player = $Player
 
 func _ready() -> void:
+	self.y_sort_enabled = true
+	PlayerManager.set_as_parent(self)
 	tilemaplayer = get_node("TileMapLayer")
 	min_cell_size = Vector2i(map_width/4, map_height/4)
 	generate_dungeon()
@@ -165,7 +166,7 @@ func _place_entrance_exit():
 		var entrance_room = leaves[0]
 		entrance_pos = entrance_room.get_room_center()
 		tilemaplayer.set_cell(entrance_pos, 4, entrance_tile)
-		player.position = tilemaplayer.map_to_local(entrance_pos)
+		PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
 		
 		var camera_upper_left_bounds = entrance_room.room_top_left
 		bounds.append(tilemaplayer.map_to_local(camera_upper_left_bounds))

@@ -1,15 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://sr47jxr80pkj"]
+[gd_scene load_steps=3 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://byvrv8elg58cb" path="res://Scripts/bsp.gd" id="1_d7dhw"]
-[ext_resource type="PackedScene" uid="uid://bc0hyu7yps2kh" path="res://Player/player.tscn" id="2_gx62w"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="3_vcduu"]
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_d7dhw")
-map_width = 30
+map_width = 100
+map_height = 100
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("3_vcduu")
 rendering_quadrant_size = 64
-
-[node name="Player" parent="." instance=ExtResource("2_gx62w")]

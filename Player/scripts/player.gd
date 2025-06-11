@@ -25,6 +25,7 @@ func _process(_delta):
 	
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	
 	PlayerHud.update_hp(hp, max_hp)
 	
 	pass
@@ -39,7 +40,7 @@ func update_animation(anim_name : String):
 func _take_damage(hurt_box: HurtBox)-> void:
 	if invulnerable == true:
 		return
-	update_hp(-hurt_box.damage)
+	update_hp(-hurt_box.damage)	
 	print("player's hp", hp)
 	if hp > 0:
 		player_damaged.emit(hurt_box)
