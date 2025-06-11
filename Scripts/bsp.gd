@@ -27,6 +27,9 @@ var spawned_enemies: Array = []
 var entrance_tile = Vector2i(0,1)
 var exit_tile = Vector2i(0,2)
 
+@onready var floor_transition_tile: FloorTransition = $FloorTransition
+
+
 var entrance_pos: Vector2i
 var exit_pos: Vector2i
 
@@ -52,18 +55,22 @@ func generate_dungeon():
 	tilemaplayer.clear()
 	floor_tiles.clear()
 	
+	for enemy in spawned_enemies:
+		if is_instance_valid(enemy):
+			enemy.queue_free()
+	spawned_enemies.clear()
+	
 	# Generate floor tiles for rooms and corridors
 	_place_floor_tiles()
 	
 	# Generate walls around floor tiles
 	_place_wall_tiles()
 	
-	#_place_chests()
-	#_place_enemies()
-	
 	_place_objects()
 	_place_entrance_exit()
 	
+	PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
+	floor_transition_tile.global_position = tilemaplayer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 	
 
@@ -166,7 +173,6 @@ func _place_entrance_exit():
 		var entrance_room = leaves[0]
 		entrance_pos = entrance_room.get_room_center()
 		tilemaplayer.set_cell(entrance_pos, 4, entrance_tile)
-		PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
 		
 		var camera_upper_left_bounds = entrance_room.room_top_left
 		bounds.append(tilemaplayer.map_to_local(camera_upper_left_bounds))
@@ -179,7 +185,7 @@ func _place_entrance_exit():
 		bounds.append(tilemaplayer.map_to_local(camera_bottom_right_bounds))
 		
 	pass
-	
+
 func _set_camera_bounds() -> Array[Vector2]:
 	var bounds : Array[Vector2] = []
 	var used_rect = tilemaplayer.get_used_rect()
@@ -220,3 +226,15 @@ func _place_objects():
 			spawned_enemies.append(enemy_instance)
 			
 			
+
+
+func _on_floor_transition_regenerate_dungeon() -> void:
+	print("regenerate the floor!")
+	get_tree().paused = true
+	await SceneTransition.fade_out()
+	
+	generate_dungeon()
+	
+	await SceneTransition.fade_in()
+	get_tree().paused = false
+	pass

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://jaku77anwab0" path="res://GUI/player_hud/player_hud.gd" id="1_6ggty"]
 
 [node name="PlayerHud" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_6ggty")
 
 [node name="Control" type="Control" parent="."]

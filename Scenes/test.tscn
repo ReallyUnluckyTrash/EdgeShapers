@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://byi200slmbtmx"]
+[gd_scene load_steps=7 format=4 uid="uid://byi200slmbtmx"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Scripts/level.gd" id="1_35xla"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="1_ys1qc"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Scripts/level_tilemap.gd" id="2_35xla"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_ys1qc"]
+[ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Scenes/level_transition.tscn" id="6_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="6_i3aeo"]
 
 [node name="Test1" type="Node2D"]
@@ -25,3 +26,11 @@ position = Vector2(81, 631)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_ys1qc")]
 position = Vector2(614, 477)
+
+[node name="LevelTransitionUpper" parent="." instance=ExtResource("6_5wyu1")]
+position = Vector2(608, 0)
+level = "uid://bom58e782lmnb"
+target_transition_area = "LevelTransitionBottom"
+size = 3
+side = 2
+snap_to_grid = true
