@@ -16,10 +16,19 @@ var chest_positions: Array = []
 var enemy_positions: Array = []
 var challenge_rating:int = 0
 
+var parent: Branch = null
+var depth:int = 0
 
-func _init(_position, _size) -> void:
+
+func _init(_position, _size, _parent: Branch = null) -> void:
 	self.position = _position
 	self.size = _size
+	self.parent = _parent
+	
+	if parent == null:
+		depth = 0
+	else:
+		depth = parent.depth + 1
 	
 func get_leaves():
 	if not(left_child && right_child):
@@ -53,19 +62,21 @@ func split(min_size: Vector2i):
 	#split horizontally
 	if(split_horizontal):
 		var left_height = int(size.y * split_percent)
-		left_child = Branch.new(position, Vector2i(size.x, left_height))
+		left_child = Branch.new(position, Vector2i(size.x, left_height), self)
 		right_child = Branch.new(
 			Vector2i(position.x, position.y + left_height),
-			Vector2i(size.x, size.y - left_height)
+			Vector2i(size.x, size.y - left_height),
+			self
 			)
 	
 	#split vertically
 	else:
 		var left_width = int(size.x * split_percent)
-		left_child = Branch.new(position, Vector2i(left_width, size.y))
+		left_child = Branch.new(position, Vector2i(left_width, size.y), self)
 		right_child = Branch.new(
 			Vector2i(position.x + left_width, position.y),
-			Vector2i(size.x - left_width, size.y)
+			Vector2i(size.x - left_width, size.y),
+			self
 			)
 	
 	#recursively split children until min size
@@ -155,13 +166,10 @@ func calculate_challenge_rating():
 		return
 	
 	var room_area = (room_bottom_right.x - room_top_left.x) * (room_bottom_right.y - room_top_left.y)
-	var depth = _get_depth_from_root()
-	
 	
 	challenge_rating = min(room_area/10 , max(1, (room_area/10) + (depth/2) ))
 
-func _get_depth_from_root()->int:
-	return 1 if size.x * size.y >100 else 2
+
 	
 	
 func get_all_valid_positions() -> Array:

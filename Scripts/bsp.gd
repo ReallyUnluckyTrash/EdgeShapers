@@ -66,13 +66,14 @@ func generate_dungeon():
 	# Generate walls around floor tiles
 	_place_wall_tiles()
 	
+	#place entities (such as enemies and chests) and set the entrance and exit points
 	_place_objects()
 	_place_entrance_exit()
 	
+	#set the player and exit collision to their proper positions and change camera bounds
 	PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
 	floor_transition_tile.global_position = tilemaplayer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
-	
 
 	queue_redraw()
 
