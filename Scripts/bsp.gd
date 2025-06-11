@@ -220,30 +220,3 @@ func _place_objects():
 			spawned_enemies.append(enemy_instance)
 			
 			
-
-#func _place_chests():
-	#var leaves = root_node.get_leaves()
-	#for i in range(1, leaves.size()):
-		#var leaf = leaves[i]
-		#leaf.place_chest()
-		#for chest_pos in leaf.chest_positions:
-			#tilemaplayer.set_cell(chest_pos, 4, chest_tile)
-#
-#func _place_enemies():
-	#var leaves = root_node.get_leaves()
-	#for i in range(1, leaves.size()):
-		#var leaf = leaves[i]
-		#leaf.spawn_enemies()
-		#for enemy_data in leaf.enemy_positions:
-			#var enemy_level = enemy_data['level']
-			#var enemy_pos = enemy_data['position']
-			#
-			#var enemy_instance = enemy_scenes[enemy_level].instantiate()
-			#enemy_instance.position = Vector2(
-				#enemy_pos.x * tile_size + tile_size/2,
-				#enemy_pos.y * tile_size + tile_size/2,
-			#)
-			#enemy_instance.level = enemy_level
-			#add_child(enemy_instance)
-			#spawned_enemies.append(enemy_instance)
-	#pass
