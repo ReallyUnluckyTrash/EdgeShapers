@@ -185,7 +185,15 @@ func calculate_challenge_rating():
 	
 	var room_area = (room_bottom_right.x - room_top_left.x) * (room_bottom_right.y - room_top_left.y)
 	
-	challenge_rating = min(room_area/10 , max(1, (room_area/10) + (depth/2) ))
+	var base_cr = 2
+	
+	var min_area = 9
+	var area_bonus = max(0, (room_area-min_area)/6)
+	var depth_bonus = max(0, depth/3)
+	
+	challenge_rating = base_cr + area_bonus + depth_bonus
+	
+	challenge_rating = min(challenge_rating, 10)
 	
 	
 func get_all_valid_positions() -> Array:
@@ -220,13 +228,55 @@ func spawn_enemies_from_positions(available_positions: Array):
 	calculate_challenge_rating()
 	var remaining_cr = challenge_rating  
 	
-	while remaining_cr > 0 and available_positions.size() > 0:
-		var enemy_level = randi_range(1, 3)
-		#var enemy_level = 1
-		enemy_positions.append({
-			'position': available_positions.pop_front(),
-			'level': enemy_level
-		})
-		remaining_cr -= enemy_level  # Decrement the local variable
+	if available_positions.size() == 0:
+		return
+	
+	if challenge_rating <= 2:
+		if available_positions.size() > 0:
+			enemy_positions.append({
+				'position': available_positions.pop_front(),
+				'level': 2
+			})
+			remaining_cr -= 2
+	else:
+			# For larger rooms, use a more strategic approach
+		# Prioritize having at least one level 2+ enemy
+		var has_strong_enemy = false
+		
+		while remaining_cr > 0 and available_positions.size() > 0:
+			var enemy_level: int
+			
+			# Ensure we have at least one level 2+ enemy for the first spawn
+			if not has_strong_enemy and remaining_cr >= 2:
+				enemy_level = randi_range(2, min(3, remaining_cr))
+				has_strong_enemy = true
+			else:
+				# Choose enemy level based on remaining CR
+				if remaining_cr >= 3:
+					# Can afford any level enemy
+					enemy_level = randi_range(1, 3)
+				elif remaining_cr >= 2:
+					# Can afford level 1 or 2
+					enemy_level = randi_range(1, 2)
+				else:
+					# Only level 1
+					enemy_level = 1
+			
+			# Don't spawn enemy if it would exceed available CR
+			if enemy_level > remaining_cr:
+				break
+				
+			enemy_positions.append({
+				'position': available_positions.pop_front(),
+				'level': enemy_level
+			})
+			remaining_cr -= enemy_level
+	
+	# Debug print to verify spawning
+	if enemy_positions.size() > 0:
+		var total_spawned_cr = 0
+		for enemy in enemy_positions:
+			total_spawned_cr += enemy['level']
+		print("Room CR: ", challenge_rating, " | Spawned CR: ", total_spawned_cr, " | Enemies: ", enemy_positions.size())
 	
 	
