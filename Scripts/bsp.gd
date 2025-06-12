@@ -27,18 +27,25 @@ var spawned_enemies: Array = []
 var entrance_tile = Vector2i(0,1)
 var exit_tile = Vector2i(0,2)
 
+var entrance_pos: Vector2i
+var exit_pos: Vector2i
+
+var entrance_room: Branch = null
+var exit_room: Branch = null
+
 @onready var floor_transition_tile: FloorTransition = $FloorTransition
 
 
-var entrance_pos: Vector2i
-var exit_pos: Vector2i
 
 
 func _ready() -> void:
 	self.y_sort_enabled = true
 	PlayerManager.set_as_parent(self)
 	tilemaplayer = get_node("TileMapLayer")
-	min_cell_size = Vector2i(map_width/4, map_height/4)
+	min_cell_size = Vector2i(
+		max(5, map_width/4), 
+		max(5, map_height/4)
+		)
 	generate_dungeon()
 
 func generate_dungeon():
@@ -63,12 +70,14 @@ func generate_dungeon():
 	# Generate floor tiles for rooms and corridors
 	_place_floor_tiles()
 	
+	_place_corridor_tiles()
+	
 	# Generate walls around floor tiles
 	_place_wall_tiles()
 	
 	#place entities (such as enemies and chests) and set the entrance and exit points
-	_place_objects()
 	_place_entrance_exit()
+	_place_objects()
 	
 	#set the player and exit collision to their proper positions and change camera bounds
 	PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
@@ -114,26 +123,33 @@ func _place_floor_tiles():
 					var pos = Vector2i(x, y)
 					tilemaplayer.set_cell(pos, 4, floor_tile)
 					floor_tiles.append(pos)
-	
+
+
+func _place_corridor_tiles():
 	# Place floor tiles for corridors
 	var corridors = root_node.get_corridors()
 	for corridor in corridors:
 		_create_corridor_tiles(corridor['start'], corridor['end'])
 
 func _place_wall_tiles():
-	# For each floor tile, check surrounding positions for walls
+	var wall_positions = {}  # Use dictionary for O(1) lookup
+	
+	# Collect all potential wall positions first
 	for floor_pos in floor_tiles:
-		# Check all 8 directions around each floor tile
 		for dx in range(-1, 2):
 			for dy in range(-1, 2):
 				if dx == 0 and dy == 0:
-					continue # Skip the center (floor tile itself)
+					continue
 				
 				var wall_pos = Vector2i(floor_pos.x + dx, floor_pos.y + dy)
 				
-				# If this position is not a floor tile and not already a wall, place a wall
-				if not _is_floor_tile(wall_pos) and not _is_wall_tile(wall_pos):
-					tilemaplayer.set_cell(wall_pos, 4, wall_tile)
+				# Only add if not already a floor tile
+				if not _is_floor_tile(wall_pos):
+					wall_positions[wall_pos] = true
+	
+	# Place all wall tiles at once
+	for wall_pos in wall_positions:
+		tilemaplayer.set_cell(wall_pos, 4, wall_tile)
 
 func _is_floor_tile(pos: Vector2i) -> bool:
 	return pos in floor_tiles
@@ -166,26 +182,28 @@ func _create_corridor_tiles(start: Vector2i, end: Vector2i):
 		if pos not in floor_tiles:
 			floor_tiles.append(pos)
 			
+
 func _place_entrance_exit():
 	var leaves = root_node.get_leaves()
-	var bounds : Array[Vector2] = []
+	var rooms_with_space = []
 	
-	if leaves.size() >= 2:
-		var entrance_room = leaves[0]
+	# Only consider leaves that actually have rooms
+	for leaf in leaves:
+		if leaf.has_room:
+			rooms_with_space.append(leaf)
+	
+	if rooms_with_space.size() >= 2:
+		entrance_room = rooms_with_space[0]
 		entrance_pos = entrance_room.get_room_center()
 		tilemaplayer.set_cell(entrance_pos, 4, entrance_tile)
 		
-		var camera_upper_left_bounds = entrance_room.room_top_left
-		bounds.append(tilemaplayer.map_to_local(camera_upper_left_bounds))
-		
-		var exit_room = leaves[-1]
+		exit_room = rooms_with_space[-1]
 		exit_pos = exit_room.get_room_center()
 		tilemaplayer.set_cell(exit_pos, 4, exit_tile)
-		
-		var camera_bottom_right_bounds = exit_room.room_bottom_right
-		bounds.append(tilemaplayer.map_to_local(camera_bottom_right_bounds))
-		
-	pass
+
+	else:
+		print("Warning: Not enough rooms for entrance/exit placement, regenerating dungeon")
+		_on_floor_transition_regenerate_dungeon()
 
 func _set_camera_bounds() -> Array[Vector2]:
 	var bounds : Array[Vector2] = []
@@ -206,8 +224,16 @@ func _set_camera_bounds() -> Array[Vector2]:
 
 func _place_objects():
 	var leaves = root_node.get_leaves()
-	for i in range(1, leaves.size() - 1):
+	for i in range(0, leaves.size()):
 		var leaf = leaves[i]
+		
+		if leaf == entrance_room:
+			print("skip the entrance room for object placement")
+			continue
+		
+		if not leaf.has_room:
+			continue
+		
 		leaf.set_object_spawn_positions()
 		
 		for chest_pos in leaf.chest_positions:
@@ -233,6 +259,7 @@ func _on_floor_transition_regenerate_dungeon() -> void:
 	print("regenerate the floor!")
 	get_tree().paused = true
 	await SceneTransition.fade_out()
+	
 	
 	generate_dungeon()
 	

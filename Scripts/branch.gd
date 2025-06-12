@@ -87,36 +87,55 @@ func split(min_size: Vector2i):
 func create_room():
 	var rng = RandomNumberGenerator.new()
 	
-	
-	var padding = Vector2i(1,1)
+	var padding = Vector2i(1, 1)
 	var available_space = Vector2i(size.x - padding.x * 2, size.y - padding.y * 2)
 	
-	var min_room_size = Vector2i(
-		max(4, available_space.x / 2),
-		max(4, available_space.y / 2)
-	)
+	# Check if we can fit a room with area >= 8 in the available space
+	if available_space.x < 3 or available_space.y < 3 or available_space.x * available_space.y < 9:
+		# Not enough space for minimum area requirement
+		has_room = false
+		return
 	
-	var max_room_size = Vector2i(
-		max(min_room_size.x, size.x - padding.x * 2),
-		max(min_room_size.y, size.y - padding.y * 2),
-	)
+	var min_room_size = Vector2i(3, 3)
 	
-	var max_top_left = Vector2i(
-		position.x + size.x - max_room_size.x,
-		position.y + size.y - max_room_size.y
-	)
+	if available_space.x >= 4 and available_space.y >= 3:
+		pass
+	elif available_space.x >= 3 and available_space.y >= 4:
+		pass
+	
+		
+	var max_room_size = available_space
+	
+	var room_width = rng.randi_range(min_room_size.x, max_room_size.x)
+	var room_height = rng.randi_range(min_room_size.y, max_room_size.y)
+	
+	while room_width * room_height <= 8:
+		if room_width <= room_height and room_width < max_room_size.x:
+			room_width += 1
+		elif room_height < max_room_size.y:
+			room_height += 1
+		else:
+			break
+	
+	var max_top_left_x = position.x + size.x - padding.x - room_width
+	var max_top_left_y = position.y + size.y - padding.y - room_height
+	
+	if max_top_left_x < position.x + padding.x or max_top_left_y < position.y + padding.y:
+		has_room = false
+		return
 	
 	room_top_left = Vector2i(
-		rng.randi_range(position.x + padding.x, max(position.x + padding.x, max_top_left.x)),
-		rng.randi_range(position.y + padding.y, max(position.y + padding.y, max_top_left.y))
+		rng.randi_range(position.x + padding.x, max_top_left_x),
+		rng.randi_range(position.y + padding.y, max_top_left_y)
 	)
 	
 	room_bottom_right = Vector2i(
-		rng.randi_range(room_top_left.x + min_room_size.x, min(room_top_left.x + max_room_size.x, position.x + size.x - padding.x)),
-		rng.randi_range(room_top_left.y + min_room_size.y, min(room_top_left.y + max_room_size.y, position.y + size.y - padding.y))
+		room_top_left.x + room_width,
+		room_top_left.y + room_height
 	)
 	
 	has_room = true
+	
 
 func create_all_rooms():
 	var leaves = get_leaves()
@@ -129,36 +148,35 @@ func get_corridors():
 	return corridors
 
 func _collect_corridors(corridors):
-	var parent_center = _get_descendant_room_center(self)
-	
 	if left_child:
-		var left_center = _get_descendant_room_center(left_child)
-		if parent_center != Vector2i.ZERO 	&& left_center != Vector2i.ZERO:
-			corridors.append({'start' : parent_center, 'end' : left_center})
 		left_child._collect_corridors(corridors)
-	
 	if right_child:
-		var right_center = _get_descendant_room_center(right_child)
-		if parent_center != Vector2i.ZERO 	&& right_center != Vector2i.ZERO:
-			corridors.append({'start' : parent_center, 'end' : right_center})
 		right_child._collect_corridors(corridors)
-
-func _get_descendant_room_center(node:Branch) -> Vector2i:
+		
+	if left_child && right_child:
+		var left_center = _get_child_center(left_child)
+		var right_center = _get_child_center(right_child)
+		
+		if left_center != Vector2i.ZERO && right_center != Vector2i.ZERO:
+			corridors.append({'start': left_center, 'end': right_center})
+	
+func _get_child_center(node:Branch) -> Vector2i:
 	if node.has_room:
 		return node.get_room_center()
 	
-	if node.left_child && node.left_child.has_room:
-		return node.left_child.get_room_center()
-	elif node.right_child && node.right_child.has_room:
-		return node.right_child.get_room_center()
-	elif node.left_child:
-		return _get_descendant_room_center(node.left_child)
-	elif node.right_child:
-		return _get_descendant_room_center(node.right_child)
+	var left_rep = Vector2i.ZERO
+	var right_rep = Vector2i.ZERO
 	
-	return Vector2.ZERO
-
-#refactor candidate
+	if node.left_child:
+		left_rep = _get_child_center(node.left_child)
+		right_rep = _get_child_center(node.right_child)
+		
+	if left_rep != Vector2i.ZERO:
+		return left_rep
+	elif right_rep != Vector2i.ZERO:
+		return right_rep
+	
+	return Vector2i.ZERO
 
 
 func calculate_challenge_rating():
@@ -168,8 +186,6 @@ func calculate_challenge_rating():
 	var room_area = (room_bottom_right.x - room_top_left.x) * (room_bottom_right.y - room_top_left.y)
 	
 	challenge_rating = min(room_area/10 , max(1, (room_area/10) + (depth/2) ))
-
-
 	
 	
 func get_all_valid_positions() -> Array:
