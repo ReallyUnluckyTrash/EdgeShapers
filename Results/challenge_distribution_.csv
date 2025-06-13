@@ -1,0 +1,15 @@
+metric,value
+total_enemies,21
+rooms_with_enemies,10
+rooms_with_chests,3
+enemy_density,1.61538461538462
+level_1_enemies,5
+level_2_enemies,12
+level_3_enemies,4
+level_1_percentage,0.23809523809524
+level_2_percentage,0.57142857142857
+level_3_percentage,0.19047619047619
+mean_challenge_rating,4.0
+max_challenge_rating,6
+min_challenge_rating,3
+challenge_rating_variance,0.83333333333333

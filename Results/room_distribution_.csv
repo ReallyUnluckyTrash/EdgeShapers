@@ -1,0 +1,17 @@
+metric,value
+room_count,13
+total_rooms_attempted,18
+room_generation_success_rate,0.72222222222222
+room_density,0.25222222222222
+mean_area,17
+min_area,12
+max_area,32
+area_variance,33.6331360946746
+area_std_dev,5.79940825383716
+mean_width,3.76923076923077
+mean_height,4.69230769230769
+width_variance,0.33136094674556
+height_variance,2.5207100591716
+mean_aspect_ratio,0.88910256410256
+aspect_ratio_variance,0.08935239973702
+average_room_area,17.4615384615385

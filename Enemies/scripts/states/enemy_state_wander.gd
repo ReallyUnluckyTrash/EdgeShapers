@@ -3,9 +3,6 @@ class_name EnemyStateWander extends EnemyState
 @export var wander_speed: float = 20.0
 
 @export_category("AI")
-#@export var state_duration_min : float = 0.5
-#@export var state_duration_max : float = 1.5
-
 @export var state_animation_duration : float = 0.5
 @export var state_cycles_min: int = 1
 @export var state_cycles_max: int = 3
@@ -24,9 +21,6 @@ func enter() -> void:
 	_direction = enemy.DIR_4[rand_num]
 	enemy.velocity = _direction * wander_speed
 	
-	#if player.set_direction():
-		#player.update_animation(player.anim_direction())
-		
 	enemy.set_direction(_direction)
 	enemy.update_animation(enemy.anim_direction())
 	pass

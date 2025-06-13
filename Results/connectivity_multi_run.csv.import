@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://djd3cx3q6wo8n"
+
+[deps]
+
+files=["res://Results/connectivity_multi_run.total.translation", "res://Results/connectivity_multi_run.reachable.translation", "res://Results/connectivity_multi_run.unreachable.translation", "res://Results/connectivity_multi_run.connectivity.translation", "res://Results/connectivity_multi_run.is.translation", "res://Results/connectivity_multi_run.total.translation", "res://Results/connectivity_multi_run.minimum.translation", "res://Results/connectivity_multi_run.redundant.translation", "res://Results/connectivity_multi_run.path.translation", "res://Results/connectivity_multi_run.entrance.translation"]
+
+source_file="res://Results/connectivity_multi_run.csv"
+dest_files=["res://Results/connectivity_multi_run.total.translation", "res://Results/connectivity_multi_run.reachable.translation", "res://Results/connectivity_multi_run.unreachable.translation", "res://Results/connectivity_multi_run.connectivity.translation", "res://Results/connectivity_multi_run.is.translation", "res://Results/connectivity_multi_run.total.translation", "res://Results/connectivity_multi_run.minimum.translation", "res://Results/connectivity_multi_run.redundant.translation", "res://Results/connectivity_multi_run.path.translation", "res://Results/connectivity_multi_run.entrance.translation"]
+
+[params]
+
+compress=true
+delimiter=0

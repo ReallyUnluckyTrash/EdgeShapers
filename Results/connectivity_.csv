@@ -1,0 +1,11 @@
+metric,value
+total_rooms,13
+reachable_rooms,13
+unreachable_rooms,0
+connectivity_ratio,1.0
+is_fully_connected,1
+total_corridors,12
+minimum_connections_needed,12
+redundant_connections,0
+path_redundancy_ratio,0.0
+entrance_to_exit_distance,34
