@@ -46,8 +46,7 @@ func _ready() -> void:
 		max(5, map_width/4), 
 		max(5, map_height/4)
 		)
-	#generate_dungeon()
-	run_multiple_evaluations(50)
+	generate_dungeon()
 
 func generate_dungeon():
 	# Step 1: Start with entire dungeon area (root node)
@@ -84,6 +83,7 @@ func generate_dungeon():
 	PlayerManager.set_player_position(tilemaplayer.map_to_local(entrance_pos))
 	floor_transition_tile.global_position = tilemaplayer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
+	#test_dungeon_quality()
 
 	queue_redraw()
 	
@@ -268,9 +268,6 @@ func _on_floor_transition_regenerate_dungeon() -> void:
 	await SceneTransition.fade_in()
 	get_tree().paused = false
 	pass
-
-
-# Add these functions to your bsp.gd file for complete evaluation
 
 # Helper function to calculate variance
 func calculate_variance(values: Array) -> float:
@@ -645,183 +642,183 @@ func print_evaluation_results(results: Dictionary):
 	print("\n" + "=".repeat(60))
 
 
-# Save evaluation results to CSV files for visualization (modified for multiple runs)
-func save_evaluation_results(results: Dictionary):
-	var timestamp = Time.get_datetime_string_from_system().replace(":", "-").replace(" ", "_")
-	var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
-	
-	# Save room distribution data
-	save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", timestamp)
-	
-	# Save connectivity data
-	save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", timestamp)
-	
-	# Save challenge distribution data
-	save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", timestamp)
+## Save evaluation results to CSV files for visualization (modified for multiple runs)
+#func save_evaluation_results(results: Dictionary):
+	#var timestamp = Time.get_datetime_string_from_system().replace(":", "-").replace(" ", "_")
+	#var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
+	#
+	## Save room distribution data
+	#save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", timestamp)
+	#
+	## Save connectivity data
+	#save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", timestamp)
+	#
+	## Save challenge distribution data
+	#save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", timestamp)
+#
+#func save_room_distribution_csv_append(room_data: Dictionary, filepath: String, run_id: String):
+	#if "error" in room_data:
+		#print("Cannot save room distribution CSV - error in data")
+		#return
+	#
+	## Check if file exists to determine if we need to write headers
+	#var file_exists = FileAccess.file_exists(filepath)
+	#
+	#var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
+	#if not file:
+		#print("Failed to create/open room distribution CSV at: ", filepath)
+		#return
+	#
+	## If file exists, move to end for appending
+	#if file_exists:
+		#file.seek_end()
+	#else:
+		## Write header for new file
+		#file.store_line("run_id,room_count,total_rooms_attempted,room_generation_success_rate,room_density,mean_area,min_area,max_area,area_variance,area_std_dev,mean_width,mean_height,width_variance,height_variance,mean_aspect_ratio,aspect_ratio_variance,average_room_area")
+	#
+	## Write data row
+	#var data_row = "%s,%d,%d,%.4f,%.4f,%.2f,%d,%d,%.4f,%.4f,%.2f,%.2f,%.4f,%.4f,%.4f,%.4f,%.2f" % [
+		#run_id,
+		#room_data.get("room_count", 0),
+		#room_data.get("total_rooms_attempted", 0),
+		#room_data.get("room_generation_success_rate", 0.0),
+		#room_data.get("room_density", 0.0),
+		#room_data.get("mean_area", 0.0),
+		#room_data.get("min_area", 0),
+		#room_data.get("max_area", 0),
+		#room_data.get("area_variance", 0.0),
+		#room_data.get("area_std_dev", 0.0),
+		#room_data.get("mean_width", 0.0),
+		#room_data.get("mean_height", 0.0),
+		#room_data.get("width_variance", 0.0),
+		#room_data.get("height_variance", 0.0),
+		#room_data.get("mean_aspect_ratio", 0.0),
+		#room_data.get("aspect_ratio_variance", 0.0),
+		#room_data.get("average_room_area", 0.0)
+	#]
+	#
+	#file.store_line(data_row)
+	#file.close()
+	#print("Room distribution data appended to: ", filepath)
+#
+#func save_connectivity_csv_append(connectivity_data: Dictionary, filepath: String, run_id: String):
+	#if "error" in connectivity_data:
+		#print("Cannot save connectivity CSV - error in data")
+		#return
+	#
+	## Check if file exists to determine if we need to write headers
+	#var file_exists = FileAccess.file_exists(filepath)
+	#
+	#var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
+	#if not file:
+		#print("Failed to create/open connectivity CSV at: ", filepath)
+		#return
+	#
+	## If file exists, move to end for appending
+	#if file_exists:
+		#file.seek_end()
+	#else:
+		## Write header for new file
+		#file.store_line("run_id,total_rooms,reachable_rooms,unreachable_rooms,connectivity_ratio,is_fully_connected,total_corridors,minimum_connections_needed,redundant_connections,path_redundancy_ratio,entrance_to_exit_distance")
+	#
+	## Write data row
+	#var data_row = "%s,%d,%d,%d,%.4f,%d,%d,%d,%d,%.4f,%d" % [
+		#run_id,
+		#connectivity_data.get("total_rooms", 0),
+		#connectivity_data.get("reachable_rooms", 0),
+		#connectivity_data.get("unreachable_rooms", 0),
+		#connectivity_data.get("connectivity_ratio", 0.0),
+		#1 if connectivity_data.get("is_fully_connected", false) else 0,
+		#connectivity_data.get("total_corridors", 0),
+		#connectivity_data.get("minimum_connections_needed", 0),
+		#connectivity_data.get("redundant_connections", 0),
+		#connectivity_data.get("path_redundancy_ratio", 0.0),
+		#connectivity_data.get("entrance_to_exit_distance", -1)
+	#]
+	#
+	#file.store_line(data_row)
+	#file.close()
+	#print("Connectivity data appended to: ", filepath)
+#
+#func save_challenge_distribution_csv_append(challenge_data: Dictionary, filepath: String, run_id: String):
+	## Check if file exists to determine if we need to write headers
+	#var file_exists = FileAccess.file_exists(filepath)
+	#
+	#var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
+	#if not file:
+		#print("Failed to create/open challenge distribution CSV at: ", filepath)
+		#return
+	#
+	## If file exists, move to end for appending
+	#if file_exists:
+		#file.seek_end()
+	#else:
+		## Write header for new file
+		#file.store_line("run_id,total_enemies,rooms_with_enemies,rooms_with_chests,enemy_density,level_1_enemies,level_2_enemies,level_3_enemies,level_1_percentage,level_2_percentage,level_3_percentage,mean_challenge_rating,max_challenge_rating,min_challenge_rating,challenge_rating_variance")
+	#
+	## Write data row
+	#var data_row = "%s,%d,%d,%d,%.4f,%d,%d,%d,%.4f,%.4f,%.4f,%.4f,%d,%d,%.4f" % [
+		#run_id,
+		#challenge_data.get("total_enemies", 0),
+		#challenge_data.get("rooms_with_enemies", 0),
+		#challenge_data.get("rooms_with_chests", 0),
+		#challenge_data.get("enemy_density", 0.0),
+		#challenge_data.get("level_1_enemies", 0),
+		#challenge_data.get("level_2_enemies", 0),
+		#challenge_data.get("level_3_enemies", 0),
+		#challenge_data.get("level_1_percentage", 0.0),
+		#challenge_data.get("level_2_percentage", 0.0),
+		#challenge_data.get("level_3_percentage", 0.0),
+		#challenge_data.get("mean_challenge_rating", 0.0),
+		#challenge_data.get("max_challenge_rating", 0),
+		#challenge_data.get("min_challenge_rating", 0),
+		#challenge_data.get("challenge_rating_variance", 0.0)
+	#]
+	#
+	#file.store_line(data_row)
+	#file.close()
+	#print("Challenge distribution data appended to: ", filepath)
 
-func save_room_distribution_csv_append(room_data: Dictionary, filepath: String, run_id: String):
-	if "error" in room_data:
-		print("Cannot save room distribution CSV - error in data")
-		return
-	
-	# Check if file exists to determine if we need to write headers
-	var file_exists = FileAccess.file_exists(filepath)
-	
-	var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
-	if not file:
-		print("Failed to create/open room distribution CSV at: ", filepath)
-		return
-	
-	# If file exists, move to end for appending
-	if file_exists:
-		file.seek_end()
-	else:
-		# Write header for new file
-		file.store_line("run_id,room_count,total_rooms_attempted,room_generation_success_rate,room_density,mean_area,min_area,max_area,area_variance,area_std_dev,mean_width,mean_height,width_variance,height_variance,mean_aspect_ratio,aspect_ratio_variance,average_room_area")
-	
-	# Write data row
-	var data_row = "%s,%d,%d,%.4f,%.4f,%.2f,%d,%d,%.4f,%.4f,%.2f,%.2f,%.4f,%.4f,%.4f,%.4f,%.2f" % [
-		run_id,
-		room_data.get("room_count", 0),
-		room_data.get("total_rooms_attempted", 0),
-		room_data.get("room_generation_success_rate", 0.0),
-		room_data.get("room_density", 0.0),
-		room_data.get("mean_area", 0.0),
-		room_data.get("min_area", 0),
-		room_data.get("max_area", 0),
-		room_data.get("area_variance", 0.0),
-		room_data.get("area_std_dev", 0.0),
-		room_data.get("mean_width", 0.0),
-		room_data.get("mean_height", 0.0),
-		room_data.get("width_variance", 0.0),
-		room_data.get("height_variance", 0.0),
-		room_data.get("mean_aspect_ratio", 0.0),
-		room_data.get("aspect_ratio_variance", 0.0),
-		room_data.get("average_room_area", 0.0)
-	]
-	
-	file.store_line(data_row)
-	file.close()
-	print("Room distribution data appended to: ", filepath)
-
-func save_connectivity_csv_append(connectivity_data: Dictionary, filepath: String, run_id: String):
-	if "error" in connectivity_data:
-		print("Cannot save connectivity CSV - error in data")
-		return
-	
-	# Check if file exists to determine if we need to write headers
-	var file_exists = FileAccess.file_exists(filepath)
-	
-	var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
-	if not file:
-		print("Failed to create/open connectivity CSV at: ", filepath)
-		return
-	
-	# If file exists, move to end for appending
-	if file_exists:
-		file.seek_end()
-	else:
-		# Write header for new file
-		file.store_line("run_id,total_rooms,reachable_rooms,unreachable_rooms,connectivity_ratio,is_fully_connected,total_corridors,minimum_connections_needed,redundant_connections,path_redundancy_ratio,entrance_to_exit_distance")
-	
-	# Write data row
-	var data_row = "%s,%d,%d,%d,%.4f,%d,%d,%d,%d,%.4f,%d" % [
-		run_id,
-		connectivity_data.get("total_rooms", 0),
-		connectivity_data.get("reachable_rooms", 0),
-		connectivity_data.get("unreachable_rooms", 0),
-		connectivity_data.get("connectivity_ratio", 0.0),
-		1 if connectivity_data.get("is_fully_connected", false) else 0,
-		connectivity_data.get("total_corridors", 0),
-		connectivity_data.get("minimum_connections_needed", 0),
-		connectivity_data.get("redundant_connections", 0),
-		connectivity_data.get("path_redundancy_ratio", 0.0),
-		connectivity_data.get("entrance_to_exit_distance", -1)
-	]
-	
-	file.store_line(data_row)
-	file.close()
-	print("Connectivity data appended to: ", filepath)
-
-func save_challenge_distribution_csv_append(challenge_data: Dictionary, filepath: String, run_id: String):
-	# Check if file exists to determine if we need to write headers
-	var file_exists = FileAccess.file_exists(filepath)
-	
-	var file = FileAccess.open(filepath, FileAccess.WRITE if not file_exists else FileAccess.READ_WRITE)
-	if not file:
-		print("Failed to create/open challenge distribution CSV at: ", filepath)
-		return
-	
-	# If file exists, move to end for appending
-	if file_exists:
-		file.seek_end()
-	else:
-		# Write header for new file
-		file.store_line("run_id,total_enemies,rooms_with_enemies,rooms_with_chests,enemy_density,level_1_enemies,level_2_enemies,level_3_enemies,level_1_percentage,level_2_percentage,level_3_percentage,mean_challenge_rating,max_challenge_rating,min_challenge_rating,challenge_rating_variance")
-	
-	# Write data row
-	var data_row = "%s,%d,%d,%d,%.4f,%d,%d,%d,%.4f,%.4f,%.4f,%.4f,%d,%d,%.4f" % [
-		run_id,
-		challenge_data.get("total_enemies", 0),
-		challenge_data.get("rooms_with_enemies", 0),
-		challenge_data.get("rooms_with_chests", 0),
-		challenge_data.get("enemy_density", 0.0),
-		challenge_data.get("level_1_enemies", 0),
-		challenge_data.get("level_2_enemies", 0),
-		challenge_data.get("level_3_enemies", 0),
-		challenge_data.get("level_1_percentage", 0.0),
-		challenge_data.get("level_2_percentage", 0.0),
-		challenge_data.get("level_3_percentage", 0.0),
-		challenge_data.get("mean_challenge_rating", 0.0),
-		challenge_data.get("max_challenge_rating", 0),
-		challenge_data.get("min_challenge_rating", 0),
-		challenge_data.get("challenge_rating_variance", 0.0)
-	]
-	
-	file.store_line(data_row)
-	file.close()
-	print("Challenge distribution data appended to: ", filepath)
-
-# Optional: Function to run multiple evaluations automatically
-func run_multiple_evaluations(num_runs: int = 10):
-	print("Starting %d dungeon evaluations..." % num_runs)
-	
-	for i in range(num_runs):
-		print("Generating and evaluating dungeon %d/%d..." % [i + 1, num_runs])
-		
-		# Generate new dungeon
-		generate_dungeon()
-		
-		# Wait a frame to ensure generation is complete
-		await get_tree().process_frame
-		
-		# Run evaluation
-		var results = run_full_evaluation()
-		
-		# Create unique run ID
-		var run_id = str(i + 1)
-		
-		# Save results (this will append to existing files)
-		save_evaluation_results_with_id(results, run_id)
-		
-		# Optional: Add a small delay between runs
-		await get_tree().create_timer(0.1).timeout
-	
-	print("Completed %d dungeon evaluations. Results saved to CSV files." % num_runs)
-
-
-# Modified save function that accepts a custom run ID
-func save_evaluation_results_with_id(results: Dictionary, run_id: String):
-	var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
-	
-	# Save room distribution data
-	save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", run_id)
-	
-	# Save connectivity data
-	save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", run_id)
-	
-	# Save challenge distribution data
-	save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", run_id)
+## Optional: Function to run multiple evaluations automatically
+#func run_multiple_evaluations(num_runs: int = 10):
+	#print("Starting %d dungeon evaluations..." % num_runs)
+	#
+	#for i in range(num_runs):
+		#print("Generating and evaluating dungeon %d/%d..." % [i + 1, num_runs])
+		#
+		## Generate new dungeon
+		#generate_dungeon()
+		#
+		## Wait a frame to ensure generation is complete
+		#await get_tree().process_frame
+		#
+		## Run evaluation
+		#var results = run_full_evaluation()
+		#
+		## Create unique run ID
+		#var run_id = str(i + 1)
+		#
+		## Save results (this will append to existing files)
+		#save_evaluation_results_with_id(results, run_id)
+		#
+		## Optional: Add a small delay between runs
+		#await get_tree().create_timer(0.1).timeout
+	#
+	#print("Completed %d dungeon evaluations. Results saved to CSV files." % num_runs)
+#
+#
+## Modified save function that accepts a custom run ID
+#func save_evaluation_results_with_id(results: Dictionary, run_id: String):
+	#var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
+	#
+	## Save room distribution data
+	#save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", run_id)
+	#
+	## Save connectivity data
+	#save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", run_id)
+	#
+	## Save challenge distribution data
+	#save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", run_id)
 
 # Example usage function - call this after generating a dungeon
 func test_dungeon_quality():
