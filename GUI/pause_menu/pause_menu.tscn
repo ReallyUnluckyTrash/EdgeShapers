@@ -58,3 +58,6 @@ label_settings = SubResource("LabelSettings_4w82k")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[connection signal="pressed" from="VBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]

@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8tv6m3lh7d7n"]
+[gd_scene load_steps=4 format=3 uid="uid://b8tv6m3lh7d7n"]
+
+[ext_resource type="Script" uid="uid://dltnjx07r5cck" path="res://GUI/main_menu/main_menu.gd" id="1_bqxyb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx47s"]
 font_size = 64
@@ -26,6 +28,8 @@ cache/0/48/0/underline_thickness = 0.0
 cache/0/48/0/scale = 1.0
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_bqxyb")
+hub_area_path = "uid://dl6i50h1yuifo"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -67,23 +71,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="New Game" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontFile_vx47s")
 theme_override_font_sizes/font_size = 48
 text = "New Game
 "
 
-[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Continue" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontFile_vx47s")
 theme_override_font_sizes/font_size = 48
 text = "Continue
 "
 
-[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontFile_vx47s")
 theme_override_font_sizes/font_size = 48
 text = "Settings
 "
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]

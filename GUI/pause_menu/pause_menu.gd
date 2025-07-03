@@ -26,3 +26,23 @@ func hide_pause_menu() ->void:
 	get_tree().paused = false
 	visible = false
 	is_paused = false
+
+
+func _on_button_save_pressed() -> void:
+	if is_paused == false:
+		return
+	SaveManager.save_game()
+	hide_pause_menu()
+	pass # Replace with function body.
+
+
+
+func _on_button_load_pressed() -> void:
+	if is_paused == false:
+		return
+	SaveManager.load_game()
+	await LevelManager.level_load_started
+	hide_pause_menu()
+	pass # Replace with function body.
+	
+	
