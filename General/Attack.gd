@@ -1,6 +1,10 @@
-class_name Attack
+class_name Attack 
 
-var attack_damage: float
+var damage: int
 var knockback_force: float
 var attack_position: Vector2
-var stun_time: float
+
+func _init(attack_damage: float, force: float, position: Vector2):
+	damage = attack_damage
+	knockback_force = force
+	attack_position = position

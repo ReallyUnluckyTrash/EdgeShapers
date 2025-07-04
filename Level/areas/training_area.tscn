@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://cqmbuomhnj6f2"]
+[gd_scene load_steps=9 format=4 uid="uid://cqmbuomhnj6f2"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_x10vi"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="2_lk14g"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Level/level_tilemap.gd" id="3_n8tcd"]
-[ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_0236u"]
+[ext_resource type="PackedScene" path="res://Player/player_spawn.tscn" id="4_0236u"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="5_lrh6b"]
 [ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="6_wq8iw"]
+[ext_resource type="PackedScene" uid="uid://by1nu4x3itrdu" path="res://Enemies/1_Domain/tri_slime/tri_slime3.tscn" id="7_n8tcd"]
+[ext_resource type="PackedScene" uid="uid://dsbh42qbybbll" path="res://Enemies/1_Domain/tri_slime/tri_slime2.tscn" id="8_0236u"]
 
 [node name="Training Area" type="Node2D"]
 script = ExtResource("1_x10vi")
@@ -32,3 +34,9 @@ size = 3
 
 [node name="TriSlime" parent="." instance=ExtResource("6_wq8iw")]
 position = Vector2(608, 192)
+
+[node name="TriSlime2" parent="." instance=ExtResource("7_n8tcd")]
+position = Vector2(280, 184)
+
+[node name="TriSlime3" parent="." instance=ExtResource("8_0236u")]
+position = Vector2(840, 184)

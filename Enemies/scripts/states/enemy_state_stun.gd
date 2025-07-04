@@ -1,14 +1,14 @@
 class_name EnemyStateStun extends EnemyState
 
 @export var anim_name: String = "stun"
-@export var knockback_speed: float = 200.0
 @export var decelerate_speed: float = 10.0
 
 @export var next_state : EnemyState
 
-var _damage_position:Vector2
 var _direction: Vector2
 var _animation_finished: bool = false
+
+var _attack:Attack
 
 func initialize() -> void:
 	enemy.enemy_damaged.connect( _on_enemy_damaged)
@@ -18,10 +18,10 @@ func enter() -> void:
 	enemy.invulnerable = true
 	_animation_finished = false
 	
-	_direction = enemy.global_position.direction_to(_damage_position)
-	
-	enemy.set_direction(_direction)
-	enemy.velocity = _direction * -knockback_speed
+	if _attack:
+		_direction = _attack.attack_position.direction_to(enemy.global_position)
+		enemy.set_direction(_direction)
+		enemy.velocity = _direction * _attack.knockback_force
 	
 	enemy.update_animation(anim_name)
 	enemy.animated_sprite_2d.animation_finished.connect(_on_animation_finished)
@@ -41,16 +41,11 @@ func process(_delta : float) -> EnemyState:
 func physics(_delta : float) -> EnemyState:
 	return null
 
-func _on_enemy_damaged(hurt_box: HurtBox) -> void:
-	_damage_position = hurt_box.global_position
+func _on_enemy_damaged(attack:Attack) -> void:
+	_attack = attack
 	state_machine.change_state(self)
 	pass
 
 func _on_animation_finished():
 	_animation_finished = true
 	
-
-
-#func _on_tri_slime_enemy_damaged() -> void:
-	#state_machine.change_state(self)
-	#pass # Replace with function body.

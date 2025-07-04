@@ -1,35 +1,37 @@
 class_name State_Attack extends State
 
-@onready var weapon_animation_player = $"../../WeaponPosition/Sword/AnimationPlayer"
-
 @onready var idle : State_Idle = $"../Idle"
 @onready var walk: State_Walk = $"../Walk"
-@onready var slash_hurtbox = $"../../Interactions/HurtBox"
 
 @export_range(1, 20, 0.5) var decelerate_speed: float = 5.0
 
 var attacking: bool = false
 
 func enter() -> void:
-	weapon_animation_player.play("sword_animations/sword_swing")
-	weapon_animation_player.animation_finished.connect(end_attack)
 	attacking = true
 	
-	await get_tree().create_timer( 0.15).timeout
-	slash_hurtbox.monitoring = true
+	if player.current_weapon:
+		player.current_weapon.attack()
+		player.current_weapon.attack_finished.connect(end_attack)
+	#await get_tree().create_timer( 0.15).timeout
 	pass
 	
 func exit() -> void:
-	weapon_animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
-	slash_hurtbox.monitoring = false
+	
+	if player.current_weapon and player.current_weapon.has_signal("attack_finished"):
+		if player.current_weapon.attack_finished.is_connected(end_attack):
+			player.current_weapon.attack_finished.disconnect(end_attack)
+	
+	#if player.current_weapon and player.current_weapon.has_method("return_to_idle"):
+		#player.current_weapon.return_to_idle()
 	pass
 	
 func process(_delta : float) -> State:
 	player.velocity -= player.velocity * decelerate_speed * _delta
 	
 	if attacking == false:
-		weapon_animation_player.play("sword_animations/idle")
+		#player.current_weapon.return_to_idle()
 		if player.direction == Vector2.ZERO:
 			return idle
 		else: 
@@ -42,5 +44,5 @@ func physics(_delta : float) -> State:
 func handle_input(_event: InputEvent) -> State:
 	return null
 
-func end_attack( _NewAnimName:String) -> void:
+func end_attack( ) -> void:
 	attacking = false

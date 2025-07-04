@@ -1,13 +1,16 @@
 class_name Enemy extends Entity
 
-signal enemy_damaged(hurt_box: HurtBox)
-signal enemy_destroyed(hurt_box: HurtBox)
+signal enemy_damaged(attack:Attack)
+signal enemy_destroyed(attack:Attack)
 
 @export var hp: int = 3
 
 var player: Player
 var invulnerable : bool = false
 var level : int = 1
+
+#variable for the states to keep track of the last attack
+var last_attack:Attack = null
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_box: HitBox = $HitBox
@@ -22,19 +25,22 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass	
-
+	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func _take_damage(hurt_box: HurtBox) -> void:
+func _take_damage(attack:Attack) -> void:
 	if invulnerable == true:
 		return
-	hp -= hurt_box.damage
+	
+	last_attack = attack
+	
+	hp -= attack.damage
 	print(hp)
 	if hp > 0:
-		enemy_damaged.emit(hurt_box)
+		enemy_damaged.emit(attack)
 	else:
-		enemy_destroyed.emit(hurt_box)
+		enemy_destroyed.emit(attack)
 	pass
 
 func update_animation(anim_name : String):

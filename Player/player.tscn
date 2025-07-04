@@ -1,22 +1,22 @@
-[gd_scene load_steps=27 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=26 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Player/sprites/player_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ca45giadvu0dt" path="res://Player/sprites/player_down.png" id="3_5htga"]
 [ext_resource type="Script" uid="uid://cfd4cs3ly7d4r" path="res://Player/scripts/player_state_machine.gd" id="3_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Weapons/black_sword.tscn" id="3_b1ygp"]
 [ext_resource type="Texture2D" uid="uid://nglxsihcymas" path="res://Player/sprites/player_left.png" id="4_p5o4e"]
 [ext_resource type="Script" uid="uid://cg4ityikkyls2" path="res://Player/scripts/state_idle.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://cffojyfyn15ni" path="res://Player/scripts/state_walk.gd" id="5_fkybt"]
 [ext_resource type="Texture2D" uid="uid://nbchdqo6j37d" path="res://Player/sprites/player_right.png" id="5_gu6f8"]
 [ext_resource type="Texture2D" uid="uid://d232pertt6jlr" path="res://Player/sprites/player_up.png" id="6_dkpta"]
 [ext_resource type="Texture2D" uid="uid://0vxpm48rn2vm" path="res://Player/sprites/player_stun.png" id="6_lfmf2"]
-[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="7_vtle1"]
 [ext_resource type="Script" uid="uid://dp6cgg8gt3r7a" path="res://Player/scripts/interactions.gd" id="8_od3ui"]
 [ext_resource type="Script" uid="uid://dohwnjdksj4um" path="res://Player/scripts/state_attack.gd" id="10_5htga"]
-[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Weapons/slash_weapon.tscn" id="11_apopc"]
 [ext_resource type="Script" uid="uid://cg64h2lxts5po" path="res://Player/scripts/state_stun.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="12_p5o4e"]
 [ext_resource type="Script" uid="uid://c43n785t3mqo8" path="res://Player/scripts/player_camera.gd" id="13_dkpta"]
+[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Weapons/slash_weapon.tscn" id="17_b1ygp"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="17_pisgm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o28un"]
@@ -72,9 +72,6 @@ animations = [{
 "name": &"up",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gu6f8"]
-radius = 62.1289
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1ygp"]
 radius = 47.0
@@ -135,6 +132,7 @@ _data = {
 z_index = 5
 collision_mask = 16
 script = ExtResource("1_onrkg")
+weapon_scenes = Array[PackedScene]([ExtResource("17_b1ygp"), ExtResource("3_b1ygp")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -165,16 +163,6 @@ script = ExtResource("12_b1ygp")
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("8_od3ui")
 
-[node name="HurtBox" parent="Interactions" instance=ExtResource("7_vtle1")]
-collision_mask = 256
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
-position = Vector2(1, -60)
-scale = Vector2(1, -0.755)
-shape = SubResource("CircleShape2D_gu6f8")
-debug_color = Color(0.990741, 0, 0.274537, 0.42)
-
 [node name="HitBox" parent="Interactions" instance=ExtResource("17_pisgm")]
 collision_layer = 2
 
@@ -190,8 +178,6 @@ script = ExtResource("13_dkpta")
 [node name="WeaponPosition" type="Node2D" parent="."]
 position = Vector2(60, 0)
 script = ExtResource("12_p5o4e")
-
-[node name="Sword" parent="WeaponPosition" instance=ExtResource("11_apopc")]
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
