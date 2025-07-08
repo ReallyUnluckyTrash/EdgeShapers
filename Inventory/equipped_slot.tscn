@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctxew2s72ss6"]
+
+[ext_resource type="Script" uid="uid://cyc3udalgbtxa" path="res://Inventory/Scripts/equipped_slot.gd" id="1_3c612"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Art/weapons/sword animations/basic_sword.png" id="1_k5ds4"]
+
+[node name="EquippedSlot" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1216.0
+offset_bottom = -656.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3c612")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 1, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_k5ds4")
+expand_mode = 1

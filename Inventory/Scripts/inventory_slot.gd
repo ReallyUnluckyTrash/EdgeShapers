@@ -7,7 +7,6 @@ var slot_data: SlotData : set = set_slot_data
 
 @onready var interactions: VBoxContainer = $Interactions
 
-
 func _ready() -> void:
 	texture_rect.texture = null
 	quantity.text = ""
@@ -24,5 +23,5 @@ func set_slot_data(value : SlotData) ->void:
 func _on_pressed() -> void:
 	if slot_data == null:
 		return
-	PlayerManager.set_equipped_weapon(slot_data.item_data.scene)
+	PlayerManager.set_equipped_weapon(slot_data.item_data.scene, slot_data.item_data)
 	pass # Replace with function body.

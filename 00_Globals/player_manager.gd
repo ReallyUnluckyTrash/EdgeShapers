@@ -5,6 +5,8 @@ const PLAYER = preload("res://Player/player.tscn")
 var player : Player
 var player_spawned:bool = false
 
+signal weapon_equipped(item_data: ItemData)
+
 func _ready() -> void:
 	add_player_instance()
 	#await get_tree().create_timer(0.2).timeout
@@ -25,8 +27,9 @@ func set_health(hp:int, max_hp:int) -> void:
 	player.update_hp(0)
 	pass
 
-func set_equipped_weapon(new_weapon: PackedScene)->void:
+func set_equipped_weapon(new_weapon: PackedScene, item_data: ItemData )->void:
 	player.equip_weapon(new_weapon)	
+	weapon_equipped.emit(item_data)
 	pass
 
 func set_as_parent(_parent: Node2D)->void:
