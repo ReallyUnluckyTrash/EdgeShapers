@@ -93,3 +93,7 @@ switch_weapon={
 2d_physics/layer_2="PlayerHurt"
 2d_physics/layer_5="Walls"
 2d_physics/layer_9="Enemy"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

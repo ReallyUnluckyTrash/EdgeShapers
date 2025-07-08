@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7vi7ofwvn7oj"]
 
-[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Art/weapons/pixil-frame-0.png" id="1_o1icd"]
-[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="2_npwse"]
+[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Art/weapons/pixil-frame-0.png" id="1_444wx"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="2_trqyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ej6d"]
 size = Vector2(43, 23)
@@ -10,9 +10,9 @@ size = Vector2(43, 23)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_o1icd")
+texture = ExtResource("1_444wx")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_npwse")]
+[node name="HurtBox" parent="." instance=ExtResource("2_trqyo")]
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

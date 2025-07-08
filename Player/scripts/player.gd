@@ -38,8 +38,8 @@ func _process(_delta):
 	
 	PlayerHud.update_hp(hp, max_hp)
 	
-	if Input.is_action_just_pressed("switch_weapon"):
-		switch_to_next_weapon()
+	#if Input.is_action_just_pressed("switch_weapon"):
+		#switch_to_next_weapon()
 	
 	pass
 	

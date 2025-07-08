@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://0ceh7d0bc60j"]
+[gd_scene load_steps=10 format=3 uid="uid://b3hic50tuoiph"]
 
-[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Weapons/slash_weapon.gd" id="1_gajbe"]
-[ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Art/weapons/sword animations/black_sword.png" id="2_ppf4r"]
-[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_ieab7"]
+[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/slash_weapon.gd" id="1_11wfx"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Art/weapons/sword animations/basic_sword.png" id="2_dtm3a"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_83ix1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqx6x"]
-radius = 60.0
+radius = 45.0999
 
 [sub_resource type="Animation" id="Animation_1aucn"]
 length = 0.001
@@ -160,26 +160,26 @@ _data = {
 }
 
 [node name="Slash Weapon" type="Node2D"]
-script = ExtResource("1_gajbe")
-damage = 10
-attack_speed = 0.7
-knockback_force = 1000.0
-weapon_name = "black_sword"
+script = ExtResource("1_11wfx")
+damage = 1
+attack_speed = 1.0
+knockback_force = 200.0
+weapon_name = "basic_sword"
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_ppf4r")
+texture = ExtResource("2_dtm3a")
 
 [node name="HurtBoxPosition" type="Node2D" parent="."]
 
-[node name="HurtBox" parent="HurtBoxPosition" instance=ExtResource("3_ieab7")]
+[node name="HurtBox" parent="HurtBoxPosition" instance=ExtResource("3_83ix1")]
 collision_mask = 256
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxPosition/HurtBox"]
 shape = SubResource("CircleShape2D_jqx6x")
-debug_color = Color(0.943401, 6.44952e-06, 0.601795, 0.42)
+debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

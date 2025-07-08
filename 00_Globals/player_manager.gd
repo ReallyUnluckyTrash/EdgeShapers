@@ -25,6 +25,10 @@ func set_health(hp:int, max_hp:int) -> void:
 	player.update_hp(0)
 	pass
 
+func set_equipped_weapon(new_weapon: PackedScene)->void:
+	player.equip_weapon(new_weapon)	
+	pass
+
 func set_as_parent(_parent: Node2D)->void:
 	if player.get_parent():
 		player.get_parent().remove_child(player)

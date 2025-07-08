@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ca45giadvu0dt" path="res://Player/sprites/player_down.png" id="3_5htga"]
 [ext_resource type="Script" uid="uid://cfd4cs3ly7d4r" path="res://Player/scripts/player_state_machine.gd" id="3_6t5aa"]
-[ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Weapons/black_sword.tscn" id="3_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Inventory/Weapons/black_sword.tscn" id="3_b1ygp"]
 [ext_resource type="Texture2D" uid="uid://nglxsihcymas" path="res://Player/sprites/player_left.png" id="4_p5o4e"]
 [ext_resource type="Script" uid="uid://cg4ityikkyls2" path="res://Player/scripts/state_idle.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://cffojyfyn15ni" path="res://Player/scripts/state_walk.gd" id="5_fkybt"]
@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cg64h2lxts5po" path="res://Player/scripts/state_stun.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="12_p5o4e"]
 [ext_resource type="Script" uid="uid://c43n785t3mqo8" path="res://Player/scripts/player_camera.gd" id="13_dkpta"]
-[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Weapons/slash_weapon.tscn" id="17_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Inventory/Weapons/slash_weapon.tscn" id="17_b1ygp"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="17_pisgm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o28un"]

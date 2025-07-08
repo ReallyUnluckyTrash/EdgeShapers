@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://blekt47ruwbbv"]
+
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Art/weapons/sword animations/basic_sword.png" id="1_68pn2"]
+[ext_resource type="Script" uid="uid://cbfdpuysnm06a" path="res://Inventory/Scripts/inventory_slot.gd" id="1_gpqwp"]
+
+[node name="InventorySlot" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 44.0
+offset_bottom = 31.0
+text = "
+"
+script = ExtResource("1_gpqwp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_68pn2")
+expand_mode = 1
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 63.0
+offset_bottom = 64.0
+text = "99"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Interactions" type="VBoxContainer" parent="."]
+z_index = 5
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 64.0
+offset_right = 128.0
+offset_bottom = 66.0
+
+[node name="Button" type="Button" parent="Interactions"]
+layout_mode = 2
+text = "Equip
+"
+
+[node name="Button2" type="Button" parent="Interactions"]
+layout_mode = 2
+text = "Use
+"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
