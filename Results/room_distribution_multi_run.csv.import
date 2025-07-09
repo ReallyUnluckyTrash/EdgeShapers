@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dgrd4klc30svt"
+
+[deps]
+
+files=["res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.total.translation", "res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.min.translation", "res://Results/room_distribution_multi_run.max.translation", "res://Results/room_distribution_multi_run.area.translation", "res://Results/room_distribution_multi_run.area.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.width.translation", "res://Results/room_distribution_multi_run.height.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.aspect.translation", "res://Results/room_distribution_multi_run.average.translation"]
+
+source_file="res://Results/room_distribution_multi_run.csv"
+dest_files=["res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.total.translation", "res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.room.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.min.translation", "res://Results/room_distribution_multi_run.max.translation", "res://Results/room_distribution_multi_run.area.translation", "res://Results/room_distribution_multi_run.area.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.width.translation", "res://Results/room_distribution_multi_run.height.translation", "res://Results/room_distribution_multi_run.mean.translation", "res://Results/room_distribution_multi_run.aspect.translation", "res://Results/room_distribution_multi_run.average.translation"]
+
+[params]
+
+compress=true
+delimiter=0

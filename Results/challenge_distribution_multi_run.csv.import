@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bwy67h77gvlji"
+
+[deps]
+
+files=["res://Results/challenge_distribution_multi_run.total.translation", "res://Results/challenge_distribution_multi_run.rooms.translation", "res://Results/challenge_distribution_multi_run.rooms.translation", "res://Results/challenge_distribution_multi_run.enemy.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.mean.translation", "res://Results/challenge_distribution_multi_run.max.translation", "res://Results/challenge_distribution_multi_run.min.translation", "res://Results/challenge_distribution_multi_run.challenge.translation"]
+
+source_file="res://Results/challenge_distribution_multi_run.csv"
+dest_files=["res://Results/challenge_distribution_multi_run.total.translation", "res://Results/challenge_distribution_multi_run.rooms.translation", "res://Results/challenge_distribution_multi_run.rooms.translation", "res://Results/challenge_distribution_multi_run.enemy.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.level.translation", "res://Results/challenge_distribution_multi_run.mean.translation", "res://Results/challenge_distribution_multi_run.max.translation", "res://Results/challenge_distribution_multi_run.min.translation", "res://Results/challenge_distribution_multi_run.challenge.translation"]
+
+[params]
+
+compress=true
+delimiter=0

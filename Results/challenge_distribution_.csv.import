@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b0o7wxc8boe7b"
+
+[deps]
+
+files=["res://Results/challenge_distribution_.value.translation"]
+
+source_file="res://Results/challenge_distribution_.csv"
+dest_files=["res://Results/challenge_distribution_.value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b2dnbfy6j5xuw"
+
+[deps]
+
+files=["res://Results/connectivity_.value.translation"]
+
+source_file="res://Results/connectivity_.csv"
+dest_files=["res://Results/connectivity_.value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

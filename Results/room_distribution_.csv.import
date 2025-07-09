@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cnekhi4wuihwe"
+
+[deps]
+
+files=["res://Results/room_distribution_.value.translation"]
+
+source_file="res://Results/room_distribution_.csv"
+dest_files=["res://Results/room_distribution_.value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

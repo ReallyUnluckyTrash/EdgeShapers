@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://ck2tecjs5rlxy"]
+
+[ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Inventory/Weapons/black_sword.tscn" id="1_a0ykc"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_jsoyd"]
+[ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Art/weapons/sword animations/black_sword.png" id="3_lfv0x"]
+
+[resource]
+script = ExtResource("2_jsoyd")
+name = "Black Sword"
+type = "Weapon"
+description = "A sword with a blade that seems to suck up all light around it. Strong, but slow."
+texture = ExtResource("3_lfv0x")
+scene = ExtResource("1_a0ykc")
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"
