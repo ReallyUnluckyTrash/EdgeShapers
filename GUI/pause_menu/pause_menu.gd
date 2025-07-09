@@ -2,11 +2,15 @@ extends CanvasLayer
 
 @onready var button_save: Button = $Control/VBoxContainer/Button_Save
 @onready var button_load: Button = $Control/VBoxContainer/Button_Load
+@onready var confirmation_modal: ConfirmationModal = $ConfirmationModal
+
 
 var is_paused:bool = false
 
 signal shown
 signal hidden
+
+signal confirm
 
 func _ready() -> void:
 	hide_pause_menu()

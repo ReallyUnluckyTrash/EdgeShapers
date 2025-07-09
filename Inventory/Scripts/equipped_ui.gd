@@ -7,6 +7,7 @@ const EQUIPPED_SLOT = preload("res://Inventory/equipped_slot.tscn")
 func _ready() -> void:
 	PlayerManager.weapon_equipped.connect(update_equipped)
 	PauseMenu.hidden.connect(clear_equipped)
+	PauseMenu.shown.connect(show_equipped)
 	pass
 
 func update_equipped(item_data:ItemData):
@@ -15,11 +16,14 @@ func update_equipped(item_data:ItemData):
 		equipped_data.slots[0].item_data = item_data
 		print(item_data)
 	
+	show_equipped()
+	pass
+
+func show_equipped()->void:
 	for slot in equipped_data.slots:
 		var new_slot = EQUIPPED_SLOT.instantiate()
 		add_child(new_slot)
 		new_slot.slot_data = slot
-	pass
 	
 func clear_equipped()->void:
 	for child in get_children():
