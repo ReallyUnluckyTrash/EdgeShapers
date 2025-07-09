@@ -37,9 +37,7 @@ func _process(_delta):
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
 	PlayerHud.update_hp(hp, max_hp)
-	
-	#if Input.is_action_just_pressed("switch_weapon"):
-		#switch_to_next_weapon()
+
 	
 	pass
 	

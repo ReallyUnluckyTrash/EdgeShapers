@@ -10,8 +10,6 @@ var is_paused:bool = false
 signal shown
 signal hidden
 
-signal confirm
-
 func _ready() -> void:
 	hide_pause_menu()
 

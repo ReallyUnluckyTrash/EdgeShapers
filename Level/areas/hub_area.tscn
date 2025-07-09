@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_bb050"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="2_ur5l5"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Level/level_tilemap.gd" id="3_g0bxm"]
-[ext_resource type="PackedScene" path="res://Player/player_spawn.tscn" id="4_tromt"]
+[ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_tromt"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="5_glgur"]
 
 [node name="Hub Area" type="Node2D"]

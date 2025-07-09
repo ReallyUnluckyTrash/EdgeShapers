@@ -28,4 +28,5 @@ func _on_pressed() -> void:
 		#interactions.visible = true
 		slot_data.quantity -= 1
 		quantity.text = str(slot_data.quantity)
+			
 	pass # Replace with function body.

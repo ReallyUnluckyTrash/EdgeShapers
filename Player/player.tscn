@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=27 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Player/sprites/player_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/scripts/player.gd" id="1_onrkg"]
@@ -75,6 +75,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1ygp"]
 radius = 47.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1ygp"]
+size = Vector2(64, 64)
 
 [sub_resource type="Animation" id="Animation_b1ygp"]
 length = 0.001
@@ -171,6 +174,15 @@ position = Vector2(-1, 1)
 scale = Vector2(0.64, 0.64)
 shape = SubResource("CircleShape2D_b1ygp")
 debug_color = Color(0.748052, 0.461045, 3.85046e-07, 0.42)
+
+[node name="InteractionArea" type="Area2D" parent="Interactions"]
+position = Vector2(0, -10)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractionArea"]
+shape = SubResource("RectangleShape2D_b1ygp")
+debug_color = Color(3.7542e-06, 0.645137, 0.26653, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("13_dkpta")

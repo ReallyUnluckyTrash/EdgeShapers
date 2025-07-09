@@ -1,11 +1,14 @@
 extends Node
 
 const PLAYER = preload("res://Player/player.tscn")
+const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv.tres")
+const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.tres")
 
 var player : Player
 var player_spawned:bool = false
 
 signal weapon_equipped(item_data: ItemData)
+signal interact_pressed
 
 func _ready() -> void:
 	add_player_instance()
