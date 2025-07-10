@@ -1,37 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpngj2ie0hwl8"]
+[gd_scene load_steps=13 format=3 uid="uid://cpngj2ie0hwl8"]
 
 [ext_resource type="Script" uid="uid://byy0jbekhujkq" path="res://Interactables/Chests/treasure_chest.gd" id="1_j1g8j"]
 [ext_resource type="Texture2D" uid="uid://bds2p827wdic6" path="res://Interactables/Chests/treasure-chest.png" id="2_c50lr"]
-[ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Art/weapons/sword animations/black_sword.png" id="3_c50lr"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_c50lr"]
 [ext_resource type="AudioStream" uid="uid://c8qjtu4v60kmb" path="res://Interactables/Chests/treasure-open.wav" id="4_c50lr"]
 
-[sub_resource type="Animation" id="Animation_hqd7n"]
-resource_name = "default"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ChestSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ItemSprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqd7n"]
+atlas = ExtResource("3_c50lr")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="Animation" id="Animation_6v50s"]
 length = 0.001
@@ -82,6 +58,34 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hqd7n"]
+resource_name = "default"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ItemSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_y2vpx"]
@@ -202,7 +206,7 @@ hframes = 2
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("3_c50lr")
+texture = SubResource("AtlasTexture_hqd7n")
 
 [node name="Label" type="Label" parent="ItemSprite"]
 offset_left = 10.0
@@ -212,7 +216,7 @@ offset_bottom = 13.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 10
-text = "x99"
+text = "x1"
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

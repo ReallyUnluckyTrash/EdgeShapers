@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beaek6jl6onay"
-path="res://.godot/imported/black_sword.png-e0c26c753b3075663691ffdc00bc5fa0.ctex"
+uid="uid://bobdcujrgmf10"
+path="res://.godot/imported/weaponicons.png-304e029bce3e9c3d4c6244720caa45cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/weapons/sword animations/black_sword.png"
-dest_files=["res://.godot/imported/black_sword.png-e0c26c753b3075663691ffdc00bc5fa0.ctex"]
+source_file="res://Inventory/Weapons/weapons/sword animations/weaponicons.png"
+dest_files=["res://.godot/imported/weaponicons.png-304e029bce3e9c3d4c6244720caa45cf.ctex"]
 
 [params]
 

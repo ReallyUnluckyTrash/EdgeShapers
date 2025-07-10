@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Inventory/Weapons/black_sword.tscn" id="1_a0ykc"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_jsoyd"]
-[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Art/weapons/sword animations/weaponicons.png" id="3_a0ykc"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_a0ykc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jsoyd"]
 atlas = ExtResource("3_a0ykc")

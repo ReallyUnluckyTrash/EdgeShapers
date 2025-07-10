@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blekt47ruwbbv"]
 
-[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Art/weapons/sword animations/basic_sword.png" id="1_68pn2"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Inventory/Weapons/weapons/sword animations/basic_sword.png" id="1_68pn2"]
 [ext_resource type="Script" uid="uid://cbfdpuysnm06a" path="res://Inventory/Scripts/inventory_slot.gd" id="1_gpqwp"]
 
 [node name="InventorySlot" type="Button"]

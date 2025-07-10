@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bobdcujrgmf10"
-path="res://.godot/imported/weaponicons.png-f554bb1f6d9e250d4026db155fc012fd.ctex"
+uid="uid://ms6kkory58ap"
+path="res://.godot/imported/items.png-ce4d7fb04f2e7443a8f913366bb0fb08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/weapons/sword animations/weaponicons.png"
-dest_files=["res://.godot/imported/weaponicons.png-f554bb1f6d9e250d4026db155fc012fd.ctex"]
+source_file="res://Inventory/Items/items/items.png"
+dest_files=["res://.godot/imported/items.png-ce4d7fb04f2e7443a8f913366bb0fb08.ctex"]
 
 [params]
 

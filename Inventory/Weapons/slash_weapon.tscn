@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b3hic50tuoiph"]
 
 [ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/slash_weapon.gd" id="1_11wfx"]
-[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Art/weapons/sword animations/basic_sword.png" id="2_dtm3a"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Inventory/Weapons/weapons/sword animations/basic_sword.png" id="2_dtm3a"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_83ix1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqx6x"]

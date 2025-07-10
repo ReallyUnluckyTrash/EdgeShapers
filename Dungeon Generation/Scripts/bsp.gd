@@ -13,8 +13,13 @@ var floor_tile = Vector2i(17, 8)
 var wall_tile = Vector2i(16, 5)
 var floor_tiles: Array = []
 
-#placeholders for spawning enemies and chests
-var chest_tile = Vector2i(17,5)
+var chest_scene = preload("res://Interactables/Chests/treasure_chest.tscn")
+
+var chest_items: Array[ItemData] = [
+	preload("res://Inventory/Weapons/basic_weapon.tres"),
+	preload("res://Inventory/Weapons/black_sword.tres"),
+	preload("res://Inventory/Items/potion.tres")
+]
 
 var enemy_scenes = {
 	1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn"),
@@ -238,7 +243,14 @@ func _place_objects():
 		leaf.set_object_spawn_positions()
 		
 		for chest_pos in leaf.chest_positions:
-			tilemaplayer.set_cell(chest_pos, 4, chest_tile)
+			var chest_instance = chest_scene.instantiate()
+			chest_instance.position = Vector2(
+				chest_pos.x * tile_size + tile_size/2,
+				chest_pos.y * tile_size + tile_size/2,
+			)
+			chest_instance.item_data = chest_items[1]
+			chest_instance.quantity = 5
+			add_child(chest_instance)
 		
 		for enemy_data in leaf.enemy_positions:
 			var enemy_level = enemy_data['level']

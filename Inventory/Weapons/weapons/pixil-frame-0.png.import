@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ms6kkory58ap"
-path="res://.godot/imported/items.png-4a33a5fcf6d71f2b1b1ef14ac16aac28.ctex"
+uid="uid://83hyrmho20ld"
+path="res://.godot/imported/pixil-frame-0.png-b87f0624db467fdc68df6588eaeb91bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/items/items.png"
-dest_files=["res://.godot/imported/items.png-4a33a5fcf6d71f2b1b1ef14ac16aac28.ctex"]
+source_file="res://Inventory/Weapons/weapons/pixil-frame-0.png"
+dest_files=["res://.godot/imported/pixil-frame-0.png-b87f0624db467fdc68df6588eaeb91bf.ctex"]
 
 [params]
 
