@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://0ceh7d0bc60j"]
 
-[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/slash_weapon.gd" id="1_ha1pn"]
+[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/Scripts/slash_weapon.gd" id="1_ha1pn"]
 [ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Inventory/Weapons/weapons/sword animations/black_sword.png" id="2_umjho"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_6bw8n"]
 

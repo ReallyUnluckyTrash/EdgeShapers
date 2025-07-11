@@ -63,11 +63,11 @@ func update_label()->void:
 		else:
 			label.text = "x" + str(quantity)
 
-func _on_area_entered(area:Area2D):
+func _on_area_entered(_area:Area2D):
 	PlayerManager.interact_pressed.connect(_on_player_interact)
 	pass
 
-func _on_area_exited(area:Area2D):
+func _on_area_exited(_area:Area2D):
 	PlayerManager.interact_pressed.disconnect(_on_player_interact)
 	pass
 	

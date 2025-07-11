@@ -111,15 +111,15 @@ func unequip_weapon():
 	
 	pass
 	
-#function to test if modular system works, delete later and replace by using an inventory system
-func switch_to_next_weapon():
-	if weapon_scenes.size() <= 1:
-		return
-	
-	var next_index = (starting_weapon_index + 1) % weapon_scenes.size()
-	starting_weapon_index = next_index
-	equip_weapon_by_index(next_index)
-	
+##function to test if modular system works, delete later and replace by using an inventory system
+#func switch_to_next_weapon():
+	#if weapon_scenes.size() <= 1:
+		#return
+	#
+	#var next_index = (starting_weapon_index + 1) % weapon_scenes.size()
+	#starting_weapon_index = next_index
+	#equip_weapon_by_index(next_index)
+	#
 	
 
 	

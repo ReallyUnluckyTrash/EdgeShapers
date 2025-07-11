@@ -23,8 +23,8 @@ func exit() -> void:
 		if player.current_weapon.attack_finished.is_connected(end_attack):
 			player.current_weapon.attack_finished.disconnect(end_attack)
 	
-	#if player.current_weapon and player.current_weapon.has_method("return_to_idle"):
-		#player.current_weapon.return_to_idle()
+	if player.current_weapon and player.current_weapon.has_method("return_to_idle"):
+		player.current_weapon.return_to_idle()
 	pass
 	
 func process(_delta : float) -> State:
