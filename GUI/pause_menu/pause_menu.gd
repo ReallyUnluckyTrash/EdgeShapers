@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var button_save: Button = $Control/VBoxContainer/Button_Save
 @onready var button_load: Button = $Control/VBoxContainer/Button_Load
 @onready var confirmation_modal: ConfirmationModal = $ConfirmationModal
+@onready var item_description: Label = $Control/ItemDescription
 
 
 var is_paused:bool = false
@@ -51,4 +52,7 @@ func _on_button_load_pressed() -> void:
 	hide_pause_menu()
 	pass # Replace with function body.
 	
+	
+func update_item_description(new_text:String)-> void:
+	item_description.text = new_text
 	

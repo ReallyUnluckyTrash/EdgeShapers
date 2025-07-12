@@ -11,6 +11,8 @@ func _ready() -> void:
 	texture_rect.texture = null
 	quantity.text = ""
 	interactions.visible = false
+	focus_entered.connect(item_focused)
+	focus_exited.connect(item_unfocused)
 	
 func set_slot_data(value : SlotData) ->void:
 	slot_data = value
@@ -30,3 +32,13 @@ func _on_pressed() -> void:
 		quantity.text = str(slot_data.quantity)
 			
 	pass # Replace with function body.
+
+func item_focused():
+	if slot_data != null:
+		if slot_data.item_data != null:
+			PauseMenu.update_item_description(slot_data.item_data.description)
+	pass
+
+func item_unfocused():
+	PauseMenu.update_item_description("")
+	pass

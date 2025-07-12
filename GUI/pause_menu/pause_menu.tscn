@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0hgapdj1ycg6"]
+[gd_scene load_steps=13 format=3 uid="uid://c0hgapdj1ycg6"]
 
 [ext_resource type="Script" uid="uid://bd83lh8xr8ggi" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
 [ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items/items.png" id="2_yiq8o"]
@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://dfukjwugxci76" path="res://Inventory/Resources/player_item_inv.tres" id="6_dvxeg"]
 [ext_resource type="Script" uid="uid://b510jrrankvy4" path="res://Inventory/Scripts/equipped_ui.gd" id="6_sn1ji"]
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
-[ext_resource type="PackedScene" uid="uid://de44apb3r8444" path="res://GUI/confirmation_modal/confirmation_modal.tscn" id="9_iqcer"]
 
 [sub_resource type="Theme" id="Theme_dvxeg"]
 
@@ -79,7 +78,7 @@ layout_mode = 2
 text = "Load
 "
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Paused" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -188,7 +187,17 @@ layout_mode = 2
 script = ExtResource("6_sn1ji")
 equipped_data = ExtResource("7_8rjl7")
 
-[node name="ConfirmationModal" parent="." instance=ExtResource("9_iqcer")]
+[node name="ItemDescription" type="Label" parent="Control"]
+offset_left = 370.0
+offset_top = 477.0
+offset_right = 731.0
+offset_bottom = 586.0
+theme_override_font_sizes/font_size = 22
+text = "aaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaa
+
+"
+autowrap_mode = 2
 
 [connection signal="pressed" from="Control/VBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]
