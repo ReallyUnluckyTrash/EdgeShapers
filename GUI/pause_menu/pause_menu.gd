@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-@onready var button_save: Button = $Control/VBoxContainer/Button_Save
-@onready var button_load: Button = $Control/VBoxContainer/Button_Load
-@onready var confirmation_modal: ConfirmationModal = $ConfirmationModal
-@onready var item_description: Label = $Control/ItemDescription
+@onready var button_save: Button = $Control/TabContainer/System/VBoxContainer/Button_Save
+@onready var button_load: Button = $Control/TabContainer/System/VBoxContainer/Button_Load
+@onready var item_description: Label = $Control/TabContainer/Inventory/Description/ItemDescription
+
 
 
 var is_paused:bool = false
@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
+		if PlayerManager.pause_menu_disabled == true:
+			return
 		if is_paused == false:
 			show_pause_menu()
 		else:

@@ -6,6 +6,9 @@ const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.t
 
 var player : Player
 var player_spawned:bool = false
+var vertex_points:int = 100
+
+var pause_menu_disabled:bool = false
 
 signal weapon_equipped(item_data: ItemData)
 signal interact_pressed

@@ -13,6 +13,7 @@ script = ExtResource("2_jsoyd")
 name = "Black Sword"
 type = "Weapon"
 description = "A sword with a blade that seems to suck up all light around it. Strong, but slow."
+price = 100
 texture = SubResource("AtlasTexture_jsoyd")
 scene = ExtResource("1_a0ykc")
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

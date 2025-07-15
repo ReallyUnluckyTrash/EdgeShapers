@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://dl6i50h1yuifo"]
+[gd_scene load_steps=7 format=4 uid="uid://dl6i50h1yuifo"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_bb050"]
 [ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="2_ur5l5"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Level/level_tilemap.gd" id="3_g0bxm"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_tromt"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="5_glgur"]
+[ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="6_ur5l5"]
 
 [node name="Hub Area" type="Node2D"]
 script = ExtResource("1_bb050")
@@ -37,3 +38,6 @@ level = "uid://cqmbuomhnj6f2"
 target_transition_area = "HubAreaTransition"
 size = 3
 side = 1
+
+[node name="ShopStatue" parent="." instance=ExtResource("6_ur5l5")]
+position = Vector2(608, 352)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0hgapdj1ycg6"]
+[gd_scene load_steps=11 format=3 uid="uid://c0hgapdj1ycg6"]
 
 [ext_resource type="Script" uid="uid://bd83lh8xr8ggi" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
-[ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items/items.png" id="2_yiq8o"]
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_dvxeg"]
+[ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="2_iqcer"]
 [ext_resource type="Script" uid="uid://1e3pwy4iqlof" path="res://Inventory/Scripts/inventory_ui.gd" id="3_36pfd"]
 [ext_resource type="PackedScene" uid="uid://blekt47ruwbbv" path="res://Inventory/inventory_slot.tscn" id="3_rsqrg"]
 [ext_resource type="Resource" uid="uid://c6ytvfnfy1bhf" path="res://Inventory/Resources/player_weapon_inv.tres" id="4_ewgu5"]
@@ -10,24 +11,6 @@
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
 
 [sub_resource type="Theme" id="Theme_dvxeg"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4w82k"]
-font_size = 64
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rsqrg"]
-atlas = ExtResource("2_yiq8o")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36pfd"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = SubResource("AtlasTexture_rsqrg")
-texture_margin_left = 14.0
-texture_margin_top = 14.0
-texture_margin_right = 14.0
-texture_margin_bottom = 14.0
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -40,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_dvxeg")
+theme = ExtResource("2_iqcer")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -51,122 +34,100 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.215686, 0.215686, 0.215686, 0.607843)
 
-[node name="VBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="TabContainer" type="TabContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+tab_alignment = 1
+current_tab = 0
+
+[node name="Inventory" type="Control" parent="Control/TabContainer"]
+layout_mode = 2
+theme = SubResource("Theme_dvxeg")
+metadata/_tab_index = 0
+
+[node name="Weapon Inventory" type="PanelContainer" parent="Control/TabContainer/Inventory"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.0
-offset_top = -271.0
-offset_right = 415.0
-offset_bottom = -213.0
+offset_left = -240.0
+offset_top = -259.5
+offset_right = 116.0
+offset_bottom = -107.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_dvxeg")
 
-[node name="Button_Save" type="Button" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(128, 16)
-layout_mode = 2
-text = "Save"
-
-[node name="Button_Load" type="Button" parent="Control/VBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-text = "Load
-"
-
-[node name="Paused" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -123.5
-offset_right = 123.5
-offset_bottom = 88.0
-grow_horizontal = 2
-text = "Paused"
-label_settings = SubResource("LabelSettings_4w82k")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Weapon Inventory" type="PanelContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -178.0
-offset_top = -76.0
-offset_right = 178.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_36pfd")
-
-[node name="GridContainer" type="GridContainer" parent="Control/Weapon Inventory"]
+[node name="GridContainer" type="GridContainer" parent="Control/TabContainer/Inventory/Weapon Inventory"]
 layout_mode = 2
 columns = 5
 script = ExtResource("3_36pfd")
 data = ExtResource("4_ewgu5")
 
-[node name="InventorySlot" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot2" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot2" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot3" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot3" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot4" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot4" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot5" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot5" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot6" parent="Control/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot6" parent="Control/TabContainer/Inventory/Weapon Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="Item Inventory" type="PanelContainer" parent="Control"]
+[node name="Item Inventory" type="PanelContainer" parent="Control/TabContainer/Inventory"]
 layout_mode = 2
-offset_left = 51.0
+offset_left = 400.0
 offset_top = 285.0
-offset_right = 407.0
+offset_right = 756.0
 offset_bottom = 437.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_36pfd")
+theme_override_styles/panel = ExtResource("2_dvxeg")
 
-[node name="GridContainer" type="GridContainer" parent="Control/Item Inventory"]
+[node name="GridContainer" type="GridContainer" parent="Control/TabContainer/Inventory/Item Inventory"]
 layout_mode = 2
 columns = 5
 script = ExtResource("3_36pfd")
 data = ExtResource("6_dvxeg")
 
-[node name="InventorySlot" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot2" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot2" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot3" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot3" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot4" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot4" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot5" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot5" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="InventorySlot6" parent="Control/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
+[node name="InventorySlot6" parent="Control/TabContainer/Inventory/Item Inventory/GridContainer" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
 
-[node name="Equipped" type="PanelContainer" parent="Control"]
+[node name="Equipped" type="PanelContainer" parent="Control/TabContainer/Inventory"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -174,30 +135,70 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -394.0
-offset_top = -110.0
-offset_right = -310.0
-offset_bottom = 110.0
+offset_left = -480.0
+offset_top = -179.5
+offset_right = -396.0
+offset_bottom = 40.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_36pfd")
+theme_override_styles/panel = ExtResource("2_dvxeg")
 
-[node name="GridContainer" type="GridContainer" parent="Control/Equipped"]
+[node name="GridContainer" type="GridContainer" parent="Control/TabContainer/Inventory/Equipped"]
 layout_mode = 2
 script = ExtResource("6_sn1ji")
 equipped_data = ExtResource("7_8rjl7")
 
-[node name="ItemDescription" type="Label" parent="Control"]
-offset_left = 370.0
-offset_top = 477.0
-offset_right = 731.0
-offset_bottom = 586.0
-theme_override_font_sizes/font_size = 22
-text = "aaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaa
+[node name="Description" type="PanelContainer" parent="Control/TabContainer/Inventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.5
+offset_top = 140.5
+offset_right = 241.5
+offset_bottom = 278.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
 
+[node name="ItemDescription" type="Label" parent="Control/TabContainer/Inventory/Description"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+text = "Item Description"
+autowrap_mode = 1
+
+[node name="System" type="Control" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control/TabContainer/System"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.5
+offset_top = -58.0
+offset_right = 432.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button_Save" type="Button" parent="Control/TabContainer/System/VBoxContainer"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+text = "Save"
+
+[node name="Button_Load" type="Button" parent="Control/TabContainer/System/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Load
 "
-autowrap_mode = 2
 
-[connection signal="pressed" from="Control/VBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="Control/TabContainer/System/VBoxContainer/Button_Save" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="Control/TabContainer/System/VBoxContainer/Button_Load" to="." method="_on_button_load_pressed"]

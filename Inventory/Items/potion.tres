@@ -12,5 +12,6 @@ script = ExtResource("1_rvim3")
 name = "Potion"
 type = "Item"
 description = "Heals some HP."
+price = 2
 texture = SubResource("AtlasTexture_fyb50")
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

@@ -29,6 +29,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Interactions" type="Control" parent="."]
+visible = false
 z_index = 5
 anchors_preset = 0
 offset_left = 64.0
