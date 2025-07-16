@@ -28,7 +28,9 @@ func _ready():
 	hit_box.damaged.connect(_take_damage)
 	update_hp(99.0)
 	
+	#temporary starting weapon
 	equip_weapon(weapon_scenes[0])
+	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
 	pass
 
 func _process(_delta):

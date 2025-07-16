@@ -6,9 +6,10 @@ const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.t
 
 var player : Player
 var player_spawned:bool = false
-var vertex_points:int = 100
+var vertex_points:int = 999
 
 var pause_menu_disabled:bool = false
+static var equipped_weapon:ItemData = null
 
 signal weapon_equipped(item_data: ItemData)
 signal interact_pressed
@@ -36,6 +37,7 @@ func set_health(hp:int, max_hp:int) -> void:
 func set_equipped_weapon(new_weapon: PackedScene, item_data: ItemData )->void:
 	player.equip_weapon(new_weapon)	
 	weapon_equipped.emit(item_data)
+	equipped_weapon = item_data
 	pass
 
 func set_as_parent(_parent: Node2D)->void:

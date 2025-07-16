@@ -21,4 +21,4 @@ func update_inventory()->void:
 		add_child(new_slot)
 		new_slot.slot_data = slot
 	
-	get_child(0).grab_focus()
+	#get_child(0).grab_focus()
