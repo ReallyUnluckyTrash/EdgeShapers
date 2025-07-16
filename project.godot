@@ -23,6 +23,7 @@ PlayerHud="*res://GUI/player_hud/player_hud.tscn"
 SceneTransition="*res://GUI/scene_transition/scene_transition.tscn"
 PauseMenu="*res://GUI/pause_menu/pause_menu.tscn"
 SaveManager="*res://00_Globals/save_manager.gd"
+ShopMenu="*res://GUI/shop_menu/shop_menu.tscn"
 
 [display]
 

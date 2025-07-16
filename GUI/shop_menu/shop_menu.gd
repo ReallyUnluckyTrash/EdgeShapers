@@ -1,4 +1,4 @@
-class_name ShopMenu extends CanvasLayer
+extends CanvasLayer
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
@@ -18,23 +18,34 @@ const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/shop_item_button.tscn")
 @onready var error_animation_player: AnimationPlayer = %ErrorAnimationPlayer
 
 
+var buttons_created: bool = false
+
 
 func _ready() -> void:
-	on_opened()
+	hide_menu()
 	pass
 
-func on_opened()->void:
+func show_menu()->void:
+	get_tree().paused = true
+	visible = true
 	play_audio(OPEN_SHOP)
-	populate_item_list(items)
+	
+	if not buttons_created:
+		populate_item_list(items)
+		buttons_created = true
 	update_currency()
+	#
 	await get_tree().process_frame
-	if shop_items_container.get_child_count() > 0:
-		shop_items_container.get_child(0).grab_focus()
+	await get_tree().process_frame
+	shop_items_container.get_child(0).grab_focus()
 
+func hide_menu()->void:
+	visible = false
+	pass
 
 func _on_close_button_pressed() -> void:
 	PlayerManager.pause_menu_disabled = false
-	queue_free()
+	hide_menu()
 	get_tree().paused = false
 	pass # Replace with function body.
 

@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="6_3j3ig"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="7_1ared"]
 
-[sub_resource type="Resource" id="Resource_dctxx"]
+[sub_resource type="Resource" id="Resource_osqqv"]
 script = ExtResource("2_osqqv")
 items = Array[ExtResource("3_cxlwr")]([ExtResource("4_dj7vu"), ExtResource("5_3vfd8"), ExtResource("6_3j3ig"), ExtResource("7_1ared")])
 metadata/_custom_type_script = "uid://h3il8b3rctws"
@@ -20,6 +20,33 @@ metadata/_custom_type_script = "uid://h3il8b3rctws"
 [sub_resource type="AtlasTexture" id="AtlasTexture_t0q3b"]
 atlas = ExtResource("4_lv53b")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_t0q3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(822, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_lv53b"]
 resource_name = "not_enough_money"
@@ -49,33 +76,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.996581, 0, 0.198679, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_t0q3b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(822, 25)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0q3b"]
 _data = {
 &"RESET": SubResource("Animation_t0q3b"),
@@ -86,7 +86,7 @@ _data = {
 process_mode = 3
 layer = 3
 script = ExtResource("1_t0q3b")
-items = SubResource("Resource_dctxx")
+items = SubResource("Resource_osqqv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

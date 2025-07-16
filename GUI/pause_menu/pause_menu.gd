@@ -4,8 +4,6 @@ extends CanvasLayer
 @onready var button_load: Button = $Control/TabContainer/System/VBoxContainer/Button_Load
 @onready var item_description: Label = $Control/TabContainer/Inventory/Description/ItemDescription
 
-
-
 var is_paused:bool = false
 
 signal shown
