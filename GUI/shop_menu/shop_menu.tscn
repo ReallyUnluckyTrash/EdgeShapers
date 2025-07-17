@@ -159,10 +159,10 @@ libraries = {
 
 [node name="TabContainer" type="TabContainer" parent="Control"]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 93.0
-offset_right = 1178.0
-offset_bottom = 623.0
+offset_left = 140.0
+offset_top = 90.0
+offset_right = 1140.0
+offset_bottom = 620.0
 current_tab = 0
 
 [node name="Buy" type="Control" parent="Control/TabContainer"]
@@ -215,13 +215,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 68.0
-offset_top = -242.5
-offset_right = 551.0
-offset_bottom = 203.5
+offset_left = -4.0
+offset_top = -222.0
+offset_right = 479.0
+offset_bottom = 224.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_b3iil")
+metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="Control/TabContainer/Buy/Details Panel"]
 layout_mode = 2
@@ -278,34 +279,44 @@ metadata/_tab_index = 1
 
 [node name="TabContainer" type="TabContainer" parent="Control/TabContainer/Sell"]
 layout_mode = 0
-offset_right = 1099.0
+offset_left = 2.0
+offset_right = 1003.0
 offset_bottom = 483.0
 current_tab = 0
+metadata/_edit_group_ = true
 
 [node name="Items" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Items"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
 offset_left = 1.0
 offset_top = -2.0
-offset_right = 465.0
-offset_bottom = 441.0
+offset_right = 988.0
+offset_bottom = 432.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="SellItemsContainer" type="VBoxContainer" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer"]
+[node name="SellItemsContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
 
 [node name="ShopItemButton" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
@@ -331,25 +342,33 @@ layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
 offset_left = 1.0
 offset_top = -2.0
-offset_right = 471.0
-offset_bottom = 441.0
+offset_right = 988.0
+offset_bottom = 432.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="SellWeaponsContainer" type="VBoxContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer"]
+[node name="SellWeaponsContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
 
 [node name="ShopItemButton" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2

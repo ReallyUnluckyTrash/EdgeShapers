@@ -6,7 +6,7 @@ const ERROR = preload("res://Interactables/Shop Statue/error.wav")
 const OPEN_SHOP = preload("res://Interactables/Shop Statue/open_shop.wav")
 const PURCHASE = preload("res://Interactables/Shop Statue/purchase.wav")
 const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/shop_item_button.tscn")
-
+const SELL_ITEM_BUTTON = preload("res://GUI/shop_menu/sell_item_button.tscn")
 
 @export var items:ShopListItem
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
@@ -18,8 +18,8 @@ const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/shop_item_button.tscn")
 @onready var item_price: Label = %ItemPrice
 @onready var error_animation_player: AnimationPlayer = %ErrorAnimationPlayer
 
-@onready var sell_items_container: VBoxContainer = %SellItemsContainer
-@onready var sell_weapons_container: VBoxContainer = %SellWeaponsContainer
+@onready var sell_items_container: GridContainer = %SellItemsContainer
+@onready var sell_weapons_container: GridContainer = %SellWeaponsContainer
 
 
 var buttons_created: bool = false
@@ -78,18 +78,20 @@ func populate_item_list(_items:ShopListItem)->void:
 		pass
 	pass
 
-func populate_sell_list(sell_container:VBoxContainer, player_inventory:InventoryData)->void:
+func populate_sell_list(sell_container:GridContainer, player_inventory:InventoryData)->void:
 	for child in sell_container.get_children():
 		child.queue_free()
 		
 	for i in range(player_inventory.slots.size()):
 		var slot = player_inventory.slots[i]
-		var shop_item:ShopItemButton = SHOP_ITEM_BUTTON.instantiate()
-		sell_container.add_child(shop_item)
+		var sell_item_button:SellItemButton = SELL_ITEM_BUTTON.instantiate()
+		sell_container.add_child(sell_item_button)
 		var item = slot.item_data
-		shop_item.setup_item(item)
+		var quantity = slot.quantity
+		sell_item_button.setup_item(item, quantity)
+		
 		#connect to signals
-		shop_item.pressed.connect(sell_item.bind(i, player_inventory))
+		sell_item_button.pressed.connect(sell_item.bind(i, player_inventory))
 		pass
 	
 	
@@ -115,15 +117,26 @@ func update_item_details(_item:ItemData)->void:
 
 func purchase_item(_item:ItemData)->void:
 	var can_purchase:bool = PlayerManager.vertex_points >= _item.price
+	
+	#check if item is purchasable 
 	if can_purchase:
 		play_audio(PURCHASE)
 		
 		if _item.type == "Weapon":
+			#first check if weapon is already in the inventory,
+			#if it is then purchase fails
+			if PlayerManager.INVENTORY_WEAPON_DATA.has_item_(_item):
+				print("Weapon already owned!")
+				play_audio(ERROR)
+				return
+			#if it is not then add to inventory
 			PlayerManager.INVENTORY_WEAPON_DATA.add_item(_item, 1)
 			
 		elif _item.type == "Item":
 			PlayerManager.INVENTORY_ITEM_DATA.add_item(_item, 1)
 			pass
+			
+		#reduce currency and update the currency counter
 		PlayerManager.vertex_points -= _item.price
 		update_currency()
 		
@@ -131,6 +144,8 @@ func purchase_item(_item:ItemData)->void:
 		populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
 		
 		pass
+	
+	#if not purchasable, give error
 	else:
 		play_audio(ERROR)
 		error_animation_player.play("not_enough_money")
@@ -148,13 +163,20 @@ func sell_item(index:int, player_inventory:InventoryData)->void:
 			#add animation for error here as well
 			return
 		
+		#determine sell price then reduce the player's currency
 		var sell_value:int = item.price
 		PlayerManager.vertex_points += sell_value
 		
-		player_inventory.remove_item_index(index)
+		#reduce slot quantity, if less than 1 than remove
+		if slot.quantity > 1:
+			slot.quantity -= 1
+		else:
+			player_inventory.remove_item_index(index)
 		
+		#update currency counter
 		update_currency()
 		
+		#then update sell list to match the inventory
 		populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)
 		populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
 		play_audio(PURCHASE)
