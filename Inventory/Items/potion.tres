@@ -1,7 +1,15 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://by0wwb4iiffi2"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://by0wwb4iiffi2"]
 
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Inventory/Items/Item Effects/item_effect.gd" id="1_fyb50"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="1_rvim3"]
 [ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items/items.png" id="2_obe1e"]
+[ext_resource type="Script" uid="uid://cau453avplpnt" path="res://Inventory/Items/Item Effects/item_effect_heal.gd" id="2_opyql"]
+
+[sub_resource type="Resource" id="Resource_fd6j0"]
+script = ExtResource("2_opyql")
+heal_amount = 1
+use_description = "Heals 1 HP"
+metadata/_custom_type_script = "uid://cau453avplpnt"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fyb50"]
 atlas = ExtResource("2_obe1e")
@@ -12,6 +20,7 @@ script = ExtResource("1_rvim3")
 name = "Potion"
 type = "Item"
 description = "Heals some HP."
-price = 2
 texture = SubResource("AtlasTexture_fyb50")
+price = 2
+effects = Array[ExtResource("1_fyb50")]([SubResource("Resource_fd6j0")])
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

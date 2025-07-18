@@ -27,9 +27,15 @@ func _on_pressed() -> void:
 	if slot_data.item_data.type == "Weapon":
 		PlayerManager.set_equipped_weapon(slot_data.item_data.scene, slot_data.item_data)
 	elif slot_data.item_data.type == "Item":
-		#interactions.visible = true
+		print("tried to use item: " + slot_data.item_data.name)
+		var was_used = slot_data.item_data.use()
+		
+		if was_used == false:
+			return 
+		
 		slot_data.quantity -= 1
 		quantity.text = str(slot_data.quantity)
+		
 			
 	pass # Replace with function body.
 
