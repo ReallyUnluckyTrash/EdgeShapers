@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm2app3qn4lis"
-path="res://.godot/imported/Preview.png-9733756a064ae4c79da3db4731eb1586.ctex"
+uid="uid://cjikd2pge4imd"
+path="res://.godot/imported/redblue (3).png-16f5ca4933ed5c6f7850fef73a8576a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/kenney_roguelike-caves-dungeons/Preview.png"
-dest_files=["res://.godot/imported/Preview.png-9733756a064ae4c79da3db4731eb1586.ctex"]
+source_file="res://Art/bars/redblue (3).png"
+dest_files=["res://.godot/imported/redblue (3).png-16f5ca4933ed5c6f7850fef73a8576a6.ctex"]
 
 [params]
 

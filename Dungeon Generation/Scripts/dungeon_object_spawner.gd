@@ -44,8 +44,6 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 				chest_pos.x * config.tile_size + config.tile_size/2,
 				chest_pos.y * config.tile_size + config.tile_size/2,
 			)
-			chest_instance.item_data = config.chest_items[1]
-			chest_instance.quantity = 5
 			parent_node.add_child(chest_instance)
 			spawned_chests.append(chest_instance)
 		
@@ -61,4 +59,19 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 			enemy_instance.level = enemy_level
 			parent_node.add_child(enemy_instance)
 			spawned_enemies.append(enemy_instance)
-			
+	
+	_set_chest_items()
+func _set_chest_items():
+	for chest in spawned_chests:
+		var chest_item = config.chest_items[randi_range(0,2)]
+				
+		chest.item_data = chest_item
+		
+		if chest_item.type == "Weapon":
+			chest.quantity = 1
+		else:
+			chest.quantity = randi_range(1, 5)
+		
+		print(chest.item_data.name + " set in chest!")
+	
+	pass

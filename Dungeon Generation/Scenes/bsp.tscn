@@ -1,7 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://difd6gjudrjrf" path="res://Dungeon Generation/Scripts/dungeon_main.gd" id="1_67b3u"]
-[ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://test.tres" id="2_3v8vx"]
 [ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="3_67b3u"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_ftq75"]
 [ext_resource type="Script" uid="uid://yf2x45qyolje" path="res://Dungeon Generation/Scripts/dungeon_object_spawner.gd" id="3_j3od5"]
@@ -13,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dsbh42qbybbll" path="res://Enemies/1_Domain/tri_slime/tri_slime2.tscn" id="8_ja24o"]
 [ext_resource type="PackedScene" uid="uid://by1nu4x3itrdu" path="res://Enemies/1_Domain/tri_slime/tri_slime3.tscn" id="9_yai8a"]
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
+[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="12_ja24o"]
 
 [node name="BSP" type="Node2D"]
 y_sort_enabled = true
@@ -32,7 +32,7 @@ script = ExtResource("3_j3od5")
 script = ExtResource("11_ja24o")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = ExtResource("2_3v8vx")
+tile_set = ExtResource("12_ja24o")
 rendering_quadrant_size = 64
 
 [node name="FloorTransition" parent="." instance=ExtResource("3_67b3u")]

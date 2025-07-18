@@ -40,6 +40,7 @@ func show_menu()->void:
 	update_currency()
 	#
 	
+	#update sell menu
 	populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)
 	populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
 	
@@ -100,6 +101,7 @@ func populate_sell_list(sell_container:GridContainer, player_inventory:Inventory
 
 func update_currency()->void:
 	currency_label.text = str(PlayerManager.vertex_points)
+	PlayerHud.update_currency_label(PlayerManager.vertex_points)
 	pass
 
 func on_focused_item_changed(_item:ItemData)->void:

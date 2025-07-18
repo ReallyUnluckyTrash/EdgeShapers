@@ -2,10 +2,10 @@ class_name DungeonConfig extends Node
 
 @export_group("Tile Settings")
 @export var tile_size: int = 64
-@export var floor_tile: Vector2i = Vector2i(17, 8)
-@export var wall_tile: Vector2i = Vector2i(16, 5)
-@export var entrance_tile: Vector2i = Vector2i(0, 1)
-@export var exit_tile: Vector2i = Vector2i(0, 2)
+@export var floor_tile: Vector2i = Vector2i(2, 9)
+@export var wall_tile: Vector2i = Vector2i(2, 0)
+@export var entrance_tile: Vector2i = Vector2i(4, 4)
+@export var exit_tile: Vector2i = Vector2i(4, 6)
 
 #@export_group("Room Generation")
 #@export var min_room_size_factor: float = 0.25 # fraction of total map size

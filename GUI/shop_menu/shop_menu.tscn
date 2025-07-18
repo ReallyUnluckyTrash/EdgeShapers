@@ -17,10 +17,6 @@ script = ExtResource("2_osqqv")
 items = Array[ExtResource("3_cxlwr")]([ExtResource("4_dj7vu"), ExtResource("5_3vfd8"), ExtResource("6_3j3ig"), ExtResource("7_1ared")])
 metadata/_custom_type_script = "uid://h3il8b3rctws"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t0q3b"]
-atlas = ExtResource("4_lv53b")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="Animation" id="Animation_t0q3b"]
 length = 0.001
 tracks/0/type = "value"
@@ -82,6 +78,10 @@ _data = {
 &"not_enough_money": SubResource("Animation_lv53b")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0q3b"]
+atlas = ExtResource("4_lv53b")
+region = Rect2(0, 0, 32, 32)
+
 [node name="ShopMenu" type="CanvasLayer"]
 process_mode = 3
 layer = 3
@@ -133,12 +133,13 @@ offset_bottom = 129.0
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="TextureRect" type="TextureRect" parent="Control/CurrencyCounter/HBoxContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Control2" type="Control" parent="Control/CurrencyCounter/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_t0q3b")
-expand_mode = 2
-stretch_mode = 1
+
+[node name="Label" type="Label" parent="Control/CurrencyCounter/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "VP"
 
 [node name="CurrencyLabel" type="Label" parent="Control/CurrencyCounter/HBoxContainer"]
 unique_name_in_owner = true

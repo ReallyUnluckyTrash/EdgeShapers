@@ -38,6 +38,7 @@ func set_equipped_weapon(new_weapon: PackedScene, item_data: ItemData )->void:
 	player.equip_weapon(new_weapon)	
 	weapon_equipped.emit(item_data)
 	equipped_weapon = item_data
+	PlayerHud.update_equipped_texture(item_data.texture)
 	pass
 
 func set_as_parent(_parent: Node2D)->void:

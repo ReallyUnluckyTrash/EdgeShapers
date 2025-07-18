@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bytldia8dxj8q"]
 
-[ext_resource type="Texture2D" uid="uid://dhs22t4bjgqj2" path="res://Art/kenney_roguelike-caves-dungeons/Spritesheet/tilesheet_complete.png" id="1_umafu"]
+[ext_resource type="Texture2D" uid="uid://dhs22t4bjgqj2" path="res://Art/tileset/kenney_roguelike-caves-dungeons/Spritesheet/tilesheet_complete.png" id="1_fduv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35xla"]
-texture = ExtResource("1_umafu")
+texture = ExtResource("1_fduv5")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -280,4 +280,4 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
-sources/4 = SubResource("TileSetAtlasSource_35xla")
+sources/1 = SubResource("TileSetAtlasSource_35xla")

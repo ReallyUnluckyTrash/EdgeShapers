@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=4 uid="uid://de04gxgaeg1xb"]
+
+[ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_ygf7p"]
+[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_dtxb8"]
+[ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="3_w1utn"]
+[ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_fh2v2"]
+
+[node name="ShopArea" type="Node2D"]
+script = ExtResource("1_ygf7p")
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAABAAEAAUAAAAAAAEABAAEAAUAAAAAAAIABAAEAAUAAAABAAIABAAEAAUAAAABAAEABAAEAAUAAAABAAAABAAEAAUAAAACAAAABAAEAAUAAAACAAEABAAEAAUAAAACAAIABAAEAAUAAAAAAAMABAAEAAUAAAABAAMABAAEAAUAAAACAAMABAAEAAUAAAADAAMABAAEAAUAAAADAAIABAAEAAUAAAADAAEABAAEAAUAAAADAAAABAAEAAUAAAADAP//BAAEAAUAAAACAP//BAAEAAUAAAABAP//BAAEAAUAAAAAAP//BAAEAAUAAAD/////BAAEAAUAAAD//wAABAAEAAUAAAD//wEABAAEAAUAAAD//wIABAAEAAUAAAD//wMABAAEAAUAAAABAP7/BAAEAAYAAAABAAUABAAEAAQAAAABAAQABAAEAAUAAAA=")
+tile_set = ExtResource("2_dtxb8")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//7/BAAAAAEAAAD+/wQABAADAAEAAAAEAP7/BAACAAEAAAAEAAQABAABAAEAAAD+////BAAAAAAAAAD+/wAABAAAAAAAAAD+/wEABAAAAAAAAAD+/wIABAAAAAAAAAD+/wMABAAAAAAAAAAEAP//BAABAAAAAAAEAAAABAABAAAAAAAEAAEABAABAAAAAAAEAAIABAABAAAAAAAEAAMABAABAAAAAAD///7/BAACAAAAAAADAP7/BAACAAAAAAD//wQABAADAAAAAAADAAQABAADAAAAAAAAAAQABAACAAIAAAACAAQABAAAAAIAAAAAAAUABAAAAAAAAAACAAUABAABAAAAAAACAAYABAABAAEAAAAAAAYABAADAAEAAAABAAYABAADAAAAAAACAP3/BAACAAIAAAAAAP7/BAABAAIAAAACAP7/BAADAAIAAAAAAP3/BAAAAAIAAAABAP3/BAACAAMAAAA=")
+tile_set = ExtResource("2_dtxb8")
+
+[node name="ShopStatue" parent="." instance=ExtResource("3_w1utn")]
+position = Vector2(96, 96)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("4_fh2v2")]
+position = Vector2(96, 352)

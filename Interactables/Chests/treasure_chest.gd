@@ -42,6 +42,11 @@ func _on_player_interact():
 	
 	if item_data and quantity > 0:
 		if item_data.type == "Weapon":
+			if PlayerManager.INVENTORY_WEAPON_DATA.has_item_(item_data):
+				print("Weapon already owned, automatically sold!")
+				PlayerManager.vertex_points += item_data.price
+				PlayerHud.update_currency_label(PlayerManager.vertex_points)
+				return
 			PlayerManager.INVENTORY_WEAPON_DATA.add_item(item_data, quantity)
 			
 		elif item_data.type == "Item":

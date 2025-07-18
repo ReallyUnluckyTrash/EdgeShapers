@@ -11,6 +11,9 @@ var invulnerable: bool = false
 var hp: float = 6.0
 var max_hp: float = 6.0
 
+var ep: float = 10.0
+var max_ep:float = 10.0
+
 var current_weapon: Weapon = null
 var weapon_type = ""
 
@@ -39,7 +42,7 @@ func _process(_delta):
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
 	PlayerHud.update_hp(hp, max_hp)
-
+	PlayerHud.update_ep(ep, max_ep)
 	
 	pass
 	
