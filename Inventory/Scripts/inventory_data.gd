@@ -2,6 +2,8 @@ class_name InventoryData extends Resource
 
 @export var slots: Array[SlotData]
 
+signal update_ui
+
 func add_item(item_data:ItemData, quantity:int):
 	
 	#check if the item already exists, and is not a weapon
@@ -11,8 +13,8 @@ func add_item(item_data:ItemData, quantity:int):
 	var new_slot = SlotData.new()
 	new_slot.item_data = item_data
 	new_slot.quantity = quantity
-	print(new_slot)
 	slots.append(new_slot)
+	new_slot.item_depleted.connect(on_item_depleted)
 	pass
 
 #function to remove item in a specific index
@@ -54,3 +56,22 @@ func try_stack_item(item_data:ItemData, quantity:int)->bool:
 		return true
 
 	return false
+
+func connect_slots_signal()->void:
+	for slot in slots:
+		slot.item_depleted.connect(on_item_depleted)
+	pass
+
+func remove_by_item(_item:ItemData)->void:
+	print("removing by item...")
+	for i in range(slots.size()):
+		if slots[i].item_data == _item:
+			remove_item_index(i)
+			return
+		pass
+	pass
+
+func on_item_depleted(_item:ItemData)->void:
+	remove_by_item(_item)
+	update_ui.emit()
+	pass

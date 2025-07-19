@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://br0pif840r0bh"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://br0pif840r0bh"]
 
 [ext_resource type="PackedScene" uid="uid://b7vi7ofwvn7oj" path="res://Inventory/Weapons/thrust_weapon.tscn" id="1_35yt7"]
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Inventory/Items/Item Effects/item_effect.gd" id="1_q3i31"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_q3i31"]
 [ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_junm2"]
 
@@ -13,7 +14,8 @@ script = ExtResource("2_q3i31")
 name = "Basic Spear"
 type = "Weapon"
 description = "A basic spear that works well."
-price = 10
 texture = SubResource("AtlasTexture_hyroe")
+price = 10
 scene = ExtResource("1_35yt7")
+effects = Array[ExtResource("1_q3i31")]([])
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

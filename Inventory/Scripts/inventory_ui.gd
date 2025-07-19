@@ -8,6 +8,8 @@ func _ready() -> void:
 	PauseMenu.shown.connect(update_inventory)
 	PauseMenu.hidden.connect(clear_inventory)
 	clear_inventory()
+	data.connect_slots_signal()
+	data.update_ui.connect(on_inventory_changed)
 	pass
 
 func clear_inventory() -> void:
@@ -22,3 +24,8 @@ func update_inventory()->void:
 		new_slot.slot_data = slot
 	
 	#get_child(0).grab_focus()
+
+func on_inventory_changed()->void:
+	clear_inventory()
+	update_inventory()
+	pass

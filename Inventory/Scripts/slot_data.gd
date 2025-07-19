@@ -1,9 +1,13 @@
 class_name SlotData extends Resource
 
 @export var item_data:ItemData
-@export var quantity: int = 0
+@export var quantity: int = 0 : set = set_quantity
 
-#func _init(_item_data:ItemData, _quantity:int) -> void:
-	#item_data = _item_data
-	#quantity = _quantity
-	#pass
+signal item_depleted(item:ItemData)
+
+func set_quantity(value:int)->void:
+	quantity = value
+	if quantity < 1:
+		print("item depleted")
+		item_depleted.emit(item_data)
+	pass

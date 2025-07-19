@@ -7,6 +7,8 @@ var slot_data: SlotData : set = set_slot_data
 
 @onready var interactions: Control = $Interactions
 
+signal item_depleted()
+
 func _ready() -> void:
 	texture_rect.texture = null
 	quantity.text = ""
@@ -33,9 +35,16 @@ func _on_pressed() -> void:
 		if was_used == false:
 			return 
 		
-		slot_data.quantity -= 1
-		quantity.text = str(slot_data.quantity)
+		#if slot_data.quantity > 1:
+			#slot_data.quantity -= 1
+			#quantity.text = str(slot_data.quantity)
+		#else:
+			#item_depleted.emit()
 		
+		slot_data.quantity -= 1
+		if slot_data.quantity > 0:
+			quantity.text = str(slot_data.quantity)
+			print(slot_data.item_data.name + " count: " + str(slot_data.quantity) )
 			
 	pass # Replace with function body.
 
