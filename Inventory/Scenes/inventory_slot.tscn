@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://blekt47ruwbbv"]
+[gd_scene load_steps=4 format=3 uid="uid://blekt47ruwbbv"]
 
-[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Inventory/Weapons/weapons/sword animations/basic_sword.png" id="1_68pn2"]
 [ext_resource type="Script" uid="uid://cbfdpuysnm06a" path="res://Inventory/Scripts/inventory_slot.gd" id="1_gpqwp"]
+[ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items.png" id="2_aln3l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym05k"]
+atlas = ExtResource("2_aln3l")
+region = Rect2(0, 0, 32, 32)
 
 [node name="InventorySlot" type="Button"]
 custom_minimum_size = Vector2(64, 64)
@@ -16,53 +20,52 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
-texture = ExtResource("1_68pn2")
+texture = SubResource("AtlasTexture_ym05k")
 expand_mode = 1
 
 [node name="Quantity" type="Label" parent="."]
 layout_mode = 0
-offset_top = 1.0
 offset_right = 63.0
-offset_bottom = 64.0
+offset_bottom = 63.0
 text = "99"
 horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Interactions" type="Control" parent="."]
-visible = false
 z_index = 5
 anchors_preset = 0
-offset_left = 64.0
-offset_top = -16.0
-offset_right = 104.0
-offset_bottom = 24.0
+offset_left = 66.0
+offset_top = 3.0
+offset_right = 132.0
+offset_bottom = 59.0
 
 [node name="ColorRect" type="ColorRect" parent="Interactions"]
+visible = false
 layout_mode = 2
 offset_right = 66.0
-offset_bottom = 94.0
+offset_bottom = 54.0
 color = Color(0.265895, 1, 0.947447, 1)
 
 [node name="Interactions" type="VBoxContainer" parent="Interactions"]
-z_index = 5
+z_index = 10
+z_as_relative = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 93.0
+offset_right = 66.0
+offset_bottom = 64.0
 
-[node name="Label" type="Label" parent="Interactions/Interactions"]
+[node name="EquipButton" type="Button" parent="Interactions/Interactions"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Use?"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Interactions/Interactions"]
-layout_mode = 2
-text = "Yes
+text = "EQUIP
 "
 
-[node name="Button2" type="Button" parent="Interactions/Interactions"]
+[node name="UseButton" type="Button" parent="Interactions/Interactions"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "No
+text = "USE
 "
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="Interactions/Interactions/EquipButton" to="." method="_on_equip_button_pressed"]
+[connection signal="pressed" from="Interactions/Interactions/UseButton" to="." method="_on_use_button_pressed"]

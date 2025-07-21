@@ -23,6 +23,11 @@ func remove_item_index(slot_index:int)->void:
 		slots.remove_at(slot_index)
 	pass
 
+func clear_slot_info_index(slot_index:int)->void:
+	if slot_index >= 0 and slot_index < slots.size():
+		slots[slot_index].item_data = null
+		slots[slot_index].quantity = 0
+		pass
 #function that checks if the same type of item already exists
 func has_item_(item_data:ItemData)->bool:
 	for slot in slots:

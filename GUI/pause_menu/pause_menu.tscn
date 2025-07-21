@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0hgapdj1ycg6"]
+[gd_scene load_steps=12 format=3 uid="uid://c0hgapdj1ycg6"]
 
 [ext_resource type="Script" uid="uid://bd83lh8xr8ggi" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_dvxeg"]
 [ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="2_iqcer"]
 [ext_resource type="Script" uid="uid://1e3pwy4iqlof" path="res://Inventory/Scripts/inventory_ui.gd" id="3_36pfd"]
-[ext_resource type="PackedScene" uid="uid://blekt47ruwbbv" path="res://Inventory/inventory_slot.tscn" id="3_rsqrg"]
+[ext_resource type="PackedScene" uid="uid://blekt47ruwbbv" path="res://Inventory/Scenes/inventory_slot.tscn" id="3_rsqrg"]
 [ext_resource type="Resource" uid="uid://c6ytvfnfy1bhf" path="res://Inventory/Resources/player_weapon_inv.tres" id="4_ewgu5"]
 [ext_resource type="Resource" uid="uid://dfukjwugxci76" path="res://Inventory/Resources/player_item_inv.tres" id="6_dvxeg"]
 [ext_resource type="Script" uid="uid://b510jrrankvy4" path="res://Inventory/Scripts/equipped_ui.gd" id="6_sn1ji"]
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
+[ext_resource type="PackedScene" uid="uid://ctxew2s72ss6" path="res://Inventory/Scenes/equipped_slot.tscn" id="10_qikl0"]
 
 [sub_resource type="Theme" id="Theme_dvxeg"]
 
@@ -149,6 +150,9 @@ theme_override_styles/panel = ExtResource("2_dvxeg")
 layout_mode = 2
 script = ExtResource("6_sn1ji")
 equipped_data = ExtResource("7_8rjl7")
+
+[node name="EquippedSlot" parent="Control/TabContainer/Inventory/Equipped/GridContainer" instance=ExtResource("10_qikl0")]
+layout_mode = 2
 
 [node name="Description" type="PanelContainer" parent="Control/TabContainer/Inventory"]
 layout_mode = 1

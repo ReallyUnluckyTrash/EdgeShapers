@@ -3,6 +3,7 @@ class_name EquippedSlot extends Control
 var slot_data: SlotData : set = set_slot_data
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var color_rect: ColorRect = $ColorRect
+@onready var item_quantity: Label = %ItemQuantity
 
 func _ready() -> void:
 	texture_rect.texture = null
@@ -21,7 +22,13 @@ func update_texture() -> void:
 	
 	if slot_data == null or slot_data.item_data == null:
 		texture_rect.texture = null
+		item_quantity.text = ""
 		return
 		
 	color_rect.visible = true
 	texture_rect.texture = slot_data.item_data.texture
+	
+	if slot_data.item_data.type == "Item":
+		item_quantity.text = str(slot_data.quantity)
+	else:
+		item_quantity.text = ""

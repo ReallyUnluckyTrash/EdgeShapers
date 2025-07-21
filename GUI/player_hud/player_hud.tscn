@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkonodsggwbc6"]
+[gd_scene load_steps=11 format=3 uid="uid://bkonodsggwbc6"]
 
 [ext_resource type="Script" uid="uid://jaku77anwab0" path="res://GUI/player_hud/player_hud.gd" id="1_6ggty"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_oghrr"]
-[ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items/items.png" id="3_4b3j6"]
 [ext_resource type="Texture2D" uid="uid://cjikd2pge4imd" path="res://Art/bars/redblue (3).png" id="4_yhjvm"]
 [ext_resource type="Texture2D" uid="uid://b7mbno5xrfeyb" path="res://Art/bars/redblue (1).png" id="5_sysqg"]
 
@@ -29,10 +28,6 @@ region = Rect2(13, 54, 111, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3m3x0"]
 atlas = ExtResource("5_sysqg")
 region = Rect2(12, 75, 110, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oghrr"]
-atlas = ExtResource("3_4b3j6")
-region = Rect2(32, 0, 32, 32)
 
 [node name="PlayerHud" type="CanvasLayer"]
 process_mode = 3
@@ -103,7 +98,6 @@ offset_left = 7.0
 offset_top = 533.0
 offset_right = 91.0
 offset_bottom = 617.0
-metadata/_edit_group_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/EquippedItem"]
 layout_mode = 2
@@ -115,13 +109,22 @@ theme_override_styles/panel = ExtResource("2_oghrr")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = SubResource("AtlasTexture_oghrr")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Control/EquippedItem"]
+[node name="ItemLabel" type="Label" parent="Control/EquippedItem"]
 layout_mode = 2
 offset_left = 7.0
 offset_top = 3.0
 offset_right = 71.0
 offset_bottom = 19.0
 text = "Item"
+
+[node name="EquippedItemQuantity" type="Label" parent="Control/EquippedItem"]
+unique_name_in_owner = true
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 79.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 2
+vertical_alignment = 2

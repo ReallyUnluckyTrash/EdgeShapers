@@ -3,19 +3,27 @@ extends Node
 const PLAYER = preload("res://Player/player.tscn")
 const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv.tres")
 const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.tres")
+const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped.tres")
 
 var player : Player
 var player_spawned:bool = false
 var vertex_points:int = 999
 
 var pause_menu_disabled:bool = false
+
 static var equipped_weapon:ItemData = null
+static var equipped_item:SlotData = SlotData.new()
+
 
 signal weapon_equipped(item_data: ItemData)
+signal item_equipped(item_data:ItemData, quantity:int)
+
+@warning_ignore("unused_signal")
 signal interact_pressed
 
 func _ready() -> void:
 	add_player_instance()
+	equipped_item.quantity = 0
 	#await get_tree().create_timer(0.2).timeout
 	#player_spawned = true
 
@@ -38,8 +46,51 @@ func set_equipped_weapon(new_weapon: PackedScene, item_data: ItemData )->void:
 	player.equip_weapon(new_weapon)	
 	weapon_equipped.emit(item_data)
 	equipped_weapon = item_data
-	PlayerHud.update_equipped_texture(item_data.texture)
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("use_equipped_item"):
+		use_equipped_item()
+
+func set_equipped_item(item_data: ItemData, quantity:int)->void:
+	#since when equipped item is used up the item data becomes null, 
+	#check if there is still an equipped item when trying to equip a new item
+	#then, add the previously equipped item back to inventory, then update
+	if equipped_item.item_data != null:
+		INVENTORY_ITEM_DATA.add_item(equipped_item.item_data, equipped_item.quantity)
+		INVENTORY_ITEM_DATA.update_ui.emit()
+		pass
+	
+	print("time to equip the item!")
+	item_equipped.emit(item_data, quantity)
+	equipped_item = SlotData.new()
+	equipped_item.item_data = item_data
+	equipped_item.quantity = quantity
+	PlayerHud.update_equipped_texture(item_data.texture)
+	PlayerHud.update_equipped_quantity(quantity)
+	pass
+
+func use_equipped_item()->void:
+	if equipped_item.item_data:
+		var was_used = equipped_item.item_data.use()
+		
+		if was_used == false:
+			return 
+			
+		equipped_item.quantity -= 1
+		
+		if equipped_item.quantity >= 1:
+			PlayerHud.update_equipped_quantity(equipped_item.quantity)
+			
+		elif equipped_item.quantity < 1:
+			PLAYER_EQUIPPED_DATA.clear_slot_info_index(1)
+			PlayerHud.equipped_item_texture.texture = null
+			PlayerHud.equipped_item_quantity.text = ""
+			equipped_item.item_data = null
+			equipped_item.quantity = 0
+			pass
+	else:
+		print("no equipped item!")
 
 func set_as_parent(_parent: Node2D)->void:
 	if player.get_parent():

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://btawgj7ojp0fq" path="res://Inventory/Scripts/inventory_data.gd" id="1_kwy3k"]
 [ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="2_abcm6"]
-[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="3_abcm6"]
+[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="3_s83xt"]
 
 [sub_resource type="Resource" id="Resource_kwy3k"]
 script = ExtResource("2_abcm6")
-item_data = ExtResource("3_abcm6")
+item_data = ExtResource("3_s83xt")
 quantity = 0
 metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
 

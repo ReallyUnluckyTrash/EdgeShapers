@@ -1,6 +1,6 @@
 class_name InventoryUI extends Control
 
-const INVENTORY_SLOT = preload("res://Inventory/inventory_slot.tscn")
+const INVENTORY_SLOT = preload("res://Inventory/Scenes/inventory_slot.tscn")
 
 @export var data: InventoryData
 

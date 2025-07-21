@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://bfj0vkk6582yg"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Inventory/Items/Item Effects/item_effect.gd" id="1_vgcrb"]
+[ext_resource type="Script" uid="uid://cau453avplpnt" path="res://Inventory/Items/Item Effects/item_effect_heal.gd" id="2_8vjn6"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_8rdqh"]
+[ext_resource type="Texture2D" uid="uid://ms6kkory58ap" path="res://Inventory/Items/items.png" id="4_w7ukx"]
+
+[sub_resource type="Resource" id="Resource_fd6j0"]
+script = ExtResource("2_8vjn6")
+heal_amount = 10
+use_description = "Heals 10 HP"
+metadata/_custom_type_script = "uid://cau453avplpnt"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyb50"]
+atlas = ExtResource("4_w7ukx")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("3_8rdqh")
+name = "Gem Potion"
+type = "Item"
+description = "The Gem Potion, really just for testing."
+texture = SubResource("AtlasTexture_fyb50")
+price = 4
+effects = Array[ExtResource("1_vgcrb")]([SubResource("Resource_fd6j0")])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"
