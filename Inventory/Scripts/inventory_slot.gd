@@ -4,18 +4,18 @@ var slot_data: SlotData : set = set_slot_data
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var quantity: Label = $Quantity
+@onready var interactions_position: Control = $InteractionsPosition
 
-@onready var interactions: Control = $Interactions
+const SLOT_INTERACTIONS = preload("res://Inventory/Scenes/slot_interactions.tscn")
 
 signal item_depleted()
 
 func _ready() -> void:
 	texture_rect.texture = null
 	quantity.text = ""
-	interactions.visible = false
 	focus_entered.connect(item_focused)
 	focus_exited.connect(item_unfocused)
-	
+
 func set_slot_data(value : SlotData) ->void:
 	slot_data = value
 	if slot_data == null:
@@ -27,26 +27,14 @@ func _on_pressed() -> void:
 	if slot_data == null:
 		return
 	
-	if interactions.visible == true:
-		interactions.visible = false
-	elif interactions.visible == false:
-		interactions.visible = true
-	
-	#if slot_data.item_data.type == "Weapon":
-		#PlayerManager.set_equipped_weapon(slot_data.item_data.scene, slot_data.item_data)
-	#elif slot_data.item_data.type == "Item":
-		#print("tried to use item: " + slot_data.item_data.name)
-		#var was_used = slot_data.item_data.use()
-		#
-		#if was_used == false:
-			#return 
-			#
-		#slot_data.quantity -= 1
-		#if slot_data.quantity > 0:
-			#quantity.text = str(slot_data.quantity)
-			#print(slot_data.item_data.name + " count: " + str(slot_data.quantity) )
-			
-	pass # Replace with function body.
+	var new_slot_interactions = SLOT_INTERACTIONS.instantiate()
+	PauseMenu.add_child(new_slot_interactions)
+	new_slot_interactions.use_pressed.connect(_on_use_button_pressed)
+	new_slot_interactions.equip_pressed.connect(_on_equip_button_pressed)
+	new_slot_interactions.equip_button.grab_focus() 
+	new_slot_interactions.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	PauseMenu.inventory_blocker.visible = true
+	pass 
 
 func item_focused():
 	if slot_data != null:

@@ -121,6 +121,7 @@ text = "Item"
 
 [node name="EquippedItemQuantity" type="Label" parent="Control/EquippedItem"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 4.0
 offset_top = 2.0
 offset_right = 79.0

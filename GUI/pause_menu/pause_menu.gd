@@ -1,24 +1,39 @@
 extends CanvasLayer
 
-@onready var button_save: Button = $Control/TabContainer/System/VBoxContainer/Button_Save
-@onready var button_load: Button = $Control/TabContainer/System/VBoxContainer/Button_Load
-@onready var item_description: Label = $Control/TabContainer/Inventory/Description/ItemDescription
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var button_save: Button = %Button_Save
+@onready var button_load: Button = %Button_Load
+
+@onready var item_description: Label = %ItemDescription
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = %AudioStreamPlayer2D
+@onready var menu_tabs: TabContainer = %MenuTabs
+
+@onready var weapon_inv_grid: InventoryUI = %WeaponInvGrid
+
 
 var is_paused:bool = false
+@onready var inventory_blocker: ColorRect = %InventoryBlocker
 
 signal shown
 signal hidden
 
 func _ready() -> void:
+	inventory_blocker.visible = false
+	inventory_blocker.mouse_filter = Control.MOUSE_FILTER_STOP
 	hide_pause_menu()
 
+
+func default_grab_focus():
+	await get_tree().process_frame
+	await get_tree().process_frame
+	weapon_inv_grid.get_child(0).grab_focus()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if PlayerManager.pause_menu_disabled == true:
 			return
 		if is_paused == false:
 			show_pause_menu()
+			default_grab_focus()
 		else:
 			hide_pause_menu()
 		get_viewport().set_input_as_handled()
@@ -55,7 +70,10 @@ func _on_button_load_pressed() -> void:
 	
 	
 func update_item_description(new_text:String)-> void:
-	item_description.text = new_text
+	if item_description:
+		item_description.text = new_text
+	else:
+		print("item description not updating!")
 	
 func play_audio(audio:AudioStream)->void:
 	audio_stream_player_2d.stream = audio
