@@ -9,7 +9,7 @@ var attacking: bool = false
 
 func enter() -> void:
 	attacking = true
-	
+
 	if player.current_weapon:
 		player.current_weapon.attack()
 		player.current_weapon.attack_finished.connect(end_attack)

@@ -17,6 +17,9 @@ var max_ep:float = 10.0
 var current_weapon: Weapon = null
 var weapon_type = ""
 
+#@export var upgrades_weapon:Array[UpgradeWeapon] = []
+#@export var upgrades_player:Array[UpgradePlayer] = []
+
 # Export weapon scenes for easy assignment in inspector
 @export var weapon_scenes: Array[PackedScene] = []
 @export var starting_weapon_index: int = 0
@@ -34,6 +37,8 @@ func _ready():
 	#temporary starting weapon
 	equip_weapon(weapon_scenes[0])
 	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
+	activate_upgrades_player()
+	
 	pass
 
 func _process(_delta):
@@ -69,6 +74,11 @@ func update_hp(delta:float) ->void:
 	hp = clamp(hp + delta, 0, max_hp)
 	pass
 
+
+func update_ep(delta:float) ->void:
+	ep = clamp(hp + delta, 0, max_ep)
+	pass
+
 func make_invulnerable(_duration:float = 1.0)->void:
 	invulnerable = true
 	hit_box.monitoring = false
@@ -100,6 +110,7 @@ func equip_weapon(weapon_scene: PackedScene):
 	weapon_position.add_child(new_weapon)
 	current_weapon = new_weapon
 	
+	activate_upgrades_weapon()
 	var weapon_name = current_weapon.weapon_name
 	weapon_type = current_weapon.get_class()
 	print("Equipped weapon: ", weapon_name, " of type: ", weapon_type)
@@ -116,6 +127,22 @@ func unequip_weapon():
 	
 	pass
 	
+func activate_upgrades_weapon():
+	print("activating weapon upgrades!")
+	var upgrade_list = PlayerManager.PLAYER_UPGRADE_LIST.upgrades_weapon
+	#weird how i have to use a dynamic variable here... maybe try a way to avoid this
+	var weapon_ref = current_weapon
+	for upgrade in upgrade_list:
+		upgrade.apply_upgrade(weapon_ref)
+
+func activate_upgrades_player():	
+	print("activating player upgrades!")
+	var upgrade_list = PlayerManager.PLAYER_UPGRADE_LIST.upgrades_player
+	#weird how i have to use a dynamic variable here... maybe try a way to avoid this
+	var player = self
+	for upgrade in upgrade_list:
+		upgrade.apply_player_upgrade(player)
+
 ##function to test if modular system works, delete later and replace by using an inventory system
 #func switch_to_next_weapon():
 	#if weapon_scenes.size() <= 1:

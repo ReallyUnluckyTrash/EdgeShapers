@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradePlayerHealth" load_steps=2 format=3 uid="uid://td6f62jhh778"]
+
+[ext_resource type="Script" uid="uid://v0m6bl8jokny" path="res://Upgrades/Scripts/upgrade_player_health.gd" id="1_8ul2u"]
+
+[resource]
+script = ExtResource("1_8ul2u")
+additional_hp = 3
+upgrade_name = "Health Upgrade (Rare)"
+upgrade_description = "Increases Max HP by 3."
+rarity = 1
+metadata/_custom_type_script = "uid://v0m6bl8jokny"

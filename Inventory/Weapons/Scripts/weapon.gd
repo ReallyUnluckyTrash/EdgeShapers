@@ -1,6 +1,7 @@
 class_name Weapon extends Node
 
 @export var weapon_name: String
+@export var damage: int	= 1: set = set_damage		
 
 signal attack_finished
 signal attack_interrupted
@@ -10,3 +11,6 @@ func _ready() -> void:
 
 func attack():
 	pass
+
+func set_damage(new_damage:int):
+		damage = new_damage

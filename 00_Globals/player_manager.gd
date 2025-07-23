@@ -4,6 +4,7 @@ const PLAYER = preload("res://Player/player.tscn")
 const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv.tres")
 const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.tres")
 const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped.tres")
+const PLAYER_UPGRADE_LIST = preload("res://Inventory/Resources/player_upgrade_list.tres")
 
 var player : Player
 var player_spawned:bool = false

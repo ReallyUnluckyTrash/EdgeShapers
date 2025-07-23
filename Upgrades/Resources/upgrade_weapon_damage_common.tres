@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeWeaponDamage" load_steps=2 format=3 uid="uid://bi1gkrkyt4phj"]
+
+[ext_resource type="Script" uid="uid://bd3gpc4wflksc" path="res://Upgrades/Scripts/upgrade_weapon_damage.gd" id="1_3o5fm"]
+
+[resource]
+script = ExtResource("1_3o5fm")
+additional_damage = 1
+upgrade_name = "Damage Upgrade (Common)"
+upgrade_description = "Increases damage dealt by 1."
+metadata/_custom_type_script = "uid://bd3gpc4wflksc"

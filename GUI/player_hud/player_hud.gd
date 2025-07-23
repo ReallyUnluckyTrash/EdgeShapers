@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var currency_label: Label = %CurrencyLabel
 @onready var equipped_item_texture: TextureRect = %EquippedItemTexture
 @onready var equipped_item_quantity: Label = %EquippedItemQuantity
+@onready var health_label: Label = %HealthLabel
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 func update_hp(_hp:int, _max_hp:int) -> void:
 	health_bar.max_value = _max_hp
 	health_bar.value = _hp
+	health_label.text = str(_hp) + "/" + str(_max_hp)
 	pass
 
 func update_ep(_ep:int, _max_ep:int) -> void:

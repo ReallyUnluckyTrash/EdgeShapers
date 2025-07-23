@@ -1,6 +1,5 @@
 class_name ThrustWeapon extends Weapon
 
-@export var damage: int
 @export var attack_speed: float
 @export var knockback_force: float
 
@@ -35,6 +34,10 @@ func return_to_idle():
 	if animation_player.current_animation != "idle":
 		animation_player.play("idle")
 	is_attacking = false
+
+func set_damage(new_damage:int):
+		damage = new_damage
+		hurt_box.damage = damage
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "thrust":
