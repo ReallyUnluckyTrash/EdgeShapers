@@ -8,25 +8,34 @@ const PURCHASE = preload("res://Interactables/Shop Statue/purchase.wav")
 const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/shop_item_button.tscn")
 const SELL_ITEM_BUTTON = preload("res://GUI/shop_menu/sell_item_button.tscn")
 
+const SHOP_UPGRADES = preload("res://GUI/shop_menu/Resources/shop_upgrades.tres")
+
 @export var items:ShopListItem
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
+@onready var sell_items_container: GridContainer = %SellItemsContainer
+@onready var sell_weapons_container: GridContainer = %SellWeaponsContainer
+
+@onready var weapon_upgrades_tab: ShopWeaponUpgradeTab = %WeaponUpgrades
+@onready var player_upgrades_tab: ShopPlayerUpgradeTab = %PlayerUpgrade
+@onready var sell_player_upgrades_tab: SellPlayerUpgradeTab = $"Control/TabContainer/Sell/TabContainer/Player Upgrades"
+
 @onready var currency_label: Label = %CurrencyLabel
 
 @onready var item_image: TextureRect = %ItemImage
 @onready var item_name: Label = %ItemName
 @onready var item_description: Label = %ItemDescription
 @onready var item_price: Label = %ItemPrice
+
 @onready var error_animation_player: AnimationPlayer = %ErrorAnimationPlayer
 
-@onready var sell_items_container: GridContainer = %SellItemsContainer
-@onready var sell_weapons_container: GridContainer = %SellWeaponsContainer
-
-
 var buttons_created: bool = false
-
+var upgrades_weapon_list
+var upgrades_player_list
 
 func _ready() -> void:
 	hide_menu()
+	upgrades_weapon_list = SHOP_UPGRADES.upgrades_weapon
+	upgrades_player_list = SHOP_UPGRADES.upgrades_player
 	pass
 
 func show_menu()->void:
@@ -36,6 +45,8 @@ func show_menu()->void:
 	
 	if not buttons_created:
 		populate_item_list(items)
+		weapon_upgrades_tab.populate_list(upgrades_weapon_list)
+		player_upgrades_tab.populate_list(upgrades_player_list)
 		buttons_created = true
 	update_currency()
 	#
@@ -43,6 +54,7 @@ func show_menu()->void:
 	#update sell menu
 	populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)
 	populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
+	sell_player_upgrades_tab.populate_sell_list()
 	
 	await get_tree().process_frame
 	await get_tree().process_frame

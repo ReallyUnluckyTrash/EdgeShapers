@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvl7urclw8qrw"]
+[gd_scene load_steps=22 format=3 uid="uid://bvl7urclw8qrw"]
 
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_b3iil"]
 [ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="1_mswg8"]
@@ -11,6 +11,11 @@
 [ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="5_3vfd8"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="6_3j3ig"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="7_1ared"]
+[ext_resource type="Script" uid="uid://l8ev67yilsm8" path="res://GUI/shop_menu/Scripts/shop_weapon_upgrade_tab.gd" id="12_3vfd8"]
+[ext_resource type="PackedScene" uid="uid://c7o73qt7ew7ym" path="res://GUI/shop_menu/shop_upgrade_button.tscn" id="12_cxlwr"]
+[ext_resource type="PackedScene" uid="uid://bp2r3y2ey3b8s" path="res://Inventory/Scenes/upgrade_details_panel.tscn" id="13_dj7vu"]
+[ext_resource type="Script" uid="uid://bh4kbkxj08eqc" path="res://GUI/shop_menu/Scripts/shop_player_upgrade_tab.gd" id="15_3j3ig"]
+[ext_resource type="Script" uid="uid://cx640tlw8fsg4" path="res://GUI/shop_menu/Scripts/sell_player_upgrade_tab.gd" id="16_1ared"]
 
 [sub_resource type="Resource" id="Resource_osqqv"]
 script = ExtResource("2_osqqv")
@@ -170,46 +175,60 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy"]
+[node name="TabContainer" type="TabContainer" parent="Control/TabContainer/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Equippables" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -2.0
 offset_right = 471.0
-offset_bottom = 441.0
+offset_bottom = 433.0
 follow_focus = true
 horizontal_scroll_mode = 0
+metadata/_edit_group_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ShopItemsContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer"]
+[node name="ShopItemsContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ShopItemButton" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="ShopItemButton2" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton2" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="ShopItemButton3" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton3" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="ShopItemButton4" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton4" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="ShopItemButton5" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton5" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="ShopItemButton6" parent="Control/TabContainer/Buy/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
+[node name="ShopItemButton6" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("3_dt4po")]
 layout_mode = 2
 
-[node name="Details Panel" type="PanelContainer" parent="Control/TabContainer/Buy"]
+[node name="Details Panel" type="PanelContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,16 +238,16 @@ anchor_bottom = 0.5
 offset_left = -4.0
 offset_top = -222.0
 offset_right = 479.0
-offset_bottom = 224.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_b3iil")
 metadata/_edit_group_ = true
 
-[node name="Control" type="Control" parent="Control/TabContainer/Buy/Details Panel"]
+[node name="Control" type="Control" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel"]
 layout_mode = 2
 
-[node name="ItemImage" type="TextureRect" parent="Control/TabContainer/Buy/Details Panel/Control"]
+[node name="ItemImage" type="TextureRect" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
@@ -240,7 +259,7 @@ texture = SubResource("AtlasTexture_t0q3b")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="ItemName" type="Label" parent="Control/TabContainer/Buy/Details Panel/Control"]
+[node name="ItemName" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 10.0
@@ -251,7 +270,7 @@ text = "Item Name"
 autowrap_mode = 2
 clip_text = true
 
-[node name="ItemDescription" type="Label" parent="Control/TabContainer/Buy/Details Panel/Control"]
+[node name="ItemDescription" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 13.0
@@ -264,7 +283,7 @@ autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 2
 
-[node name="ItemPrice" type="Label" parent="Control/TabContainer/Buy/Details Panel/Control"]
+[node name="ItemPrice" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 274.0
@@ -272,6 +291,112 @@ offset_top = 12.0
 offset_right = 502.0
 offset_bottom = 52.0
 text = "Price = 999"
+
+[node name="WeaponUpgrades" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("12_3vfd8")
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 471.0
+offset_bottom = 433.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="WpnUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton5" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton6" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="WpnUpDetails" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades" instance=ExtResource("13_dj7vu")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 511.0
+offset_top = 2.0
+offset_right = 994.0
+offset_bottom = 435.0
+metadata/_edit_group_ = true
+
+[node name="PlayerUpgrade" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("15_3j3ig")
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade"]
+layout_mode = 0
+offset_right = 459.0
+offset_bottom = 432.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PlayerUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton5" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton6" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="PlayerUpDetail" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade" instance=ExtResource("13_dj7vu")]
+layout_mode = 0
+offset_left = 514.0
+offset_right = 997.0
+offset_bottom = 431.0
+metadata/_edit_group_ = true
 
 [node name="Sell" type="Control" parent="Control/TabContainer"]
 visible = false
@@ -387,6 +512,96 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ShopItemButton6" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("3_dt4po")]
+layout_mode = 2
+
+[node name="Player Upgrades" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("16_1ared")
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellPlyrUpContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Control/TabContainer/Sell/TabContainer/Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="Weapon Upgrades" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellWpnUpContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_cxlwr")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Sell/TabContainer/Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_cxlwr")]
 layout_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

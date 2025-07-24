@@ -143,6 +143,15 @@ func activate_upgrades_player():
 	for upgrade in upgrade_list:
 		upgrade.apply_player_upgrade(player)
 
+#might just not allow selling of buffs to make it less complicated
+func clear_upgrades_player():
+	hp = 6.0
+	max_hp = 6.0
+
+	ep = 10.0
+	max_ep = 10.0
+	pass
+
 ##function to test if modular system works, delete later and replace by using an inventory system
 #func switch_to_next_weapon():
 	#if weapon_scenes.size() <= 1:

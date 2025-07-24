@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7o73qt7ew7ym"]
+
+[ext_resource type="Script" uid="uid://bhibm0eaqxqhn" path="res://GUI/shop_menu/shop_upgrade_button.gd" id="1_crn42"]
+
+[node name="ShopUpgradeButton" type="Button"]
+custom_minimum_size = Vector2(440, 72)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_crn42")
+metadata/_edit_use_anchors_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 67.0
+offset_bottom = 72.0
+expand_mode = 1
+
+[node name="PriceLabel" type="Label" parent="Control"]
+unique_name_in_owner = true
+offset_left = 364.0
+offset_top = 15.0
+offset_right = 417.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "999"
+
+[node name="Container" type="VBoxContainer" parent="Control"]
+offset_left = 74.0
+offset_top = 1.0
+offset_right = 356.0
+offset_bottom = 73.0
+metadata/_edit_group_ = true
+
+[node name="NameLabel" type="Label" parent="Control/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Upgrade Name"
+
+[node name="RarityLabel" type="Label" parent="Control/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Rarity: COMMON"

@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp2r3y2ey3b8s"]
+
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_r0md1"]
+[ext_resource type="Script" uid="uid://ce58hgp3018vb" path="res://Inventory/Scripts/upgrade_details_panel.gd" id="2_fwf6c"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_37n71"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4622"]
+atlas = ExtResource("3_37n71")
+region = Rect2(0, 0, 32, 32)
+
+[node name="UpgradeDetailsPanel" type="PanelContainer"]
+offset_right = 483.0
+offset_bottom = 446.0
+size_flags_horizontal = 0
+theme_override_styles/panel = ExtResource("1_r0md1")
+script = ExtResource("2_fwf6c")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="UpgradeImage" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 26.0
+offset_right = 92.0
+offset_bottom = 90.0
+texture = SubResource("AtlasTexture_o4622")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="UpgradeName" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 119.0
+offset_right = 453.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 40
+text = "Upgrade Name"
+autowrap_mode = 2
+clip_text = true
+
+[node name="UpgradeDescription" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 13.0
+offset_top = 170.0
+offset_right = 457.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 40
+text = "Upgrade Description
+This sword is the greatest sword!!"
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="UpgradeValue" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 221.0
+offset_top = 48.0
+offset_right = 449.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 40
+text = "Value = 999"
+
+[node name="UpgradeRarity" type="Label" parent="Control"]
+unique_name_in_owner = true
+offset_left = 221.0
+offset_top = 7.0
+offset_right = 452.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 40
+text = "Rarity : COMMON"

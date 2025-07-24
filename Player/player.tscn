@@ -137,7 +137,6 @@ z_index = 5
 collision_mask = 16
 script = ExtResource("1_onrkg")
 weapon_scenes = Array[PackedScene]([ExtResource("17_b1ygp"), ExtResource("3_b1ygp"), ExtResource("4_o28un")])
-starting_weapon_index = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

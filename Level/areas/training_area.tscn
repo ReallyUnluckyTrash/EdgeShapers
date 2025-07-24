@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cqmbuomhnj6f2"]
+[gd_scene load_steps=13 format=4 uid="uid://cqmbuomhnj6f2"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_x10vi"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_wq8iw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cpngj2ie0hwl8" path="res://Interactables/Chests/treasure_chest.tscn" id="9_0236u"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="10_lrh6b"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="11_wq8iw"]
+[ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="12_ne6i0"]
 
 [node name="Training Area" type="Node2D"]
 script = ExtResource("1_x10vi")
@@ -51,3 +52,6 @@ item_data = ExtResource("10_lrh6b")
 [node name="TreasureChest2" parent="." instance=ExtResource("9_0236u")]
 position = Vector2(112, 528)
 item_data = ExtResource("11_wq8iw")
+
+[node name="ShopStatue" parent="." instance=ExtResource("12_ne6i0")]
+position = Vector2(544, 672)

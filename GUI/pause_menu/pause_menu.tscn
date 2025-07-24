@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0hgapdj1ycg6"]
+[gd_scene load_steps=15 format=3 uid="uid://c0hgapdj1ycg6"]
 
 [ext_resource type="Script" uid="uid://bd83lh8xr8ggi" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_dvxeg"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://b510jrrankvy4" path="res://Inventory/Scripts/equipped_ui.gd" id="6_sn1ji"]
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
 [ext_resource type="PackedScene" uid="uid://ctxew2s72ss6" path="res://Inventory/Scenes/equipped_slot.tscn" id="10_qikl0"]
+[ext_resource type="PackedScene" uid="uid://6uflygewvh1y" path="res://Inventory/Scenes/upgrade_held_entry.tscn" id="11_40d0i"]
+[ext_resource type="Script" uid="uid://ddmvbisx1lu0n" path="res://Inventory/Scripts/upgrade_ui.gd" id="11_cvrss"]
+[ext_resource type="PackedScene" uid="uid://bp2r3y2ey3b8s" path="res://Inventory/Scenes/upgrade_details_panel.tscn" id="13_cvrss"]
 
 [sub_resource type="Theme" id="Theme_dvxeg"]
 
@@ -148,12 +151,12 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_dvxeg")
 
-[node name="GridContainer" type="GridContainer" parent="Control/MenuTabs/Inventory/Equipped"]
+[node name="EquipInvGrid" type="GridContainer" parent="Control/MenuTabs/Inventory/Equipped"]
 layout_mode = 2
 script = ExtResource("6_sn1ji")
 equipped_data = ExtResource("7_8rjl7")
 
-[node name="EquippedSlot" parent="Control/MenuTabs/Inventory/Equipped/GridContainer" instance=ExtResource("10_qikl0")]
+[node name="EquippedSlot" parent="Control/MenuTabs/Inventory/Equipped/EquipInvGrid" instance=ExtResource("10_qikl0")]
 layout_mode = 2
 
 [node name="Description" type="PanelContainer" parent="Control/MenuTabs/Inventory"]
@@ -178,10 +181,127 @@ layout_mode = 2
 text = "Item Description"
 autowrap_mode = 1
 
-[node name="System" type="Control" parent="Control/MenuTabs"]
+[node name="Upgrades" type="Control" parent="Control/MenuTabs"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="TabContainer" type="TabContainer" parent="Control/MenuTabs/Upgrades"]
+layout_mode = 0
+offset_right = 1278.0
+offset_bottom = 669.0
+tab_alignment = 1
+current_tab = 0
+
+[node name="Player" type="Control" parent="Control/MenuTabs/Upgrades/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Player"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -593.444
+offset_top = -300.0
+offset_right = -6.44446
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="UpgradeUI" type="GridContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("11_cvrss")
+
+[node name="UpgradeHeldEntry" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry2" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry3" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry4" parent="Control/MenuTabs/Upgrades/TabContainer/Player/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="Weapon" type="Control" parent="Control/MenuTabs/Upgrades/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -593.444
+offset_top = -300.0
+offset_right = -6.44446
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="UpgradeUI" type="GridContainer" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("11_cvrss")
+upgrade_type = 1
+
+[node name="UpgradeHeldEntry" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry2" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry3" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeHeldEntry4" parent="Control/MenuTabs/Upgrades/TabContainer/Weapon/ScrollContainer/MarginContainer/UpgradeUI" instance=ExtResource("11_40d0i")]
+layout_mode = 2
+
+[node name="UpgradeDetailsPanel" parent="Control/MenuTabs/Upgrades" instance=ExtResource("13_cvrss")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 707.778
+offset_top = 127.556
+offset_right = 1190.78
+offset_bottom = 573.556
+metadata/_edit_group_ = true
+
+[node name="System" type="Control" parent="Control/MenuTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="HBoxContainer" parent="Control/MenuTabs/System"]
 layout_mode = 1

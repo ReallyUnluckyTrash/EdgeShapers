@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource("1_3o5fm")
 additional_damage = 1
-upgrade_name = "Damage Upgrade (Common)"
+upgrade_name = "Damage Upgrade"
 upgrade_description = "Increases damage dealt by 1."
+rarity = 0
+value = 10
 metadata/_custom_type_script = "uid://bd3gpc4wflksc"

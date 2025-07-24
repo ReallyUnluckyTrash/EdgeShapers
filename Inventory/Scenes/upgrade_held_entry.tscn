@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://6uflygewvh1y"]
+
+[ext_resource type="Script" uid="uid://dhvfxvmxdt2uf" path="res://Inventory/Scripts/upgrade_held_entry.gd" id="1_yaw3w"]
+
+[node name="UpgradeHeldEntry" type="Button"]
+custom_minimum_size = Vector2(440, 72)
+offset_right = 440.0
+offset_bottom = 72.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+script = ExtResource("1_yaw3w")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(440, 72)
+layout_mode = 2
+offset_right = 440.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="Control/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Upgrade Name"
+
+[node name="RarityLabel" type="Label" parent="Control/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Rarity: COMMON"

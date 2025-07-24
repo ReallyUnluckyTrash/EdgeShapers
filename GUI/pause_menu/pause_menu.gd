@@ -8,7 +8,7 @@ extends CanvasLayer
 @onready var menu_tabs: TabContainer = %MenuTabs
 
 @onready var weapon_inv_grid: InventoryUI = %WeaponInvGrid
-
+@onready var upgrade_details_panel: UpgradeDetailsPanel = %UpgradeDetailsPanel
 
 var is_paused:bool = false
 @onready var inventory_blocker: ColorRect = %InventoryBlocker
@@ -58,8 +58,6 @@ func _on_button_save_pressed() -> void:
 	hide_pause_menu()
 	pass # Replace with function body.
 
-
-
 func _on_button_load_pressed() -> void:
 	if is_paused == false:
 		return
@@ -74,6 +72,14 @@ func update_item_description(new_text:String)-> void:
 		item_description.text = new_text
 	else:
 		print("item description not updating!")
+
+func update_upgrade_details(upgrade:Upgrade)->void:
+	upgrade_details_panel.update_details(upgrade)
+	pass
+
+func clear_update_details()->void:
+	upgrade_details_panel.clear_details()
+	
 	
 func play_audio(audio:AudioStream)->void:
 	audio_stream_player_2d.stream = audio

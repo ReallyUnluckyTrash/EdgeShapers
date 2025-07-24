@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeList" load_steps=7 format=3 uid="uid://ce83bdwfl72en"]
+
+[ext_resource type="Script" uid="uid://mwaycafcqau2" path="res://Upgrades/Scripts/upgrade_list.gd" id="1_c5k4t"]
+[ext_resource type="Script" uid="uid://dw56r56bpmudn" path="res://Upgrades/Scripts/upgrade_player.gd" id="2_4pxih"]
+[ext_resource type="Resource" uid="uid://bt8tspkaf168x" path="res://Upgrades/Resources/upgrade_player_health_common.tres" id="3_d4n7g"]
+[ext_resource type="Script" uid="uid://bq1aop574xylj" path="res://Upgrades/Scripts/upgrade_weapon.gd" id="3_w55m2"]
+[ext_resource type="Resource" uid="uid://td6f62jhh778" path="res://Upgrades/Resources/upgrade_player_health_rare.tres" id="4_gl5x7"]
+[ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_common.tres" id="6_x8roa"]
+
+[resource]
+script = ExtResource("1_c5k4t")
+upgrades_weapon = Array[ExtResource("3_w55m2")]([ExtResource("6_x8roa")])
+upgrades_player = Array[ExtResource("2_4pxih")]([ExtResource("3_d4n7g"), ExtResource("4_gl5x7")])
+metadata/_custom_type_script = "uid://mwaycafcqau2"

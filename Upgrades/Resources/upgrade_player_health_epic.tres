@@ -8,4 +8,5 @@ additional_hp = 5
 upgrade_name = "Health Upgrade (Epic)"
 upgrade_description = "Increases Max HP by 5."
 rarity = 2
+value = 40
 metadata/_custom_type_script = "uid://v0m6bl8jokny"
