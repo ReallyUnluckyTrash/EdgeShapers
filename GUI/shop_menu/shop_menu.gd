@@ -41,6 +41,7 @@ func _ready() -> void:
 func show_menu()->void:
 	get_tree().paused = true
 	visible = true
+	PlayerManager.pause_menu_disabled = true
 	play_audio(OPEN_SHOP)
 	
 	if not buttons_created:
@@ -54,7 +55,7 @@ func show_menu()->void:
 	#update sell menu
 	populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)
 	populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
-	sell_player_upgrades_tab.populate_sell_list()
+	#sell_player_upgrades_tab.populate_sell_list()
 	
 	await get_tree().process_frame
 	await get_tree().process_frame

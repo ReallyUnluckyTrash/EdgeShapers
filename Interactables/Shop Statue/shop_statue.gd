@@ -9,8 +9,8 @@ func _ready() -> void:
 
 
 func _on_player_interact()->void:
-	PlayerManager.pause_menu_disabled = true
 	ShopMenu.show_menu()
+	#UpgradeChoiceMenu.show_menu()
 	
 	pass
 

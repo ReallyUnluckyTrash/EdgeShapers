@@ -1,4 +1,4 @@
-class_name ShopUpgradeButton extends Control
+class_name ShopUpgradeButton extends Button
 
 var upgrade:Upgrade
 

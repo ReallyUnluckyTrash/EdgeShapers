@@ -130,13 +130,16 @@ func _set_camera_bounds() -> Array[Vector2]:
 	return bounds
 
 
+#TODO
+#adjust!
 func _on_floor_transition_regenerate_dungeon() -> void:
 	print("regenerate the floor!")
-	get_tree().paused = true
+	#get_tree().paused = true
 	await SceneTransition.fade_out()
 	
-	generate_dungeon()
+	UpgradeChoiceMenu.show_menu()
 	
 	await SceneTransition.fade_in()
-	get_tree().paused = false
+	generate_dungeon()
+	#get_tree().paused = false
 	pass

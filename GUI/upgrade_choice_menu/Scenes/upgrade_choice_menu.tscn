@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwcvg3g5kxiou"]
+
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_njgff"]
+[ext_resource type="Script" uid="uid://dj2drv263gkfm" path="res://GUI/upgrade_choice_menu/Scripts/upgrade_choice_menu.gd" id="1_u4ml2"]
+[ext_resource type="PackedScene" uid="uid://rhmi6n57ifdy" path="res://GUI/upgrade_choice_menu/Scenes/upgrade_choice_button.tscn" id="2_njgff"]
+[ext_resource type="Script" uid="uid://16hk7u0xocvp" path="res://Upgrades/Scripts/upgrade.gd" id="2_wsxee"]
+[ext_resource type="Resource" uid="uid://bt8tspkaf168x" path="res://Upgrades/Resources/upgrade_player_health_common.tres" id="3_furri"]
+[ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_common.tres" id="4_furri"]
+[ext_resource type="Resource" uid="uid://td6f62jhh778" path="res://Upgrades/Resources/upgrade_player_health_rare.tres" id="4_ldb0n"]
+[ext_resource type="Resource" uid="uid://coodcyxmcmmc" path="res://Upgrades/Resources/upgrade_player_health_epic.tres" id="5_sgmte"]
+
+[node name="UpgradeChoiceMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_u4ml2")
+common_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("3_furri"), ExtResource("4_furri")])
+rare_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("4_ldb0n")])
+epic_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("5_sgmte")])
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -282.0
+offset_right = 492.0
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_njgff")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -482.0
+offset_top = -272.0
+offset_right = 482.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -274.0
+offset_right = 140.0
+offset_bottom = -202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Choose an Upgrade!"
+horizontal_alignment = 1
+
+[node name="UpgradeChoiceButton" parent="Control" instance=ExtResource("2_njgff")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.0228216
+anchor_top = 0.0992647
+anchor_right = 0.329876
+anchor_bottom = 0.922794
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="UpgradeChoiceButton2" parent="Control" instance=ExtResource("2_njgff")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.346473
+anchor_top = 0.0992647
+anchor_right = 0.653527
+anchor_bottom = 0.922794
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="UpgradeChoiceButton3" parent="Control" instance=ExtResource("2_njgff")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.670124
+anchor_top = 0.0992647
+anchor_right = 0.977178
+anchor_bottom = 0.922794
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true

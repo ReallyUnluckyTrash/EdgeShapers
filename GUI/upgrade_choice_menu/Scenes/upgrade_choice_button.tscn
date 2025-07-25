@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://rhmi6n57ifdy"]
+
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_svpfn"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="2_2bhp3"]
+[ext_resource type="Script" uid="uid://baodgdyfl40rw" path="res://GUI/upgrade_choice_menu/Scripts/upgrade_choice_button.gd" id="2_40q0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40q0c"]
+atlas = ExtResource("2_2bhp3")
+region = Rect2(0, 0, 32, 32)
+
+[node name="UpgradeChoiceButton" type="PanelContainer"]
+custom_minimum_size = Vector2(296, 448)
+anchors_preset = -1
+anchor_right = 0.231
+anchor_bottom = 0.611
+offset_right = 0.320007
+offset_bottom = 8.07999
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_svpfn")
+script = ExtResource("2_40q0c")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UpgradeImage" type="TextureRect" parent="Button/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.399
+anchor_top = 0.128505
+anchor_right = 0.63
+anchor_bottom = 0.257
+offset_left = -0.124008
+offset_top = -9.0
+offset_right = 0.11998
+offset_bottom = 0.0039978
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_40q0c")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="UpgradeName" type="Label" parent="Button/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00724638
+anchor_top = 0.257009
+anchor_right = 1.00725
+anchor_bottom = 0.443925
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Placeholder Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 131
+text_overrun_behavior = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeDescription" type="Label" parent="Button/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00724638
+anchor_top = 0.443925
+anchor_right = 1.00725
+anchor_bottom = 0.948598
+theme_override_font_sizes/font_size = 30
+text = "Placeholder text! If you see this that means silly me messed up!"
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeValue" type="Label" parent="Button/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00724638
+anchor_top = 0.892523
+anchor_right = 1.00725
+anchor_bottom = 0.985981
+theme_override_font_sizes/font_size = 40
+text = "Value = 999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeRarity" type="Label" parent="Button/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00724638
+anchor_top = -0.0046729
+anchor_right = 1.00725
+anchor_bottom = 0.088785
+theme_override_font_sizes/font_size = 40
+text = "Rarity : COMMON"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -19,12 +19,14 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
 offset_right = 67.0
 offset_bottom = 72.0
 expand_mode = 1
 
 [node name="PriceLabel" type="Label" parent="Control"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 364.0
 offset_top = 15.0
 offset_right = 417.0
@@ -33,6 +35,7 @@ theme_override_font_sizes/font_size = 40
 text = "999"
 
 [node name="Container" type="VBoxContainer" parent="Control"]
+layout_mode = 0
 offset_left = 74.0
 offset_top = 1.0
 offset_right = 356.0
