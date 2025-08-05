@@ -3,7 +3,6 @@ class_name SlashWeapon extends Weapon
 @export var attack_speed: float
 @export var knockback_force: float
 
-
 @onready var hurt_box_position: Node2D = %HurtBoxPosition
 @onready var hurt_box: HurtBox = $HurtBoxPosition/HurtBox
 

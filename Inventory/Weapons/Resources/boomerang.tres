@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://bb2cbtihsgc1v"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Inventory/Items/Item Effects/item_effect.gd" id="1_ihd6a"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_6t6qw"]
+[ext_resource type="PackedScene" uid="uid://vnypxlvr1ymq" path="res://Inventory/Weapons/Scenes/boomerang_equip.tscn" id="2_idxjm"]
+[ext_resource type="Texture2D" uid="uid://bqyqju65hdiif" path="res://Inventory/Weapons/weapons/boomerang.png" id="4_2fbg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41p4g"]
+atlas = ExtResource("4_2fbg3")
+region = Rect2(0, 0, 32, 0)
+
+[resource]
+script = ExtResource("2_6t6qw")
+name = "Boomerang"
+type = "Weapon"
+description = "Boomerang! Throws a boomerang that deals damage and returns to you."
+texture = SubResource("AtlasTexture_41p4g")
+price = 20
+scene = ExtResource("2_idxjm")
+effects = Array[ExtResource("1_ihd6a")]([])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

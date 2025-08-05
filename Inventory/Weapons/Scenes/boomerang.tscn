@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnpxmfplpsjtq"]
+
+[ext_resource type="Script" uid="uid://bn15sb3eqkqlu" path="res://Inventory/Weapons/Scripts/boomerang.gd" id="1_135gh"]
+[ext_resource type="Texture2D" uid="uid://bqyqju65hdiif" path="res://Inventory/Weapons/weapons/boomerang.png" id="1_vruhh"]
+[ext_resource type="Script" uid="uid://wcbbmkbtamkn" path="res://General/HurtBox/hurt_box.gd" id="3_ui146"]
+
+[sub_resource type="Animation" id="Animation_ui146"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_135gh"]
+resource_name = "spin"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225, 0.2625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1uqmv"]
+_data = {
+&"RESET": SubResource("Animation_ui146"),
+&"spin": SubResource("Animation_135gh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vruhh"]
+radius = 24.0
+
+[node name="Boomerang" type="Node2D"]
+script = ExtResource("1_135gh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_vruhh")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1uqmv")
+}
+autoplay = "spin"
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vruhh")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("3_ui146")
+metadata/_custom_type_script = "uid://wcbbmkbtamkn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_vruhh")
+debug_color = Color(0.96429, 0, 0.493647, 0.42)
