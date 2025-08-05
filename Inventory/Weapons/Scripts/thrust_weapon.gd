@@ -12,8 +12,7 @@ var is_attacking: bool = false
 
 func _ready() -> void:
 	animation_player.speed_scale = attack_speed
-	hurt_box.damage = damage
-	hurt_box.knockback_force = knockback_force
+	call_deferred("setup_hurt_box")
 	pass
 
 func attack():
@@ -35,14 +34,14 @@ func return_to_idle():
 		animation_player.play("idle")
 	is_attacking = false
 
-func set_damage(new_damage:int):
-		damage = new_damage
-		hurt_box.damage = damage
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "thrust":
 		is_attacking = false
 		animation_player.play("idle")
 		attack_finished.emit()
 	pass
-	
+
+func setup_hurt_box():
+	if hurt_box:
+		hurt_box.damage = damage
+		hurt_box.knockback_force = knockback_force

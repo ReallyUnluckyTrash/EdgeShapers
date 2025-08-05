@@ -61,6 +61,7 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 			spawned_enemies.append(enemy_instance)
 	
 	_set_chest_items()
+
 func _set_chest_items():
 	for chest in spawned_chests:
 		var chest_item = config.chest_items[randi_range(0,2)]

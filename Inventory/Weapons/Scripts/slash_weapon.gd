@@ -3,8 +3,9 @@ class_name SlashWeapon extends Weapon
 @export var attack_speed: float
 @export var knockback_force: float
 
+
+@onready var hurt_box_position: Node2D = %HurtBoxPosition
 @onready var hurt_box: HurtBox = $HurtBoxPosition/HurtBox
-@onready var hurt_box_position: Node2D = $HurtBoxPosition
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -12,8 +13,7 @@ var is_attacking: bool = false
 
 func _ready() -> void:
 	animation_player.speed_scale = attack_speed
-	hurt_box.damage = damage
-	hurt_box.knockback_force = knockback_force
+	call_deferred("setup_hurt_box")
 	pass
 
 func attack():
@@ -35,10 +35,6 @@ func return_to_idle():
 		animation_player.play("sword_animations/idle")
 	is_attacking = false
 
-func set_damage(new_damage:int):
-		damage = new_damage
-		hurt_box.damage = damage
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "sword_animations/sword_swing":
 		is_attacking = false
@@ -46,3 +42,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		attack_finished.emit()
 	pass
 	
+func setup_hurt_box():
+	if hurt_box:
+		hurt_box.damage = damage
+		hurt_box.knockback_force = knockback_force

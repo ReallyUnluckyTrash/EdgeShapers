@@ -24,12 +24,12 @@ func enter() -> void:
 		enemy.velocity = _direction * _attack.knockback_force
 	
 	enemy.update_animation(anim_name)
-	enemy.animated_sprite_2d.animation_finished.connect(_on_animation_finished)
+	enemy.animation_player.animation_finished.connect(_on_animation_finished)
 	pass
 	
 func exit() -> void:
 	enemy.invulnerable = false
-	enemy.animated_sprite_2d.animation_finished.disconnect(_on_animation_finished)
+	enemy.animation_player.animation_finished.disconnect(_on_animation_finished)
 	pass
 	
 func process(_delta : float) -> EnemyState:
@@ -46,6 +46,6 @@ func _on_enemy_damaged(attack:Attack) -> void:
 	state_machine.change_state(self)
 	pass
 
-func _on_animation_finished():
+func _on_animation_finished(_anim_name:String):
 	_animation_finished = true
 	

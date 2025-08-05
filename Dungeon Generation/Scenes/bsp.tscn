@@ -36,5 +36,6 @@ tile_set = ExtResource("12_ja24o")
 rendering_quadrant_size = 64
 
 [node name="FloorTransition" parent="." instance=ExtResource("3_67b3u")]
+visible = false
 
 [connection signal="regenerate_dungeon" from="FloorTransition" to="." method="_on_floor_transition_regenerate_dungeon"]

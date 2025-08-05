@@ -1,21 +1,4 @@
-class_name Enemy extends Entity
-
-signal enemy_damaged(attack:Attack)
-signal enemy_destroyed(attack:Attack)
-
-@export var hp: int = 3
-
-var player: Player
-var invulnerable : bool = false
-var level : int = 1
-
-#variable for the states to keep track of the last attack
-var last_attack:Attack = null
-
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var hit_box: HitBox = $HitBox
-@onready var state_machine: EnemyStateMachine = $EnemyStateMachine
-@onready var destroy_animation_player: AnimationPlayer = $DestroyEffectSprite/AnimationPlayer
+class_name EnemySpear extends Enemy
 
 func _ready() -> void:
 	state_machine.initialize(self)
@@ -44,6 +27,9 @@ func _take_damage(attack:Attack) -> void:
 	pass
 
 func update_animation(anim_name : String):
+	#animated_sprite_2d.play()
+	#animated_sprite_2d.animation = anim_name
+	
 	animation_player.play(anim_name)
 
 func destroy_animation():

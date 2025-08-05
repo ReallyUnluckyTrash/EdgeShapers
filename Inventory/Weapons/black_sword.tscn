@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Inventory/Weapons/weapons/sword animations/black_sword.png" id="2_umjho"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_6bw8n"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jqx6x"]
-radius = 60.0
-
 [sub_resource type="Animation" id="Animation_1aucn"]
 length = 0.001
 tracks/0/type = "value"
@@ -159,6 +156,9 @@ _data = {
 &"sword_swing": SubResource("Animation_n3cs8")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha1pn"]
+radius = 67.0
+
 [node name="Slash Weapon" type="Node2D"]
 script = ExtResource("1_ha1pn")
 attack_speed = 0.7
@@ -171,20 +171,21 @@ metadata/_edit_group_ = true
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_umjho")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c8p0t"),
+&"sword_animations": SubResource("AnimationLibrary_fl8iw")
+}
+
 [node name="HurtBoxPosition" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="HurtBox" parent="HurtBoxPosition" instance=ExtResource("3_6bw8n")]
 collision_mask = 256
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxPosition/HurtBox"]
-shape = SubResource("CircleShape2D_jqx6x")
-debug_color = Color(0.943401, 6.44952e-06, 0.601795, 0.42)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_c8p0t"),
-&"sword_animations": SubResource("AnimationLibrary_fl8iw")
-}
+shape = SubResource("CircleShape2D_ha1pn")
+debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

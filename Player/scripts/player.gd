@@ -17,9 +17,6 @@ var max_ep:float = 10.0
 var current_weapon: Weapon = null
 var weapon_type = ""
 
-#@export var upgrades_weapon:Array[UpgradeWeapon] = []
-#@export var upgrades_player:Array[UpgradePlayer] = []
-
 # Export weapon scenes for easy assignment in inspector
 @export var weapon_scenes: Array[PackedScene] = []
 @export var starting_weapon_index: int = 0
@@ -106,7 +103,6 @@ func equip_weapon(weapon_scene: PackedScene):
 	if new_weapon == null:
 		print("failed to instantiate weapon")
 		return
-	
 	weapon_position.add_child(new_weapon)
 	current_weapon = new_weapon
 	

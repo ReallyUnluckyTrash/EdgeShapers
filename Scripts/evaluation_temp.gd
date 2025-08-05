@@ -1,5 +1,7 @@
-extends Node
-
+#extends Node
+#
+#var root_node:Branch
+#
 ## Helper function to calculate variance
 #func calculate_variance(values: Array) -> float:
 	#if values.size() <= 1:
@@ -13,10 +15,12 @@ extends Node
 	#
 	#return sum_squared_diff / values.size()
 #
+#
 ## Helper function to calculate standard deviation
 #func calculate_std_deviation(values: Array) -> float:
 	#return sqrt(calculate_variance(values))
-#
+	#
+	#
 ## Complete room distribution analysis
 #func evaluate_room_distribution() -> Dictionary:
 	#var rooms = root_node.get_leaves()
@@ -71,6 +75,30 @@ extends Node
 		#"room_density": float(total_room_area) / total_dungeon_area,
 		#"average_room_area": float(total_room_area) / valid_room_count
 	#}
+	#
+	#
+	#
+#func flood_fill_from_entrance() -> Array:
+	#var visited_positions = {}
+	#var visited_rooms = []
+	#var queue = [entrance_pos]
+#
+	#while queue.size() > 0:
+		#var current_pos = queue.pop_front()
+		#visited_positions[current_pos] = true
+#
+	#for room in all_rooms:
+		#if _is_position_in_room(current_pos, room) and room not in visited_rooms:
+			#visited_rooms.append(room)
+#
+	##explore adjacent floor tiles
+	#for dx in [-1, 0, 1]:
+		#for dy in [-1, 0, 1]:
+			#var neighbor_pos = Vector2i(current_pos.x + dx, current_pos.y + dy)
+			#if _is_floor_tile(neighbor_pos) and not (neighbor_pos in visited_positions):
+				#queue.append(neighbor_pos)
+		#
+	#return visited_rooms
 #
 ## Flood fill algorithm to find all reachable rooms from entrance
 #func flood_fill_from_entrance() -> Array:
@@ -371,8 +399,8 @@ extends Node
 	#print("    CR Variance: %.2f" % challenge.get("challenge_rating_variance", 0.0))
 	#
 	#print("\n" + "=".repeat(60))
-
-
+#
+#
 ## Save evaluation results to CSV files for visualization (modified for multiple runs)
 #func save_evaluation_results(results: Dictionary):
 	#var timestamp = Time.get_datetime_string_from_system().replace(":", "-").replace(" ", "_")
@@ -509,7 +537,7 @@ extends Node
 	#file.store_line(data_row)
 	#file.close()
 	#print("Challenge distribution data appended to: ", filepath)
-
+#
 ## Optional: Function to run multiple evaluations automatically
 #func run_multiple_evaluations(num_runs: int = 10):
 	#print("Starting %d dungeon evaluations..." % num_runs)
@@ -530,7 +558,7 @@ extends Node
 		#var run_id = str(i + 1)
 		#
 		## Save results (this will append to existing files)
-		#save_evaluation_results_with_id(results, run_id)
+		##save_evaluation_results_with_id(results, run_id)
 		#
 		## Optional: Add a small delay between runs
 		#await get_tree().create_timer(0.1).timeout
@@ -539,18 +567,18 @@ extends Node
 #
 #
 ## Modified save function that accepts a custom run ID
-#func save_evaluation_results_with_id(results: Dictionary, run_id: String):
-	#var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
-	#
-	## Save room distribution data
-	#save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", run_id)
-	#
-	## Save connectivity data
-	#save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", run_id)
-	#
-	## Save challenge distribution data
-	#save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", run_id)
-
+##func save_evaluation_results_with_id(results: Dictionary, run_id: String):
+	##var base_path = "C:/Users/John Parker/Documents/Classroom/edgeshapers/Results/"
+	##
+	### Save room distribution data
+	##save_room_distribution_csv_append(results.get("room_distribution", {}), base_path + "room_distribution_multi_run.csv", run_id)
+	##
+	### Save connectivity data
+	##save_connectivity_csv_append(results.get("connectivity", {}), base_path + "connectivity_multi_run.csv", run_id)
+	##
+	### Save challenge distribution data
+	##save_challenge_distribution_csv_append(results.get("challenge_distribution", {}), base_path + "challenge_distribution_multi_run.csv", run_id)
+#
 ## Example usage function - call this after generating a dungeon
 #func test_dungeon_quality():
 	#var results = run_full_evaluation()

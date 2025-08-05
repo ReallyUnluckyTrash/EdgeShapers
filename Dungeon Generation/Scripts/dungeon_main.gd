@@ -48,8 +48,8 @@ func generate_dungeon():
 	# Steps 7-8: Create rooms in each partition cell
 	root_node.create_all_rooms()
 	
+	#set tiles on the map
 	dungeon_renderer.render_dungeon(root_node)
-
 	
 	#place entities (such as enemies and chests) and set the entrance and exit points
 	_place_entrance_exit()
@@ -58,37 +58,37 @@ func generate_dungeon():
 	#set the player and exit collision to their proper positions and change camera bounds
 	PlayerManager.set_player_position(tile_map_layer.map_to_local(entrance_pos))
 	floor_transition_tile.global_position = tile_map_layer.map_to_local(exit_pos)
-	LevelManager.change_tilemap_bounds(_set_camera_bounds())
+	#LevelManager.change_tilemap_bounds(_set_camera_bounds())
 
-	#queue_redraw()
+	queue_redraw()
 	
 
-#func _draw():
-	#if not root_node:
-		#return
-	#
-	## Draw partition boundaries (for debugging)
-	#_draw_partitions(root_node)
-#
-#func _draw_partitions(node: Branch):
-	## Draw outline of current partition
-	#draw_rect(
-		#Rect2(
-			#node.position.x * tile_size,
-			#node.position.y * tile_size,
-			#node.size.x * tile_size,
-			#node.size.y * tile_size
-		#),
-		#Color.GREEN,
-		#false
-	#)
-	#
-	## Recursively draw child partitions
-	#if node.left_child:
-		#_draw_partitions(node.left_child)
-	#if node.right_child:
-		#_draw_partitions(node.right_child)
-#
+func _draw():
+	if not root_node:
+		return
+	
+	# Draw partition boundaries (for debugging)
+	_draw_partitions(root_node)
+
+func _draw_partitions(node: Branch):
+	# Draw outline of current partition
+	draw_rect(
+		Rect2(
+			node.position.x * dungeon_config.tile_size,
+			node.position.y * dungeon_config.tile_size,
+			node.size.x * dungeon_config.tile_size,
+			node.size.y * dungeon_config.tile_size
+		),
+		Color.GREEN,
+		false
+	)
+	
+	# Recursively draw child partitions
+	if node.left_child:
+		_draw_partitions(node.left_child)
+	if node.right_child:
+		_draw_partitions(node.right_child)
+
 
 func _place_entrance_exit():
 	var leaves = root_node.get_leaves()
