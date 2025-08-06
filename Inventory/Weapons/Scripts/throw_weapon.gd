@@ -47,7 +47,7 @@ func create_throwable()->void:
 	
 	new_boomerang.thrown.connect(_on_weapon_thrown)
 	new_boomerang.queue_freed.connect(_on_weapon_queue_freed)
-	new_boomerang.setup_hitbox(damage, knockback_force)
+	new_boomerang.setup_hurtbox(damage, knockback_force)
 	
 	new_boomerang.global_position = player.global_position
 	

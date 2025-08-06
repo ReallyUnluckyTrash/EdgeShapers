@@ -8,12 +8,17 @@ class_name State_Attack extends State
 var attacking: bool = false
 
 func enter() -> void:
+	
+	if player.current_weapon.ep_cost > 0:
+		if player.ep < player.current_weapon.ep_cost:
+			attacking = false
+			return
+		player.update_ep(-player.current_weapon.ep_cost)
+	
 	attacking = true
-
 	if player.current_weapon:
 		player.current_weapon.attack()
 		player.current_weapon.attack_finished.connect(end_attack)
-	#await get_tree().create_timer( 0.15).timeout
 	pass
 	
 func exit() -> void:

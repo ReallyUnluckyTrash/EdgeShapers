@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="13_7eq5g"]
 [ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="14_7dfbw"]
 [ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="15_jd0j6"]
-[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Inventory/Weapons/weapons/pixil-frame-0.png" id="16_c81yy"]
+[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Inventory/Weapons/weapons/spear.png" id="16_c81yy"]
 [ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/scenes/vision_area.tscn" id="17_njg7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]

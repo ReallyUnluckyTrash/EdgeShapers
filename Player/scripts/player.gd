@@ -3,7 +3,9 @@ class_name Player extends Entity
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var weapon_position: Node2D = $WeaponPosition
+
+@onready var front_weapon_position: FrontWeaponPosition = $FrontWeaponPosition
+@onready var weapon_position: WeaponPosition = $WeaponPosition
 
 signal player_damaged(attack:Attack)
 
@@ -23,6 +25,7 @@ var weapon_type = ""
 
 @onready var hit_box: HitBox = $Interactions/HitBox
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $Audio/AudioStreamPlayer2D
 
 
 func _ready():
@@ -71,9 +74,8 @@ func update_hp(delta:float) ->void:
 	hp = clamp(hp + delta, 0, max_hp)
 	pass
 
-
 func update_ep(delta:float) ->void:
-	ep = clamp(hp + delta, 0, max_ep)
+	ep = clamp(ep + delta, 0, max_ep)
 	pass
 
 func make_invulnerable(_duration:float = 1.0)->void:
@@ -103,7 +105,13 @@ func equip_weapon(weapon_scene: PackedScene):
 	if new_weapon == null:
 		print("failed to instantiate weapon")
 		return
-	weapon_position.add_child(new_weapon)
+	
+	if new_weapon is BowWeapon:
+		front_weapon_position.add_child(new_weapon)
+		front_weapon_position.update_position(anim_direction())
+	else:
+		weapon_position.add_child(new_weapon)
+	
 	current_weapon = new_weapon
 	
 	activate_upgrades_weapon()

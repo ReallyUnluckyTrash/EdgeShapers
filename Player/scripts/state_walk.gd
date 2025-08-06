@@ -4,21 +4,20 @@ class_name State_Walk extends State
 
 @onready var idle : State_Idle = $"../Idle"
 @onready var attack: State_Attack = $"../Attack"
-@onready var weapon = $"../../WeaponPosition"
+@onready var weapon_position
 
 #@onready var spear_hurt_box: HurtBox = $"../../Interactions/Spear/SpearHurtBox"
 
 func enter() -> void:
 	#print("Entered Walk State")
-	#spear_hurt_box.monitoring = true
-	player.animated_sprite_2d.stop()
-	#print("hurt box on")
-	#print(player.cardinal_direction)
+	if player.current_weapon is BowWeapon:
+		weapon_position = player.front_weapon_position
+	else:
+		weapon_position = player.weapon_position
 	pass
 	
 func exit() -> void:
-	#spear_hurt_box.monitoring = false
-	#print("hurt box off")
+
 	pass
 	
 func process(_delta : float) -> State:
@@ -29,7 +28,7 @@ func process(_delta : float) -> State:
 	
 
 	player.set_direction(player.direction)
-	weapon.UpdatePosition(player.anim_direction())	
+	weapon_position.update_position(player.anim_direction())	
 	player.update_animation(player.anim_direction())
 		
 	return null

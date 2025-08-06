@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b7vi7ofwvn7oj"]
 
-[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Inventory/Weapons/weapons/pixil-frame-0.png" id="1_4g0bh"]
+[ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Inventory/Weapons/weapons/spear.png" id="1_4g0bh"]
 [ext_resource type="Script" uid="uid://d4ijpmxh2ltg1" path="res://Inventory/Weapons/Scripts/thrust_weapon.gd" id="1_5553v"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="2_5553v"]
 

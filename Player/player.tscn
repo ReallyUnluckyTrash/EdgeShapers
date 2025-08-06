@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=29 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Player/sprites/player_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/scripts/player.gd" id="1_onrkg"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://c43n785t3mqo8" path="res://Player/scripts/player_camera.gd" id="13_dkpta"]
 [ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Inventory/Weapons/slash_weapon.tscn" id="17_b1ygp"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="17_pisgm"]
+[ext_resource type="Script" uid="uid://5q4wemb10ae2" path="res://Player/scripts/front_weapon_position.gd" id="20_n471f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o28un"]
 radius = 50.0
@@ -192,7 +193,16 @@ script = ExtResource("13_dkpta")
 position = Vector2(60, 0)
 script = ExtResource("12_p5o4e")
 
+[node name="FrontWeaponPosition" type="Node2D" parent="."]
+position = Vector2(0, -60)
+script = ExtResource("20_n471f")
+
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_n471f")
 }
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+max_polyphony = 7

@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var equipped_item_texture: TextureRect = %EquippedItemTexture
 @onready var equipped_item_quantity: Label = %EquippedItemQuantity
 @onready var health_label: Label = %HealthLabel
+@onready var edge_power_label: Label = %EdgePowerLabel
 
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func update_hp(_hp:int, _max_hp:int) -> void:
 func update_ep(_ep:int, _max_ep:int) -> void:
 	edge_power_bar.max_value = _max_ep
 	edge_power_bar.value = _ep
+	edge_power_label.text = str(_ep) + "/" + str(_max_ep)
 	pass
 
 func update_equipped_texture(_new_texture)->void:

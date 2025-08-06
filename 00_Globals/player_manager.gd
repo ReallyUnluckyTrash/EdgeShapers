@@ -54,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		use_equipped_item()
 
 func set_equipped_item(item_data: ItemData, quantity:int)->void:
-	#since when equipped item is used up the item data becomes null, 
+	#when equipped item is used up the item data becomes null, 
 	#check if there is still an equipped item when trying to equip a new item
 	#then, add the previously equipped item back to inventory, then update
 	if equipped_item.item_data != null:
@@ -100,3 +100,7 @@ func set_as_parent(_parent: Node2D)->void:
 
 func unparent_player(_parent: Node2D)->void:
 	_parent.remove_child(player)
+
+func play_audio(_audio: AudioStream)->void:
+	player.audio_stream_player_2d.stream = _audio
+	player.audio_stream_player_2d.play()

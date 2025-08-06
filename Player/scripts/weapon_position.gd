@@ -1,8 +1,8 @@
-extends Node2D
+class_name WeaponPosition extends Node2D
 
 @onready var node = $"."
 
-func UpdatePosition(direction: String):
+func update_position(direction: String):
 	if direction == "down":
 		position.x = -60
 		position.y = 0
