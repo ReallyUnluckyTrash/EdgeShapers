@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cl4twjc2b28nf"]
+[gd_scene load_steps=39 format=3 uid="uid://cl4twjc2b28nf"]
 
 [ext_resource type="Script" uid="uid://c3h2p1fcof2ck" path="res://Enemies/scripts/enemy.gd" id="1_0ifye"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="2_7tp25"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d0uqobg3gsr02" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_up.png" id="9_b8278"]
 [ext_resource type="Script" uid="uid://cpv4d58jo2icm" path="res://Enemies/scripts/enemy_state_machine.gd" id="10_hqajh"]
 [ext_resource type="Script" uid="uid://bguqk2gm4qur6" path="res://Enemies/scripts/states/enemy_state_idle.gd" id="11_1c75o"]
+[ext_resource type="Script" uid="uid://ngy6jptf2j03" path="res://Enemies/scripts/states/enemy_state_attack.gd" id="11_bypr4"]
 [ext_resource type="Script" uid="uid://fl3mulfb87r" path="res://Enemies/scripts/states/enemy_state_chase.gd" id="11_njg7s"]
 [ext_resource type="Script" uid="uid://dfqnf2sqncr5a" path="res://Enemies/scripts/states/enemy_state_wander.gd" id="12_lw6df"]
 [ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="13_7eq5g"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="15_jd0j6"]
 [ext_resource type="Texture2D" uid="uid://83hyrmho20ld" path="res://Inventory/Weapons/weapons/spear.png" id="16_c81yy"]
 [ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/scenes/vision_area.tscn" id="17_njg7s"]
+[ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="20_oi351"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]
 radius = 50.0
@@ -118,7 +120,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/2/path = NodePath("SpearPosition:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -130,7 +132,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/3/path = NodePath("SpearPosition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -160,7 +162,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -184,7 +186,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/3/path = NodePath("SpearPosition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -214,7 +216,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -238,7 +240,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/3/path = NodePath("SpearPosition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -268,7 +270,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -292,7 +294,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/3/path = NodePath("SpearPosition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -322,7 +324,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -346,7 +348,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/3/path = NodePath("SpearPosition:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -373,7 +375,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -400,7 +402,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -412,7 +414,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/SpearPosition:position")
+tracks/2/path = NodePath("SpearPosition:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -451,7 +453,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -478,7 +480,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -490,6 +492,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_voiwg"]
 resource_name = "stun"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -520,7 +523,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearPosition:rotation")
+tracks/1/path = NodePath("SpearPosition:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -549,6 +552,8 @@ _data = {
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_0ifye")
+raycast_length = 320.0
+range = 250.0
 
 [node name="HitBox" parent="." instance=ExtResource("2_7tp25")]
 visible = false
@@ -578,12 +583,6 @@ knockback_force = 1000.0
 shape = SubResource("CircleShape2D_0ifye")
 debug_color = Color(0.961891, 0, 0.507744, 0.42)
 
-[node name="SpearPosition" type="Node2D" parent="Sprite2D"]
-
-[node name="SpearSprite" type="Sprite2D" parent="Sprite2D/SpearPosition"]
-position = Vector2(50, 7.81251)
-texture = ExtResource("16_c81yy")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
 scale = Vector2(0.64, 0.64)
@@ -608,11 +607,16 @@ next_state = NodePath("../Chase")
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("14_7dfbw")
 
-[node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "next_state")]
+[node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack", "vision_area", "attack_area", "next_state")]
 script = ExtResource("11_njg7s")
+attack = NodePath("../Attack")
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
 next_state = NodePath("../Idle")
+
+[node name="Attack" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("11_bypr4")
+metadata/_custom_type_script = "uid://ngy6jptf2j03"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
@@ -637,5 +641,20 @@ libraries = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
 polygon = PackedVector2Array(16, 0, -16, 0, -256, -256, 256, -256)
+
+[node name="SpearPosition" type="Node2D" parent="."]
+scale = Vector2(0.64, 0.64)
+
+[node name="SpearSprite" type="Sprite2D" parent="SpearPosition"]
+position = Vector2(50, 7.81251)
+texture = ExtResource("16_c81yy")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -256)
+collision_mask = 20
+
+[node name="WeaponPosition" type="Node2D" parent="."]
+script = ExtResource("20_oi351")
+metadata/_custom_type_script = "uid://bxjvbrbc6g3sp"
 
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/Stun" method="_on_tri_slime_enemy_damaged"]

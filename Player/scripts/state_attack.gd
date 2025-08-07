@@ -11,6 +11,7 @@ func enter() -> void:
 	
 	if player.current_weapon.ep_cost > 0:
 		if player.ep < player.current_weapon.ep_cost:
+			print("not enough EP!")
 			attacking = false
 			return
 		player.update_ep(-player.current_weapon.ep_cost)

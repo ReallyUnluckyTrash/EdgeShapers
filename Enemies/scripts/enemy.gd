@@ -4,6 +4,8 @@ signal enemy_damaged(attack:Attack)
 signal enemy_destroyed(attack:Attack)
 
 @export var hp: int = 3
+@export var raycast_length:float = 0.0
+@export var range:float = 0.0
 
 var player: Player
 var invulnerable : bool = false
@@ -12,10 +14,14 @@ var level : int = 1
 #variable for the states to keep track of the last attack
 var last_attack:Attack = null
 
+@export var weapon: Weapon = null
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine: EnemyStateMachine = $EnemyStateMachine
 @onready var destroy_animation_player: AnimationPlayer = $DestroyEffectSprite/AnimationPlayer
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
+@onready var weapon_position: WeaponPosition = $WeaponPosition
 
 func _ready() -> void:
 	state_machine.initialize(self)

@@ -23,6 +23,7 @@ func enter() -> void:
 	
 	enemy.set_direction(_direction)
 	enemy.update_animation(enemy.anim_direction())
+	enemy.weapon_position.update_position(enemy.anim_direction())	
 	pass
 	
 func exit() -> void:

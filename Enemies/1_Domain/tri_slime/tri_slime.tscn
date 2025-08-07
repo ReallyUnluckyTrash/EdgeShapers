@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://blbyp6wses5a0"]
+[gd_scene load_steps=37 format=3 uid="uid://blbyp6wses5a0"]
 
 [ext_resource type="Texture2D" uid="uid://c6fy6hbe2a1r3" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_down.png" id="1_64080"]
 [ext_resource type="Script" uid="uid://c3h2p1fcof2ck" path="res://Enemies/scripts/enemy.gd" id="1_afyoi"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="12_x2xq5"]
 [ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="13_kqywf"]
 [ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="14_kqywf"]
+[ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="18_t0wuc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]
 radius = 50.0
@@ -273,6 +274,7 @@ _data = {
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_afyoi")
+raycast_length = 320.0
 
 [node name="HitBox" parent="." instance=ExtResource("2_kqywf")]
 visible = false
@@ -320,7 +322,7 @@ next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("12_x2xq5")
-next_state = NodePath("../Idle")
+next_state = NodePath("../Chase")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("14_kqywf")
@@ -355,5 +357,13 @@ polygon = PackedVector2Array(16, 0, -16, 0, -256, -256, 256, -256)
 libraries = {
 &"": SubResource("AnimationLibrary_x2xq5")
 }
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -256)
+collision_mask = 20
+
+[node name="WeaponPosition" type="Node2D" parent="."]
+script = ExtResource("18_t0wuc")
+metadata/_custom_type_script = "uid://bxjvbrbc6g3sp"
 
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/Stun" method="_on_tri_slime_enemy_damaged"]

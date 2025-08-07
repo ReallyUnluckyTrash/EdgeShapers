@@ -9,11 +9,13 @@ var speed : float = 0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var timer: Timer = $Timer
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 signal shot
 signal queue_freed
 
 func _ready() -> void:
+	shot.emit()
 	hurt_box.area_entered.connect(_on_hurtbox_entered)
 	pass
 
@@ -21,7 +23,11 @@ func _physics_process(delta: float) -> void:
 	speed += acceleration * delta
 	var movement = direction * speed * delta
 	position += movement
-	shot.emit()
+	
+	if ray_cast_2d.is_colliding():
+		speed = 0.0
+		acceleration = 0.0
+		animation_player.play("hit")
 
 func setup_hurtbox(_damage:int, _knockback:float):
 	hurt_box.damage = _damage
@@ -47,6 +53,8 @@ func shoot(shoot_direction:Vector2)->void:
 
 func _on_hurtbox_entered(area : Area2D)->void:
 	if area is HitBox:
+		speed = 0.0
+		acceleration = 0.0
 		animation_player.play("hit")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

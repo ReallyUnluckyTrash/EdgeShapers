@@ -63,7 +63,7 @@ _data = {
 &"RESET": SubResource("Animation_1aucn")
 }
 
-[sub_resource type="Animation" id="Animation_wriye"]
+[sub_resource type="Animation" id="Animation_11wfx"]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -102,7 +102,7 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_n3cs8"]
+[sub_resource type="Animation" id="Animation_dtm3a"]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -153,10 +153,10 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fl8iw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83ix1"]
 _data = {
-&"idle": SubResource("Animation_wriye"),
-&"sword_swing": SubResource("Animation_n3cs8")
+&"idle": SubResource("Animation_11wfx"),
+&"sword_swing": SubResource("Animation_dtm3a")
 }
 
 [node name="Slash Weapon" type="Node2D"]
@@ -184,7 +184,7 @@ debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c8p0t"),
-&"sword_animations": SubResource("AnimationLibrary_fl8iw")
+&"sword_animations": SubResource("AnimationLibrary_83ix1")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
