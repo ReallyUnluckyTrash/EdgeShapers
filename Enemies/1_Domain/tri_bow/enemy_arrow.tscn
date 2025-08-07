@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=3 uid="uid://do6t5e8417j1o"]
+
+[ext_resource type="Script" uid="uid://d3jt48r1m2usc" path="res://Inventory/Weapons/Scripts/arrow.gd" id="1_e2etb"]
+[ext_resource type="Texture2D" uid="uid://d1vb5gy62xh1a" path="res://Inventory/Weapons/weapons/arrows.png" id="2_88rqy"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_w7ffh"]
+[ext_resource type="Texture2D" uid="uid://bxaf2eh1kknd7" path="res://Inventory/Weapons/weapons/arrow_hit_animations.png" id="4_nnx5y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmkuj"]
+atlas = ExtResource("2_88rqy")
+region = Rect2(0, 0, 768, 1024)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmkuj"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5ngo"]
+radius = 24.0
+
+[sub_resource type="Animation" id="Animation_t5ngo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitEffect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitEffect:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vs6a2"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitEffect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitEffect:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666666, 0.133333, 0.2, 0.266666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdw05"]
+_data = {
+&"RESET": SubResource("Animation_t5ngo"),
+&"hit": SubResource("Animation_vs6a2")
+}
+
+[node name="Arrow" type="Node2D"]
+script = ExtResource("1_e2etb")
+max_speed = 600.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 4)
+scale = Vector2(0.08, 0.08)
+texture = SubResource("AtlasTexture_qmkuj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qmkuj")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_w7ffh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_t5ngo")
+debug_color = Color(0.96448, 0, 0.492505, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mdw05")
+}
+
+[node name="HitEffect" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-14, 4)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("4_nnx5y")
+hframes = 5
+vframes = 5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-16, 0)
+target_position = Vector2(40, 0)
+collision_mask = 20
+collide_with_areas = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

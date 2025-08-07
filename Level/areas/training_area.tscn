@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Level/level_tilemap.gd" id="3_n8tcd"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_0236u"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="5_lrh6b"]
-[ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="6_wq8iw"]
 [ext_resource type="PackedScene" uid="uid://cpngj2ie0hwl8" path="res://Interactables/Chests/treasure_chest.tscn" id="9_0236u"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="10_lrh6b"]
 [ext_resource type="PackedScene" uid="uid://cl4twjc2b28nf" path="res://Enemies/1_Domain/tri_spear/scenes/tri_spear.tscn" id="10_wq8iw"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="11_wq8iw"]
+[ext_resource type="PackedScene" uid="uid://dif8veydc7swa" path="res://Enemies/1_Domain/tri_bow/tri_bow.tscn" id="12_dk04w"]
 [ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="12_ne6i0"]
 [ext_resource type="PackedScene" uid="uid://dv85qtp6vhi7d" path="res://Enemies/1_Domain/tri_sword/tri_sword.tscn" id="12_vj54i"]
 
@@ -50,8 +50,8 @@ position = Vector2(544, 672)
 [node name="TriSpear" parent="." instance=ExtResource("10_wq8iw")]
 position = Vector2(608, 32)
 
-[node name="TriSlime" parent="." instance=ExtResource("6_wq8iw")]
-position = Vector2(416, 352)
-
 [node name="TriSword" parent="." instance=ExtResource("12_vj54i")]
 position = Vector2(1000, 352)
+
+[node name="TriBow" parent="." instance=ExtResource("12_dk04w")]
+position = Vector2(280, 352)

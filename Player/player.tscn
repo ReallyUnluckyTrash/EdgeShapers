@@ -192,10 +192,12 @@ script = ExtResource("13_dkpta")
 [node name="WeaponPosition" type="Node2D" parent="."]
 position = Vector2(60, 0)
 script = ExtResource("12_p5o4e")
+weapon_position_x = 60
 
 [node name="FrontWeaponPosition" type="Node2D" parent="."]
 position = Vector2(0, -60)
 script = ExtResource("20_n471f")
+weapon_position_y = 60
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -10,9 +10,11 @@ class_name EnemyStateChase extends EnemyState
 @export var vision_area: VisionArea
 @export var attack_area: HurtBox
 @export var state_aggro_duration: float = 2.0
+@export var attack_cooldown_duration: float = 2.0
 @export var next_state: EnemyState
 
 var _timer: float = 0.0
+var _attack_cooldown_timer:float = 0.0
 var _direction: Vector2
 var _can_see_player: bool = false
 var _has_line_of_sight: bool = false
@@ -26,9 +28,8 @@ func initialize() -> void:
 func enter() -> void:
 	_can_see_player = true
 	_timer = state_aggro_duration
-	
+	_attack_cooldown_timer = attack_cooldown_duration
 	var new_anim_name: String = anim_name + "_" + enemy.anim_direction()
-	print("enemy_state_chase.gd::Printing new animation name: " + new_anim_name)
 	enemy.update_animation(new_anim_name)
 	
 	if attack_area:
@@ -43,7 +44,9 @@ func exit() -> void:
 	pass
 	
 func process(_delta: float) -> EnemyState:
-	# Safety check
+	if _attack_cooldown_timer > 0:
+		_attack_cooldown_timer -= _delta
+	
 	if not PlayerManager.player:
 		return next_state
 		
@@ -64,7 +67,7 @@ func process(_delta: float) -> EnemyState:
 		#if player is in the enemy's range, enter the attack state
 		#TODO for the weaponless enemies, have the attack state be a tackle
 		var distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)
-		if distance_to_player < enemy.range:
+		if distance_to_player < enemy.range && _attack_cooldown_timer <= 0:
 			return attack
 	else:
 		# Cannot actively chase (either out of vision cone OR blocked by obstacle)
