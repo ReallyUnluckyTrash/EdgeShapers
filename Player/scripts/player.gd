@@ -6,6 +6,7 @@ class_name Player extends Entity
 
 @onready var front_weapon_position: FrontWeaponPosition = $FrontWeaponPosition
 @onready var weapon_position: WeaponPosition = $WeaponPosition
+@onready var ep_recharge_timer: Timer = $"EP Recharge Timer"
 
 signal player_damaged(attack:Attack)
 
@@ -15,6 +16,7 @@ var max_hp: float = 6.0
 
 var ep: float = 10.0
 var max_ep:float = 10.0
+var ep_recharge_count:float = 1.0
 
 var current_weapon: Weapon = null
 var weapon_type = ""
@@ -61,13 +63,9 @@ func update_animation(anim_name : String):
 func _take_damage(attack:Attack)-> void:
 	if invulnerable == true:
 		return
-	update_hp(-attack.damage)	
-	print("player's hp", hp)
 	if hp > 0:
+		update_hp(-attack.damage)	
 		player_damaged.emit(attack)
-	else:
-		player_damaged.emit(attack)
-		update_hp(99.0)
 	pass
 
 func update_hp(delta:float) ->void:
@@ -166,5 +164,7 @@ func clear_upgrades_player():
 	#equip_weapon_by_index(next_index)
 	#
 	
-
-	
+func _on_ep_recharge_timer_timeout() -> void:
+	print("recharging ep!")
+	update_ep(ep_recharge_count)
+	pass # Replace with function body.

@@ -1,32 +1,32 @@
-[gd_scene load_steps=46 format=3 uid="uid://dv85qtp6vhi7d"]
+[gd_scene load_steps=49 format=3 uid="uid://cvqb5slbqa8hy"]
 
-[ext_resource type="Script" uid="uid://c3h2p1fcof2ck" path="res://Enemies/scripts/enemy.gd" id="1_h2hbc"]
-[ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="2_gss7f"]
-[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_yy6c8"]
-[ext_resource type="Texture2D" uid="uid://d35kja0tygab1" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_idle.png" id="4_6nmv3"]
-[ext_resource type="Script" uid="uid://cpv4d58jo2icm" path="res://Enemies/scripts/enemy_state_machine.gd" id="5_cetbs"]
-[ext_resource type="Script" uid="uid://bguqk2gm4qur6" path="res://Enemies/scripts/states/enemy_state_idle.gd" id="6_1oloj"]
-[ext_resource type="Script" uid="uid://dfqnf2sqncr5a" path="res://Enemies/scripts/states/enemy_state_wander.gd" id="7_bfm7t"]
-[ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="8_ka1el"]
-[ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="9_i43yu"]
-[ext_resource type="Script" uid="uid://clsyxmpxpf325" path="res://Enemies/1_Domain/tri_bow/enemy_state_chase_weapon.gd" id="10_cetbs"]
-[ext_resource type="Script" uid="uid://ngy6jptf2j03" path="res://Enemies/scripts/states/enemy_state_attack.gd" id="11_cetbs"]
-[ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="11_dg887"]
-[ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/scenes/vision_area.tscn" id="12_u263i"]
-[ext_resource type="Texture2D" uid="uid://c6fy6hbe2a1r3" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_down.png" id="13_1mawf"]
-[ext_resource type="Texture2D" uid="uid://mbocdo4knt71" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_left.png" id="14_7o6kq"]
-[ext_resource type="Texture2D" uid="uid://do1ke6ebb2l6w" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_right.png" id="15_lqtw4"]
-[ext_resource type="Texture2D" uid="uid://d0uqobg3gsr02" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_up.png" id="16_ae6t2"]
-[ext_resource type="Texture2D" uid="uid://b0hq8ahc5jnlo" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_stun_2.png" id="17_n5yak"]
-[ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="18_6nmv3"]
-[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/Scripts/slash_weapon.gd" id="19_cetbs"]
-[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Inventory/Weapons/weapons/sword animations/basic_sword.png" id="20_1oloj"]
+[ext_resource type="Script" uid="uid://c3h2p1fcof2ck" path="res://Enemies/scripts/enemy.gd" id="1_dyyud"]
+[ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="2_e3gjf"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_2a205"]
+[ext_resource type="Texture2D" uid="uid://d35kja0tygab1" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_idle.png" id="4_6g6qg"]
+[ext_resource type="Script" uid="uid://cpv4d58jo2icm" path="res://Enemies/scripts/enemy_state_machine.gd" id="5_tnh2n"]
+[ext_resource type="Script" uid="uid://bguqk2gm4qur6" path="res://Enemies/scripts/states/enemy_state_idle.gd" id="6_5gtcy"]
+[ext_resource type="Script" uid="uid://dfqnf2sqncr5a" path="res://Enemies/scripts/states/enemy_state_wander.gd" id="7_bwbk0"]
+[ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="8_2hkai"]
+[ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="9_mbt2g"]
+[ext_resource type="Script" uid="uid://clsyxmpxpf325" path="res://Enemies/1_Domain/tri_bow/enemy_state_chase_weapon.gd" id="10_d8hl1"]
+[ext_resource type="Script" uid="uid://ngy6jptf2j03" path="res://Enemies/scripts/states/enemy_state_attack.gd" id="11_3mi6e"]
+[ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="12_oxd7u"]
+[ext_resource type="Script" uid="uid://bwejo5eo5a23o" path="res://Enemies/scripts/states/enemy_state_guard.gd" id="12_toyfw"]
+[ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/scenes/vision_area.tscn" id="13_p0svi"]
+[ext_resource type="Texture2D" uid="uid://c6fy6hbe2a1r3" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_down.png" id="14_f2k01"]
+[ext_resource type="Texture2D" uid="uid://mbocdo4knt71" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_left.png" id="15_cw7vj"]
+[ext_resource type="Texture2D" uid="uid://do1ke6ebb2l6w" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_right.png" id="16_bagsr"]
+[ext_resource type="Texture2D" uid="uid://d0uqobg3gsr02" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_up.png" id="17_84pew"]
+[ext_resource type="Texture2D" uid="uid://b0hq8ahc5jnlo" path="res://Enemies/1_Domain/tri_slime/sprites/1_slime_stun_2.png" id="18_o216l"]
+[ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="19_304ob"]
+[ext_resource type="Script" uid="uid://ce6m7d2dnkbqh" path="res://Inventory/Weapons/Scripts/slash_weapon.gd" id="20_34yy6"]
+[ext_resource type="Script" uid="uid://vovtb0jil228" path="res://Enemies/scripts/weapon_position_knight.gd" id="20_d8hl1"]
+[ext_resource type="Texture2D" uid="uid://beaek6jl6onay" path="res://Inventory/Weapons/weapons/sword animations/black_sword.png" id="21_1o7dr"]
+[ext_resource type="Texture2D" uid="uid://d1jhqlhpvk2uh" path="res://Inventory/Weapons/weapons/black_shield.png" id="22_toyfw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]
 radius = 50.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0xx41"]
-radius = 59.3956
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quokb"]
 size = Vector2(100, 100)
@@ -104,7 +104,43 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_6nmv3")]
+"values": [ExtResource("4_6g6qg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-48, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldPosition/ShieldSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldPosition/ShieldSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_smg1s"]
@@ -119,7 +155,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_1mawf")]
+"values": [ExtResource("14_f2k01")]
 }
 
 [sub_resource type="Animation" id="Animation_gtcpl"]
@@ -134,7 +170,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("14_7o6kq")]
+"values": [ExtResource("15_cw7vj")]
 }
 
 [sub_resource type="Animation" id="Animation_xyflq"]
@@ -149,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("15_lqtw4")]
+"values": [ExtResource("16_bagsr")]
 }
 
 [sub_resource type="Animation" id="Animation_ciu56"]
@@ -164,7 +200,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("16_ae6t2")]
+"values": [ExtResource("17_84pew")]
 }
 
 [sub_resource type="Animation" id="Animation_kqhdh"]
@@ -179,7 +215,59 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_1mawf")]
+"values": [ExtResource("14_f2k01")]
+}
+
+[sub_resource type="Animation" id="Animation_1o7dr"]
+resource_name = "guard"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_6g6qg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-48, 0), Vector2(-24, 0), Vector2(-48, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldPosition/ShieldSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.5, 3.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldPosition/ShieldSprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_3rnpg"]
@@ -194,7 +282,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_6nmv3")]
+"values": [ExtResource("4_6g6qg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldPosition/ShieldSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
 }
 
 [sub_resource type="Animation" id="Animation_x2xq5"]
@@ -209,7 +309,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("14_7o6kq")]
+"values": [ExtResource("15_cw7vj")]
 }
 
 [sub_resource type="Animation" id="Animation_kqywf"]
@@ -224,7 +324,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("15_lqtw4")]
+"values": [ExtResource("16_bagsr")]
 }
 
 [sub_resource type="Animation" id="Animation_6qeof"]
@@ -240,7 +340,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("17_n5yak")]
+"values": [ExtResource("18_o216l")]
 }
 
 [sub_resource type="Animation" id="Animation_t0wuc"]
@@ -255,7 +355,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("16_ae6t2")]
+"values": [ExtResource("17_84pew")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2xq5"]
@@ -266,15 +366,13 @@ _data = {
 &"chase_right": SubResource("Animation_xyflq"),
 &"chase_up": SubResource("Animation_ciu56"),
 &"down": SubResource("Animation_kqhdh"),
+&"guard": SubResource("Animation_1o7dr"),
 &"idle": SubResource("Animation_3rnpg"),
 &"left": SubResource("Animation_x2xq5"),
 &"right": SubResource("Animation_kqywf"),
 &"stun": SubResource("Animation_6qeof"),
 &"up": SubResource("Animation_t0wuc")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jqx6x"]
-radius = 45.0999
 
 [sub_resource type="Animation" id="Animation_1aucn"]
 length = 0.001
@@ -428,76 +526,76 @@ _data = {
 &"sword_swing": SubResource("Animation_n3cs8")
 }
 
-[node name="TriSword" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha1pn"]
+radius = 67.0
+
+[node name="TriKnight" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 collision_layer = 256
 collision_mask = 272
-script = ExtResource("1_h2hbc")
-hp = 5
+script = ExtResource("1_dyyud")
+hp = 20
 raycast_length = 320.0
-range = 128.0
+range = 256.0
 weapon = NodePath("WeaponPosition/Slash Weapon")
 
-[node name="HitBox" parent="." instance=ExtResource("2_gss7f")]
-visible = false
+[node name="HitBox" parent="." instance=ExtResource("2_e3gjf")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-scale = Vector2(0.64, 0.64)
+scale = Vector2(0.96, 0.96)
 shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.997101, 0, 0.173241, 0.42)
 
-[node name="HurtBox" parent="." instance=ExtResource("3_yy6c8")]
+[node name="HurtBox" parent="." instance=ExtResource("3_2a205")]
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-scale = Vector2(0.64, 0.64)
+scale = Vector2(0.96, 0.96)
 shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.817399, 0.4054, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.64, 0.64)
-texture = ExtResource("4_6nmv3")
-
-[node name="AttackHurtBox" parent="Sprite2D" instance=ExtResource("3_yy6c8")]
-monitoring = false
-knockback_force = 1000.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtBox"]
-shape = SubResource("CircleShape2D_0xx41")
-debug_color = Color(0.961891, 0, 0.507744, 0.42)
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("4_6g6qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
-scale = Vector2(0.64, 0.64)
+scale = Vector2(0.96, 0.96)
 shape = SubResource("RectangleShape2D_quokb")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("5_cetbs")
+script = ExtResource("5_tnh2n")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
-script = ExtResource("6_1oloj")
+script = ExtResource("6_5gtcy")
 next_state = NodePath("../Wander")
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
-script = ExtResource("7_bfm7t")
+script = ExtResource("7_bwbk0")
 wander_speed = 40.0
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
-script = ExtResource("8_ka1el")
-next_state = NodePath("../Chase")
+script = ExtResource("8_2hkai")
+next_state = NodePath("../Guard")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("9_i43yu")
+script = ExtResource("9_mbt2g")
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack", "vision_area", "next_state")]
-script = ExtResource("10_cetbs")
+script = ExtResource("10_d8hl1")
 attack = NodePath("../Attack")
-chase_speed = 150.0
+chase_speed = 250.0
 vision_area = NodePath("../../VisionArea")
 attack_cooldown_duration = 0.5
 next_state = NodePath("../Wander")
 
 [node name="Attack" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("11_cetbs")
+script = ExtResource("11_3mi6e")
+
+[node name="Guard" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("12_toyfw")
+next_state = NodePath("../Attack")
+metadata/_custom_type_script = "uid://bwejo5eo5a23o"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
@@ -505,7 +603,7 @@ script = ExtResource("11_cetbs")
 visible = false
 position = Vector2(9.53674e-07, 0.499994)
 scale = Vector2(3, 2.97)
-texture = ExtResource("11_dg887")
+texture = ExtResource("12_oxd7u")
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DestroyEffectSprite"]
@@ -513,10 +611,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_t0wuc")
 }
 
-[node name="VisionArea" parent="." instance=ExtResource("12_u263i")]
+[node name="VisionArea" parent="." instance=ExtResource("13_p0svi")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
-polygon = PackedVector2Array(16, 0, -16, 0, -256, -256, 256, -256)
+polygon = PackedVector2Array(512, 512, -512, 512, -512, -512, 512, -512)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -528,38 +626,49 @@ target_position = Vector2(0, -256)
 collision_mask = 20
 
 [node name="WeaponPosition" type="Node2D" parent="."]
-position = Vector2(51, 0)
-script = ExtResource("18_6nmv3")
-weapon_position_x = 60
-metadata/_custom_type_script = "uid://bxjvbrbc6g3sp"
+position = Vector2(64, 0)
+script = ExtResource("20_d8hl1")
+weapon_position_x = 64
 
 [node name="Slash Weapon" type="Node2D" parent="WeaponPosition"]
-scale = Vector2(0.8, 0.8)
-script = ExtResource("19_cetbs")
-attack_speed = 0.5
-knockback_force = 200.0
-weapon_name = "basic_sword"
+position = Vector2(0, -16)
+script = ExtResource("20_34yy6")
+attack_speed = 0.7
+knockback_force = 1000.0
+weapon_name = "black_sword"
+damage = 5
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="WeaponPosition/Slash Weapon"]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("20_1oloj")
-
-[node name="HurtBoxPosition" type="Node2D" parent="WeaponPosition/Slash Weapon"]
-unique_name_in_owner = true
-
-[node name="HurtBox" parent="WeaponPosition/Slash Weapon/HurtBoxPosition" instance=ExtResource("3_yy6c8")]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponPosition/Slash Weapon/HurtBoxPosition/HurtBox"]
-shape = SubResource("CircleShape2D_jqx6x")
-debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
+texture = ExtResource("21_1o7dr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponPosition/Slash Weapon"]
 libraries = {
 &"": SubResource("AnimationLibrary_c8p0t"),
 &"sword_animations": SubResource("AnimationLibrary_fl8iw")
 }
+
+[node name="HurtBoxPosition" type="Node2D" parent="WeaponPosition/Slash Weapon"]
+unique_name_in_owner = true
+
+[node name="HurtBox" parent="WeaponPosition/Slash Weapon/HurtBoxPosition" instance=ExtResource("3_2a205")]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponPosition/Slash Weapon/HurtBoxPosition/HurtBox"]
+shape = SubResource("CircleShape2D_ha1pn")
+debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
+
+[node name="ShieldPosition" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-48, 0)
+script = ExtResource("19_304ob")
+weapon_position_x = 64
+metadata/_custom_type_script = "uid://bxjvbrbc6g3sp"
+
+[node name="ShieldSprite" type="Sprite2D" parent="ShieldPosition"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_toyfw")
 
 [connection signal="enemy_damaged" from="." to="EnemyStateMachine/Stun" method="_on_tri_slime_enemy_damaged"]
 [connection signal="animation_finished" from="WeaponPosition/Slash Weapon/AnimationPlayer" to="WeaponPosition/Slash Weapon" method="_on_animation_player_animation_finished"]

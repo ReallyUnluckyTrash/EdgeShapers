@@ -55,6 +55,7 @@ func _on_hurtbox_entered(area : Area2D)->void:
 	if area is HitBox:
 		speed = 0.0
 		acceleration = 0.0
+		hurt_box.set_deferred("monitoring", false)
 		animation_player.play("hit")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

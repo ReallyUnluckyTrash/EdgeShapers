@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dfqnf2sqncr5a" path="res://Enemies/scripts/states/enemy_state_wander.gd" id="7_a2v52"]
 [ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/scripts/states/enemy_state_stun.gd" id="8_h2661"]
 [ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/scripts/states/enemy_state_destroy.gd" id="9_bv7dn"]
-[ext_resource type="Script" uid="uid://fl3mulfb87r" path="res://Enemies/scripts/states/enemy_state_chase.gd" id="10_mhxor"]
+[ext_resource type="Script" uid="uid://clsyxmpxpf325" path="res://Enemies/1_Domain/tri_bow/enemy_state_chase_weapon.gd" id="10_v4qv1"]
 [ext_resource type="Script" uid="uid://ngy6jptf2j03" path="res://Enemies/scripts/states/enemy_state_attack.gd" id="11_ea2df"]
 [ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/General Sprites/DestroySmoke.png" id="12_twjt0"]
 [ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/scenes/vision_area.tscn" id="13_1rsc5"]
@@ -361,8 +361,9 @@ _data = {
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_mjogr")
-raycast_length = 320.0
-range = 320.0
+hp = 4
+raycast_length = 400.0
+range = 400.0
 weapon = NodePath("WeaponPosition/BowWeapon")
 
 [node name="HitBox" parent="." instance=ExtResource("2_v4qv1")]
@@ -416,13 +417,12 @@ next_state = NodePath("../Chase")
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("9_bv7dn")
 
-[node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack", "vision_area", "attack_area", "next_state")]
-script = ExtResource("10_mhxor")
+[node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack", "vision_area", "next_state")]
+script = ExtResource("10_v4qv1")
 attack = NodePath("../Attack")
 chase_speed = 100.0
 vision_area = NodePath("../../VisionArea")
-attack_area = NodePath("../../Sprite2D/AttackHurtBox")
-next_state = NodePath("../Idle")
+next_state = NodePath("../Wander")
 
 [node name="Attack" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("11_ea2df")
@@ -444,7 +444,7 @@ libraries = {
 [node name="VisionArea" parent="." instance=ExtResource("13_1rsc5")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
-polygon = PackedVector2Array(16, 0, -16, 0, -256, -256, 256, -256)
+polygon = PackedVector2Array(16, 0, -16, 0, -384, -384, 384, -384)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

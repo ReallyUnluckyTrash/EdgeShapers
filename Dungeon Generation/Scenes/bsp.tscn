@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sr47jxr80pkj"]
+[gd_scene load_steps=11 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://difd6gjudrjrf" path="res://Dungeon Generation/Scripts/dungeon_main.gd" id="1_67b3u"]
 [ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="3_67b3u"]
@@ -8,9 +8,6 @@
 [ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="4_tsfrk"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="5_o6v26"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="6_d3gie"]
-[ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="7_d3gie"]
-[ext_resource type="PackedScene" uid="uid://dsbh42qbybbll" path="res://Enemies/1_Domain/tri_slime/tri_slime2.tscn" id="8_ja24o"]
-[ext_resource type="PackedScene" uid="uid://by1nu4x3itrdu" path="res://Enemies/1_Domain/tri_slime/tri_slime3.tscn" id="9_yai8a"]
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="12_ja24o"]
 
@@ -21,9 +18,6 @@ script = ExtResource("1_67b3u")
 [node name="DungeonConfig" type="Node" parent="."]
 script = ExtResource("4_3v8vx")
 chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("6_d3gie")])
-enemy_level_1_scene = ExtResource("7_d3gie")
-enemy_level_2_scene = ExtResource("8_ja24o")
-enemy_level_3_scene = ExtResource("9_yai8a")
 
 [node name="ObjectSpawner" type="Node" parent="."]
 script = ExtResource("3_j3od5")

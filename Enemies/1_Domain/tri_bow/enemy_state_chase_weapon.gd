@@ -1,23 +1,7 @@
-class_name EnemyStateChase extends EnemyState
+class_name EnemyStateChaseWeapon extends EnemyStateChase
 
-@export var attack: EnemyStateAttack 
 
-@export var anim_name: String = "chase"
-@export var chase_speed: float = 40.0
-@export var turn_rate: float = 0.25
-
-@export_category("AI")
-@export var vision_area: VisionArea
-@export var attack_area: HurtBox
-@export var state_aggro_duration: float = 2.0
-@export var attack_cooldown_duration: float = 2.0
-@export var next_state: EnemyState
-
-var _timer: float = 0.0
-var _attack_cooldown_timer:float = 0.0
-var _direction: Vector2
-var _can_see_player: bool = false
-var _has_line_of_sight: bool = false
+var distance_to_player:float
 
 func initialize() -> void:
 	if vision_area:
@@ -52,26 +36,32 @@ func process(_delta: float) -> EnemyState:
 	
 	if not PlayerManager.player:
 		return next_state
-		
+	
+	distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)	
 	var new_direction: Vector2 = enemy.global_position.direction_to(PlayerManager.player.global_position)
 	
 	check_line_of_sight(new_direction)
 	var can_actively_chase: bool = _can_see_player && _has_line_of_sight
 	
 	if can_actively_chase:
-		# Can see and chase player
-		_direction = lerp(_direction, new_direction, turn_rate)
-		enemy.velocity = _direction * chase_speed
-		if enemy.set_direction(_direction):
-			enemy.update_animation(anim_name + "_" + enemy.anim_direction())
-			enemy.weapon_position.update_position(enemy.anim_direction())
-		_timer = state_aggro_duration  # Reset timer when actively chasing
-		
-		#if player is in the enemy's range, enter the attack state
-		#TODO for the weaponless enemies, have the attack state be a tackle
-		var distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)
-		if distance_to_player < enemy.range && _attack_cooldown_timer <= 0:
-			return attack
+		# Can see player - check if in attack range first
+		if distance_to_player <= enemy.range:
+			# In range - set enemy to face player then attack
+			_direction = lerp(_direction, new_direction, turn_rate)
+			if enemy.set_direction(_direction):
+				enemy.update_animation(anim_name + "_" + enemy.anim_direction())
+				enemy.weapon_position.update_position(enemy.anim_direction())
+				
+			if _attack_cooldown_timer <= 0:
+				return attack
+		else:
+			# Not in range - move closer
+			_direction = lerp(_direction, new_direction, turn_rate)
+			if enemy.set_direction(_direction):
+				enemy.update_animation(anim_name + "_" + enemy.anim_direction())
+				enemy.weapon_position.update_position(enemy.anim_direction())
+			enemy.velocity = _direction * chase_speed
+			_timer = state_aggro_duration  # Reset timer when actively chasing
 	else:
 		# Cannot actively chase (either out of vision cone OR blocked by obstacle)
 		_timer -= _delta

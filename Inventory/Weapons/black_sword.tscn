@@ -165,6 +165,7 @@ attack_speed = 0.7
 knockback_force = 1000.0
 weapon_name = "black_sword"
 damage = 10
+ep_cost = 5.0
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]

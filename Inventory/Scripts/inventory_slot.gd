@@ -34,6 +34,8 @@ func _on_pressed() -> void:
 	new_slot_interactions.equip_button.grab_focus() 
 	new_slot_interactions.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	PauseMenu.inventory_blocker.visible = true
+	PauseMenu.inventory_blocker.mouse_filter = Control.MOUSE_FILTER_STOP
+	PlayerManager.pause_menu_disabled = true
 	pass 
 
 func item_focused():
@@ -48,6 +50,7 @@ func item_unfocused():
 
 
 func _on_equip_button_pressed() -> void:
+	PlayerManager.pause_menu_disabled = false
 	print("trying to equip!")
 	if slot_data.item_data.type == "Weapon":
 		PlayerManager.set_equipped_weapon(slot_data.item_data.scene, slot_data.item_data)
@@ -74,6 +77,7 @@ func _on_equip_button_pressed() -> void:
 
 
 func _on_use_button_pressed() -> void:
+	PlayerManager.pause_menu_disabled = false
 	if slot_data.item_data.type == "Item":
 		print("tried to use item: " + slot_data.item_data.name)
 		var was_used = slot_data.item_data.use()

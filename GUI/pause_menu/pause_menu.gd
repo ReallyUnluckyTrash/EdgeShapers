@@ -18,7 +18,7 @@ signal hidden
 
 func _ready() -> void:
 	inventory_blocker.visible = false
-	inventory_blocker.mouse_filter = Control.MOUSE_FILTER_STOP
+	inventory_blocker.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hide_pause_menu()
 
 

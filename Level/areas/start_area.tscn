@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=4 uid="uid://dqf1ym18hdwla"]
+
+[ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_vm0tx"]
+[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_dpocp"]
+[ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_nr1xn"]
+[ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="4_vm0tx"]
+[ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="5_dpocp"]
+
+[node name="StartArea" type="Node2D"]
+script = ExtResource("1_vm0tx")
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAABAAEAAUAAAAAAAEABAAEAAUAAAAAAAIABAAEAAUAAAABAAIABAAEAAUAAAABAAEABAAEAAUAAAABAAAABAAEAAUAAAACAAAABAAEAAUAAAACAAEABAAEAAUAAAACAAIABAAEAAUAAAAAAAMABAAEAAUAAAABAAMABAAEAAUAAAACAAMABAAEAAUAAAADAAMABAAEAAUAAAADAAIABAAEAAUAAAADAAEABAAEAAUAAAADAAAABAAEAAUAAAADAP//BAAEAAUAAAACAP//BAAEAAUAAAABAP//BAAEAAUAAAAAAP//BAAEAAUAAAD/////BAAEAAUAAAD//wAABAAEAAUAAAD//wEABAAEAAUAAAD//wIABAAEAAUAAAD//wMABAAEAAUAAAABAP7/BAAEAAYAAAABAAUABAAEAAQAAAABAAQABAAEAAUAAAA=")
+tile_set = ExtResource("2_dpocp")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//7/BAAAAAEAAAD+/wQABAADAAEAAAAEAP7/BAACAAEAAAAEAAQABAABAAEAAAD+////BAAAAAAAAAD+/wAABAAAAAAAAAD+/wEABAAAAAAAAAD+/wIABAAAAAAAAAD+/wMABAAAAAAAAAAEAP//BAABAAAAAAAEAAAABAABAAAAAAAEAAEABAABAAAAAAAEAAIABAABAAAAAAAEAAMABAABAAAAAAD///7/BAACAAAAAAADAP7/BAACAAAAAAD//wQABAADAAAAAAADAAQABAADAAAAAAAAAAQABAACAAIAAAACAAQABAAAAAIAAAAAAAUABAAAAAAAAAACAAUABAABAAAAAAACAAYABAABAAEAAAAAAAYABAADAAEAAAABAAYABAADAAAAAAACAP3/BAACAAIAAAAAAP7/BAABAAIAAAACAP7/BAADAAIAAAAAAP3/BAAAAAIAAAABAP3/BAACAAMAAAA=")
+tile_set = ExtResource("2_dpocp")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("4_nr1xn")]
+position = Vector2(96, 280)
+
+[node name="DungeonDiveTransition" parent="." instance=ExtResource("4_vm0tx")]
+position = Vector2(96, -64)
+level = "uid://sr47jxr80pkj"
+target_transition_area = ""
+size = 1
+side = 2
+snap_to_grid = true
+
+[node name="StartTile" parent="." instance=ExtResource("5_dpocp")]
+position = Vector2(96, 352)

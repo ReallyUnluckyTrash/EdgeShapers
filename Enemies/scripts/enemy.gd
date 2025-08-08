@@ -15,7 +15,6 @@ var level : int = 1
 var last_attack:Attack = null
 
 @export var weapon: Weapon = null
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_box: HitBox = $HitBox
 @onready var state_machine: EnemyStateMachine = $EnemyStateMachine

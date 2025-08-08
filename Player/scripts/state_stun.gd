@@ -10,6 +10,8 @@ var next_state:State = null
 
 
 @onready var idle : State_Idle = $"../Idle"
+@onready var death: State_Death = $"../Death"
+
 
 func initialize():
 	player.player_damaged.connect(_player_damaged)
@@ -45,9 +47,12 @@ func handle_input(_event: InputEvent) -> State:
 
 func _player_damaged(attack:Attack)->void:
 	_attack = attack
-	state_machine.change_state(self)
+	if state_machine.current_state != death:
+		state_machine.change_state(self)
 	pass
 
 func _animation_finished()->void:
 	next_state = idle
+	if player.hp <=0:
+		next_state = death
 	pass

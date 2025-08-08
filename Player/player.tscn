@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=30 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Player/sprites/player_idle.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/scripts/player.gd" id="1_onrkg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cg64h2lxts5po" path="res://Player/scripts/state_stun.gd" id="12_b1ygp"]
 [ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/scripts/weapon_position.gd" id="12_p5o4e"]
 [ext_resource type="Script" uid="uid://c43n785t3mqo8" path="res://Player/scripts/player_camera.gd" id="13_dkpta"]
+[ext_resource type="Script" uid="uid://bx6ohkp14sfl4" path="res://Player/scripts/state_death.gd" id="16_7emwf"]
 [ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Inventory/Weapons/slash_weapon.tscn" id="17_b1ygp"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="17_pisgm"]
 [ext_resource type="Script" uid="uid://5q4wemb10ae2" path="res://Player/scripts/front_weapon_position.gd" id="20_n471f"]
@@ -165,6 +166,9 @@ script = ExtResource("10_5htga")
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("12_b1ygp")
 
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("16_7emwf")
+
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("8_od3ui")
 
@@ -208,3 +212,9 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
 max_polyphony = 7
+
+[node name="EP Recharge Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="EP Recharge Timer" to="." method="_on_ep_recharge_timer_timeout"]
