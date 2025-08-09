@@ -51,7 +51,9 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 			var enemy_level = enemy_data['level']
 			var enemy_pos = enemy_data['position']
 			
-			var enemy_instance = config.enemy_scenes[enemy_level].instantiate()
+			var random_index = randi_range(0, config.enemy_scenes[enemy_level].size()-1)
+			var enemy_instance = config.enemy_scenes[enemy_level][random_index].instantiate()
+			
 			enemy_instance.position = Vector2(
 				enemy_pos.x * config.tile_size + config.tile_size/2,
 				enemy_pos.y * config.tile_size + config.tile_size/2,

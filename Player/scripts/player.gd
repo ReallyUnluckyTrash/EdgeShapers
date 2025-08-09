@@ -152,6 +152,7 @@ func clear_upgrades_player():
 
 	ep = 10.0
 	max_ep = 10.0
+	ep_recharge_count = 1.0
 	pass
 
 ##function to test if modular system works, delete later and replace by using an inventory system

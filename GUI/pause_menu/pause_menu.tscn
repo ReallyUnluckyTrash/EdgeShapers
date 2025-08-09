@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="2_iqcer"]
 [ext_resource type="Script" uid="uid://1e3pwy4iqlof" path="res://Inventory/Scripts/inventory_ui.gd" id="3_36pfd"]
 [ext_resource type="PackedScene" uid="uid://blekt47ruwbbv" path="res://Inventory/Scenes/inventory_slot.tscn" id="3_rsqrg"]
-[ext_resource type="Resource" uid="uid://c6ytvfnfy1bhf" path="res://Inventory/Resources/player_weapon_inv.tres" id="4_ewgu5"]
+[ext_resource type="Resource" uid="uid://bw8nrd4af2b26" path="res://Inventory/Resources/player_weapon_inv_3.tres" id="5_cvrss"]
 [ext_resource type="Resource" uid="uid://dfukjwugxci76" path="res://Inventory/Resources/player_item_inv.tres" id="6_dvxeg"]
 [ext_resource type="Script" uid="uid://b510jrrankvy4" path="res://Inventory/Scripts/equipped_ui.gd" id="6_sn1ji"]
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
@@ -54,9 +54,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Inventory" type="Control" parent="Control/MenuTabs"]
+visible = false
 layout_mode = 2
 theme = SubResource("Theme_dvxeg")
 metadata/_tab_index = 0
@@ -81,7 +82,7 @@ unique_name_in_owner = true
 layout_mode = 2
 columns = 5
 script = ExtResource("3_36pfd")
-data = ExtResource("4_ewgu5")
+data = ExtResource("5_cvrss")
 
 [node name="InventorySlot" parent="Control/MenuTabs/Inventory/Weapon Inventory/WeaponInvGrid" instance=ExtResource("3_rsqrg")]
 layout_mode = 2
@@ -182,7 +183,6 @@ text = "Item Description"
 autowrap_mode = 1
 
 [node name="Upgrades" type="Control" parent="Control/MenuTabs"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

@@ -41,7 +41,7 @@ func process(_delta: float) -> EnemyState:
 	
 	if can_actively_chase:
 		# Can see player - check if in attack range first
-		if distance_to_player <= enemy.range:
+		if distance_to_player <= enemy.enemy_range:
 			# In range - set enemy to face player then attack
 			_direction = lerp(_direction, new_direction, turn_rate)
 			if enemy.set_direction(_direction):

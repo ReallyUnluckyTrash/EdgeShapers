@@ -70,7 +70,7 @@ func process(_delta: float) -> EnemyState:
 		#if player is in the enemy's range, enter the attack state
 		#TODO for the weaponless enemies, have the attack state be a tackle
 		var distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)
-		if distance_to_player < enemy.range && _attack_cooldown_timer <= 0:
+		if distance_to_player < enemy.enemy_range && _attack_cooldown_timer <= 0:
 			return attack
 	else:
 		# Cannot actively chase (either out of vision cone OR blocked by obstacle)

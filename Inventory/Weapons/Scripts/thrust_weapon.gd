@@ -45,3 +45,7 @@ func setup_hurt_box():
 	if hurt_box:
 		hurt_box.damage = damage
 		hurt_box.knockback_force = knockback_force
+
+func set_damage(new_damage:int):
+		damage = new_damage
+		setup_hurt_box()

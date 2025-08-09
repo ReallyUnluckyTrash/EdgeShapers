@@ -45,7 +45,7 @@ func process(_delta: float) -> EnemyState:
 	
 	if can_actively_chase:
 		# Can see player - check if in attack range first
-		if distance_to_player <= enemy.range:
+		if distance_to_player <= enemy.enemy_range:
 			# In range - set enemy to face player then attack
 			_direction = lerp(_direction, new_direction, turn_rate)
 			if enemy.set_direction(_direction):
@@ -78,7 +78,7 @@ func check_line_of_sight(_direction_to_player: Vector2) -> void:
 		_has_line_of_sight = false
 		return
 	
-	var distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)
+	distance_to_player = enemy.global_position.distance_to(PlayerManager.player.global_position)
 	enemy.ray_cast_2d.target_position = _direction_to_player * clamp(distance_to_player, 0.0, enemy.raycast_length)
 	enemy.ray_cast_2d.force_raycast_update()
 	

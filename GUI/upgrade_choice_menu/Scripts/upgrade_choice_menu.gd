@@ -59,7 +59,9 @@ func set_upgrade_choice(choice_button: UpgradeChoiceButton) -> void:
 func acquire_upgrade(_upgrade:Upgrade)->void:
 	if _upgrade is UpgradeWeapon:
 		PlayerManager.PLAYER_UPGRADE_LIST.add_upgrade_weapon(_upgrade)
+		#TODO seems like when applying upgrade here its not working?
 		_upgrade.apply_upgrade(PlayerManager.player.current_weapon)
+		print("UpgradeChoiceMenu: Applying upgrade: " + str(PlayerManager.player.current_weapon.damage))
 		
 	elif _upgrade is UpgradePlayer:
 		PlayerManager.PLAYER_UPGRADE_LIST.add_upgrade_player(_upgrade)

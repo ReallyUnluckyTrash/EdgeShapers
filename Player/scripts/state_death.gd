@@ -12,7 +12,7 @@ func enter() -> void:
 	#audio_stream_player_2d.stream = death_audio
 	#audio_stream_player_2d.play() 
 	
-	#TODO trigger gameover UI
+	#trigger game over UI
 	PlayerHud.show_game_over_screen()
 	PlayerManager.pause_menu_disabled = true
 	pass

@@ -15,21 +15,21 @@ class_name DungeonConfig extends Node
 @export var chest_items: Array[ItemData] = []
 
 @export_group("Enemy Configuration")
-@export var enemy_level_1_scene: PackedScene
-@export var enemy_level_2_scene: PackedScene
-@export var enemy_level_3_scene: PackedScene
+@export var enemy_level_1_scenes: Array[PackedScene]
+@export var enemy_level_2_scenes: Array[PackedScene]
+@export var enemy_level_3_scenes: Array[PackedScene]
 
 var min_cell_size: Vector2i
-var enemy_scenes: Dictionary = {}
+@export var enemy_scenes: Dictionary = {}
 
 func _ready():
 	# Build enemy scenes dictionary from exported scenes
-	if enemy_level_1_scene:
-		enemy_scenes[1] = enemy_level_1_scene
-	if enemy_level_2_scene:
-		enemy_scenes[2] = enemy_level_2_scene
-	if enemy_level_3_scene:
-		enemy_scenes[3] = enemy_level_3_scene
+	if enemy_level_1_scenes:
+		enemy_scenes[1] = enemy_level_1_scenes
+	if enemy_level_2_scenes:
+		enemy_scenes[2] = enemy_level_2_scenes
+	if enemy_level_3_scenes:
+		enemy_scenes[3] = enemy_level_3_scenes
 
 func setup(map_width: int, map_height: int):
 	min_cell_size = Vector2i(

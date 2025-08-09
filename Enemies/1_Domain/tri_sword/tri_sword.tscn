@@ -434,7 +434,7 @@ collision_mask = 272
 script = ExtResource("1_h2hbc")
 hp = 5
 raycast_length = 320.0
-range = 128.0
+enemy_range = 128.0
 weapon = NodePath("WeaponPosition/Slash Weapon")
 
 [node name="HitBox" parent="." instance=ExtResource("2_gss7f")]

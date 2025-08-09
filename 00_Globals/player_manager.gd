@@ -1,10 +1,12 @@
 extends Node
 
 const PLAYER = preload("res://Player/player.tscn")
-const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv.tres")
-const INVENTORY_ITEM_DATA = preload("res://Inventory/Resources/player_item_inv.tres")
-const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped.tres")
+const INVENTORY_ITEM_DATA:InventoryData = preload("res://Inventory/Resources/player_item_inv.tres")
+const PLAYER_EQUIPPED_DATA:InventoryData = preload("res://Inventory/Resources/player_equipped.tres")
+#const INVENTORY_WEAPON_DATA:InventoryData = preload("res://Inventory/Resources/player_weapon_inv.tres")
 const PLAYER_UPGRADE_LIST = preload("res://Inventory/Resources/player_upgrade_list.tres")
+const BASIC_WEAPON = preload("res://Inventory/Weapons/basic_weapon.tres")
+const INVENTORY_WEAPON_DATA:= preload("res://Inventory/Resources/player_weapon_inv_3.tres")
 
 var player : Player
 var player_spawned:bool = false
@@ -101,6 +103,17 @@ func set_as_parent(_parent: Node2D)->void:
 func unparent_player(_parent: Node2D)->void:
 	_parent.remove_child(player)
 
+func reset_player()->void:
+	player.clear_upgrades_player()
+	INVENTORY_ITEM_DATA.reset_inventory()
+	#INVENTORY_WEAPON_DATA.reset_inventory()
+	PLAYER_UPGRADE_LIST.clear_upgrades()
+	PLAYER_EQUIPPED_DATA.empty_slots()
+	
+	#INVENTORY_WEAPON_DATA.add_item(BASIC_WEAPON, 1)
+	#set_equipped_weapon(BASIC_WEAPON.scene, BASIC_WEAPON)
+	player.state_machine.change_state(player.state_machine.states[0])
+	
 func play_audio(_audio: AudioStream)->void:
 	player.audio_stream_player_2d.stream = _audio
 	player.audio_stream_player_2d.play()

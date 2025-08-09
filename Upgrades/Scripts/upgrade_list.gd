@@ -20,3 +20,7 @@ func remove_by_index_player(_index):
 	if _index >= 0 and _index < upgrades_player.size():
 		upgrades_player.remove_at(_index)
 	pass
+
+func clear_upgrades()->void:
+	upgrades_weapon.clear()
+	upgrades_player.clear()

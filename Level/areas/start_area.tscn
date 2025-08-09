@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_dpocp"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_nr1xn"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="4_vm0tx"]
-[ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="5_dpocp"]
+[ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="5_dpocp"]
 
 [node name="StartArea" type="Node2D"]
 script = ExtResource("1_vm0tx")
@@ -28,5 +28,5 @@ size = 1
 side = 2
 snap_to_grid = true
 
-[node name="StartTile" parent="." instance=ExtResource("5_dpocp")]
-position = Vector2(96, 352)
+[node name="ShopStatue" parent="." instance=ExtResource("5_dpocp")]
+position = Vector2(96, 96)

@@ -169,9 +169,10 @@ offset_left = 140.0
 offset_top = 90.0
 offset_right = 1140.0
 offset_bottom = 620.0
-current_tab = 0
+current_tab = 1
 
 [node name="Buy" type="Control" parent="Control/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -182,9 +183,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Equippables" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -294,7 +296,6 @@ text = "Price = 999"
 
 [node name="WeaponUpgrades" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 script = ExtResource("12_3vfd8")
 metadata/_tab_index = 1
@@ -319,6 +320,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="WpnUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
+z_index = 2
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -370,6 +372,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="PlayerUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
+z_index = 2
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -399,7 +402,6 @@ offset_bottom = 431.0
 metadata/_edit_group_ = true
 
 [node name="Sell" type="Control" parent="Control/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -408,10 +410,11 @@ layout_mode = 0
 offset_left = 2.0
 offset_right = 1003.0
 offset_bottom = 483.0
-current_tab = 0
+current_tab = 2
 metadata/_edit_group_ = true
 
 [node name="Items" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -515,8 +518,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Player Upgrades" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
-visible = false
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("16_1ared")
 metadata/_tab_index = 2
 

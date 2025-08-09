@@ -7,11 +7,14 @@ func _ready() -> void:
 	PlayerHud.visible = false
 	new_game.grab_focus()
 	PlayerManager.pause_menu_disabled = true
-	if !PlayerManager.player:
-		PlayerManager.add_player_instance()
+	
 
 func _on_new_game_pressed() -> void:
 	PlayerHud.visible = true
-	LevelManager.load_new_level(hub_area_path, "StartTile", Vector2(96, 352))
+	LevelManager.load_new_level(hub_area_path, "", Vector2(0, 0))
 	PlayerManager.pause_menu_disabled = false
+	LevelManager.reset_tilemap_bounds()
+	
+	await get_tree().process_frame
+	PlayerManager.reset_player()
 	pass # Replace with function body.

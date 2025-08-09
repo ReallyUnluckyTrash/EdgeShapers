@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=7 format=3 uid="uid://iun6mo4ualop"]
+
+[ext_resource type="Script" uid="uid://btawgj7ojp0fq" path="res://Inventory/Scripts/inventory_data.gd" id="1_8jq3w"]
+[ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="2_ebebc"]
+[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="3_23h6s"]
+[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Inventory/Weapons/Resources/boomerang.tres" id="4_4batt"]
+
+[sub_resource type="Resource" id="Resource_8jq3w"]
+script = ExtResource("2_ebebc")
+item_data = ExtResource("3_23h6s")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[sub_resource type="Resource" id="Resource_8me1g"]
+script = ExtResource("2_ebebc")
+item_data = ExtResource("4_4batt")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[resource]
+script = ExtResource("1_8jq3w")
+slots = Array[ExtResource("2_ebebc")]([SubResource("Resource_8jq3w"), SubResource("Resource_8me1g")])
+metadata/_custom_type_script = "uid://btawgj7ojp0fq"

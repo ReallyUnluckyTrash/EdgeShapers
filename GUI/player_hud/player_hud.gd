@@ -61,7 +61,6 @@ func fade_to_black()->bool:
 
 func _on_title_button_pressed() -> void:
 	await fade_to_black()
-	PlayerManager.player.queue_free()
 	LevelManager.load_new_level("res://GUI/main_menu/main_menu.tscn", "", Vector2.ZERO)
 	
 	pass # Replace with function body.

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=13 format=3 uid="uid://c6ytvfnfy1bhf"]
+
+[ext_resource type="Script" uid="uid://btawgj7ojp0fq" path="res://Inventory/Scripts/inventory_data.gd" id="1_34124"]
+[ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="2_eufwr"]
+[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="3_34124"]
+[ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="4_eufwr"]
+[ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="5_eufwr"]
+[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Inventory/Weapons/Resources/boomerang.tres" id="6_v3a5m"]
+[ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Inventory/Weapons/Resources/bow.tres" id="7_cqmml"]
+
+[sub_resource type="Resource" id="Resource_k7d1n"]
+script = ExtResource("2_eufwr")
+item_data = ExtResource("3_34124")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[sub_resource type="Resource" id="Resource_eufwr"]
+script = ExtResource("2_eufwr")
+item_data = ExtResource("4_eufwr")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[sub_resource type="Resource" id="Resource_v3a5m"]
+script = ExtResource("2_eufwr")
+item_data = ExtResource("5_eufwr")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[sub_resource type="Resource" id="Resource_cqmml"]
+script = ExtResource("2_eufwr")
+item_data = ExtResource("6_v3a5m")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[sub_resource type="Resource" id="Resource_dqm4a"]
+script = ExtResource("2_eufwr")
+item_data = ExtResource("7_cqmml")
+quantity = 1
+metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
+
+[resource]
+script = ExtResource("1_34124")
+slots = Array[ExtResource("2_eufwr")]([SubResource("Resource_k7d1n"), SubResource("Resource_eufwr"), SubResource("Resource_v3a5m"), SubResource("Resource_cqmml"), SubResource("Resource_dqm4a"), null, null, null, null, null])
+metadata/_custom_type_script = "uid://btawgj7ojp0fq"

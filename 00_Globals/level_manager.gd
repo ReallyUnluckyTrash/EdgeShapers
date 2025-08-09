@@ -16,7 +16,12 @@ func change_tilemap_bounds(bounds: Array[Vector2]) -> void:
 	current_tilemap_bounds = bounds
 	tilemap_bounds_changed.emit(bounds)
 	pass
-	
+
+func reset_tilemap_bounds()->void:
+	current_tilemap_bounds.clear()
+	var default_bounds: Array[Vector2] = [Vector2(-3000000, -3000000), Vector2(3000000, 3000000)]
+	tilemap_bounds_changed.emit(default_bounds)	
+
 func load_new_level(
 	level_path: String,	
 	_target_transition: String,

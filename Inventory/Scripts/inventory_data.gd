@@ -80,3 +80,11 @@ func on_item_depleted(_item:ItemData)->void:
 	remove_by_item(_item)
 	update_ui.emit()
 	pass
+
+func reset_inventory()->void:
+	slots.clear()
+
+func empty_slots()->void:
+	for slot in slots:
+		slot.item_data = null
+	pass
