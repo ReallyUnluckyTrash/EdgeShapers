@@ -17,7 +17,7 @@ const SHOP_UPGRADES = preload("res://GUI/shop_menu/Resources/shop_upgrades.tres"
 
 @onready var weapon_upgrades_tab: ShopWeaponUpgradeTab = %WeaponUpgrades
 @onready var player_upgrades_tab: ShopPlayerUpgradeTab = %PlayerUpgrade
-@onready var sell_player_upgrades_tab: SellPlayerUpgradeTab = $"Control/TabContainer/Sell/TabContainer/Player Upgrades"
+#@onready var sell_player_upgrades_tab: SellPlayerUpgradeTab = $"Control/TabContainer/Sell/TabContainer/Player Upgrades"
 
 @onready var currency_label: Label = %CurrencyLabel
 

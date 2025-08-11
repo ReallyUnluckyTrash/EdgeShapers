@@ -93,6 +93,7 @@ knockback_force = 100.0
 weapon_name = "Bow"
 damage = 2
 ep_cost = 1.0
+attack_speed = 1.0
 
 [node name="BowSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_sk63n")

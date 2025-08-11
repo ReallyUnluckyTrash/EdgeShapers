@@ -11,6 +11,7 @@ var player:Player
 
 func _ready() -> void:
 	player = PlayerManager.player
+	animation_player.speed_scale = attack_speed
 
 func attack():
 	if is_attacking == true:
@@ -44,3 +45,8 @@ func create_arrow()->void:
 	new_arrow.global_position = player.front_weapon_position.global_position
 	new_arrow.shoot(shoot_direction)
 	pass
+
+func set_attack_speed(_new_attack_speed:float)->void:
+	attack_speed = _new_attack_speed
+	if animation_player:
+		animation_player.speed_scale = attack_speed

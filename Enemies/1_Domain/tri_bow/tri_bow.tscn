@@ -23,16 +23,16 @@
 [ext_resource type="Texture2D" uid="uid://bh8eodclq3npv" path="res://Inventory/Weapons/weapons/bow.png" id="21_5yg8o"]
 [ext_resource type="Texture2D" uid="uid://d1vb5gy62xh1a" path="res://Inventory/Weapons/weapons/arrows.png" id="22_uc3ul"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_sgk2t"]
 radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xx41"]
 radius = 59.3956
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_quokb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5pso"]
 size = Vector2(100, 100)
 
-[sub_resource type="Animation" id="Animation_0xx41"]
+[sub_resource type="Animation" id="Animation_d7ic1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_teq83"]
+[sub_resource type="Animation" id="Animation_tuuex"]
 resource_name = "destroy"
 length = 0.6
 tracks/0/type = "value"
@@ -87,13 +87,13 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0wuc"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t60p4"]
 _data = {
-&"RESET": SubResource("Animation_0xx41"),
-&"destroy": SubResource("Animation_teq83")
+&"RESET": SubResource("Animation_d7ic1"),
+&"destroy": SubResource("Animation_tuuex")
 }
 
-[sub_resource type="Animation" id="Animation_iuvti"]
+[sub_resource type="Animation" id="Animation_wbsly"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -108,7 +108,7 @@ tracks/0/keys = {
 "values": [ExtResource("4_uc3ul")]
 }
 
-[sub_resource type="Animation" id="Animation_smg1s"]
+[sub_resource type="Animation" id="Animation_4abhl"]
 resource_name = "chase_down"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "values": [ExtResource("14_d8hlu")]
 }
 
-[sub_resource type="Animation" id="Animation_gtcpl"]
+[sub_resource type="Animation" id="Animation_q3kd2"]
 resource_name = "chase_left"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -138,7 +138,7 @@ tracks/0/keys = {
 "values": [ExtResource("15_urulw")]
 }
 
-[sub_resource type="Animation" id="Animation_xyflq"]
+[sub_resource type="Animation" id="Animation_y2j7d"]
 resource_name = "chase_right"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -153,7 +153,7 @@ tracks/0/keys = {
 "values": [ExtResource("16_nkl5a")]
 }
 
-[sub_resource type="Animation" id="Animation_ciu56"]
+[sub_resource type="Animation" id="Animation_iti3k"]
 resource_name = "chase_up"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -168,7 +168,7 @@ tracks/0/keys = {
 "values": [ExtResource("17_gpad0")]
 }
 
-[sub_resource type="Animation" id="Animation_kqhdh"]
+[sub_resource type="Animation" id="Animation_b41ya"]
 resource_name = "down"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -183,7 +183,7 @@ tracks/0/keys = {
 "values": [ExtResource("14_d8hlu")]
 }
 
-[sub_resource type="Animation" id="Animation_3rnpg"]
+[sub_resource type="Animation" id="Animation_syfkj"]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -198,7 +198,7 @@ tracks/0/keys = {
 "values": [ExtResource("4_uc3ul")]
 }
 
-[sub_resource type="Animation" id="Animation_x2xq5"]
+[sub_resource type="Animation" id="Animation_w16l7"]
 resource_name = "left"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -213,7 +213,7 @@ tracks/0/keys = {
 "values": [ExtResource("15_urulw")]
 }
 
-[sub_resource type="Animation" id="Animation_kqywf"]
+[sub_resource type="Animation" id="Animation_eint6"]
 resource_name = "right"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -228,7 +228,7 @@ tracks/0/keys = {
 "values": [ExtResource("16_nkl5a")]
 }
 
-[sub_resource type="Animation" id="Animation_6qeof"]
+[sub_resource type="Animation" id="Animation_rqe5a"]
 resource_name = "stun"
 length = 0.1
 tracks/0/type = "value"
@@ -244,7 +244,7 @@ tracks/0/keys = {
 "values": [ExtResource("18_2kgkq")]
 }
 
-[sub_resource type="Animation" id="Animation_t0wuc"]
+[sub_resource type="Animation" id="Animation_qblaf"]
 resource_name = "up"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -259,19 +259,19 @@ tracks/0/keys = {
 "values": [ExtResource("17_gpad0")]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2xq5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_01ty2"]
 _data = {
-&"RESET": SubResource("Animation_iuvti"),
-&"chase_down": SubResource("Animation_smg1s"),
-&"chase_left": SubResource("Animation_gtcpl"),
-&"chase_right": SubResource("Animation_xyflq"),
-&"chase_up": SubResource("Animation_ciu56"),
-&"down": SubResource("Animation_kqhdh"),
-&"idle": SubResource("Animation_3rnpg"),
-&"left": SubResource("Animation_x2xq5"),
-&"right": SubResource("Animation_kqywf"),
-&"stun": SubResource("Animation_6qeof"),
-&"up": SubResource("Animation_t0wuc")
+&"RESET": SubResource("Animation_wbsly"),
+&"chase_down": SubResource("Animation_4abhl"),
+&"chase_left": SubResource("Animation_q3kd2"),
+&"chase_right": SubResource("Animation_y2j7d"),
+&"chase_up": SubResource("Animation_iti3k"),
+&"down": SubResource("Animation_b41ya"),
+&"idle": SubResource("Animation_syfkj"),
+&"left": SubResource("Animation_w16l7"),
+&"right": SubResource("Animation_eint6"),
+&"stun": SubResource("Animation_rqe5a"),
+&"up": SubResource("Animation_qblaf")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4jf8m"]
@@ -364,6 +364,7 @@ script = ExtResource("1_mjogr")
 hp = 4
 raycast_length = 400.0
 enemy_range = 400.0
+enemy_vp_drop = 3
 weapon = NodePath("WeaponPosition/BowWeapon")
 
 [node name="HitBox" parent="." instance=ExtResource("2_v4qv1")]
@@ -371,14 +372,14 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 scale = Vector2(0.64, 0.64)
-shape = SubResource("CircleShape2D_quokb")
+shape = SubResource("CircleShape2D_sgk2t")
 debug_color = Color(0.997101, 0, 0.173241, 0.42)
 
 [node name="HurtBox" parent="." instance=ExtResource("3_5yg8o")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(0.64, 0.64)
-shape = SubResource("CircleShape2D_quokb")
+shape = SubResource("CircleShape2D_sgk2t")
 debug_color = Color(0.817399, 0.4054, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -396,7 +397,7 @@ debug_color = Color(0.961891, 0, 0.507744, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)
 scale = Vector2(0.64, 0.64)
-shape = SubResource("RectangleShape2D_quokb")
+shape = SubResource("RectangleShape2D_i5pso")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("5_gige0")
@@ -438,7 +439,7 @@ hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DestroyEffectSprite"]
 libraries = {
-&"": SubResource("AnimationLibrary_t0wuc")
+&"": SubResource("AnimationLibrary_t60p4")
 }
 
 [node name="VisionArea" parent="." instance=ExtResource("13_1rsc5")]
@@ -448,7 +449,7 @@ polygon = PackedVector2Array(16, 0, -16, 0, -384, -384, 384, -384)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_x2xq5")
+&"": SubResource("AnimationLibrary_01ty2")
 }
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

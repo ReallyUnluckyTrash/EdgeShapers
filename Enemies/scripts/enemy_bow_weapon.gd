@@ -38,13 +38,10 @@ func create_arrow()->void:
 	#new_arrow.shot.connect()
 	#new_arrow.queue_freed.connect()
 	
-	var arrow_direction:Vector2 = enemy.direction
-	if arrow_direction == Vector2.ZERO:
-		arrow_direction = enemy.cardinal_direction
-	new_arrow.setup_direction(arrow_direction)
-	
 	var shoot_direction:Vector2 = enemy.global_position.direction_to(player.global_position)
 	
 	new_arrow.global_position = enemy.weapon_position.global_position
 	new_arrow.shoot(shoot_direction)
+	var arrow_direction:Vector2 = enemy.cardinal_direction
+	new_arrow.setup_direction(arrow_direction)
 	pass

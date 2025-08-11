@@ -101,6 +101,7 @@ _data = {
 }
 
 [node name="Arrow" type="Node2D"]
+z_index = 2
 script = ExtResource("1_e2etb")
 max_speed = 600.0
 

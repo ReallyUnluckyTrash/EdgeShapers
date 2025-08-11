@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradePlayerEP" load_steps=2 format=3 uid="uid://ckvdcoxn3or4x"]
+
+[ext_resource type="Script" uid="uid://2g08i4bbcwcc" path="res://Upgrades/Scripts/upgrade_player_ep.gd" id="1_ys8c5"]
+
+[resource]
+script = ExtResource("1_ys8c5")
+additional_ep = 1
+upgrade_name = "EP Upgrade (Common)"
+upgrade_description = "Increases Max EP by 1."
+rarity = 0
+value = 20
+metadata/_custom_type_script = "uid://2g08i4bbcwcc"

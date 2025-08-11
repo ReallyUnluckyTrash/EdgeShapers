@@ -40,7 +40,6 @@ func _ready():
 	equip_weapon(weapon_scenes[0])
 	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
 	activate_upgrades_player()
-	
 	pass
 
 func _process(_delta):
@@ -153,6 +152,7 @@ func clear_upgrades_player():
 	ep = 10.0
 	max_ep = 10.0
 	ep_recharge_count = 1.0
+	ep_recharge_timer.wait_time = 10.0
 	pass
 
 ##function to test if modular system works, delete later and replace by using an inventory system

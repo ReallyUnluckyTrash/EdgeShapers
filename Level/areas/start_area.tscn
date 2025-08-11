@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_dpocp"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/player_spawn.tscn" id="4_nr1xn"]
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="4_vm0tx"]
-[ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="5_dpocp"]
+[ext_resource type="Script" uid="uid://cx76laq8uf01r" path="res://Level/dungeon_dive_transition.gd" id="5_dpocp"]
 
 [node name="StartArea" type="Node2D"]
 script = ExtResource("1_vm0tx")
@@ -18,15 +18,10 @@ tile_map_data = PackedByteArray("AAD+//7/BAAAAAEAAAD+/wQABAADAAEAAAAEAP7/BAACAAE
 tile_set = ExtResource("2_dpocp")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("4_nr1xn")]
-position = Vector2(96, 280)
+position = Vector2(96, 352)
 
 [node name="DungeonDiveTransition" parent="." instance=ExtResource("4_vm0tx")]
 position = Vector2(96, -64)
+script = ExtResource("5_dpocp")
 level = "uid://sr47jxr80pkj"
-target_transition_area = ""
-size = 1
-side = 2
-snap_to_grid = true
-
-[node name="ShopStatue" parent="." instance=ExtResource("5_dpocp")]
-position = Vector2(96, 96)
+boss_room = "uid://sr47jxr80pkj"

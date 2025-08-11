@@ -10,6 +10,7 @@ size = Vector2(64, 64)
 size = Vector2(96, 96)
 
 [node name="ShopStatue" type="Node2D"]
+z_index = 10
 script = ExtResource("1_fitv5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

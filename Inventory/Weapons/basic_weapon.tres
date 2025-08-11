@@ -13,7 +13,8 @@ region = Rect2(0, 0, 32, 32)
 script = ExtResource("2_arm8y")
 name = "Basic Sword"
 type = "Weapon"
-description = "A basic sword. Reliable for a beginner.
+description = "Melee weapon. Deals 1 damage.
+
 "
 texture = SubResource("AtlasTexture_arm8y")
 price = 10

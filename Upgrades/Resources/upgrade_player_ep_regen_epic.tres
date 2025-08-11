@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradePlayerEPRechargeCount" load_steps=2 format=3 uid="uid://di2q4hkgdkbkt"]
+
+[ext_resource type="Script" uid="uid://bd2xcjrnd08i8" path="res://Upgrades/Scripts/upgrade_ep_recharge_count.gd" id="1_30x2i"]
+
+[resource]
+script = ExtResource("1_30x2i")
+additional_ep_recharge_count = 5
+upgrade_name = "EP Regen Upgrade (Rare)"
+upgrade_description = "Increases the amount of EP regained by 5."
+rarity = 1
+value = 70
+metadata/_custom_type_script = "uid://bd2xcjrnd08i8"

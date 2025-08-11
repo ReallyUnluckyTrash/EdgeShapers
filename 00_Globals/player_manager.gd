@@ -10,8 +10,8 @@ const INVENTORY_WEAPON_DATA:= preload("res://Inventory/Resources/player_weapon_i
 
 var player : Player
 var player_spawned:bool = false
-var vertex_points:int = 999
-
+var vertex_points:int = 100
+var current_floor:int = 1 :set = set_floor
 var pause_menu_disabled:bool = false
 
 static var equipped_weapon:ItemData = null
@@ -101,7 +101,15 @@ func set_as_parent(_parent: Node2D)->void:
 	_parent.add_child(player)
 
 func unparent_player(_parent: Node2D)->void:
-	_parent.remove_child(player)
+	if not player or not is_instance_valid(player):
+		return
+	
+	var actual_parent = player.get_parent()
+	
+	if actual_parent == _parent:
+		_parent.remove_child(player)
+		if not player.get_parent():
+			add_child(player)
 
 func reset_player()->void:
 	player.clear_upgrades_player()
@@ -113,7 +121,13 @@ func reset_player()->void:
 	#INVENTORY_WEAPON_DATA.add_item(BASIC_WEAPON, 1)
 	#set_equipped_weapon(BASIC_WEAPON.scene, BASIC_WEAPON)
 	player.state_machine.change_state(player.state_machine.states[0])
+	vertex_points = 100
+	PlayerHud.update_currency_label(vertex_points)
 	
 func play_audio(_audio: AudioStream)->void:
 	player.audio_stream_player_2d.stream = _audio
 	player.audio_stream_player_2d.play()
+
+func set_floor(_new_floor:int)->void:
+	current_floor = _new_floor
+	PlayerHud.update_floor_label(_new_floor)

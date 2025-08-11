@@ -28,6 +28,7 @@ func load_new_level(
 	_position_offset: Vector2
 ) -> void:
 	
+	print("LevelManager::Loading new level!")
 	get_tree().paused = true
 	target_transition = _target_transition
 	position_offset = _position_offset

@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://bt8tspkaf168x" path="res://Upgrades/Resources/upgrade_player_health_common.tres" id="3_tbi41"]
 [ext_resource type="Resource" uid="uid://coodcyxmcmmc" path="res://Upgrades/Resources/upgrade_player_health_epic.tres" id="4_m6p8q"]
 [ext_resource type="Resource" uid="uid://td6f62jhh778" path="res://Upgrades/Resources/upgrade_player_health_rare.tres" id="5_dyy26"]
-[ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_common.tres" id="7_rlwbf"]
+[ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_epic.tres" id="7_rlwbf"]
 
 [resource]
 script = ExtResource("1_24xsy")

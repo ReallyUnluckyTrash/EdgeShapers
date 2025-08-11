@@ -12,7 +12,7 @@ script = ExtResource("1_p0ouu")
 knockback_force = 100.0
 weapon_name = "Boomerang"
 damage = 2
-ep_cost = 1.0
+ep_cost = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

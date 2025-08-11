@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeWeaponDamage" load_steps=2 format=3 uid="uid://bi1gkrkyt4phj"]
+
+[ext_resource type="Script" uid="uid://bd3gpc4wflksc" path="res://Upgrades/Scripts/upgrade_weapon_damage.gd" id="1_jo786"]
+
+[resource]
+script = ExtResource("1_jo786")
+additional_damage = 3
+upgrade_name = "Damage Upgrade (Epic)"
+upgrade_description = "Increases damage dealt by 3."
+rarity = 2
+value = 200
+metadata/_custom_type_script = "uid://bd3gpc4wflksc"

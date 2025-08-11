@@ -3,10 +3,12 @@ extends CanvasLayer
 @onready var button_save: Button = %Button_Save
 @onready var button_load: Button = %Button_Load
 
+const ERROR = preload("res://Interactables/Shop Statue/error.wav")
+
+
 @onready var item_description: Label = %ItemDescription
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = %AudioStreamPlayer2D
 @onready var menu_tabs: TabContainer = %MenuTabs
-
 @onready var weapon_inv_grid: InventoryUI = %WeaponInvGrid
 @onready var upgrade_details_panel: UpgradeDetailsPanel = %UpgradeDetailsPanel
 
@@ -30,6 +32,7 @@ func default_grab_focus():
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if PlayerManager.pause_menu_disabled == true:
+			play_audio(ERROR)
 			return
 		if is_paused == false:
 			show_pause_menu()

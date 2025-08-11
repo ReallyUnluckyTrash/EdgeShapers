@@ -7,6 +7,7 @@ func _ready() -> void:
 	PlayerHud.visible = false
 	new_game.grab_focus()
 	PlayerManager.pause_menu_disabled = true
+	LevelManager.level_load_started.connect(_free_level)
 	
 
 func _on_new_game_pressed() -> void:
@@ -18,3 +19,7 @@ func _on_new_game_pressed() -> void:
 	await get_tree().process_frame
 	PlayerManager.reset_player()
 	pass # Replace with function body.
+
+func _free_level()->void:
+	PlayerManager.unparent_player(self)
+	queue_free()

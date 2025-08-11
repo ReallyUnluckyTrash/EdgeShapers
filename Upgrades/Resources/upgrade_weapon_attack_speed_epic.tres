@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeWeaponAttackSpeed" load_steps=2 format=3 uid="uid://mxyysa1p7ypx"]
+
+[ext_resource type="Script" uid="uid://cej02gx1uig6r" path="res://Upgrades/Scripts/upgrade_weapon_attack_speed.gd" id="1_2388j"]
+
+[resource]
+script = ExtResource("1_2388j")
+additional_attack_speed = 0.3
+minimum_attack_speed = 0.1
+upgrade_name = "Attack Speed Upgrade"
+upgrade_description = "Increases attack speed by 0.3. "
+rarity = 2
+value = 140
+metadata/_custom_type_script = "uid://cej02gx1uig6r"

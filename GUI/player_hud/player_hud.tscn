@@ -384,4 +384,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_sysqg")
 }
 
+[node name="FloorLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 44
+text = "Current Floor: 1"
+
 [connection signal="pressed" from="Control/GameOver/VBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]

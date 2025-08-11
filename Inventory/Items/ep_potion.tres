@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://bojmh4s30rv6t"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Inventory/Items/Item Effects/item_effect.gd" id="1_185eq"]
+[ext_resource type="Script" uid="uid://bkx5jcg4mq5gr" path="res://Inventory/Items/Item Effects/item_effect_heal_ep.gd" id="2_c0vnm"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_rucr1"]
+[ext_resource type="Texture2D" uid="uid://dgb20e1dexiuq" path="res://Inventory/Items/Assets/miscellaneous.png" id="4_n7s8a"]
+
+[sub_resource type="Resource" id="Resource_2s5rm"]
+script = ExtResource("2_c0vnm")
+heal_amount = 2
+use_description = "Heals 2 EP"
+metadata/_custom_type_script = "uid://bkx5jcg4mq5gr"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcgwe"]
+atlas = ExtResource("4_n7s8a")
+region = Rect2(48, 208, 16, 16)
+
+[resource]
+script = ExtResource("2_rucr1")
+name = "EP Potion"
+type = "Item"
+description = "Heals 2 EP. Did you know EP stands for Edge Points? Me neither.
+"
+texture = SubResource("AtlasTexture_jcgwe")
+price = 5
+effects = Array[ExtResource("1_185eq")]([SubResource("Resource_2s5rm")])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

@@ -8,5 +8,5 @@ additional_hp = 1
 upgrade_name = "Health Upgrade (Common)"
 upgrade_description = "Increases Max HP by 1."
 rarity = 0
-value = 10
+value = 20
 metadata/_custom_type_script = "uid://v0m6bl8jokny"

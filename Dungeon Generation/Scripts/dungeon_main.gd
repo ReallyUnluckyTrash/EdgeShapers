@@ -36,9 +36,12 @@ func initialize_components():
 	
 	object_spawner.setup(self, dungeon_config)
 	
+	LevelManager.level_load_started.connect(_free_level)
+	
 
 
 func generate_dungeon():
+	print("Generating dungeon!")
 	# Step 1: Start with entire dungeon area (root node)
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(map_width, map_height))
 	
@@ -68,7 +71,7 @@ func _draw():
 		return
 	
 	# Draw partition boundaries (for debugging)
-	_draw_partitions(root_node)
+	#_draw_partitions(root_node)
 
 func _draw_partitions(node: Branch):
 	# Draw outline of current partition
@@ -134,12 +137,15 @@ func _set_camera_bounds() -> Array[Vector2]:
 #adjust!
 func _on_floor_transition_regenerate_dungeon() -> void:
 	print("regenerate the floor!")
-	#get_tree().paused = true
 	await SceneTransition.fade_out()
 	
 	UpgradeChoiceMenu.show_menu()
 	
 	await SceneTransition.fade_in()
 	generate_dungeon()
-	#get_tree().paused = false
 	pass
+
+func _free_level()->void:
+	PlayerManager.unparent_player(self)
+	LevelManager.reset_tilemap_bounds()
+	queue_free()

@@ -161,11 +161,11 @@ radius = 67.0
 
 [node name="Slash Weapon" type="Node2D"]
 script = ExtResource("1_ha1pn")
-attack_speed = 0.7
 knockback_force = 1000.0
 weapon_name = "black_sword"
 damage = 10
 ep_cost = 5.0
+attack_speed = 0.7
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]

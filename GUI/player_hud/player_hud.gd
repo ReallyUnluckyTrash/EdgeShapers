@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var animation_player: AnimationPlayer = $Control/GameOver/AnimationPlayer
 @onready var game_over: Control = $Control/GameOver
 @onready var title_button: Button = $Control/GameOver/VBoxContainer/TitleButton
+@onready var floor_label: Label = $Control/FloorLabel
 
 func _ready() -> void:
 	update_currency_label(PlayerManager.vertex_points)
@@ -28,6 +29,12 @@ func update_ep(_ep:int, _max_ep:int) -> void:
 	edge_power_bar.value = _ep
 	edge_power_label.text = str(_ep) + "/" + str(_max_ep)
 	pass
+
+func update_floor_label(_current_floor:int)->void:
+	if _current_floor > 4:
+		floor_label.text = "Current Floor : BOSS"  
+	else:
+		floor_label.text = "Current Floor :" + str(_current_floor) 
 
 func update_equipped_texture(_new_texture)->void:
 	equipped_item_texture.texture = _new_texture

@@ -122,9 +122,9 @@ _data = {
 
 [node name="Spear" type="Node2D"]
 script = ExtResource("1_5553v")
-attack_speed = 1.5
 knockback_force = 100.0
 weapon_name = "basic_spear"
+attack_speed = 1.5
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]

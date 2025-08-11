@@ -13,9 +13,11 @@ region = Rect2(0, 0, 32, 0)
 script = ExtResource("2_6t6qw")
 name = "Boomerang"
 type = "Weapon"
-description = "Boomerang! Throws a boomerang that deals damage and returns to you."
+description = "Ranged Weapon. Costs 2 EP to use. Deals 2 damage. (Not affected by attack speed)
+
+"
 texture = SubResource("AtlasTexture_41p4g")
-price = 20
+price = 70
 scene = ExtResource("2_idxjm")
 effects = Array[ExtResource("1_ihd6a")]([])
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

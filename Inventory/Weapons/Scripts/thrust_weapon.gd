@@ -1,6 +1,5 @@
 class_name ThrustWeapon extends Weapon
 
-@export var attack_speed: float
 @export var knockback_force: float
 
 @onready var hurt_box: HurtBox = $HurtBoxPosition/HurtBox
@@ -49,3 +48,8 @@ func setup_hurt_box():
 func set_damage(new_damage:int):
 		damage = new_damage
 		setup_hurt_box()
+		
+func set_attack_speed(_new_attack_speed:float)->void:
+	attack_speed = _new_attack_speed
+	if animation_player:
+		animation_player.speed_scale = attack_speed

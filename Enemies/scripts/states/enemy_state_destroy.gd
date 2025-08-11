@@ -42,6 +42,8 @@ func _on_enemy_destroyed(attack:Attack) -> void:
 	pass
 
 func _on_animation_finished(_a : String)->void:
+	PlayerManager.vertex_points += enemy.enemy_vp_drop
+	PlayerHud.update_currency_label(PlayerManager.vertex_points)
 	enemy.queue_free()
 	pass
 

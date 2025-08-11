@@ -536,6 +536,7 @@ script = ExtResource("1_dyyud")
 hp = 20
 raycast_length = 320.0
 enemy_range = 192.0
+enemy_vp_drop = 100
 weapon = NodePath("WeaponPosition/Slash Weapon")
 
 [node name="HitBox" parent="." instance=ExtResource("2_e3gjf")]
@@ -633,10 +634,10 @@ weapon_position_x = 64
 [node name="Slash Weapon" type="Node2D" parent="WeaponPosition"]
 position = Vector2(0, -16)
 script = ExtResource("20_34yy6")
-attack_speed = 0.7
 knockback_force = 1000.0
 weapon_name = "black_sword"
 damage = 5
+attack_speed = 0.7
 metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="WeaponPosition/Slash Weapon"]
