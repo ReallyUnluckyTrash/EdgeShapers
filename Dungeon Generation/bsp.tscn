@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sr47jxr80pkj"]
+[gd_scene load_steps=20 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://difd6gjudrjrf" path="res://Dungeon Generation/Scripts/dungeon_main.gd" id="1_67b3u"]
 [ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="3_67b3u"]
@@ -9,10 +9,15 @@
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="5_o6v26"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="6_d3gie"]
 [ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/1_Domain/tri_slime/tri_slime.tscn" id="7_ipsl2"]
+[ext_resource type="Resource" uid="uid://bojmh4s30rv6t" path="res://Inventory/Items/ep_potion.tres" id="7_udhsc"]
+[ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Inventory/Items/gem_potion.tres" id="8_dipqf"]
 [ext_resource type="PackedScene" uid="uid://dif8veydc7swa" path="res://Enemies/1_Domain/tri_bow/tri_bow.tscn" id="8_s47vf"]
+[ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Inventory/Weapons/Resources/bow.tres" id="9_fa8sl"]
 [ext_resource type="PackedScene" uid="uid://cl4twjc2b28nf" path="res://Enemies/1_Domain/tri_spear/scenes/tri_spear.tscn" id="9_q557t"]
+[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Inventory/Weapons/Resources/boomerang.tres" id="10_mjhrc"]
 [ext_resource type="PackedScene" uid="uid://dv85qtp6vhi7d" path="res://Enemies/1_Domain/tri_sword/tri_sword.tscn" id="10_tbdqo"]
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
+[ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="11_s7sig"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="12_ja24o"]
 
 [node name="BSP" type="Node2D"]
@@ -21,7 +26,7 @@ script = ExtResource("1_67b3u")
 
 [node name="DungeonConfig" type="Node" parent="."]
 script = ExtResource("4_3v8vx")
-chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("6_d3gie")])
+chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("6_d3gie"), ExtResource("7_udhsc"), ExtResource("8_dipqf"), ExtResource("9_fa8sl"), ExtResource("10_mjhrc"), ExtResource("11_s7sig")])
 enemy_level_1_scenes = Array[PackedScene]([ExtResource("7_ipsl2")])
 enemy_level_2_scenes = Array[PackedScene]([ExtResource("9_q557t"), ExtResource("10_tbdqo")])
 enemy_level_3_scenes = Array[PackedScene]([ExtResource("8_s47vf")])

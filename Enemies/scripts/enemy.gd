@@ -12,6 +12,8 @@ var player: Player
 var invulnerable : bool = false
 var level : int = 1
 
+const ENEMY_DESTROY = preload("res://General/Sound Effects/hit_01.wav")
+const ENEMY_HIT = preload("res://General/Sound Effects/hit_00.wav")
 #variable for the states to keep track of the last attack
 var last_attack:Attack = null
 
@@ -45,8 +47,10 @@ func _take_damage(attack:Attack) -> void:
 	print(hp)
 	if hp > 0:
 		enemy_damaged.emit(attack)
+		PlayerManager.play_audio(ENEMY_HIT)
 	else:
 		enemy_destroyed.emit(attack)
+		PlayerManager.play_audio(ENEMY_DESTROY)
 	pass
 
 func update_animation(anim_name : String):

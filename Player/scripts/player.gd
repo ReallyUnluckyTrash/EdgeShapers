@@ -1,6 +1,5 @@
 class_name Player extends Entity
 
-
 @onready var state_machine: PlayerStateMachine = $StateMachine
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -8,11 +7,12 @@ class_name Player extends Entity
 @onready var weapon_position: WeaponPosition = $WeaponPosition
 @onready var ep_recharge_timer: Timer = $"EP Recharge Timer"
 
+const HIT_PLAYER = preload("res://General/Sound Effects/hit_player.wav")
 signal player_damaged(attack:Attack)
 
 var invulnerable: bool = false
-var hp: float = 6.0
-var max_hp: float = 6.0
+var hp: float = 10.0
+var max_hp: float = 10.0
 
 var ep: float = 10.0
 var max_ep:float = 10.0
@@ -39,7 +39,7 @@ func _ready():
 	#temporary starting weapon
 	equip_weapon(weapon_scenes[0])
 	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
-	activate_upgrades_player()
+	#activate_upgrades_player()
 	pass
 
 func _process(_delta):
@@ -63,6 +63,7 @@ func _take_damage(attack:Attack)-> void:
 	if invulnerable == true:
 		return
 	if hp > 0:
+		PlayerManager.play_audio(HIT_PLAYER)
 		update_hp(-attack.damage)	
 		player_damaged.emit(attack)
 	pass
@@ -146,8 +147,8 @@ func activate_upgrades_player():
 
 #might just not allow selling of buffs to make it less complicated
 func clear_upgrades_player():
-	hp = 6.0
-	max_hp = 6.0
+	hp = 10.0
+	max_hp = 10.0
 
 	ep = 10.0
 	max_ep = 10.0

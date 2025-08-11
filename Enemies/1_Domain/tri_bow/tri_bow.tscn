@@ -423,6 +423,7 @@ script = ExtResource("10_v4qv1")
 attack = NodePath("../Attack")
 chase_speed = 100.0
 vision_area = NodePath("../../VisionArea")
+attack_cooldown_duration = 1.0
 next_state = NodePath("../Wander")
 
 [node name="Attack" type="Node" parent="EnemyStateMachine"]

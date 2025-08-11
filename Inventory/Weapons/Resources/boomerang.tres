@@ -14,10 +14,9 @@ script = ExtResource("2_6t6qw")
 name = "Boomerang"
 type = "Weapon"
 description = "Ranged Weapon. Costs 2 EP to use. Deals 2 damage. (Not affected by attack speed)
-
 "
 texture = SubResource("AtlasTexture_41p4g")
-price = 70
+price = 50
 scene = ExtResource("2_idxjm")
 effects = Array[ExtResource("1_ihd6a")]([])
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

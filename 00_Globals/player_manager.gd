@@ -2,15 +2,16 @@ extends Node
 
 const PLAYER = preload("res://Player/player.tscn")
 const INVENTORY_ITEM_DATA:InventoryData = preload("res://Inventory/Resources/player_item_inv.tres")
-const PLAYER_EQUIPPED_DATA:InventoryData = preload("res://Inventory/Resources/player_equipped.tres")
 #const INVENTORY_WEAPON_DATA:InventoryData = preload("res://Inventory/Resources/player_weapon_inv.tres")
 const PLAYER_UPGRADE_LIST = preload("res://Inventory/Resources/player_upgrade_list.tres")
 const BASIC_WEAPON = preload("res://Inventory/Weapons/basic_weapon.tres")
-const INVENTORY_WEAPON_DATA:= preload("res://Inventory/Resources/player_weapon_inv_3.tres")
+#const INVENTORY_WEAPON_DATA:= preload("res://Inventory/Resources/player_weapon_inv.tres")
+const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped_2.tres")
+const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv_3.tres")
 
 var player : Player
 var player_spawned:bool = false
-var vertex_points:int = 100
+var vertex_points:int = 30
 var current_floor:int = 1 :set = set_floor
 var pause_menu_disabled:bool = false
 
@@ -108,8 +109,6 @@ func unparent_player(_parent: Node2D)->void:
 	
 	if actual_parent == _parent:
 		_parent.remove_child(player)
-		if not player.get_parent():
-			add_child(player)
 
 func reset_player()->void:
 	player.clear_upgrades_player()
@@ -121,8 +120,11 @@ func reset_player()->void:
 	#INVENTORY_WEAPON_DATA.add_item(BASIC_WEAPON, 1)
 	#set_equipped_weapon(BASIC_WEAPON.scene, BASIC_WEAPON)
 	player.state_machine.change_state(player.state_machine.states[0])
-	vertex_points = 100
+	vertex_points = 30
 	PlayerHud.update_currency_label(vertex_points)
+	
+	player.equip_weapon(player.weapon_scenes[0])
+	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
 	
 func play_audio(_audio: AudioStream)->void:
 	player.audio_stream_player_2d.stream = _audio

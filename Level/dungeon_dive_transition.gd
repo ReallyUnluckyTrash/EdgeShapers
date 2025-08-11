@@ -32,7 +32,7 @@ func _ready() -> void:
 		return
 	
 	monitoring = false
-	_place_player()
+	#_place_player()
 	
 	await LevelManager.level_loaded
 	
@@ -41,14 +41,12 @@ func _ready() -> void:
 	pass
 
 func _player_entered(_player: Node2D) -> void:
-	if _player is Player:
-		if PlayerManager.current_floor < 5:
-			LevelManager.load_new_level(level, target_transition_area, get_offset())
-			return
-		elif PlayerManager.current_floor == 5:
-			LevelManager.load_new_level(boss_room, target_transition_area, get_offset())
-			PlayerManager.pause_menu_disabled = true
-			return
+	if PlayerManager.current_floor < 5:
+		LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
+	elif PlayerManager.current_floor == 5:
+		LevelManager.load_new_level(boss_room, target_transition_area, Vector2.ZERO)
+		PlayerManager.current_floor += 1
+		PlayerManager.pause_menu_disabled = true
 	pass
 
 func _place_player() -> void:

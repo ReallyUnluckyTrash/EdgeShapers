@@ -46,6 +46,8 @@ func show_pause_menu() ->void:
 	visible = true
 	is_paused = true
 	shown.emit()
+	menu_tabs.current_tab = 0
+	
 
 func hide_pause_menu() ->void:
 	get_tree().paused = false

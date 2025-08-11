@@ -25,6 +25,7 @@ const SHOP_UPGRADES = preload("res://GUI/shop_menu/Resources/shop_upgrades.tres"
 @onready var item_name: Label = %ItemName
 @onready var item_description: Label = %ItemDescription
 @onready var item_price: Label = %ItemPrice
+@onready var close_button: Button = %CloseButton
 
 @onready var error_animation_player: AnimationPlayer = %ErrorAnimationPlayer
 
@@ -59,7 +60,8 @@ func show_menu()->void:
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
-	shop_items_container.get_child(0).grab_focus()
+	#shop_items_container.get_child(0).grab_focus()
+	close_button.grab_focus()
 
 func hide_menu()->void:
 	visible = false
@@ -106,6 +108,7 @@ func populate_sell_list(sell_container:GridContainer, player_inventory:Inventory
 		
 		#connect to signals
 		sell_item_button.pressed.connect(sell_item.bind(i, player_inventory))
+		#sell_item_button.call_deferred("grab_focus")
 		pass
 	
 	
@@ -188,8 +191,10 @@ func sell_item(index:int, player_inventory:InventoryData)->void:
 		else:
 			player_inventory.remove_item_index(index)
 		
+		
 		#update currency counter
 		update_currency()
+		close_button.grab_focus()
 		
 		#then update sell list to match the inventory
 		populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)

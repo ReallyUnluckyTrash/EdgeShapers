@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvl7urclw8qrw"]
+[gd_scene load_steps=23 format=3 uid="uid://bvl7urclw8qrw"]
 
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_b3iil"]
 [ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="1_mswg8"]
@@ -7,10 +7,13 @@
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_cxlwr"]
 [ext_resource type="PackedScene" uid="uid://cc1s6jwkoaubf" path="res://GUI/shop_menu/shop_item_button.tscn" id="3_dt4po"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="4_dj7vu"]
-[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="4_lv53b"]
 [ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="5_3vfd8"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="6_3j3ig"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="7_1ared"]
+[ext_resource type="Resource" uid="uid://bojmh4s30rv6t" path="res://Inventory/Items/ep_potion.tres" id="7_s5x05"]
+[ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Inventory/Items/gem_potion.tres" id="8_8xdoh"]
+[ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Inventory/Weapons/Resources/bow.tres" id="9_flq86"]
+[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Inventory/Weapons/Resources/boomerang.tres" id="10_diegi"]
 [ext_resource type="Script" uid="uid://l8ev67yilsm8" path="res://GUI/shop_menu/Scripts/shop_weapon_upgrade_tab.gd" id="12_3vfd8"]
 [ext_resource type="PackedScene" uid="uid://c7o73qt7ew7ym" path="res://GUI/shop_menu/shop_upgrade_button.tscn" id="12_cxlwr"]
 [ext_resource type="PackedScene" uid="uid://bp2r3y2ey3b8s" path="res://Inventory/Scenes/upgrade_details_panel.tscn" id="13_dj7vu"]
@@ -18,7 +21,7 @@
 
 [sub_resource type="Resource" id="Resource_osqqv"]
 script = ExtResource("2_osqqv")
-items = Array[ExtResource("3_cxlwr")]([ExtResource("4_dj7vu"), ExtResource("5_3vfd8"), ExtResource("6_3j3ig"), ExtResource("7_1ared")])
+items = Array[ExtResource("3_cxlwr")]([ExtResource("4_dj7vu"), ExtResource("5_3vfd8"), ExtResource("6_3j3ig"), ExtResource("7_1ared"), ExtResource("7_s5x05"), ExtResource("8_8xdoh"), ExtResource("9_flq86"), ExtResource("10_diegi")])
 metadata/_custom_type_script = "uid://h3il8b3rctws"
 
 [sub_resource type="Animation" id="Animation_t0q3b"]
@@ -81,10 +84,6 @@ _data = {
 &"RESET": SubResource("Animation_t0q3b"),
 &"not_enough_money": SubResource("Animation_lv53b")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t0q3b"]
-atlas = ExtResource("4_lv53b")
-region = Rect2(0, 0, 32, 32)
 
 [node name="ShopMenu" type="CanvasLayer"]
 process_mode = 3
@@ -360,7 +359,6 @@ offset_left = 28.0
 offset_top = 26.0
 offset_right = 92.0
 offset_bottom = 90.0
-texture = SubResource("AtlasTexture_t0q3b")
 expand_mode = 2
 stretch_mode = 1
 
@@ -371,7 +369,6 @@ offset_left = 10.0
 offset_top = 119.0
 offset_right = 453.0
 offset_bottom = 171.0
-text = "Item Name"
 autowrap_mode = 2
 clip_text = true
 
@@ -382,8 +379,6 @@ offset_left = 13.0
 offset_top = 170.0
 offset_right = 457.0
 offset_bottom = 422.0
-text = "Item Description
-This sword is the greatest sword!!"
 autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 2
@@ -395,7 +390,6 @@ offset_left = 274.0
 offset_top = 12.0
 offset_right = 502.0
 offset_bottom = 52.0
-text = "Price = 999"
 
 [node name="WeaponUpgrades" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
 unique_name_in_owner = true
@@ -466,6 +460,7 @@ metadata/_tab_index = 2
 layout_mode = 0
 offset_right = 459.0
 offset_bottom = 432.0
+follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer"]
 layout_mode = 2

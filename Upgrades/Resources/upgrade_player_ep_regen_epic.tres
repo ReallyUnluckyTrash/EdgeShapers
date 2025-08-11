@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_30x2i")
 additional_ep_recharge_count = 5
-upgrade_name = "EP Regen Upgrade (Rare)"
+upgrade_name = "EP Regen Upgrade (Epic)"
 upgrade_description = "Increases the amount of EP regained by 5."
-rarity = 1
+rarity = 2
 value = 70
 metadata/_custom_type_script = "uid://bd2xcjrnd08i8"

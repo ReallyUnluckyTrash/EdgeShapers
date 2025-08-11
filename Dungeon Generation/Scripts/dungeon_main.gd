@@ -141,7 +141,7 @@ func _on_floor_transition_regenerate_dungeon() -> void:
 	
 	UpgradeChoiceMenu.show_menu()
 	
-	await SceneTransition.fade_in()
+	SceneTransition.fade_in()
 	generate_dungeon()
 	pass
 

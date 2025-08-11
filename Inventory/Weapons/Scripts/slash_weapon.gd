@@ -2,6 +2,8 @@ class_name SlashWeapon extends Weapon
 
 @export var knockback_force: float
 
+#const SWORD_SWOOSH = preload("res://General/Sound Effects/SwordSwoosh.wav")
+
 @onready var hurt_box_position: Node2D = %HurtBoxPosition
 @onready var hurt_box: HurtBox = $HurtBoxPosition/HurtBox
 
@@ -19,6 +21,7 @@ func attack():
 		return
 	is_attacking = true
 	animation_player.play("sword_animations/sword_swing")
+	#PlayerManager.play_audio(SWORD_SWOOSH)
 	pass
 
 func end_attack_immediately():

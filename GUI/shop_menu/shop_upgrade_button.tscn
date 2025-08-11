@@ -37,9 +37,8 @@ text = "999"
 
 [node name="Container" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = 74.0
 offset_top = 1.0
-offset_right = 356.0
+offset_right = 362.0
 offset_bottom = 73.0
 metadata/_edit_group_ = true
 

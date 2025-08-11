@@ -15,6 +15,7 @@ func add_item(item_data:ItemData, quantity:int):
 	new_slot.quantity = quantity
 	slots.append(new_slot)
 	new_slot.item_depleted.connect(on_item_depleted)
+	print("adding item")
 	pass
 
 #function to remove item in a specific index

@@ -40,7 +40,7 @@ func _ready() -> void:
 	pass
 
 func _player_entered(_player: Node2D) -> void:
-	LevelManager.load_new_level(level, target_transition_area, get_offset())
+	LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
 	pass
 
 func _place_player() -> void:

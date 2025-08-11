@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmw448jw2aj6b"]
+
+[ext_resource type="Script" uid="uid://cx76laq8uf01r" path="res://Level/dungeon_dive_transition.gd" id="1_isli0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwrix"]
+resource_local_to_scene = true
+size = Vector2(64, 64)
+
+[node name="DungeonDiveTransition" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_isli0")
+size = 1
+side = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_qwrix")
+debug_color = Color(0.829613, 0.00145798, 0.946117, 0.42)

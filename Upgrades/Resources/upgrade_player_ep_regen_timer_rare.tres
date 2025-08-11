@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_mf7k4")
-reduced_ep_recharge_timer_seconds = 0.1
+reduced_ep_recharge_timer_seconds = 2.0
 upgrade_name = "EP Regen Timer Upgrade"
-upgrade_description = "Reduces time taken for EP to regen by 0.1. (Does not go below 0.1)"
-rarity = 0
-value = 20
+upgrade_description = "Reduces time taken for EP to regen by 2 seconds."
+rarity = 1
+value = 40
 metadata/_custom_type_script = "uid://qu82k7v8ox74"

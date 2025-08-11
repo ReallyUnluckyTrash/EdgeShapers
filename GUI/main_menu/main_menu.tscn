@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8tv6m3lh7d7n"]
+[gd_scene load_steps=6 format=3 uid="uid://b8tv6m3lh7d7n"]
 
 [ext_resource type="Script" uid="uid://dltnjx07r5cck" path="res://GUI/main_menu/main_menu.gd" id="1_bqxyb"]
+[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://Art/font/MedodicaRegular.otf" id="2_w34ts"]
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="3_qic1p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx47s"]
 font_size = 64
@@ -29,7 +31,7 @@ cache/0/48/0/scale = 1.0
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bqxyb")
-hub_area_path = "uid://de04gxgaeg1xb"
+hub_area_path = "uid://dqf1ym18hdwla"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -74,18 +76,16 @@ theme_override_constants/separation = 16
 
 [node name="New Game" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontFile_vx47s")
+theme_override_fonts/font = ExtResource("2_w34ts")
 theme_override_font_sizes/font_size = 48
 text = "New Game
 "
 
-[node name="Continue" type="Button" parent="CanvasLayer/VBoxContainer"]
-visible = false
+[node name="Guide" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontFile_vx47s")
+theme_override_fonts/font = ExtResource("2_w34ts")
 theme_override_font_sizes/font_size = 48
-text = "Continue
-"
+text = "Guide"
 
 [node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer"]
 visible = false
@@ -95,4 +95,86 @@ theme_override_font_sizes/font_size = 48
 text = "Settings
 "
 
+[node name="GuideMenu" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(500, 700)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GuideMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.301961, 0.301961, 0.729412, 1)
+
+[node name="Container" type="PanelContainer" parent="CanvasLayer/GuideMenu"]
+custom_minimum_size = Vector2(500, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -349.0
+offset_right = 250.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_qic1p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/GuideMenu/Container"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_w34ts")
+bbcode_enabled = true
+text = "[font_size={45}]Tutorial[/font_size]
+[font_size={40}] To move around, use the
+arrow keys.
+To attack with your equipped weapon, press Z.
+Chests and Shop Statues can be interacted with using F.
+Press X to use your equipped item. (You cannot open the pause menu during a boss room.)
+Escape allows you to open the Pause Menu, where you can see your inventory and upgrade list.
+ [/font_size]
+
+
+"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 280.0
+offset_right = 51.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Close
+"
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Guide" to="." method="_on_guide_pressed"]
+[connection signal="pressed" from="CanvasLayer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/CloseButton" to="." method="_on_close_button_toggled"]

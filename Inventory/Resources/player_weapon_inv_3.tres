@@ -1,12 +1,8 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=13 format=3 uid="uid://bw8nrd4af2b26"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=5 format=3 uid="uid://bw8nrd4af2b26"]
 
 [ext_resource type="Script" uid="uid://btawgj7ojp0fq" path="res://Inventory/Scripts/inventory_data.gd" id="1_wjl6b"]
 [ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="2_y51es"]
 [ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="3_y8tqn"]
-[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Inventory/Weapons/Resources/boomerang.tres" id="4_r4ptb"]
-[ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Inventory/Weapons/Resources/bow.tres" id="5_0gl3q"]
-[ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Inventory/Weapons/black_sword.tres" id="6_p2w1p"]
-[ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Inventory/Weapons/basic_spear.tres" id="7_w3eii"]
 
 [sub_resource type="Resource" id="Resource_k7d1n"]
 script = ExtResource("2_y51es")
@@ -14,31 +10,7 @@ item_data = ExtResource("3_y8tqn")
 quantity = 1
 metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
 
-[sub_resource type="Resource" id="Resource_6yykn"]
-script = ExtResource("2_y51es")
-item_data = ExtResource("4_r4ptb")
-quantity = 1
-metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
-
-[sub_resource type="Resource" id="Resource_gba05"]
-script = ExtResource("2_y51es")
-item_data = ExtResource("5_0gl3q")
-quantity = 1
-metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
-
-[sub_resource type="Resource" id="Resource_wt2w7"]
-script = ExtResource("2_y51es")
-item_data = ExtResource("6_p2w1p")
-quantity = 1
-metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
-
-[sub_resource type="Resource" id="Resource_03lau"]
-script = ExtResource("2_y51es")
-item_data = ExtResource("7_w3eii")
-quantity = 1
-metadata/_custom_type_script = "uid://d2nsqx8eebtdr"
-
 [resource]
 script = ExtResource("1_wjl6b")
-slots = Array[ExtResource("2_y51es")]([SubResource("Resource_k7d1n"), SubResource("Resource_6yykn"), SubResource("Resource_gba05"), SubResource("Resource_wt2w7"), SubResource("Resource_03lau")])
+slots = Array[ExtResource("2_y51es")]([SubResource("Resource_k7d1n")])
 metadata/_custom_type_script = "uid://btawgj7ojp0fq"
