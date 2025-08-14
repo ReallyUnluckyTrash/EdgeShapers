@@ -121,10 +121,12 @@ func reset_player()->void:
 	#set_equipped_weapon(BASIC_WEAPON.scene, BASIC_WEAPON)
 	player.state_machine.change_state(player.state_machine.states[0])
 	vertex_points = 30
+	current_floor = 1
 	PlayerHud.update_currency_label(vertex_points)
 	
 	player.equip_weapon(player.weapon_scenes[0])
-	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
+	#equipped_weapon = INVENTORY_WEAPON_DATA.slots[0].item_data
+	
 	
 func play_audio(_audio: AudioStream)->void:
 	player.audio_stream_player_2d.stream = _audio

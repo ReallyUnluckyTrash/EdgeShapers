@@ -50,6 +50,7 @@ _data = {
 radius = 24.0
 
 [node name="Boomerang" type="Node2D"]
+z_index = 2
 script = ExtResource("1_135gh")
 catch_audio = ExtResource("2_xuol1")
 

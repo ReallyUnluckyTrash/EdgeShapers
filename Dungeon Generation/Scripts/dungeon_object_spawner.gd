@@ -66,8 +66,8 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 
 func _set_chest_items():
 	for chest in spawned_chests:
-		var chest_item = config.chest_items[randi_range(0,config.chest_items.size() - 1)]
-				
+		var chest_item = config.chest_items[randi_range(1,config.chest_items.size() - 1)]
+		
 		chest.item_data = chest_item
 		
 		if chest_item.type == "Weapon":

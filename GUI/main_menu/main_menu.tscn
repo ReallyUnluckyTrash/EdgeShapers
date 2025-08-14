@@ -31,7 +31,7 @@ cache/0/48/0/scale = 1.0
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bqxyb")
-hub_area_path = "uid://dqf1ym18hdwla"
+hub_area_path = "uid://de04gxgaeg1xb"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
