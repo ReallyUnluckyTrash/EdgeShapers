@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://btawgj7ojp0fq" path="res://Inventory/Scripts/inventory_data.gd" id="1_ofxq6"]
 [ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="2_ngmpd"]
-[ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Inventory/Items/potion.tres" id="3_3ih46"]
-[ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Inventory/Items/gem_potion.tres" id="4_rtu81"]
+[ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Items/Resources/potion.tres" id="3_3ih46"]
+[ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Items/Resources/gem_potion.tres" id="4_rtu81"]
 
 [sub_resource type="Resource" id="Resource_3ih46"]
 script = ExtResource("2_ngmpd")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://df0wnbcv7sr2c"]
+
+[ext_resource type="Script" uid="uid://xg4qxljy240i" path="res://Scripts (TBD)/dummy.gd" id="1_u4by5"]
+[ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="2_6rn64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmspm"]
+size = Vector2(133.5, 103.5)
+
+[node name="Dummy" type="Node2D"]
+script = ExtResource("1_u4by5")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="HitBox" parent="." instance=ExtResource("2_6rn64")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.25, -2.75)
+shape = SubResource("RectangleShape2D_xmspm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.25, -2.75)
+shape = SubResource("RectangleShape2D_xmspm")

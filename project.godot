@@ -24,7 +24,7 @@ SaveManager="*res://00_Globals/save_manager.gd"
 PlayerHud="*res://GUI/player_hud/player_hud.tscn"
 SceneTransition="*res://GUI/scene_transition/scene_transition.tscn"
 PauseMenu="*res://GUI/pause_menu/pause_menu.tscn"
-ShopMenu="*res://GUI/shop_menu/shop_menu.tscn"
+ShopMenu="*res://GUI/shop_menu/Scenes/shop_menu.tscn"
 UpgradeChoiceMenu="*res://GUI/upgrade_choice_menu/Scenes/upgrade_choice_menu.tscn"
 
 [display]

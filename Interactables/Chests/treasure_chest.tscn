@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byy0jbekhujkq" path="res://Interactables/Chests/treasure_chest.gd" id="1_j1g8j"]
 [ext_resource type="Texture2D" uid="uid://bds2p827wdic6" path="res://Interactables/Chests/treasure-chest.png" id="2_c50lr"]
-[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_c50lr"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Weapons/Assets/weaponicons.png" id="3_c50lr"]
 [ext_resource type="AudioStream" uid="uid://c8qjtu4v60kmb" path="res://Interactables/Chests/treasure-open.wav" id="4_c50lr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqd7n"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctxew2s72ss6"]
 
 [ext_resource type="Script" uid="uid://cyc3udalgbtxa" path="res://Inventory/Scripts/equipped_slot.gd" id="1_3c612"]
-[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Inventory/Weapons/weapons/sword animations/basic_sword.png" id="1_k5ds4"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Weapons/Assets/basic_sword.png" id="1_k5ds4"]
 
 [node name="EquippedSlot" type="Control"]
 custom_minimum_size = Vector2(64, 64)

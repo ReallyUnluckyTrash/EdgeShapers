@@ -1,0 +1,621 @@
+[gd_scene load_steps=23 format=3 uid="uid://bvl7urclw8qrw"]
+
+[ext_resource type="Script" uid="uid://wihl7gi1x8jx" path="res://GUI/shop_menu/Scripts/shop_menu.gd" id="1_cdo8m"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_c4bvt"]
+[ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Weapons/Resources/basic_spear.tres" id="3_rll2a"]
+[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Weapons/Resources/basic_weapon.tres" id="4_wwtc8"]
+[ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Weapons/Resources/black_sword.tres" id="5_iwlgp"]
+[ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Items/Resources/potion.tres" id="6_j3i1b"]
+[ext_resource type="Resource" uid="uid://bojmh4s30rv6t" path="res://Items/Resources/ep_potion.tres" id="7_f3hjb"]
+[ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Items/Resources/gem_potion.tres" id="8_bj1v7"]
+[ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Weapons/Resources/bow.tres" id="9_m60vd"]
+[ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Weapons/Resources/boomerang.tres" id="10_vnmmq"]
+[ext_resource type="Script" uid="uid://h3il8b3rctws" path="res://GUI/shop_menu/Scripts/shop_list_item.gd" id="11_foa1v"]
+[ext_resource type="PackedScene" uid="uid://c7o73qt7ew7ym" path="res://GUI/shop_menu/Scenes/shop_upgrade_button.tscn" id="12_5xv8o"]
+[ext_resource type="Theme" uid="uid://8s7jcnd5nb3o" path="res://GUI/ui_theme.tres" id="13_eos17"]
+[ext_resource type="PackedScene" uid="uid://cc1s6jwkoaubf" path="res://GUI/shop_menu/Scenes/shop_item_button.tscn" id="14_r0d74"]
+[ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="15_0cuak"]
+[ext_resource type="Script" uid="uid://l8ev67yilsm8" path="res://GUI/shop_menu/Scripts/shop_weapon_upgrade_tab.gd" id="16_i11hd"]
+[ext_resource type="PackedScene" uid="uid://bp2r3y2ey3b8s" path="res://Inventory/Scenes/upgrade_details_panel.tscn" id="17_h72kw"]
+[ext_resource type="Script" uid="uid://bh4kbkxj08eqc" path="res://GUI/shop_menu/Scripts/shop_player_upgrade_tab.gd" id="18_p2y28"]
+
+[sub_resource type="Resource" id="Resource_osqqv"]
+script = ExtResource("11_foa1v")
+items = Array[ExtResource("2_c4bvt")]([ExtResource("3_rll2a"), ExtResource("4_wwtc8"), ExtResource("5_iwlgp"), ExtResource("6_j3i1b"), ExtResource("7_f3hjb"), ExtResource("8_bj1v7"), ExtResource("9_m60vd"), ExtResource("10_vnmmq")])
+metadata/_custom_type_script = "uid://h3il8b3rctws"
+
+[sub_resource type="Animation" id="Animation_t0q3b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(822, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lv53b"]
+resource_name = "not_enough_money"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(822, 25), Vector2(886, 25), Vector2(822, 25), Vector2(758, 25), Vector2(822, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.996581, 0, 0.198679, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0q3b"]
+_data = {
+&"RESET": SubResource("Animation_t0q3b"),
+&"not_enough_money": SubResource("Animation_lv53b")
+}
+
+[node name="ShopMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 3
+script = ExtResource("1_cdo8m")
+items = SubResource("Resource_osqqv")
+
+[node name="Player Upgrades" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 142.0
+offset_top = 186.0
+offset_right = 142.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Player Upgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Player Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellPlyrUpContainer" type="GridContainer" parent="Player Upgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopUpgradeButton" parent="Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Player Upgrades/ScrollContainer/MarginContainer/SellPlyrUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="Weapon Upgrades" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 142.0
+offset_top = 186.0
+offset_right = 142.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Weapon Upgrades"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Weapon Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellWpnUpContainer" type="GridContainer" parent="Weapon Upgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopUpgradeButton" parent="Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Weapon Upgrades/ScrollContainer/MarginContainer/SellWpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.215686, 0.215686, 0.607843)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_eos17")
+
+[node name="CloseButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -86.0
+offset_right = -19.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Close"
+
+[node name="CurrencyCounter" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 25.0
+offset_right = 1109.0
+offset_bottom = 129.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CurrencyCounter"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Control2" type="Control" parent="Control/CurrencyCounter/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CurrencyCounter/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "VP"
+
+[node name="CurrencyLabel" type="Label" parent="Control/CurrencyCounter/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "99999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Control/CurrencyCounter/HBoxContainer"]
+layout_mode = 2
+
+[node name="ErrorAnimationPlayer" type="AnimationPlayer" parent="Control/CurrencyCounter"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_t0q3b")
+}
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 90.0
+offset_right = 1140.0
+offset_bottom = 620.0
+current_tab = 0
+
+[node name="Buy" type="Control" parent="Control/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="TabContainer" type="TabContainer" parent="Control/TabContainer/Buy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Equippables" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 471.0
+offset_bottom = 433.0
+follow_focus = true
+horizontal_scroll_mode = 0
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ShopItemsContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ShopItemButton" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton2" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton3" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton4" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton5" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton6" parent="Control/TabContainer/Buy/TabContainer/Equippables/ScrollContainer/MarginContainer/ShopItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="Details Panel" type="PanelContainer" parent="Control/TabContainer/Buy/TabContainer/Equippables"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -222.0
+offset_right = 479.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("15_0cuak")
+metadata/_edit_group_ = true
+
+[node name="Control" type="Control" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel"]
+layout_mode = 2
+
+[node name="ItemImage" type="TextureRect" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 26.0
+offset_right = 92.0
+offset_bottom = 90.0
+expand_mode = 2
+stretch_mode = 1
+
+[node name="ItemName" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 119.0
+offset_right = 453.0
+offset_bottom = 171.0
+autowrap_mode = 2
+clip_text = true
+
+[node name="ItemDescription" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 13.0
+offset_top = 170.0
+offset_right = 457.0
+offset_bottom = 422.0
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="ItemPrice" type="Label" parent="Control/TabContainer/Buy/TabContainer/Equippables/Details Panel/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 274.0
+offset_top = 12.0
+offset_right = 502.0
+offset_bottom = 52.0
+
+[node name="WeaponUpgrades" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("16_i11hd")
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 471.0
+offset_bottom = 433.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="WpnUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton5" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton6" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades/ScrollContainer/MarginContainer/WpnUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="WpnUpDetails" parent="Control/TabContainer/Buy/TabContainer/WeaponUpgrades" instance=ExtResource("17_h72kw")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 511.0
+offset_top = 2.0
+offset_right = 994.0
+offset_bottom = 435.0
+metadata/_edit_group_ = true
+
+[node name="PlayerUpgrade" type="Control" parent="Control/TabContainer/Buy/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("18_p2y28")
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade"]
+layout_mode = 0
+offset_right = 459.0
+offset_bottom = 432.0
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PlayerUpContainer" type="VBoxContainer" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ShopUpgradeButton" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton2" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton3" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton4" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton5" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="ShopUpgradeButton6" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade/ScrollContainer/MarginContainer/PlayerUpContainer" instance=ExtResource("12_5xv8o")]
+layout_mode = 2
+
+[node name="PlayerUpDetail" parent="Control/TabContainer/Buy/TabContainer/PlayerUpgrade" instance=ExtResource("17_h72kw")]
+layout_mode = 0
+offset_left = 514.0
+offset_right = 997.0
+offset_bottom = 431.0
+metadata/_edit_group_ = true
+
+[node name="Sell" type="Control" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TabContainer" type="TabContainer" parent="Control/TabContainer/Sell"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1003.0
+offset_bottom = 483.0
+current_tab = 0
+metadata/_edit_group_ = true
+
+[node name="Items" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Items"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellItemsContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopItemButton" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton2" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton3" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton4" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton5" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton6" parent="Control/TabContainer/Sell/TabContainer/Items/ScrollContainer/MarginContainer/SellItemsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="Weapons" type="Control" parent="Control/TabContainer/Sell/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00818926
+anchor_top = -0.0091954
+anchor_right = 0.00818926
+anchor_bottom = -0.0091954
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 988.0
+offset_bottom = 432.0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SellWeaponsContainer" type="GridContainer" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ShopItemButton" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton2" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton3" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton4" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton5" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="ShopItemButton6" parent="Control/TabContainer/Sell/TabContainer/Weapons/ScrollContainer/MarginContainer/SellWeaponsContainer" instance=ExtResource("14_r0d74")]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="Control/CloseButton" to="." method="_on_close_button_pressed"]

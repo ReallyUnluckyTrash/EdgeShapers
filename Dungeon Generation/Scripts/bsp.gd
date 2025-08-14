@@ -16,15 +16,15 @@ var floor_tiles: Array = []
 var chest_scene = preload("res://Interactables/Chests/treasure_chest.tscn")
 
 var chest_items: Array[ItemData] = [
-	preload("res://Inventory/Weapons/basic_weapon.tres"),
-	preload("res://Inventory/Weapons/black_sword.tres"),
-	preload("res://Inventory/Items/potion.tres")
+	#preload("res://Inventory/Weapons/basic_weapon.tres"),
+	#preload("res://Inventory/Weapons/black_sword.tres"),
+	#preload("res://Inventory/Items/potion.tres")
 ]
 
 var enemy_scenes = {
-	1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn"),
-	2: preload("res://Enemies/1_Domain/tri_slime/tri_slime2.tscn"),
-	3: preload("res://Enemies/1_Domain/tri_slime/tri_slime3.tscn")
+	#1: preload("res://Enemies/1_Domain/tri_slime/tri_slime.tscn"),
+	#2: preload("res://Enemies/1_Domain/tri_slime/tri_slime2.tscn"),
+	#3: preload("res://Enemies/1_Domain/tri_slime/tri_slime3.tscn")
 }
 
 var spawned_enemies: Array = []

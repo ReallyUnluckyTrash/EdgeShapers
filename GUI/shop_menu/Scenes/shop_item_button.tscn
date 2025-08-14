@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc1s6jwkoaubf"]
+
+[ext_resource type="Script" uid="uid://mfj67o2wnh2" path="res://GUI/shop_menu/Scripts/shop_item_button.gd" id="1_f01jl"]
+[ext_resource type="Texture2D" uid="uid://ctm2d1pa5ib88" path="res://Weapons/Assets/basic_sword.png" id="2_7785b"]
+
+[node name="ShopItemButton" type="Button"]
+custom_minimum_size = Vector2(440, 72)
+offset_right = 440.0
+offset_bottom = 72.0
+text = "
+"
+script = ExtResource("1_f01jl")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 14.0
+offset_right = 320.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 40
+text = "Item Name"
+text_overrun_behavior = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_7785b")
+expand_mode = 1
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 15.0
+offset_right = 417.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "999"

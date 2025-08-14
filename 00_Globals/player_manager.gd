@@ -1,10 +1,10 @@
 extends Node
 
-const PLAYER = preload("res://Player/player.tscn")
+const PLAYER = preload("res://Player/Scenes/player.tscn")
 const INVENTORY_ITEM_DATA:InventoryData = preload("res://Inventory/Resources/player_item_inv.tres")
 #const INVENTORY_WEAPON_DATA:InventoryData = preload("res://Inventory/Resources/player_weapon_inv.tres")
 const PLAYER_UPGRADE_LIST = preload("res://Inventory/Resources/player_upgrade_list.tres")
-const BASIC_WEAPON = preload("res://Inventory/Weapons/basic_weapon.tres")
+const BASIC_WEAPON = preload("res://Weapons/Resources/basic_weapon.tres")
 #const INVENTORY_WEAPON_DATA:= preload("res://Inventory/Resources/player_weapon_inv.tres")
 const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped_2.tres")
 const INVENTORY_WEAPON_DATA = preload("res://Inventory/Resources/player_weapon_inv_3.tres")

@@ -1,7 +1,7 @@
 class_name SellPlayerUpgradeTab extends Control
 
 @onready var sell_plyr_up_container: GridContainer = %SellPlyrUpContainer
-const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/shop_upgrade_button.tscn")
+const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/Scenes/shop_upgrade_button.tscn")
 
 var upgrade_list
 

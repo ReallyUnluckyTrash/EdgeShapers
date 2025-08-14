@@ -1,6 +1,6 @@
 class_name ShopPlayerUpgradeTab extends Control
 
-const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/shop_upgrade_button.tscn")
+const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/Scenes/shop_upgrade_button.tscn")
 
 @onready var player_up_detail: UpgradeDetailsPanel = $PlayerUpDetail
 @onready var player_up_container: VBoxContainer = %PlayerUpContainer

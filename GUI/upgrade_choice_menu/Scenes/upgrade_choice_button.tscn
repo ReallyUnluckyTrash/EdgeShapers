@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://rhmi6n57ifdy"]
 
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_svpfn"]
-[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="2_2bhp3"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Weapons/Assets/weaponicons.png" id="2_2bhp3"]
 [ext_resource type="Script" uid="uid://baodgdyfl40rw" path="res://GUI/upgrade_choice_menu/Scripts/upgrade_choice_button.gd" id="2_40q0c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40q0c"]

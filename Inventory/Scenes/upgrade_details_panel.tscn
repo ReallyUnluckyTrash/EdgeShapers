@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_r0md1"]
 [ext_resource type="Script" uid="uid://ce58hgp3018vb" path="res://Inventory/Scripts/upgrade_details_panel.gd" id="2_fwf6c"]
-[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Inventory/Weapons/weapons/sword animations/weaponicons.png" id="3_37n71"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Weapons/Assets/weaponicons.png" id="3_37n71"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o4622"]
 atlas = ExtResource("3_37n71")

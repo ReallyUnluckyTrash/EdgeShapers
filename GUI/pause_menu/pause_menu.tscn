@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://d2nsqx8eebtdr" path="res://Inventory/Scripts/slot_data.gd" id="6_00kwt"]
 [ext_resource type="Resource" uid="uid://dfukjwugxci76" path="res://Inventory/Resources/player_item_inv.tres" id="6_dvxeg"]
 [ext_resource type="Script" uid="uid://b510jrrankvy4" path="res://Inventory/Scripts/equipped_ui.gd" id="6_sn1ji"]
-[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Inventory/Weapons/basic_weapon.tres" id="7_1oddi"]
+[ext_resource type="Resource" uid="uid://c2ptschcqv8bq" path="res://Weapons/Resources/basic_weapon.tres" id="7_1oddi"]
 [ext_resource type="Resource" uid="uid://850swixvv7xc" path="res://Inventory/Resources/player_equipped.tres" id="7_8rjl7"]
 [ext_resource type="PackedScene" uid="uid://ctxew2s72ss6" path="res://Inventory/Scenes/equipped_slot.tscn" id="10_qikl0"]
 [ext_resource type="PackedScene" uid="uid://6uflygewvh1y" path="res://Inventory/Scenes/upgrade_held_entry.tscn" id="11_40d0i"]

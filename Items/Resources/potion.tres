@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://by0wwb4iiffi2"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_fyb50"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="1_rvim3"]
+[ext_resource type="Script" uid="uid://cau453avplpnt" path="res://Items/Item Effects/item_effect_heal.gd" id="2_opyql"]
+[ext_resource type="Texture2D" uid="uid://dgb20e1dexiuq" path="res://Items/Assets/miscellaneous.png" id="4_fyb50"]
+
+[sub_resource type="Resource" id="Resource_fd6j0"]
+script = ExtResource("2_opyql")
+heal_amount = 3
+use_description = "Heals 3 HP"
+metadata/_custom_type_script = "uid://cau453avplpnt"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opyql"]
+atlas = ExtResource("4_fyb50")
+region = Rect2(0, 208, 16, 16)
+
+[resource]
+script = ExtResource("1_rvim3")
+name = "Potion"
+type = "Item"
+description = "Heals 3 HP upon use. Good old reliable.
+"
+texture = SubResource("AtlasTexture_opyql")
+price = 10
+effects = Array[ExtResource("1_fyb50")]([SubResource("Resource_fd6j0")])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

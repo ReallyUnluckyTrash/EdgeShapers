@@ -1,6 +1,6 @@
 class_name ShopWeaponUpgradeTab extends Control
 
-const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/shop_upgrade_button.tscn")
+const SHOP_UPGRADE_BUTTON = preload("res://GUI/shop_menu/Scenes/shop_upgrade_button.tscn")
 
 @onready var wpn_up_container: VBoxContainer = %WpnUpContainer
 @onready var wpn_up_details: UpgradeDetailsPanel = %WpnUpDetails
