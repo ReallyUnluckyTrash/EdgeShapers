@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://8s7jcnd5nb3o"]
 
-[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://Art/font/MedodicaRegular.otf" id="1_d6diy"]
+[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://art/font/MedodicaRegular.otf" id="1_d6diy"]
 
 [resource]
 default_font = ExtResource("1_d6diy")

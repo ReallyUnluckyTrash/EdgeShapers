@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhs22t4bjgqj2"
-path="res://.godot/imported/tilesheet_complete.png-da91369abf4e856af267bd553f3cd534.ctex"
+path="res://.godot/imported/tilesheet_complete.png-a8c281711c40c56e99fca2d5f5213109.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/tileset/kenney_roguelike-caves-dungeons/Spritesheet/tilesheet_complete.png"
-dest_files=["res://.godot/imported/tilesheet_complete.png-da91369abf4e856af267bd553f3cd534.ctex"]
+source_file="res://art/tileset/kenney_roguelike-caves-dungeons/Spritesheet/tilesheet_complete.png"
+dest_files=["res://.godot/imported/tilesheet_complete.png-a8c281711c40c56e99fca2d5f5213109.ctex"]
 
 [params]
 

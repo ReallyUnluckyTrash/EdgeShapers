@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://bom58e782lmnb"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_7exar"]
-[ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://Art/tileset/test.tres" id="2_3824k"]
+[ext_resource type="TileSet" uid="uid://bytldia8dxj8q" path="res://art/tileset/test.tres" id="2_3824k"]
 [ext_resource type="Script" uid="uid://di50fmh1ghb20" path="res://Level/level_tilemap.gd" id="3_yvf4n"]
 [ext_resource type="PackedScene" uid="uid://blbyp6wses5a0" path="res://Enemies/Enemy List/tri_slime/tri_slime.tscn" id="4_dmr4p"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/Scenes/player_spawn.tscn" id="5_q28b7"]

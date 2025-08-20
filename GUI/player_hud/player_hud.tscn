@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://jaku77anwab0" path="res://GUI/player_hud/player_hud.gd" id="1_6ggty"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_oghrr"]
-[ext_resource type="Texture2D" uid="uid://cjikd2pge4imd" path="res://Art/bars/redblue (3).png" id="4_yhjvm"]
-[ext_resource type="Texture2D" uid="uid://b7mbno5xrfeyb" path="res://Art/bars/redblue (1).png" id="5_sysqg"]
+[ext_resource type="Texture2D" uid="uid://cjikd2pge4imd" path="res://art/bars/redblue (3).png" id="4_yhjvm"]
+[ext_resource type="Texture2D" uid="uid://b7mbno5xrfeyb" path="res://art/bars/redblue (1).png" id="5_sysqg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rxq5y"]
 atlas = ExtResource("4_yhjvm")

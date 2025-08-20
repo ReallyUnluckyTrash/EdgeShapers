@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dv85qtp6vhi7d" path="res://Enemies/Enemy List/tri_sword/tri_sword.tscn" id="10_tbdqo"]
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Weapons/Resources/basic_spear.tres" id="11_s7sig"]
-[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="12_ja24o"]
+[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="12_ja24o"]
 
 [node name="BSP" type="Node2D"]
 y_sort_enabled = true

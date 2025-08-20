@@ -37,9 +37,9 @@ func _ready():
 	update_hp(99.0)
 	
 	#temporary starting weapon
-	equip_weapon(weapon_scenes[0])
-	PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
-	#activate_upgrades_player()
+	#equip_weapon(weapon_scenes[0])
+	#PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
+	activate_upgrades_player()
 	pass
 
 func _process(_delta):

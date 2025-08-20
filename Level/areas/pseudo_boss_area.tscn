@@ -1,7 +1,7 @@
 [gd_scene load_steps=79 format=4 uid="uid://cpru5ji8a4vxw"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_jbr7a"]
-[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://Art/tileset/dungeon_tileset.tres" id="2_w4lyy"]
+[ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="2_w4lyy"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/Scenes/player_spawn.tscn" id="3_tm235"]
 [ext_resource type="Script" uid="uid://c3h2p1fcof2ck" path="res://Enemies/General Scripts/enemy.gd" id="4_bl60c"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="5_vxrhl"]

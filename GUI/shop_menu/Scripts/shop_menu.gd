@@ -6,7 +6,7 @@ const ERROR = preload("res://Interactables/Shop Statue/error.wav")
 const OPEN_SHOP = preload("res://Interactables/Shop Statue/open_shop.wav")
 const PURCHASE = preload("res://Interactables/Shop Statue/purchase.wav")
 const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/Scenes/shop_item_button.tscn")
-const SELL_ITEM_BUTTON = preload("res://GUI/shop_menu/Scenes/shop_item_button.tscn")
+const SELL_ITEM_BUTTON = preload("res://GUI/shop_menu/Scenes/sell_item_button.tscn")
 
 const SHOP_UPGRADES = preload("res://GUI/shop_menu/Resources/shop_upgrades.tres")
 

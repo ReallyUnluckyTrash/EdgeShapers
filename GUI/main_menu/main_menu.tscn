@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8tv6m3lh7d7n"]
 
 [ext_resource type="Script" uid="uid://dltnjx07r5cck" path="res://GUI/main_menu/main_menu.gd" id="1_bqxyb"]
-[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://Art/font/MedodicaRegular.otf" id="2_w34ts"]
+[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://art/font/MedodicaRegular.otf" id="2_w34ts"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="3_qic1p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vx47s"]
