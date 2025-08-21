@@ -18,6 +18,7 @@ class_name DungeonConfig extends Node
 @export var enemy_level_1_scenes: Array[PackedScene]
 @export var enemy_level_2_scenes: Array[PackedScene]
 @export var enemy_level_3_scenes: Array[PackedScene]
+@export var enemy_level_4_scenes: Array[PackedScene]
 
 var min_cell_size: Vector2i
 @export var enemy_scenes: Dictionary = {}
@@ -30,6 +31,8 @@ func _ready():
 		enemy_scenes[2] = enemy_level_2_scenes
 	if enemy_level_3_scenes:
 		enemy_scenes[3] = enemy_level_3_scenes
+	if enemy_level_4_scenes:
+		enemy_scenes[4] = enemy_level_4_scenes
 
 func setup(map_width: int, map_height: int):
 	min_cell_size = Vector2i(

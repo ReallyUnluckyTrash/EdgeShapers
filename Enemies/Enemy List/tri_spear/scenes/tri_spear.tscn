@@ -482,7 +482,7 @@ collision_mask = 272
 script = ExtResource("1_0ifye")
 hp = 6
 raycast_length = 320.0
-enemy_vp_drop = 2
+enemy_vp_drop = 4
 
 [node name="HitBox" parent="." instance=ExtResource("2_7tp25")]
 visible = false

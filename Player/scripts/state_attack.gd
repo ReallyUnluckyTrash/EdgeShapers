@@ -51,5 +51,4 @@ func handle_input(_event: InputEvent) -> State:
 	return null
 
 func end_attack() -> void:
-	print("state_attack.gd::end_attack() Ending attack!")
 	attacking = false

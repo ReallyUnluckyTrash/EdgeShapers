@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://sr47jxr80pkj"]
+[gd_scene load_steps=21 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://difd6gjudrjrf" path="res://Dungeon Generation/Scripts/dungeon_main.gd" id="1_67b3u"]
 [ext_resource type="PackedScene" uid="uid://darxewk1n4sco" path="res://Level/transitions/floor_transition.tscn" id="3_67b3u"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Weapons/Resources/basic_spear.tres" id="11_s7sig"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="12_ja24o"]
+[ext_resource type="PackedScene" uid="uid://cvqb5slbqa8hy" path="res://Enemies/Enemy List/tri_knight/tri_knight.tscn" id="16_dipqf"]
 
 [node name="BSP" type="Node2D"]
 y_sort_enabled = true
@@ -30,6 +31,7 @@ chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource
 enemy_level_1_scenes = Array[PackedScene]([ExtResource("7_ipsl2")])
 enemy_level_2_scenes = Array[PackedScene]([ExtResource("9_q557t"), ExtResource("10_tbdqo")])
 enemy_level_3_scenes = Array[PackedScene]([ExtResource("8_s47vf")])
+enemy_level_4_scenes = Array[PackedScene]([ExtResource("16_dipqf")])
 
 [node name="ObjectSpawner" type="Node" parent="."]
 script = ExtResource("3_j3od5")

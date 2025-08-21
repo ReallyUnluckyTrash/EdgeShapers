@@ -3,7 +3,7 @@ class_name ThrowWeapon extends Weapon
 @export var knockback_force: float
 var is_attacking: bool = false
 
-const BOOMERANG = preload("res://GUI/shop_menu/Scenes/shop_item_button.tscn")
+const BOOMERANG = preload("res://Weapons/Scenes/boomerang.tscn")
 
 var boomerang_instance:Boomerang = null
 var player:Player

@@ -275,7 +275,7 @@ collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_63num")
 raycast_length = 320.0
-enemy_vp_drop = 1
+enemy_vp_drop = 2
 
 [node name="HitBox" parent="." instance=ExtResource("2_x3lqa")]
 visible = false

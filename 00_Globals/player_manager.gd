@@ -9,7 +9,7 @@ const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped.
 
 var player : Player
 var player_spawned:bool = false
-var vertex_points:int = 30
+var vertex_points:int = 100
 var current_floor:int = 1 :set = set_floor
 var pause_menu_disabled:bool = false
 

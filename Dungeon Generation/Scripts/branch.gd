@@ -15,8 +15,6 @@ var depth:int = 0
 var room_top_left: Vector2i
 var room_bottom_right: Vector2i 
 
-
-
 var has_room: bool = false
 
 #refactor candidates
@@ -25,7 +23,7 @@ var chest_positions: Array = []
 var enemy_positions: Array = []
 var challenge_rating:int = 0
 
-
+var room_type: RoomGrammar.RoomType = RoomGrammar.RoomType.UNDEFINED
 
 func _init(_position:Vector2i, _size:Vector2i, _parent: Branch = null) -> void:
 	self.position = _position
@@ -44,7 +42,7 @@ func get_leaves():
 	else:
 		return left_child.get_leaves() + right_child.get_leaves()
 
-func get_room_center():
+func get_room_center()->Vector2i:
 	if has_room:
 		return Vector2i(
 			(room_top_left.x + room_bottom_right.x) / 2,
@@ -236,11 +234,13 @@ func set_object_spawn_positions():
 	if not has_room:
 		return
 	
-	var all_valid_pos = get_all_valid_positions()
-	all_valid_pos.shuffle()
+	RoomTypeHandler.apply_room_type(self, room_type)
 	
-	place_chest_from_positions(all_valid_pos)
-	spawn_enemies_from_positions(all_valid_pos)
+	#var all_valid_pos = get_all_valid_positions()
+	#all_valid_pos.shuffle()
+	#
+	#place_chest_from_positions(all_valid_pos)
+	#spawn_enemies_from_positions(all_valid_pos)
 
 func place_chest_from_positions(available_positions: Array):
 	if randf() < 0.2 and available_positions.size() > 0:

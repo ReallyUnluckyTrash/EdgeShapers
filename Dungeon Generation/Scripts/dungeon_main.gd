@@ -20,6 +20,7 @@ var exit_room: Branch = null
 @onready var object_spawner: ObjectSpawner = $ObjectSpawner
 @onready var dungeon_renderer: DungeonRenderer = $DungeonRenderer
 
+var room_grammar:RoomGrammar
 
 
 func _ready() -> void:
@@ -36,6 +37,9 @@ func initialize_components():
 	
 	object_spawner.setup(self, dungeon_config)
 	
+	#TODO
+	room_grammar = RoomGrammar.new()
+	
 	LevelManager.level_load_started.connect(_free_level)
 	
 
@@ -50,6 +54,8 @@ func generate_dungeon():
 	
 	# Steps 7-8: Create rooms in each partition cell
 	root_node.create_all_rooms()
+	
+	_apply_room_grammar()
 	
 	#set tiles on the map
 	dungeon_renderer.render_dungeon(root_node)
@@ -132,6 +138,25 @@ func _set_camera_bounds() -> Array[Vector2]:
 	
 	return bounds
 
+func _apply_room_grammar()->void:
+	var leaves = root_node.get_leaves()
+	var rooms_with_space:Array[Branch] = []
+	
+	for leaf in leaves:
+		if leaf.has_room:
+			rooms_with_space.append(leaf)
+	
+	if rooms_with_space.is_empty():
+		return
+	
+	var room_types = room_grammar.apply_grammar(rooms_with_space)
+	
+	for i in range(rooms_with_space.size()):
+		rooms_with_space[i].room_type = room_types[i]
+		print("Room %d: %s (Area: %d)" % [i, rooms_with_space[i].room_type, 
+			(rooms_with_space[i].room_bottom_right.x - rooms_with_space[i].room_top_left.x) * 
+			(rooms_with_space[i].room_bottom_right.y - rooms_with_space[i].room_top_left.y)])
+	
 
 #TODO
 #adjust!
