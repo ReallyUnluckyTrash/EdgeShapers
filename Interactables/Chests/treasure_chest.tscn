@@ -191,7 +191,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v50s"]
-size = Vector2(64, 64)
+size = Vector2(63, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1g8j"]
 size = Vector2(96, 96)

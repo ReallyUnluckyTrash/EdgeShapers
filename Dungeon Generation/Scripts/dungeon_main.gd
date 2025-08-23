@@ -26,6 +26,7 @@ var room_grammar:RoomGrammar
 func _ready() -> void:
 	initialize_components()
 	generate_dungeon()
+	AudioManager.play_music(music)
 
 func initialize_components():
 	self.y_sort_enabled = true
@@ -54,6 +55,10 @@ func generate_dungeon():
 	
 	# Steps 7-8: Create rooms in each partition cell
 	root_node.create_all_rooms()
+	
+	#root_node.get_corridors() 
+	
+	root_node.build_connections()
 	
 	_apply_room_grammar()
 	
@@ -153,9 +158,10 @@ func _apply_room_grammar()->void:
 	
 	for i in range(rooms_with_space.size()):
 		rooms_with_space[i].room_type = room_types[i]
-		print("Room %d: %s (Area: %d)" % [i, rooms_with_space[i].room_type, 
+		print("Room %d: %s (Area: %d)" % [i, room_grammar._room_type_to_string(rooms_with_space[i].room_type), 
 			(rooms_with_space[i].room_bottom_right.x - rooms_with_space[i].room_top_left.x) * 
 			(rooms_with_space[i].room_bottom_right.y - rooms_with_space[i].room_top_left.y)])
+		print("Room has these many connections: " + str(rooms_with_space[i].connected_rooms.size()))
 	
 
 #TODO

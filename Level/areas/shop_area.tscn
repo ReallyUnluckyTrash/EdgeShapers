@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://de04gxgaeg1xb"]
+[gd_scene load_steps=8 format=4 uid="uid://de04gxgaeg1xb"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_ygf7p"]
+[ext_resource type="AudioStream" uid="uid://dn1dmbhxmhj6g" path="res://General/Music/example_music_03.ogg" id="2_4y8w4"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="2_dtxb8"]
 [ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="3_w1utn"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/Scenes/player_spawn.tscn" id="4_fh2v2"]
@@ -9,6 +10,7 @@
 
 [node name="ShopArea" type="Node2D"]
 script = ExtResource("1_ygf7p")
+music = ExtResource("2_4y8w4")
 
 [node name="Background" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAABAAEAAUAAAAAAAEABAAEAAUAAAAAAAIABAAEAAUAAAABAAIABAAEAAUAAAABAAEABAAEAAUAAAABAAAABAAEAAUAAAACAAAABAAEAAUAAAACAAEABAAEAAUAAAACAAIABAAEAAUAAAAAAAMABAAEAAUAAAABAAMABAAEAAUAAAACAAMABAAEAAUAAAADAAMABAAEAAUAAAADAAIABAAEAAUAAAADAAEABAAEAAUAAAADAAAABAAEAAUAAAADAP//BAAEAAUAAAACAP//BAAEAAUAAAABAP//BAAEAAUAAAAAAP//BAAEAAUAAAD/////BAAEAAUAAAD//wAABAAEAAUAAAD//wEABAAEAAUAAAD//wIABAAEAAUAAAD//wMABAAEAAUAAAABAP7/BAAEAAYAAAABAAUABAAEAAQAAAABAAQABAAEAAUAAAA=")

@@ -19,11 +19,12 @@ var has_room: bool = false
 
 #refactor candidates
 var chest_positions: Array = []
-
 var enemy_positions: Array = []
 var challenge_rating:int = 0
-
 var room_type: RoomGrammar.RoomType = RoomGrammar.RoomType.UNDEFINED
+
+# NEW: Track which rooms this room is connected to via corridors
+var connected_rooms: Array[Branch] = []
 
 func _init(_position:Vector2i, _size:Vector2i, _parent: Branch = null) -> void:
 	self.position = _position
@@ -34,7 +35,6 @@ func _init(_position:Vector2i, _size:Vector2i, _parent: Branch = null) -> void:
 		depth = 0
 	else:
 		depth = parent.depth + 1
-
 
 func get_leaves():
 	if not(left_child && right_child):
@@ -49,7 +49,6 @@ func get_room_center()->Vector2i:
 			(room_top_left.y + room_bottom_right.y) / 2
 		)
 	return Vector2i(position.x + size.x / 2, position.y + size.y / 2)
-		
 
 #function to split set area into different areas
 func split(min_size: Vector2i):
@@ -150,12 +149,71 @@ func create_room():
 	
 	#mark the partition as having a room
 	has_room = true
-	
 
 func create_all_rooms():
 	var leaves = get_leaves()
 	for leaf in leaves:
 		leaf.create_room()
+
+# NEW: Build connection map after rooms are created
+func build_connections():
+	var corridors = get_corridors()
+	var leaves = get_leaves()
+	
+	# Clear existing connections
+	for leaf in leaves:
+		leaf.connected_rooms.clear()
+	
+	# Build connections based on corridors
+	for corridor in corridors:
+		var start_pos = corridor['start']
+		var end_pos = corridor['end']
+		
+		# Find which rooms these corridor endpoints belong to
+		var room1 = _find_room_containing_point(start_pos)
+		var room2 = _find_room_containing_point(end_pos)
+		
+		if room1 != null and room2 != null and room1 != room2:
+			# Add bidirectional connection
+			if not room1.connected_rooms.has(room2):
+				room1.connected_rooms.append(room2)
+			if not room2.connected_rooms.has(room1):
+				room2.connected_rooms.append(room1)
+
+# Helper function to find which room contains a specific point
+func _find_room_containing_point(point: Vector2i) -> Branch:
+	if has_room:
+		if (point.x >= room_top_left.x and point.x <= room_bottom_right.x and
+			point.y >= room_top_left.y and point.y <= room_bottom_right.y):
+			return self
+	
+	var result = null
+	if left_child:
+		result = left_child._find_room_containing_point(point)
+		if result != null:
+			return result
+	
+	if right_child:
+		result = right_child._find_room_containing_point(point)
+		if result != null:
+			return result
+	
+	return null
+
+# NEW: Check if this room has a neighbor of a specific type
+func has_neighbor_of_type(target_type: RoomGrammar.RoomType, all_rooms: Array[Branch], current_types: Array[ RoomGrammar.RoomType]) -> bool:
+	for connected_room in connected_rooms:
+		# Find the index of this connected room in the all_rooms array
+		var room_index = all_rooms.find(connected_room)
+		if room_index != -1:
+			var room_type = current_types[room_index]
+			if room_type == target_type:
+				return true
+	return false
+
+# NEW: Check if this room is a dead-end (only one connection)
+func is_dead_end() -> bool:
+	return connected_rooms.size() == 1
 
 #function to return an array containing all corridors
 func get_corridors():
@@ -201,7 +259,6 @@ func _get_child_center(node:Branch) -> Vector2i:
 	
 	return Vector2i.ZERO
 
-
 func calculate_challenge_rating(): 
 	if not has_room:
 		return
@@ -214,7 +271,6 @@ func calculate_challenge_rating():
 	
 	challenge_rating = base_cr + area_bonus + depth_bonus
 	challenge_rating = min(challenge_rating, 10)
-
 
 func get_all_valid_positions() -> Array:
 	var valid_positions = []
@@ -229,18 +285,11 @@ func get_all_valid_positions() -> Array:
 	
 	return valid_positions
 
-
 func set_object_spawn_positions():
 	if not has_room:
 		return
 	
 	RoomTypeHandler.apply_room_type(self, room_type)
-	
-	#var all_valid_pos = get_all_valid_positions()
-	#all_valid_pos.shuffle()
-	#
-	#place_chest_from_positions(all_valid_pos)
-	#spawn_enemies_from_positions(all_valid_pos)
 
 func place_chest_from_positions(available_positions: Array):
 	if randf() < 0.2 and available_positions.size() > 0:
@@ -300,7 +349,3 @@ func spawn_enemies_from_positions(available_positions: Array):
 		for enemy in enemy_positions:
 			total_spawned_cr += enemy['level']
 		print("Room CR: ", challenge_rating, " | Spawned CR: ", total_spawned_cr, " | Enemies: ", enemy_positions.size())
-	
-	
-	
-	

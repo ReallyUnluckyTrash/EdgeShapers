@@ -65,18 +65,35 @@ func _setup_rules()->void:
 		func(context:RoomContext):return context.area >= 60, 1.0 )
 	
 	add_rule(RoomType.UNDEFINED, RoomType.TREASURE,
-		func(context: RoomContext):return randf() < 0.2, 0.5)
+		func(context: RoomContext):return context.area <= 16, 0.5)
 	
 	# NEW: Super treasure rule that checks for mini-boss neighbor
-	add_rule(RoomType.UNDEFINED, RoomType.SUPER_TREASURE, 
-		func(context:RoomContext): return _check_if_mini_boss_neighbor(context) and context.area >= 15, 50.0)
-	
+	#add_rule(RoomType.UNDEFINED, RoomType.SUPER_TREASURE, 
+		#func(context:RoomContext): return _check_if_room_type_is_neighbor(context, RoomType.MINI_BOSS) and context.area >= 15, 50.0)
+	#
 	# Regular super treasure (rare)
-	add_rule(RoomType.UNDEFINED, RoomType.SUPER_TREASURE, 
-		func(context:RoomContext): return randf() < 0.05, 0.1)
+	#add_rule(RoomType.UNDEFINED, RoomType.SUPER_TREASURE, 
+		#func(context:RoomContext): return randf() < 0.2, 0.1)
 	
 	add_rule(RoomType.UNDEFINED, RoomType.MINI_BOSS, 
-		func(context:RoomContext):return context.area >= 30 and context.depth_level >= 1, 0.5)
+		func(context:RoomContext):
+			if context.area < 30:
+				return false
+			
+			if _is_adjacent_to_entrance_exit(context):
+				return false
+			
+			if context.room.is_dead_end():
+				return false
+			
+			var has_dead_end_neighbor:bool = false
+			for connected_room in context.room.connected_rooms:
+				if connected_room.is_dead_end():
+					has_dead_end_neighbor = true
+					break
+			
+			return has_dead_end_neighbor
+			, 50.5)
 	
 	add_rule(RoomType.UNDEFINED, RoomType.NORMAL_ENEMY, 
 		func(context: RoomContext): return true, 0.5)
@@ -95,11 +112,16 @@ func apply_grammar(rooms:Array[Branch]) -> Array[RoomType]:
 		
 		# Iterate over all the rooms
 		for i in range(rooms.size()):
+			if i == 0:
+				room_types[i] = RoomType.ENTRANCE
+				continue
+			elif i == rooms.size()-1:
+				room_types[i] = RoomType.EXIT
+			
 			# Skip if room type is already assigned
 			if room_types[i] != RoomType.UNDEFINED:
 				continue
 			
-			# Create context with current state of all room assignments
 			var context = RoomContext.new(
 				rooms[i], 
 				i, 
@@ -118,6 +140,7 @@ func apply_grammar(rooms:Array[Branch]) -> Array[RoomType]:
 		
 		if not changes_made:
 			break
+	_convert_neighbors_to_super_treasure(rooms, room_types)
 	
 	return room_types
 
@@ -149,46 +172,43 @@ func _apply_rules_to_room(current_type:RoomType, context:RoomContext)->RoomType:
 func _count_type_in_previous(previous: Array[RoomType], type: RoomType) -> int:
 	return previous.count(type)
 
-func _check_if_mini_boss_neighbor(context:RoomContext)->bool:
-	# Check if this room is a leaf (end room) and has only one connection
-	if context.room.left_child != null or context.room.right_child != null:
-		return false  # Not a leaf room
-	
-	if context.room.parent == null:
-		return false  # Root room, no parent
-	
-	# Find the sibling room
-	var sibling_room: Branch = null
-	if context.room.parent.left_child == context.room:
-		sibling_room = context.room.parent.right_child
-	elif context.room.parent.right_child == context.room:
-		sibling_room = context.room.parent.left_child
-	
-	if sibling_room == null:
-		return false
-	
-	# Find the sibling room's index in our rooms array to check its type
-	var sibling_index = -1
-	for i in range(context.all_rooms.size()):
-		if context.all_rooms[i] == sibling_room:
-			sibling_index = i
-			break
-	
-	if sibling_index == -1:
-		return false
-	
-	# Check if the sibling room is (or will become) a mini-boss room
-	var sibling_type = context.current_room_types[sibling_index]
-	
-	print("room_grammar.gd:: checking sibling at index %d, type: %s" % [sibling_index, _room_type_to_string(sibling_type)])
-	
-	if sibling_type == RoomType.MINI_BOSS:
-		print("room_grammar.gd:: room is beside miniboss, can become super treasure room")
-		return true
-	
-	# Also check if the sibling could become a mini-boss (for future iterations)
-	# This is more complex but helps with ordering issues
+func _check_if_room_type_is_neighbor(context: RoomContext, room_type: RoomType) -> bool:
+	print("Checking room %d for neighbors of type %s" % [context.room_index, _room_type_to_string(room_type)])
+	print("Connected rooms count: %d" % context.room.connected_rooms.size())
+
+	for i in range(context.room.connected_rooms.size()):
+		var connected_room = context.room.connected_rooms[i]
+		var room_index = context.all_rooms.find(connected_room)
+		if room_index != -1:
+			var current_type = context.current_room_types[room_index]
+			print("  Neighbor %d has type: %s" % [room_index, _room_type_to_string(current_type)])
+
+	var result = context.room.has_neighbor_of_type(room_type, context.all_rooms, context.current_room_types)
+	print("Result: %s" % result)
+	return result
+
+func _is_adjacent_to_entrance_exit(context:RoomContext)->bool:
+	for connected_room in context.room.connected_rooms:
+		var room_index = context.all_rooms.find(connected_room)
+		#if room_index != -1:
+			#if room_index == 0 || room_index == context.all_rooms.size() - 1:
+				#return true
+		if room_index == context.all_rooms.size() - 1:
+				return true
 	return false
+
+
+func _convert_neighbors_to_super_treasure(rooms: Array[Branch], room_types: Array[RoomType]):
+	for i in range(rooms.size()):
+		# Skip if already a special room type
+		if room_types[i] in [RoomType.SUPER_TREASURE, RoomType.ENTRANCE, RoomType.EXIT]:
+			continue
+			
+		var context = RoomContext.new(rooms[i], i, rooms.size(), [], rooms, room_types)
+		# Check if this room has a mini-boss neighbor
+		if _check_if_room_type_is_neighbor(context, RoomType.MINI_BOSS) && context.room.is_dead_end():
+			room_types[i] = RoomType.SUPER_TREASURE
+			print("Converted room %d to SUPER_TREASURE (neighbor of mini-boss)" % i)
 
 # Helper function for debugging
 func _room_type_to_string(type: RoomType) -> String:

@@ -26,7 +26,7 @@ static func apply_room_type(room: Branch, room_type: RoomGrammar.RoomType):
 		RoomGrammar.RoomType.MINI_BOSS:
 			_setup_mini_boss_room(room, available_positions)
 		RoomGrammar.RoomType.ENTRANCE:
-			_setup_normal_enemy_room(room, available_positions)
+			_setup_entrance_room(room, available_positions)
 		RoomGrammar.RoomType.EXIT:
 			_setup_normal_enemy_room(room, available_positions)
 		

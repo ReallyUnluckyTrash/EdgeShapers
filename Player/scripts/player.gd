@@ -64,7 +64,7 @@ func _take_damage(attack:Attack)-> void:
 		return
 	if hp > 0:
 		PlayerManager.play_audio(HIT_PLAYER)
-		update_hp(-attack.damage)	
+		#update_hp(-attack.damage)	
 		player_damaged.emit(attack)
 	pass
 

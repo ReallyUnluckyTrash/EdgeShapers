@@ -29,9 +29,9 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 	for i in range(0, leaves.size()):
 		var leaf = leaves[i]
 		
-		if leaf == entrance_room:
-			print("skip the entrance room for object placement")
-			continue
+		#if leaf == entrance_room:
+			#print("skip the entrance room for object placement")
+			#continue
 		
 		if not leaf.has_room:
 			continue

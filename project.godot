@@ -26,6 +26,7 @@ SceneTransition="*res://GUI/scene_transition/scene_transition.tscn"
 PlayerHud="*res://GUI/player_hud/player_hud.tscn"
 LevelManager="*res://00_Globals/level_manager.gd"
 SaveManager="*res://00_Globals/save_manager.gd"
+AudioManager="*res://00_Globals/audio_manager.gd"
 
 [display]
 

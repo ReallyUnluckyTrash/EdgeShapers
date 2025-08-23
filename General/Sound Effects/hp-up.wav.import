@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://woq268anog17"
+path="res://.godot/imported/hp-up.wav-0a204dbfc73511ac6a6320a9c782b593.sample"
+
+[deps]
+
+source_file="res://General/Sound Effects/hp-up.wav"
+dest_files=["res://.godot/imported/hp-up.wav-0a204dbfc73511ac6a6320a9c782b593.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

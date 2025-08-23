@@ -1,9 +1,12 @@
 class_name Level extends Node2D
 
+@export var music:AudioStream
+
 func _ready() -> void:
 	self.y_sort_enabled = true
 	call_deferred("setup_player")
 	LevelManager.level_load_started.connect(_free_level)
+	AudioManager.play_music(music)
 
 func _free_level()->void:
 	print("Level.gd:: freeing level")

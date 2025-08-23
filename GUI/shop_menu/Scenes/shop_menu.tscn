@@ -617,5 +617,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [connection signal="pressed" from="Control/CloseButton" to="." method="_on_close_button_pressed"]

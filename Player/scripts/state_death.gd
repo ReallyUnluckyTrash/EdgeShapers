@@ -1,7 +1,6 @@
 class_name State_Death extends State
 
 @export var death_audio:AudioStream
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 @export var anim_name:String = "stun"
 
 func initialize()->void:
