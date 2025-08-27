@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=5 format=3 uid="uid://cy02h54yfxb4g"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_3ui83"]
+[ext_resource type="PackedScene" uid="uid://1u7jyokbt0" path="res://Weapons/Scenes/boss_weapon.tscn" id="2_mwx8x"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_u3xuv"]
+[ext_resource type="Texture2D" uid="uid://le77ks8l51du" path="res://Weapons/Assets/boss_weapon.png" id="4_mwx8x"]
+
+[resource]
+script = ExtResource("2_u3xuv")
+name = "Tri-Lord Sword"
+type = "Weapon"
+description = "Shoots sword waves when used."
+texture = ExtResource("4_mwx8x")
+price = 200
+scene = ExtResource("2_mwx8x")
+effects = Array[ExtResource("1_3ui83")]([])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

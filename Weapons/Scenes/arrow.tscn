@@ -144,7 +144,7 @@ autostart = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-16, 0)
 target_position = Vector2(40, 0)
-collision_mask = 20
+collision_mask = 16
 collide_with_areas = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

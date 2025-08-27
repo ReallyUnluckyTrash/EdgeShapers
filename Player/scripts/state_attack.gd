@@ -16,6 +16,10 @@ func enter() -> void:
 			return
 		player.update_ep(-player.current_weapon.ep_cost)
 	
+	if player.current_weapon is SlashWeapon:
+		player.weapon_position.position = Vector2.ZERO
+		pass
+	
 	attacking = true
 	if player.current_weapon:
 		player.current_weapon.attack()
@@ -23,6 +27,10 @@ func enter() -> void:
 	pass
 	
 func exit() -> void:
+	if attacking and player.current_weapon:
+		if player.current_weapon.has_method("end_attack_immediately"):
+			player.current_weapon.end_attack_immediately()
+	
 	attacking = false
 	
 	if player.current_weapon and player.current_weapon.has_signal("attack_finished"):
@@ -31,6 +39,10 @@ func exit() -> void:
 	
 	if player.current_weapon and player.current_weapon.has_method("return_to_idle"):
 		player.current_weapon.return_to_idle()
+		
+	if player.current_weapon is SlashWeapon:
+		player.weapon_position.update_position(player.anim_direction())
+		pass
 	pass
 	
 func process(_delta : float) -> State:

@@ -4,6 +4,33 @@
 [ext_resource type="Script" uid="uid://b5forax8e4vx0" path="res://Interactables/Trap/trap.gd" id="1_1s67j"]
 [ext_resource type="Script" uid="uid://wcbbmkbtamkn" path="res://General/HurtBox/hurt_box.gd" id="2_qrq60"]
 
+[sub_resource type="Animation" id="Animation_ycjut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_1s67j"]
 resource_name = "activate"
 length = 0.8
@@ -34,33 +61,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_ycjut"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HurtBox:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ycjut"]
 _data = {
 &"RESET": SubResource("Animation_ycjut"),
@@ -75,7 +75,6 @@ script = ExtResource("1_1s67j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1.90735e-06)
-scale = Vector2(1, 1)
 texture = ExtResource("1_1iroh")
 hframes = 4
 vframes = 4

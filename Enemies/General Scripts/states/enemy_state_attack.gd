@@ -9,7 +9,11 @@ var attacking: bool = false
 
 func enter() -> void:
 	attacking = true
+	
 	if enemy.weapon:
+		if enemy.weapon is SlashWeapon:
+			enemy.weapon_position.position = Vector2.ZERO
+		
 		enemy.weapon.attack()
 		enemy.weapon.attack_finished.connect(end_attack)
 	pass
@@ -23,6 +27,10 @@ func exit() -> void:
 	
 	if enemy.weapon and enemy.weapon.has_method("return_to_idle"):
 		enemy.weapon.return_to_idle()
+	
+	if enemy.weapon is SlashWeapon:
+		enemy.weapon_position.update_position(enemy.anim_direction())
+		pass
 	pass
 	
 func process(_delta : float) -> EnemyState:

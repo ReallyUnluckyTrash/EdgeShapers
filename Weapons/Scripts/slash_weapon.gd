@@ -6,7 +6,7 @@ const SWORD_SWOOSH = preload("res://General/Sound Effects/SwordSwoosh.wav")
 
 @onready var hurt_box_position: Node2D = %HurtBoxPosition
 @onready var hurt_box: HurtBox = $HurtBoxPosition/HurtBox
-
+@onready var effect_sprite: Sprite2D = $EffectSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_attacking: bool = false
@@ -20,16 +20,22 @@ func attack():
 	if is_attacking == true:
 		return
 	is_attacking = true
-	animation_player.play("sword_animations/sword_swing")
+	animation_player.play("sword_swing")
+	hurt_box.monitoring = true
+	effect_sprite.visible = true
 	PlayerManager.play_audio(SWORD_SWOOSH)
 	pass
 
 func end_attack_immediately():
 	if is_attacking:
+		print("ending attack immediately")
 		is_attacking = false
 		animation_player.stop()
-		animation_player.play("sword_animations/idle")
+		animation_player.play("sword_animations/idle")	
+		hurt_box.monitoring = false
+		effect_sprite.visible = false
 		attack_interrupted.emit()
+		
 	
 func return_to_idle():
 	if animation_player.current_animation != "sword_animations/idle":
@@ -37,7 +43,7 @@ func return_to_idle():
 	is_attacking = false
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "sword_animations/sword_swing":
+	if anim_name == "sword_swing":
 		is_attacking = false
 		animation_player.play("sword_animations/idle")
 		attack_finished.emit()

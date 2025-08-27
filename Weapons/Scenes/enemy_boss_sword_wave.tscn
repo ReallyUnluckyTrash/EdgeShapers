@@ -1,0 +1,153 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbqg1aee8fclh"]
+
+[ext_resource type="Script" uid="uid://dgf6t802ewue" path="res://Weapons/Scripts/boss_sword_wave.gd" id="1_yetwc"]
+[ext_resource type="Texture2D" uid="uid://doxbonwpdl0wt" path="res://Weapons/Assets/Slash 3/color1/sprite-sheet.png" id="2_ankl0"]
+[ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="3_5m8o8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypuql"]
+size = Vector2(160, 296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xqsx"]
+size = Vector2(186.078, 296)
+
+[sub_resource type="Animation" id="Animation_4xqsx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ypuql"]
+resource_name = "hit"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.785398, 1.1781, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_hliha"]
+resource_name = "moving"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.785398, 1.1781, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hliha"]
+_data = {
+&"RESET": SubResource("Animation_4xqsx"),
+&"hit": SubResource("Animation_ypuql"),
+&"moving": SubResource("Animation_hliha")
+}
+
+[node name="BossSwordWave" type="Node2D"]
+script = ExtResource("1_yetwc")
+max_speed = 600.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_ankl0")
+hframes = 5
+vframes = 2
+frame = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(40, -10)
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(40, -10)
+shape = SubResource("RectangleShape2D_ypuql")
+
+[node name="HurtBox" parent="." instance=ExtResource("3_5m8o8")]
+position = Vector2(20, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(59.0302, -20)
+scale = Vector2(0.870278, 1)
+shape = SubResource("RectangleShape2D_4xqsx")
+debug_color = Color(0.966054, 9.62615e-07, 0.48291, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2(0.992402, 0.940263)
+target_position = Vector2(161.225, 0)
+collision_mask = 16
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hliha")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

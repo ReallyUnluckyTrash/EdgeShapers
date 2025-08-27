@@ -17,6 +17,7 @@ signal queue_freed
 func _ready() -> void:
 	shot.emit()
 	hurt_box.area_entered.connect(_on_hurtbox_entered)
+	#timer.timeout.connect(_on_timer_timeout)
 	pass
 
 func _physics_process(delta: float) -> void:
@@ -67,4 +68,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_timer_timeout() -> void:
 	animation_player.play("hit")
+	timer.timeout.disconnect(_on_timer_timeout)
 	pass # Replace with function body.
