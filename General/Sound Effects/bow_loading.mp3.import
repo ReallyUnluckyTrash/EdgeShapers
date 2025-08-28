@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0lrai5k8gvo"
+path="res://.godot/imported/bow_loading.mp3-6c35b01d8b907a1c37546c48406f694e.mp3str"
+
+[deps]
+
+source_file="res://General/Sound Effects/bow_loading.mp3"
+dest_files=["res://.godot/imported/bow_loading.mp3-6c35b01d8b907a1c37546c48406f694e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
