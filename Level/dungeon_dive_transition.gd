@@ -4,6 +4,7 @@ class_name DungeonDiveTransition extends Area2D
 enum SIDE {LEFT, RIGHT, TOP, BOTTOM}
 
 @export_file("*.tscn") var level
+@export_file("*.tscn") var pseudo_boss_room
 @export_file("*.tscn") var boss_room
 @export var target_transition_area: String = "LevelTransition"
 @export var grid_size:int = 64
@@ -41,12 +42,14 @@ func _ready() -> void:
 	pass
 
 func _player_entered(_player: Node2D) -> void:
-	if PlayerManager.current_floor < 5:
-		LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
-	elif PlayerManager.current_floor == 5:
-		LevelManager.load_new_level(boss_room, target_transition_area, Vector2.ZERO)
-		PlayerManager.current_floor += 1
+	if PlayerManager.current_floor == 4:
+		LevelManager.load_new_level(pseudo_boss_room, target_transition_area, Vector2.ZERO)
 		PlayerManager.pause_menu_disabled = true
+	elif PlayerManager.current_floor == 7:
+		LevelManager.load_new_level(boss_room, target_transition_area, Vector2.ZERO)
+		PlayerManager.pause_menu_disabled = true
+	else:
+		LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
 	pass
 
 func _place_player() -> void:

@@ -46,8 +46,3 @@ func _on_animation_finished(_a : String)->void:
 	PlayerHud.update_currency_label(PlayerManager.vertex_points)
 	enemy.queue_free()
 	pass
-
-
-#func _on_tri_slime_enemy_damaged() -> void:
-	#state_machine.change_state(self)
-	#pass # Replace with function body.

@@ -24,6 +24,7 @@ position = Vector2(96, 352)
 position = Vector2(96, -64)
 script = ExtResource("5_dpocp")
 level = "uid://sr47jxr80pkj"
+pseudo_boss_room = null
 boss_room = "uid://sr47jxr80pkj"
 size = 1
 side = 2

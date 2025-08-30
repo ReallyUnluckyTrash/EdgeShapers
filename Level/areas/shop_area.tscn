@@ -27,11 +27,11 @@ position = Vector2(96, 96)
 position = Vector2(96, 352)
 
 [node name="DungeonDiveTransition" parent="." instance=ExtResource("5_f3km5")]
-visible = false
 position = Vector2(96, -64)
 script = ExtResource("6_kdf1g")
 level = "uid://sr47jxr80pkj"
-boss_room = "uid://cpru5ji8a4vxw"
+pseudo_boss_room = "uid://cpru5ji8a4vxw"
+boss_room = "uid://dfqml5wa8buiw"
 target_transition_area = ""
 size = 1
 side = 2

@@ -12,10 +12,20 @@ extends CanvasLayer
 @onready var title_button: Button = $Control/GameOver/VBoxContainer/TitleButton
 @onready var floor_label: Label = $Control/FloorLabel
 
+@onready var boss_bar: Control = $Control/BossBar
+@onready var boss_health_bar: TextureProgressBar = %BossHealthBar
+@onready var boss_health_label: Label = %BossHealthLabel
+@onready var boss_name_label: Label = %BossNameLabel
+
+@onready var boss_animation_player: AnimationPlayer = $BossAnimationPlayer
+
+const LEVEL_WIN = preload("res://General/Sound Effects/level-win-6416.mp3")
+
 func _ready() -> void:
 	update_currency_label(PlayerManager.vertex_points)
 	hide_game_over_screen()
 	LevelManager.level_load_started.connect(hide_game_over_screen)
+	boss_bar.hide()
 	pass
 
 func update_hp(_hp:int, _max_hp:int) -> void:
@@ -30,11 +40,27 @@ func update_ep(_ep:int, _max_ep:int) -> void:
 	edge_power_label.text = str(_ep) + "/" + str(_max_ep)
 	pass
 
+func update_boss_hp(_hp:int, _max_hp:int) -> void:
+	boss_health_bar.max_value = _max_hp
+	boss_health_bar.value = _hp
+	boss_health_label.text = str(_hp) + "/" + str(_max_hp)
+	pass
+
+func show_boss_bar(boss_name:String)->void:
+	boss_name_label.text = boss_name
+	boss_bar.show()
+
+func play_boss_defeat_message()->void:
+	boss_animation_player.play("boss_defeated")
+	pass
+
 func update_floor_label(_current_floor:int)->void:
-	if _current_floor > 4:
+	if _current_floor == 4:
+		floor_label.text = "Current Floor : MINI-BOSS"  
+	if _current_floor == 7:
 		floor_label.text = "Current Floor : BOSS"  
 	else:
-		floor_label.text = "Current Floor :" + str(_current_floor) 
+		floor_label.text = "Current Floor : " + str(_current_floor) 
 
 func update_equipped_texture(_new_texture)->void:
 	equipped_item_texture.texture = _new_texture

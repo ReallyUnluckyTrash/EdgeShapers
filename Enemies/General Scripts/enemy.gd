@@ -11,6 +11,7 @@ signal enemy_destroyed(attack:Attack)
 var player: Player
 var invulnerable : bool = false
 var level : int = 1
+@export var enemy_name:String = ""
 
 const ENEMY_DESTROY = preload("res://General/Sound Effects/hit_01.wav")
 const ENEMY_HIT = preload("res://General/Sound Effects/hit_00.wav")

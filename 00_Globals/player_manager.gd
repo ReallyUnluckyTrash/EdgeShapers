@@ -10,7 +10,7 @@ const PLAYER_EQUIPPED_DATA = preload("res://Inventory/Resources/player_equipped.
 var player : Player
 var player_spawned:bool = false
 var vertex_points:int = 100
-var current_floor:int = 1 :set = set_floor
+var current_floor:int = 3 :set = set_floor
 var pause_menu_disabled:bool = false
 
 static var equipped_weapon:ItemData = null
@@ -129,4 +129,4 @@ func play_audio(_audio: AudioStream)->void:
 
 func set_floor(_new_floor:int)->void:
 	current_floor = _new_floor
-	PlayerHud.update_floor_label(_new_floor)
+	PlayerHud.update_floor_label(current_floor)

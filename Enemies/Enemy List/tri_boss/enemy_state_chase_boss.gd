@@ -1,15 +1,29 @@
 class_name EnemyStateChaseBoss extends EnemyStateChase
 
+@export var attack1: EnemyStateAttack
+@export var attack2: EnemyStateAttack
 
-@export var attack1:EnemyStateAttack
-@export var attack2:EnemyStateAttack
 
-var distance_to_player:float
+# Attack range settings
+@export var attack_range: float = 50.0        # Range for basic attack
+@export var attack1_range: float = 80.0       # Range for attack1
+@export var attack2_range: float = 120.0      # Range for attack2
+
+# Attack2 special behavior
+@export var attack2_rush_speed_multiplier: float = 2.0
+@export var attack2_hp_threshold: float = 0.5  # 50% HP threshold
+
+var distance_to_player: float
+var selected_attack: EnemyState = null
+var original_chase_speed: float
 
 func initialize() -> void:
 	if vision_area:
 		vision_area.player_entered.connect(_on_player_entered)
 		vision_area.player_exited.connect(_on_player_exited)
+	
+	# Store original chase speed for attack2 rush behavior
+	original_chase_speed = chase_speed
 	pass
 
 func enter() -> void:
@@ -18,6 +32,10 @@ func enter() -> void:
 	_attack_cooldown_timer = attack_cooldown_duration
 	var new_anim_name: String = anim_name + "_" + enemy.anim_direction()
 	enemy.update_animation(new_anim_name)
+	
+	# Reset attack selection and chase speed when entering chase
+	selected_attack = null
+	chase_speed = original_chase_speed
 	
 	if attack_area:
 		attack_area.monitoring = true
@@ -28,6 +46,10 @@ func exit() -> void:
 		attack_area.monitoring = false
 	_can_see_player = false
 	_has_line_of_sight = false
+	
+	# Reset attack selection and chase speed when exiting
+	selected_attack = null
+	chase_speed = original_chase_speed
 	pass
 	
 func process(_delta: float) -> EnemyState:
@@ -46,28 +68,33 @@ func process(_delta: float) -> EnemyState:
 	var can_actively_chase: bool = _can_see_player 
 	
 	if can_actively_chase:
-		# Can see player - check if in attack range first
-		if distance_to_player <= enemy.enemy_range:
-			# In range - set enemy to face player then attack
+		# Step 1: Choose attack if we haven't already
+		if selected_attack == null:
+			selected_attack = _select_available_attack()
+			
+			# If attack2 is selected, immediately switch to rush speed
+			if selected_attack == attack2:
+				chase_speed = original_chase_speed * attack2_rush_speed_multiplier
+		
+		# Step 2: Check if we're in range for the selected attack
+		var required_range = _get_attack_range(selected_attack)
+		
+		if distance_to_player <= required_range:
+			# In range for selected attack - face player and execute
 			_direction = lerp(_direction, new_direction, turn_rate)
 			if enemy.set_direction(_direction):
 				enemy.update_animation(anim_name + "_" + enemy.anim_direction())
 				enemy.weapon_position.update_position(enemy.anim_direction())
 				
 			if _attack_cooldown_timer <= 0:
-				var attack_index = randi_range(1, 2)
-				match attack_index:
-					1:
-						return attack
-					2:
-						return attack1
-				return attack
+				return selected_attack
 		else:
-			# Not in range - move closer
+			# Not in range - move closer to get in range for selected attack
 			_direction = lerp(_direction, new_direction, turn_rate)
 			if enemy.set_direction(_direction):
 				enemy.update_animation(anim_name + "_" + enemy.anim_direction())
 				enemy.weapon_position.update_position(enemy.anim_direction())
+			
 			enemy.velocity = _direction * chase_speed
 			_timer = state_aggro_duration  # Reset timer when actively chasing
 	else:
@@ -77,7 +104,36 @@ func process(_delta: float) -> EnemyState:
 			return next_state
 	
 	return null
+
+func _select_available_attack() -> EnemyState:
+	var current_hp_percentage = float(enemy.hp) / float(enemy.max_hp) if enemy.max_hp > 0 else 1.0
+	var random_chance = randi_range(1, 100)
 	
+	if current_hp_percentage > attack2_hp_threshold:
+		# Above 50% HP: 70% attack, 30% attack1
+		if random_chance <= 60:
+			return attack
+		else:
+			return attack1
+	else:
+		# Below 50% HP: 50% attack, 30% attack1, 20% attack2
+		if random_chance <= 40:
+			return attack
+		elif random_chance <= 70:  # 50% + 30% = 80%
+			return attack1
+		else:
+			return attack2
+
+func _get_attack_range(attack_state: EnemyState) -> float:
+	if attack_state == attack:
+		return attack_range * randf_range(1.0, 1.5)
+	elif attack_state == attack1:
+		return attack1_range
+	elif attack_state == attack2:
+		return attack2_range
+	else:
+		return attack_range  # Default fallback
+
 func physics(_delta: float) -> EnemyState:
 	return null
 

@@ -22,6 +22,12 @@ func reset_tilemap_bounds()->void:
 	var default_bounds: Array[Vector2] = [Vector2(-3000000, -3000000), Vector2(3000000, 3000000)]
 	tilemap_bounds_changed.emit(default_bounds)	
 
+func local_to_map(world_pos: Vector2) -> Vector2i:
+	return Vector2i(floor(world_pos.x / 64), floor(world_pos.y / 64))
+
+func map_to_local(tile_pos: Vector2i) -> Vector2:
+	return Vector2(tile_pos.x * 64 + 32, tile_pos.y * 64 + 32)
+
 func load_new_level(
 	level_path: String,	
 	_target_transition: String,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkonodsggwbc6"]
+[gd_scene load_steps=18 format=3 uid="uid://bkonodsggwbc6"]
 
 [ext_resource type="Script" uid="uid://jaku77anwab0" path="res://GUI/player_hud/player_hud.gd" id="1_6ggty"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_oghrr"]
@@ -190,6 +190,67 @@ _data = {
 &"RESET": SubResource("Animation_yhjvm"),
 &"fade_to_black": SubResource("Animation_sysqg"),
 &"show_game_over": SubResource("Animation_4b3j6")
+}
+
+[sub_resource type="Animation" id="Animation_5bkpt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BossDefeatedMessage/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BossDefeatedMessage/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rxq5y"]
+resource_name = "boss_defeated"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BossDefeatedMessage/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.7), Color(0, 0, 0, 0.7), Color(0, 0, 0, 0.7), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/BossDefeatedMessage/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.8, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scbx3"]
+_data = {
+&"RESET": SubResource("Animation_5bkpt"),
+&"boss_defeated": SubResource("Animation_rxq5y")
 }
 
 [node name="PlayerHud" type="CanvasLayer"]
@@ -394,5 +455,92 @@ offset_bottom = 44.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 44
 text = "Current Floor: 1"
+
+[node name="BossBar" type="Control" parent="Control"]
+visible = false
+anchors_preset = 0
+offset_right = 704.0
+offset_bottom = 128.0
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="Control/BossBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 240.0
+offset_bottom = 24.0
+scale = Vector2(3, 3)
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_rxq5y")
+texture_over = SubResource("AtlasTexture_5bkpt")
+texture_progress = SubResource("AtlasTexture_scbx3")
+texture_progress_offset = Vector2(0, 1)
+
+[node name="BossHealthLabel" type="Label" parent="Control/BossBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 146.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 32
+text = "999/999"
+
+[node name="BossNameLabel" type="Label" parent="Control/BossBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 655.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 48
+text = "TriLord, The Verdant Shape General"
+
+[node name="BossDefeatedMessage" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -66.0
+offset_right = 640.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/BossDefeatedMessage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="Control/BossDefeatedMessage"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -32.0
+offset_right = 298.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "ENEMY FELLED"
+horizontal_alignment = 1
+
+[node name="BossAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_scbx3")
+}
 
 [connection signal="pressed" from="Control/GameOver/VBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]

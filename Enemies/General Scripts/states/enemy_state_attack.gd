@@ -26,6 +26,9 @@ func exit() -> void:
 		if enemy.weapon.attack_finished.is_connected(end_attack):
 			enemy.weapon.attack_finished.disconnect(end_attack)
 	
+	if enemy.weapon.has_method("end_attack_immediately"):
+			enemy.weapon.end_attack_immediately()
+	
 	if enemy.weapon and enemy.weapon.has_method("return_to_idle"):
 		enemy.weapon.return_to_idle()
 	

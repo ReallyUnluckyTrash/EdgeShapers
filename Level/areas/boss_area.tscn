@@ -1,8 +1,9 @@
-[gd_scene load_steps=50 format=4 uid="uid://dfqml5wa8buiw"]
+[gd_scene load_steps=58 format=4 uid="uid://dfqml5wa8buiw"]
 
 [ext_resource type="Script" uid="uid://c0je0kw4txc2b" path="res://Level/boss_area.gd" id="1_bc4bt"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="2_0dnsc"]
 [ext_resource type="PackedScene" uid="uid://bp7ejsnqa6upb" path="res://Player/Scenes/player_spawn.tscn" id="3_ftw81"]
+[ext_resource type="Script" uid="uid://c7b4gbeovjevr" path="res://Level/gates.gd" id="3_x25y0"]
 [ext_resource type="Script" uid="uid://difimbxh3xmro" path="res://Enemies/Enemy List/tri_boss/boss.gd" id="4_ssmlx"]
 [ext_resource type="PackedScene" uid="uid://bjhxrchsefc6y" path="res://General/HitBox/hit_box.tscn" id="5_alhib"]
 [ext_resource type="PackedScene" uid="uid://byqdtln48owhi" path="res://General/HurtBox/hurt_box.tscn" id="6_3jjw7"]
@@ -10,18 +11,23 @@
 [ext_resource type="Script" uid="uid://cpv4d58jo2icm" path="res://Enemies/General Scripts/enemy_state_machine.gd" id="8_d5ntb"]
 [ext_resource type="Script" uid="uid://bguqk2gm4qur6" path="res://Enemies/General Scripts/states/enemy_state_idle.gd" id="9_jyrqk"]
 [ext_resource type="Script" uid="uid://dfqnf2sqncr5a" path="res://Enemies/General Scripts/states/enemy_state_wander.gd" id="10_0jg0x"]
-[ext_resource type="Script" uid="uid://bw278fx64iccq" path="res://Enemies/General Scripts/states/enemy_state_stun.gd" id="11_mcf5m"]
+[ext_resource type="Script" uid="uid://cnb4dlfbsg0xg" path="res://Enemies/Enemy List/tri_boss/enemy_state_stun_boss.gd" id="11_mcf5m"]
 [ext_resource type="Script" uid="uid://dt7ujt587w1rd" path="res://Enemies/General Scripts/states/enemy_state_destroy.gd" id="12_hme0y"]
 [ext_resource type="Script" uid="uid://ct4ncy4p4sbrr" path="res://Enemies/Enemy List/tri_boss/enemy_state_chase_boss.gd" id="13_3jjw7"]
 [ext_resource type="Script" uid="uid://ngy6jptf2j03" path="res://Enemies/General Scripts/states/enemy_state_attack.gd" id="14_65ne4"]
 [ext_resource type="Script" uid="uid://cchbayoj4rsh8" path="res://Enemies/Enemy List/tri_boss/boss_state_lightning.gd" id="14_ssmlx"]
 [ext_resource type="Texture2D" uid="uid://24m5q0bmhokx" path="res://Enemies/Enemy Sprites/DestroySmoke.png" id="15_76jkq"]
+[ext_resource type="Script" uid="uid://c6a2uqijnisq8" path="res://Enemies/Enemy List/tri_boss/boss_state_sphere.gd" id="16_mcf5m"]
 [ext_resource type="PackedScene" uid="uid://bj5rltgg0qv11" path="res://Enemies/General Scenes/vision_area.tscn" id="16_ygms5"]
 [ext_resource type="Script" uid="uid://bxjvbrbc6g3sp" path="res://Player/Scripts/weapon_position.gd" id="17_mruss"]
 [ext_resource type="Script" uid="uid://dt0834xhejjeb" path="res://Weapons/Scripts/enemy_boss_weapon.gd" id="18_alhib"]
 [ext_resource type="Texture2D" uid="uid://le77ks8l51du" path="res://Weapons/Assets/boss_weapon.png" id="19_3jjw7"]
 [ext_resource type="Texture2D" uid="uid://doxbonwpdl0wt" path="res://Weapons/Assets/Slash 3/color1/sprite-sheet.png" id="20_ssmlx"]
 [ext_resource type="Texture2D" uid="uid://dbvp48u2s6ulu" path="res://Enemies/Enemy Sprites/boss/effects/lightning_call.png" id="21_3jjw7"]
+[ext_resource type="Texture2D" uid="uid://bh4hv5wcfu7k8" path="res://Enemies/Enemy Sprites/boss/effects/spark.png" id="23_0jg0x"]
+[ext_resource type="Script" uid="uid://cgotl38yqrysl" path="res://Level/areas/boss_area_trigger.gd" id="23_d5ntb"]
+[ext_resource type="Texture2D" uid="uid://cbky7kf3a3a77" path="res://Enemies/Enemy Sprites/boss/effects/circle_spark.png" id="24_mcf5m"]
+[ext_resource type="AudioStream" uid="uid://ctmhyh0ffbaf4" path="res://General/Music/nameless_knight.mp3" id="27_hme0y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quokb"]
 radius = 80.0
@@ -514,6 +520,138 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LightningSphereEffect/spark:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LightningSphereEffect/circle:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LightningSphereEffect/circle:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LightningSphereEffect/spark:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HurtBox:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LightningSphereEffect/spark2:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LightningSphereEffect/spark2:frame")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LightningSphereEffect/circle:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("HurtBox:monitoring")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LightningSphereEffect/spark:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LightningSphereEffect/spark2:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0jg0x"]
 resource_name = "chase_down"
@@ -712,6 +850,143 @@ tracks/0/keys = {
 "values": [4]
 }
 
+[sub_resource type="Animation" id="Animation_x25y0"]
+resource_name = "sphere_attack"
+length = 4.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightningSphereEffect/spark:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2, 2.05, 2.1, 2.15, 2.2, 2.25, 2.3, 2.35, 2.4, 2.45, 2.5, 2.55, 2.6, 2.65, 2.7, 2.75, 2.8, 2.85, 2.9, 2.95, 3, 3.05, 3.1, 3.15, 3.2, 3.25, 3.3, 3.35, 3.4, 3.45, 3.5, 3.55, 3.6, 3.65, 3.7, 3.75, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightningSphereEffect/spark:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightningSphereEffect/spark:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LightningSphereEffect/spark2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LightningSphereEffect/spark2:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2, 2.05, 2.1, 2.15, 2.2, 2.25, 2.3, 2.35, 2.4, 2.45, 2.5, 2.55, 2.6, 2.65, 2.7, 2.75, 2.8, 2.85, 2.9, 2.95, 3, 3.05, 3.1, 3.15, 3.2, 3.25, 3.3, 3.35, 3.4, 3.45, 3.5, 3.55, 3.6, 3.65, 3.7, 3.75, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LightningSphereEffect/spark2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LightningSphereEffect/circle:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2, 2.05, 2.1, 2.15, 2.2, 2.25, 2.3, 2.35, 2.4, 2.45, 2.5, 2.55, 2.6, 2.65, 2.7, 2.75, 2.8, 2.85, 2.9, 2.95, 3, 3.05, 3.1, 3.15, 3.2, 3.25, 3.3, 3.35, 3.4, 3.45, 3.5, 3.55, 3.6, 3.65, 3.7, 3.75, 3.8, 3.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LightningSphereEffect/circle:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(8, 8)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LightningSphereEffect/circle:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HurtBox:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 3.95, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(8, 8), Vector2(9, 9), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HurtBox:monitoring")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.09999, 1.19999, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true]
+}
+
 [sub_resource type="Animation" id="Animation_x8csj"]
 resource_name = "stun"
 length = 0.2
@@ -767,9 +1042,13 @@ _data = {
 &"idle": SubResource("Animation_dpyev"),
 &"left": SubResource("Animation_alhib"),
 &"right": SubResource("Animation_3jjw7"),
+&"sphere_attack": SubResource("Animation_x25y0"),
 &"stun": SubResource("Animation_x8csj"),
 &"up": SubResource("Animation_jdxem")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyrqk"]
+size = Vector2(208, 64)
 
 [node name="BossArea" type="Node2D"]
 script = ExtResource("1_bc4bt")
@@ -784,19 +1063,30 @@ z_index = -1
 tile_map_data = PackedByteArray("AAABAAYABAADAAAAAAAEAPv/BAADAAAAAAAFAPv/BAADAAAAAAD+//v/BAADAAAAAAD9//v/BAADAAAAAAD8//v/BAADAAAAAAAGAPv/BAADAAAAAAAHAPv/BAADAAAAAAAIAPv/BAADAAAAAAAJAPv/BAADAAAAAAAKAPv/BAADAAAAAAD7//v/BAADAAAAAAD6//v/BAADAAAAAAD5//v/BAADAAAAAAALAPv/BAADAAAAAAAMAPv/BAADAAAAAAD4//v/BAADAAAAAAD3//v/BAADAAAAAAD2//v/BAADAAAAAAD1//j/BAAAAAAAAAD1//n/BAAAAAAAAAD1//r/BAAAAAAAAAD1//X/BAAAAAAAAAD1//b/BAAAAAAAAAD1//f/BAAAAAAAAAD1//v/BAADAAEAAAANAPv/BAABAAEAAAANAPb/BAABAAAAAAANAPf/BAABAAAAAAANAPj/BAABAAAAAAANAPn/BAABAAAAAAANAPr/BAABAAAAAAANAPH/BAABAAAAAAANAPL/BAABAAAAAAANAPP/BAABAAAAAAANAPT/BAABAAAAAAANAPX/BAABAAAAAAANAO//BAABAAAAAAANAPD/BAABAAAAAAD1/+//BAAAAAAAAAD1//D/BAAAAAAAAAD1//H/BAAAAAAAAAD1//L/BAAAAAAAAAD1//P/BAAAAAAAAAD1//T/BAAAAAAAAAD1/+7/BAAAAAEAAAANAO7/BAACAAEAAAD2/+7/BAACAAAAAAD3/+7/BAACAAAAAAD4/+7/BAACAAAAAAD5/+7/BAACAAAAAAD6/+7/BAACAAAAAAD7/+7/BAACAAAAAAD8/+7/BAACAAAAAAD9/+7/BAACAAAAAAD+/+7/BAACAAAAAAD//+7/BAACAAAAAAAAAO7/BAACAAAAAAABAO7/BAACAAAAAAACAO7/BAACAAAAAAADAO7/BAACAAAAAAAEAO7/BAACAAAAAAAFAO7/BAACAAAAAAAGAO7/BAACAAAAAAAHAO7/BAACAAAAAAAIAO7/BAACAAAAAAAJAO7/BAACAAAAAAAKAO7/BAACAAAAAAALAO7/BAACAAAAAAAMAO7/BAACAAAAAAD///z/BAAAAAAAAAD///3/BAAAAAAAAAD///7/BAAAAAAAAAD/////BAAAAAAAAAD//wAABAAAAAAAAAD//wEABAAAAAAAAAD//wIABAAAAAAAAAD//wMABAAAAAAAAAD//wQABAAAAAAAAAD//wUABAAAAAAAAAADAPz/BAABAAAAAAADAP3/BAABAAAAAAADAP7/BAABAAAAAAADAP//BAABAAAAAAADAAAABAABAAAAAAADAAEABAABAAAAAAADAAIABAABAAAAAAADAAMABAABAAAAAAADAAQABAABAAAAAAADAAUABAABAAAAAAADAAYABAABAAIAAAD//wYABAADAAIAAAAAAAYABAADAAAAAAACAAYABAADAAAAAAD///v/BAACAAIAAAADAPv/BAAAAAIAAAA=")
 tile_set = ExtResource("2_0dnsc")
 
+[node name="Gates" type="TileMapLayer" parent="." node_paths=PackedStringArray("enemies_array")]
+visible = false
+tile_map_data = PackedByteArray("AAAAAP3/BAADAAMAAAABAP3/BAADAAMAAAACAP3/BAADAAMAAAA=")
+tile_set = ExtResource("2_0dnsc")
+collision_enabled = false
+script = ExtResource("3_x25y0")
+enemies_array = [NodePath("../TriBoss")]
+
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_ftw81")]
 position = Vector2(96, 280)
 
 [node name="TriBoss" type="CharacterBody2D" parent="." node_paths=PackedStringArray("weapon")]
-position = Vector2(40, -696)
+position = Vector2(96, -1032)
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("4_ssmlx")
+max_hp = 50
 hp = 50
 raycast_length = 512.0
 enemy_range = 512.0
 enemy_vp_drop = 1000
+enemy_name = "Trilbolt, The Verdant Shape General of Lightning"
 weapon = NodePath("WeaponPosition/Boss Weapon")
+metadata/_edit_group_ = true
 
 [node name="HitBox" parent="TriBoss" instance=ExtResource("5_alhib")]
 
@@ -806,6 +1096,7 @@ shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.997101, 0, 0.173241, 0.42)
 
 [node name="HurtBox" parent="TriBoss" instance=ExtResource("6_3jjw7")]
+damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriBoss/HurtBox"]
 scale = Vector2(0.64, 0.64)
@@ -844,20 +1135,25 @@ script = ExtResource("10_0jg0x")
 wander_speed = 40.0
 next_state = NodePath("../Idle")
 
-[node name="Stun" type="Node" parent="TriBoss/EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Stun" type="Node" parent="TriBoss/EnemyStateMachine" node_paths=PackedStringArray("next_state1", "next_state")]
 script = ExtResource("11_mcf5m")
-next_state = NodePath("../Chase")
+next_state1 = NodePath("../SphereAttack")
+next_state = NodePath("../Attack")
 
 [node name="Destroy" type="Node" parent="TriBoss/EnemyStateMachine"]
 script = ExtResource("12_hme0y")
 
-[node name="Chase" type="Node" parent="TriBoss/EnemyStateMachine" node_paths=PackedStringArray("attack1", "attack", "vision_area", "next_state")]
+[node name="Chase" type="Node" parent="TriBoss/EnemyStateMachine" node_paths=PackedStringArray("attack1", "attack2", "attack", "vision_area", "next_state")]
 script = ExtResource("13_3jjw7")
 attack1 = NodePath("../LightningAttack")
+attack2 = NodePath("../SphereAttack")
+attack_range = 256.0
+attack1_range = 400.0
+attack2_range = 300.0
+attack2_rush_speed_multiplier = 3.0
 attack = NodePath("../Attack")
-chase_speed = 200.0
+chase_speed = 300.0
 vision_area = NodePath("../../VisionArea")
-attack_cooldown_duration = 1.0
 next_state = NodePath("../Wander")
 
 [node name="LightningAttack" type="Node" parent="TriBoss/EnemyStateMachine"]
@@ -865,6 +1161,9 @@ script = ExtResource("14_ssmlx")
 
 [node name="Attack" type="Node" parent="TriBoss/EnemyStateMachine"]
 script = ExtResource("14_65ne4")
+
+[node name="SphereAttack" type="Node" parent="TriBoss/EnemyStateMachine"]
+script = ExtResource("16_mcf5m")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TriBoss"]
 
@@ -881,6 +1180,8 @@ libraries = {
 }
 
 [node name="VisionArea" parent="TriBoss" instance=ExtResource("16_ygms5")]
+visible = false
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriBoss/VisionArea"]
 position = Vector2(16, -48)
@@ -944,6 +1245,39 @@ libraries = {
 visible = false
 texture = ExtResource("21_3jjw7")
 hframes = 5
+
+[node name="LightningSphereEffect" type="Node2D" parent="TriBoss"]
+
+[node name="spark" type="Sprite2D" parent="TriBoss/LightningSphereEffect"]
+visible = false
+texture = ExtResource("23_0jg0x")
+hframes = 5
+vframes = 2
+
+[node name="spark2" type="Sprite2D" parent="TriBoss/LightningSphereEffect"]
+visible = false
+rotation = 3.14159
+texture = ExtResource("23_0jg0x")
+hframes = 5
+vframes = 2
+
+[node name="circle" type="Sprite2D" parent="TriBoss/LightningSphereEffect"]
+visible = false
+texture = ExtResource("24_mcf5m")
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("boss", "gates")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("23_d5ntb")
+boss = NodePath("../TriBoss")
+gates = NodePath("../Gates")
+music = ExtResource("27_hme0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(96, -288)
+shape = SubResource("RectangleShape2D_jyrqk")
 
 [connection signal="enemy_damaged" from="TriBoss" to="TriBoss/EnemyStateMachine/Stun" method="_on_tri_slime_enemy_damaged"]
 [connection signal="animation_finished" from="TriBoss/WeaponPosition/Boss Weapon/AnimationPlayer" to="TriBoss/WeaponPosition/Boss Weapon" method="_on_animation_player_animation_finished"]

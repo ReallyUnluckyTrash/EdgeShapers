@@ -1,5 +1,7 @@
 class_name BossStateLightning extends EnemyStateAttack
 
+@onready var effect_sprite: Sprite2D = $"../../EffectSprite"
+
 func enter() -> void:
 	attacking = true
 	enemy.animation_player.animation_finished.connect(_on_animation_finished)
@@ -8,6 +10,9 @@ func enter() -> void:
 	
 func exit() -> void:
 	attacking = false
+	
+	effect_sprite.hide()
+	enemy.animation_player.animation_finished.disconnect(_on_animation_finished)
 	
 	if enemy.weapon and enemy.weapon.has_method("return_to_idle"):
 		enemy.weapon.return_to_idle()
@@ -36,6 +41,5 @@ func end_attack() -> void:
 func _on_animation_finished(anim_name:String)->void:
 	if anim_name == "ground_attack":
 		attacking = false
-		enemy.animation_player.animation_finished.disconnect(_on_animation_finished)
 		enemy.spawn_lightning.emit()
 	pass
