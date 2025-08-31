@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://bpkqtbhjn2f6j"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_hi311"]
+[ext_resource type="PackedScene" uid="uid://c43nh00lwsuym" path="res://Weapons/Scenes/boomerang_equip_plus.tscn" id="2_0bvjv"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_nblq2"]
+[ext_resource type="Texture2D" uid="uid://bqyqju65hdiif" path="res://Weapons/Assets/boomerang.png" id="3_nblq2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bvjv"]
+atlas = ExtResource("3_nblq2")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_nblq2")
+name = "Boomerang+"
+type = "Weapon"
+description = "Bigger boomerang!, deals 4 damage and costs 4 EP to throw.
+"
+texture = SubResource("AtlasTexture_0bvjv")
+price = 100
+scene = ExtResource("2_0bvjv")
+effects = Array[ExtResource("1_hi311")]([])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

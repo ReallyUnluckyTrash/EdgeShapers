@@ -6,7 +6,7 @@ var is_attacking: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var arrow_sprite: Sprite2D = $ArrowSprite
 
-const ARROW = preload("res://Weapons/Scenes/arrow.tscn")
+@export var ARROW = preload("res://Weapons/Scenes/arrow.tscn")
 const BOW_LOADING = preload("res://General/Sound Effects/bow_loading.mp3")
 const BOW_RELEASE = preload("res://General/Sound Effects/bow_release.mp3")
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo0i07yv53pxj"]
+[gd_scene load_steps=5 format=3 uid="uid://deawmbjjhnjeu"]
 
-[ext_resource type="Script" uid="uid://cvfpk0k50wh5s" path="res://Interactables/Shop Statue/shop_statue.gd" id="1_fitv5"]
-[ext_resource type="Texture2D" uid="uid://cowa3q5t2iwd6" path="res://Interactables/Blessing Statue/11.png" id="2_fitv5"]
+[ext_resource type="Script" uid="uid://01lxktpbc4o7" path="res://Interactables/Blessing Statue/blessing_statue.gd" id="1_60jff"]
+[ext_resource type="Texture2D" uid="uid://o3hv6f7d4urw" path="res://Interactables/Shop Statue/assets/15.png" id="2_fv3df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d0ev"]
 size = Vector2(64, 64)
@@ -9,14 +9,14 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fitv5"]
 size = Vector2(96, 96)
 
-[node name="ShopStatue" type="Node2D"]
+[node name="BlessingStatue" type="Node2D"]
 z_index = 10
-script = ExtResource("1_fitv5")
+script = ExtResource("1_60jff")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
 scale = Vector2(0.125, 0.125)
-texture = ExtResource("2_fitv5")
+texture = ExtResource("2_fv3df")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16

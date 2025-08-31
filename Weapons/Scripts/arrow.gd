@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	speed += acceleration * delta
 	var movement = direction * speed * delta
 	position += movement
-	
+
 	if ray_cast_2d.is_colliding():
 		speed = 0.0
 		acceleration = 0.0
