@@ -63,7 +63,8 @@ func _take_damage(attack:Attack)-> void:
 	if invulnerable == true:
 		return
 	if hp > 0:
-		PlayerManager.play_audio(HIT_PLAYER)
+		#PlayerManager.play_audio(HIT_PLAYER)
+		AudioManager.play_sfx(HIT_PLAYER)
 		#update_hp(-attack.damage)	
 		player_damaged.emit(attack)
 	pass

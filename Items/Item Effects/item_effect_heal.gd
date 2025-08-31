@@ -10,5 +10,6 @@ func use() -> void:
 	PlayerHud.update_hp(PlayerManager.player.hp, PlayerManager.player.max_hp)
 	print("healed player for: " + str(heal_amount))
 	#play sound
-	PlayerManager.play_audio(HP_UP)
+	#PlayerManager.play_audio(HP_UP)
+	AudioManager.play_sfx(HP_UP)
 	

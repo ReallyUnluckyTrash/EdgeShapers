@@ -48,10 +48,12 @@ func _take_damage(attack:Attack) -> void:
 	print(hp)
 	if hp > 0:
 		enemy_damaged.emit(attack)
-		PlayerManager.play_audio(ENEMY_HIT)
+		#PlayerManager.play_audio(ENEMY_HIT)
+		AudioManager.play_sfx(ENEMY_HIT)
 	else:
 		enemy_destroyed.emit(attack)
 		PlayerManager.play_audio(ENEMY_DESTROY)
+		AudioManager.play_sfx(ENEMY_DESTROY)
 	pass
 
 func update_animation(anim_name : String):

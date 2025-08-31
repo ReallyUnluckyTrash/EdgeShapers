@@ -21,7 +21,8 @@ func attack():
 		return
 	is_attacking = true
 	arrow_sprite.visible = true
-	PlayerManager.play_audio(BOW_LOADING)
+	#PlayerManager.play_audio(BOW_LOADING)
+	AudioManager.play_sfx(BOW_LOADING)
 	animation_player.play("shoot")
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -29,7 +30,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		create_arrow()
 		is_attacking = false
 		animation_player.play("idle")
-		PlayerManager.play_audio(BOW_RELEASE)
+		#PlayerManager.play_audio(BOW_RELEASE)
+		AudioManager.play_sfx(BOW_RELEASE)
 		attack_finished.emit()
 	pass # Replace with function body.
 

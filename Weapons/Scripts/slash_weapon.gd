@@ -23,7 +23,8 @@ func attack():
 	animation_player.play("sword_swing")
 	hurt_box.monitoring = true
 	effect_sprite.visible = true
-	PlayerManager.play_audio(SWORD_SWOOSH)
+	#PlayerManager.play_audio(SWORD_SWOOSH)
+	AudioManager.play_sfx(SWORD_SWOOSH)
 	pass
 
 func end_attack_immediately():

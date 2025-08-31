@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://5q4wemb10ae2" path="res://Player/Scripts/front_weapon_position.gd" id="21_0x0ja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o28un"]
-radius = 50.0
+radius = 40.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cvnsp"]
 animations = [{
