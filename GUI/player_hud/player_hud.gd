@@ -18,6 +18,7 @@ extends CanvasLayer
 @onready var boss_name_label: Label = %BossNameLabel
 
 @onready var boss_animation_player: AnimationPlayer = $BossAnimationPlayer
+@onready var interactable_indicator: Control = %InteractableIndicator
 
 const LEVEL_WIN = preload("res://General/Sound Effects/level-win-6416.mp3")
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 	hide_game_over_screen()
 	LevelManager.level_load_started.connect(hide_game_over_screen)
 	boss_bar.hide()
+	interactable_indicator.hide()
 	pass
 
 func update_hp(_hp:int, _max_hp:int) -> void:
@@ -53,6 +55,14 @@ func show_boss_bar(boss_name:String)->void:
 func play_boss_defeat_message()->void:
 	boss_animation_player.play("boss_defeated")
 	pass
+
+func show_interact_hint()->void:
+	print("Showing interact hint")
+	boss_animation_player.play("interact_fade_in")
+
+func hide_interact_hint()->void:
+	print("hiding interact hint")
+	boss_animation_player.play("interact_fade_out")
 
 func update_floor_label(_current_floor:int)->void:
 	if _current_floor == 4:

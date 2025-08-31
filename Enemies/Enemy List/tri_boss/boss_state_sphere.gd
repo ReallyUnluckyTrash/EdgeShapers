@@ -2,14 +2,20 @@ class_name BossStateSphere extends EnemyStateAttack
 
 @onready var effect_sprite: Sprite2D = $"../../EffectSprite"
 
+var sfx_player:AudioStreamPlayer
+const CIRCLE_SPARKS = preload("res://General/Sound Effects/circle_sparks.mp3")
+
 func enter() -> void:
 	attacking = true
 	enemy.animation_player.animation_finished.connect(_on_animation_finished)
 	enemy.update_animation("sphere_attack")
+	sfx_player = AudioManager.play_sfx(CIRCLE_SPARKS)
 	pass
 	
 func exit() -> void:
 	attacking = false
+	
+	AudioManager.stop_sfx(sfx_player)
 	
 	effect_sprite.hide()
 	enemy.animation_player.animation_finished.disconnect(_on_animation_finished)

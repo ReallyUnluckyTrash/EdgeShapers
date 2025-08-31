@@ -184,7 +184,7 @@ debug_color = Color(0.748052, 0.461045, 3.85046e-07, 0.42)
 [node name="InteractionArea" type="Area2D" parent="Interactions"]
 position = Vector2(0, -10)
 collision_layer = 4
-collision_mask = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractionArea"]
 shape = SubResource("RectangleShape2D_b1ygp")

@@ -43,11 +43,7 @@ func physics(_delta : float) -> EnemyState:
 
 func _on_enemy_damaged(attack:Attack) -> void:
 	_attack = attack
-	if state_machine.current_state is EnemyStateAttack:
-		print("not being stunned!")
-		return
-	else: 
-		state_machine.change_state(self)
+	state_machine.change_state(self)
 	pass
 
 func _on_animation_finished(_anim_name:String):

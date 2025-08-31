@@ -1,4 +1,4 @@
-class_name ShopStatue extends Node2D
+class_name ShopStatue extends Interactable
 
 @onready var player_monitor: Area2D = $PlayerMonitor
 
@@ -13,12 +13,3 @@ func _on_player_interact()->void:
 	#UpgradeChoiceMenu.show_menu()
 	
 	pass
-
-func _on_area_entered(_area:Area2D):
-	PlayerManager.interact_pressed.connect(_on_player_interact)
-	pass
-
-func _on_area_exited(_area:Area2D):
-	PlayerManager.interact_pressed.disconnect(_on_player_interact)
-	pass
-	

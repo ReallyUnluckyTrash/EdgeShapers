@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/circle_sparks.mp3-6d36f3a24d44c3061bae5577092
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

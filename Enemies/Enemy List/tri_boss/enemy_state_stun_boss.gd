@@ -16,3 +16,12 @@ func process(_delta : float) -> EnemyState:
 			return next_state
 	enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
+
+func _on_enemy_damaged(attack:Attack) -> void:
+	_attack = attack
+	if state_machine.current_state is EnemyStateAttack:
+		print("not being stunned!")
+		return
+	else:
+		state_machine.change_state(self)
+	pass

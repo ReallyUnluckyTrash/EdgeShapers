@@ -1,6 +1,6 @@
 @tool
 class_name TreasureChest
-extends Node2D
+extends Interactable
 
 @export var item_data:ItemData: set = _set_item_data
 @export var quantity: int = 1:set = _set_quantity
@@ -48,10 +48,13 @@ func _on_player_interact():
 				PlayerHud.update_currency_label(PlayerManager.vertex_points)
 				return
 			PlayerManager.INVENTORY_WEAPON_DATA.add_item(item_data, quantity)
+			PlayerHud.hide_interact_hint()
 			
 		elif item_data.type == "Item":
 			PlayerManager.INVENTORY_ITEM_DATA.add_item(item_data, quantity)
+			PlayerHud.hide_interact_hint()
 			pass
+	
 	else:
 		push_error("No items present in chest! Chest Name: ", name)
 	pass
@@ -70,9 +73,13 @@ func update_label()->void:
 
 func _on_area_entered(_area:Area2D):
 	PlayerManager.interact_pressed.connect(_on_player_interact)
+	if is_opened == false:
+		PlayerHud.show_interact_hint()
 	pass
 
 func _on_area_exited(_area:Area2D):
 	PlayerManager.interact_pressed.disconnect(_on_player_interact)
+	if is_opened == false:
+		PlayerHud.hide_interact_hint()
 	pass
 	

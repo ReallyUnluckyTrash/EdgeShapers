@@ -44,17 +44,22 @@ func play_music(_audio:AudioStream)->void:
 	#fade_out_and_stop(old_player)
 	old_player.stop()
 
-func play_sfx(_audio:AudioStream)->void:
+func play_sfx(_audio:AudioStream)->AudioStreamPlayer:
 	#loop through the players and check if its playing, if it is not play the audio
 	for player in sfx_players:
 		if not player.playing:
 			player.stream = _audio
 			player.play()
-			return
+			return player
 	
 	#if all players are occupied override the first player
 	sfx_players[0].stream = _audio
 	sfx_players[0].play()
+	return sfx_players[0]
+
+func stop_sfx(player:AudioStreamPlayer)->void:
+	if player and player.playing:
+		player.stop()
 
 func play_and_fade_in(player:AudioStreamPlayer)->void:
 	player.play(0)
