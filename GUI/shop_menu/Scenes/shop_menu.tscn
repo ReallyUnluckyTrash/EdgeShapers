@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvl7urclw8qrw"]
+[gd_scene load_steps=25 format=3 uid="uid://bvl7urclw8qrw"]
 
 [ext_resource type="Script" uid="uid://wihl7gi1x8jx" path="res://GUI/shop_menu/Scripts/shop_menu.gd" id="1_cdo8m"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_c4bvt"]
@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Weapons/Resources/black_sword.tres" id="5_iwlgp"]
 [ext_resource type="Resource" uid="uid://by0wwb4iiffi2" path="res://Items/Resources/potion.tres" id="6_j3i1b"]
 [ext_resource type="Resource" uid="uid://bojmh4s30rv6t" path="res://Items/Resources/ep_potion.tres" id="7_f3hjb"]
+[ext_resource type="Resource" uid="uid://ckmoogw6ibmg8" path="res://Weapons/Resources/great_bow.tres" id="7_rll2a"]
 [ext_resource type="Resource" uid="uid://bfj0vkk6582yg" path="res://Items/Resources/gem_potion.tres" id="8_bj1v7"]
 [ext_resource type="Resource" uid="uid://dweehbw6p326i" path="res://Weapons/Resources/bow.tres" id="9_m60vd"]
+[ext_resource type="Resource" uid="uid://bpkqtbhjn2f6j" path="res://Weapons/Resources/boomerang_plus.tres" id="9_wwtc8"]
 [ext_resource type="Resource" uid="uid://bb2cbtihsgc1v" path="res://Weapons/Resources/boomerang.tres" id="10_vnmmq"]
 [ext_resource type="Script" uid="uid://h3il8b3rctws" path="res://GUI/shop_menu/Scripts/shop_list_item.gd" id="11_foa1v"]
 [ext_resource type="PackedScene" uid="uid://c7o73qt7ew7ym" path="res://GUI/shop_menu/Scenes/shop_upgrade_button.tscn" id="12_5xv8o"]
@@ -21,7 +23,7 @@
 
 [sub_resource type="Resource" id="Resource_osqqv"]
 script = ExtResource("11_foa1v")
-items = Array[ExtResource("2_c4bvt")]([ExtResource("3_rll2a"), ExtResource("4_wwtc8"), ExtResource("5_iwlgp"), ExtResource("6_j3i1b"), ExtResource("7_f3hjb"), ExtResource("8_bj1v7"), ExtResource("9_m60vd"), ExtResource("10_vnmmq")])
+items = Array[ExtResource("2_c4bvt")]([ExtResource("3_rll2a"), ExtResource("4_wwtc8"), ExtResource("5_iwlgp"), ExtResource("9_m60vd"), ExtResource("7_rll2a"), ExtResource("10_vnmmq"), ExtResource("9_wwtc8"), ExtResource("6_j3i1b"), ExtResource("7_f3hjb"), ExtResource("8_bj1v7")])
 metadata/_custom_type_script = "uid://h3il8b3rctws"
 
 [sub_resource type="Animation" id="Animation_t0q3b"]

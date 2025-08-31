@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8tv6m3lh7d7n"]
+[gd_scene load_steps=7 format=3 uid="uid://b8tv6m3lh7d7n"]
 
 [ext_resource type="Script" uid="uid://dltnjx07r5cck" path="res://GUI/main_menu/main_menu.gd" id="1_bqxyb"]
+[ext_resource type="AudioStream" uid="uid://8a5snv2ukfcy" path="res://General/Music/title_screen.mp3" id="2_rggyk"]
 [ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://art/font/MedodicaRegular.otf" id="2_w34ts"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="3_qic1p"]
 
@@ -32,6 +33,7 @@ cache/0/48/0/scale = 1.0
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bqxyb")
 hub_area_path = "uid://de04gxgaeg1xb"
+title_screen_bgm = ExtResource("2_rggyk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

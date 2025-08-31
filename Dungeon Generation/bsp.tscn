@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://sr47jxr80pkj"]
+[gd_scene load_steps=25 format=3 uid="uid://sr47jxr80pkj"]
 
 [ext_resource type="Script" uid="uid://difd6gjudrjrf" path="res://Dungeon Generation/Scripts/dungeon_main.gd" id="1_67b3u"]
 [ext_resource type="AudioStream" uid="uid://dykj11qa7di88" path="res://General/Music/example_music_01.ogg" id="2_fa8sl"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" uid="uid://dijqpib2wnuol" path="res://Dungeon Generation/Scripts/dungeon_renderer.gd" id="11_ja24o"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Weapons/Resources/basic_spear.tres" id="11_s7sig"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="12_ja24o"]
+[ext_resource type="Resource" uid="uid://ckmoogw6ibmg8" path="res://Weapons/Resources/great_bow.tres" id="13_uavdt"]
+[ext_resource type="Resource" uid="uid://bpkqtbhjn2f6j" path="res://Weapons/Resources/boomerang_plus.tres" id="14_ql5vo"]
+[ext_resource type="Resource" uid="uid://cy02h54yfxb4g" path="res://Weapons/Resources/boss_weapon.tres" id="15_8qn4x"]
 [ext_resource type="PackedScene" uid="uid://cvqb5slbqa8hy" path="res://Enemies/Enemy List/tri_knight/tri_knight.tscn" id="16_dipqf"]
 
 [node name="BSP" type="Node2D"]
@@ -29,7 +32,17 @@ music = ExtResource("2_fa8sl")
 
 [node name="DungeonConfig" type="Node" parent="."]
 script = ExtResource("4_3v8vx")
-chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("6_d3gie"), ExtResource("7_udhsc"), ExtResource("8_dipqf"), ExtResource("9_fa8sl"), ExtResource("10_mjhrc"), ExtResource("11_s7sig")])
+floor_tile = Vector2i(4, 5)
+wall_tile = Vector2i(4, 4)
+top_left_edge_tile = Vector2i(1, 2)
+bottom_left_edge_tile = Vector2i(2, 2)
+bottom_right_edge_tile = Vector2i(0, 2)
+top_right_edge_tile = Vector2i(3, 2)
+left_wall_tile = Vector2i(1, 3)
+right_wall_tile = Vector2i(1, 3)
+bottom_wall_tile = Vector2i(2, 3)
+top_wall_tile = Vector2i(2, 3)
+chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("6_d3gie"), ExtResource("7_udhsc"), ExtResource("8_dipqf"), ExtResource("9_fa8sl"), ExtResource("10_mjhrc"), ExtResource("11_s7sig"), ExtResource("13_uavdt"), ExtResource("14_ql5vo"), ExtResource("15_8qn4x")])
 enemy_level_1_scenes = Array[PackedScene]([ExtResource("7_ipsl2")])
 enemy_level_2_scenes = Array[PackedScene]([ExtResource("9_q557t"), ExtResource("10_tbdqo")])
 enemy_level_3_scenes = Array[PackedScene]([ExtResource("8_s47vf")])

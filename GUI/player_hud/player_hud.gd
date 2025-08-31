@@ -67,7 +67,7 @@ func hide_interact_hint()->void:
 func update_floor_label(_current_floor:int)->void:
 	if _current_floor == 4:
 		floor_label.text = "Current Floor : MINI-BOSS"  
-	if _current_floor == 7:
+	elif _current_floor == 7:
 		floor_label.text = "Current Floor : BOSS"  
 	else:
 		floor_label.text = "Current Floor : " + str(_current_floor) 

@@ -52,7 +52,7 @@ func _take_damage(attack:Attack) -> void:
 		AudioManager.play_sfx(ENEMY_HIT)
 	else:
 		enemy_destroyed.emit(attack)
-		PlayerManager.play_audio(ENEMY_DESTROY)
+		#PlayerManager.play_audio(ENEMY_DESTROY)
 		AudioManager.play_sfx(ENEMY_DESTROY)
 	pass
 

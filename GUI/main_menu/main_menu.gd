@@ -6,12 +6,15 @@ extends Node2D
 @onready var close_button: Button = %CloseButton
 @onready var guide: Button = $CanvasLayer/VBoxContainer/Guide
 
+@export var title_screen_bgm:AudioStream
+
 func _ready() -> void:
 	PlayerHud.visible = false
 	guide_menu.visible = false
 	new_game.grab_focus()
 	PlayerManager.pause_menu_disabled = true
 	LevelManager.level_load_started.connect(_free_level)
+	AudioManager.play_music(title_screen_bgm)
 
 
 func _on_new_game_pressed() -> void:

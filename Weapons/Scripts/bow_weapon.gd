@@ -10,6 +10,8 @@ var is_attacking: bool = false
 const BOW_LOADING = preload("res://General/Sound Effects/bow_loading.mp3")
 const BOW_RELEASE = preload("res://General/Sound Effects/bow_release.mp3")
 
+var shoot_direction:Vector2
+
 var player:Player
 
 func _ready() -> void:
@@ -24,6 +26,10 @@ func attack():
 	#PlayerManager.play_audio(BOW_LOADING)
 	AudioManager.play_sfx(BOW_LOADING)
 	animation_player.play("shoot")
+	
+	shoot_direction = player.direction
+	if shoot_direction == Vector2.ZERO:
+		shoot_direction = player.cardinal_direction
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "shoot":
@@ -43,10 +49,6 @@ func create_arrow()->void:
 	new_arrow.setup_hurtbox(damage, knockback_force)
 	#new_arrow.shot.connect()
 	#new_arrow.queue_freed.connect()
-	
-	var shoot_direction:Vector2 = player.direction
-	if shoot_direction == Vector2.ZERO:
-		shoot_direction = player.cardinal_direction
 	new_arrow.setup_direction(shoot_direction)
 	
 	new_arrow.global_position = player.front_weapon_position.global_position

@@ -10,6 +10,12 @@ var sfx_players:Array[AudioStreamPlayer] = []
 var sfx_bus:String = "SFX"
 var max_sfx_players:int = 20
 
+var volume_settings:Dictionary = {
+	"Master": 1.0,
+	"Music" : 1.0,
+	"SFX" : 1.0
+}
+
 func _ready()->void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	for music in music_audio_player_count:
@@ -63,13 +69,28 @@ func stop_sfx(player:AudioStreamPlayer)->void:
 
 func play_and_fade_in(player:AudioStreamPlayer)->void:
 	player.play(0)
-	var tween:Tween = create_tween()
-	tween.tween_property(player, 'volume_db', 0, music_fade_duration)
+	#var tween:Tween = create_tween()
+	#tween.tween_property(player, 'volume_db', 0, music_fade_duration)
 	pass
 
 func fade_out_and_stop(player:AudioStreamPlayer)->void:
-	var tween:Tween = create_tween()
-	tween.tween_property(player, 'volume_db', -40, music_fade_duration)
-	await tween.finished
+	#var tween:Tween = create_tween()
+	#tween.tween_property(player, 'volume_db', -40, music_fade_duration)
+	#await tween.finished
 	player.stop()
 	pass
+
+func apply_volume_settings()->void:
+	for bus_name in volume_settings:
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		if bus_index != -1:
+			AudioServer.set_bus_volume_db(bus_index, linear_to_db(volume_settings[bus_name]))
+
+func set_bus_volume(bus_name: String, linear_value: float) -> void:
+	volume_settings[bus_name] = linear_value
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	if bus_index != -1:
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(linear_value))
+
+func get_bus_volume(bus_name: String) -> float:
+		return volume_settings.get(bus_name, 1.0)

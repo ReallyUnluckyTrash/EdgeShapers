@@ -4,7 +4,7 @@ class_name SlotInteractions extends Control
 @onready var use_button: Button = %UseButton
 #@onready var color_rect: ColorRect = $ColorRect
 
-const EQUIP = preload("res://General/Sound Effects/equip.wav")
+const EQUIP = preload("res://General/Sound Effects/equip.mp3")
 const USE_ITEM = preload("res://General/Sound Effects/use_item.wav")
 
 signal equip_pressed
