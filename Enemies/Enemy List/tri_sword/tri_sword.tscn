@@ -545,7 +545,7 @@ _data = {
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_h2hbc")
-hp = 5
+hp = 4
 raycast_length = 320.0
 enemy_range = 128.0
 enemy_vp_drop = 4
@@ -652,6 +652,7 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("19_cetbs")
 knockback_force = 200.0
 weapon_name = "basic_sword"
+damage = 2
 attack_speed = 1.0
 metadata/_edit_group_ = true
 

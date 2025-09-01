@@ -1,4 +1,4 @@
-class_name UpgradeChoiceButton extends Control
+class_name UpgradeChoiceButton extends Button
 
 var upgrade:Upgrade
 @onready var upgrade_image: TextureRect = %UpgradeImage
@@ -6,8 +6,6 @@ var upgrade:Upgrade
 @onready var upgrade_description: Label = %UpgradeDescription
 @onready var upgrade_value: Label = %UpgradeValue
 @onready var upgrade_rarity: Label = %UpgradeRarity
-
-signal button_pressed
 
 func _ready():
 	clear_details()
@@ -26,8 +24,3 @@ func clear_details():
 	upgrade_description.text = ""
 	upgrade_value.text = ""
 	upgrade_rarity.text = ""
-
-
-func _on_button_pressed() -> void:
-	button_pressed.emit()
-	pass # Replace with function body.

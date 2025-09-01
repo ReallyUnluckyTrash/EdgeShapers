@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0hgapdj1ycg6"]
+[gd_scene load_steps=16 format=3 uid="uid://c0hgapdj1ycg6"]
 
 [ext_resource type="Script" uid="uid://bd83lh8xr8ggi" path="res://GUI/pause_menu/pause_menu.gd" id="1_4w82k"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_dvxeg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ddmvbisx1lu0n" path="res://Inventory/Scripts/upgrade_ui.gd" id="11_cvrss"]
 [ext_resource type="PackedScene" uid="uid://bp2r3y2ey3b8s" path="res://Inventory/Scenes/upgrade_details_panel.tscn" id="13_cvrss"]
 [ext_resource type="PackedScene" uid="uid://bf7cwfqlduubj" path="res://GUI/pause_menu/volume_slider.tscn" id="13_fgl3m"]
+[ext_resource type="FontFile" uid="uid://um7q3udxcuin" path="res://art/font/MedodicaRegular.otf" id="14_fgl3m"]
 
 [sub_resource type="Theme" id="Theme_dvxeg"]
 
@@ -332,11 +333,18 @@ text = "Load
 "
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/MenuTabs/System"]
-layout_mode = 0
-offset_left = 537.0
-offset_top = 209.0
-offset_right = 775.0
-offset_bottom = 417.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -6.2222
+offset_right = -82.0
+offset_bottom = 201.778
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_dvxeg")
 metadata/_edit_group_ = true
 
@@ -369,6 +377,66 @@ text = "SFX Volume"
 layout_mode = 2
 value = 0.8
 bus_name = "SFX"
+
+[node name="Container" type="PanelContainer" parent="Control/MenuTabs/System"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.889
+offset_top = -308.444
+offset_right = 176.111
+offset_bottom = -40.4445
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MenuTabs/System/Container"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("14_fgl3m")
+bbcode_enabled = true
+text = "[font_size={45}]Controls[/font_size]
+[font_size={38}] Movement: WASD / Arrow Keys /D-pad / Joystick
+Attack: Z / Enter / Controller Right Button
+Interact: F / Shift / Controller Up Button
+Use Equipped Item: X / E / Controller Left Button
+Pause: Escape / Controller Start
+[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Container2" type="PanelContainer" parent="Control/MenuTabs/System"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 221.111
+offset_top = -308.444
+offset_right = 570.111
+offset_bottom = 303.556
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MenuTabs/System/Container2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("14_fgl3m")
+bbcode_enabled = true
+text = "[font_size={45}]Tips[/font_size]
+[font_size={38}]  Make sure to equip healing items before you enter a boss room, you cannot open the pause menu while in a boss floor.
+You regen 1 EP every 10 seconds, this can be improved with upgrades. 
+Stronger weapons will require EP to use, so make sure to work on your EP!
+[/font_size]"
+fit_content = true
+horizontal_alignment = 1
 
 [node name="InventoryBlocker" type="ColorRect" parent="."]
 unique_name_in_owner = true

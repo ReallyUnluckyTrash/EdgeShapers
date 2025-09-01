@@ -15,18 +15,36 @@ var exit_room: Branch = null
 
 @onready var floor_transition_tile: FloorTransition = $FloorTransition
 
-@onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var dungeon_config: DungeonConfig = $DungeonConfig
 @onready var object_spawner: ObjectSpawner = $ObjectSpawner
 @onready var dungeon_renderer: DungeonRenderer = $DungeonRenderer
+@onready var floor_layer: TileMapLayer = $Floor
+@onready var walls_layer: TileMapLayer = $Walls
 
 var room_grammar:RoomGrammar
 
+@export var music_array:Array[AudioStream] = []
 
 func _ready() -> void:
+	if PlayerManager.current_floor == 1:
+		map_width = 20
+		map_height = 20
+	elif PlayerManager.current_floor == 2:
+		map_width = 30
+		map_height = 30
+	elif PlayerManager.current_floor == 3:
+		map_width = 40
+		map_height = 30
+	else:
+		map_width = 60
+		map_height = 30
+	
 	initialize_components()
 	generate_dungeon()
-	AudioManager.play_music(music)
+	if PlayerManager.current_floor > 4:
+		AudioManager.play_music(music_array[randi_range(2, 3)])
+	else:
+		AudioManager.play_music(music_array[randi_range(0, 1)])
 
 func initialize_components():
 	self.y_sort_enabled = true
@@ -34,7 +52,7 @@ func initialize_components():
 	
 	dungeon_config.setup(map_width, map_height)
 	
-	dungeon_renderer.setup(tile_map_layer, dungeon_config)
+	dungeon_renderer.setup(floor_layer, walls_layer, dungeon_config)
 	
 	object_spawner.setup(self, dungeon_config)
 	
@@ -70,8 +88,8 @@ func generate_dungeon():
 	object_spawner._place_objects(root_node, entrance_room)
 	
 	#set the player and exit collision to their proper positions and change camera bounds
-	PlayerManager.set_player_position(tile_map_layer.map_to_local(entrance_pos))
-	floor_transition_tile.global_position = tile_map_layer.map_to_local(exit_pos)
+	PlayerManager.set_player_position(floor_layer.map_to_local(entrance_pos))
+	floor_transition_tile.global_position = floor_layer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 
 	queue_redraw()
@@ -116,11 +134,11 @@ func _place_entrance_exit():
 	if rooms_with_space.size() >= 2:
 		entrance_room = rooms_with_space[0]
 		entrance_pos = entrance_room.get_room_center()
-		tile_map_layer.set_cell(entrance_pos, 4, dungeon_config.entrance_tile)
+		floor_layer.set_cell(entrance_pos, 4, dungeon_config.entrance_tile)
 		
 		exit_room = rooms_with_space[-1]
 		exit_pos = exit_room.get_room_center()
-		tile_map_layer.set_cell(exit_pos, 4, dungeon_config.exit_tile)
+		floor_layer.set_cell(exit_pos, 4, dungeon_config.exit_tile)
 
 	else:
 		print("Warning: Not enough rooms for entrance/exit placement, regenerating dungeon")
@@ -128,11 +146,11 @@ func _place_entrance_exit():
 
 func _set_camera_bounds() -> Array[Vector2]:
 	var bounds : Array[Vector2] = []
-	var used_rect = tile_map_layer.get_used_rect()
+	var used_rect = walls_layer.get_used_rect()
 	
 	# Get actual world bounds
-	var top_left = tile_map_layer.map_to_local(used_rect.position)
-	var bottom_right = tile_map_layer.map_to_local(used_rect.end - Vector2i.ONE)
+	var top_left = walls_layer.map_to_local(used_rect.position)
+	var bottom_right = floor_layer.map_to_local(used_rect.end - Vector2i.ONE)
 	
 	#var tile_size = tilemaplayer.tile_set.tile_size
 	top_left -= Vector2(dungeon_config.tile_size, dungeon_config.tile_size) / 2

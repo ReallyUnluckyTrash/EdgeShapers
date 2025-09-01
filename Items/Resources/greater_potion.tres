@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://736qi3ec2cuy"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_3tyic"]
+[ext_resource type="Script" uid="uid://cau453avplpnt" path="res://Items/Item Effects/item_effect_heal.gd" id="2_7pytg"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_h4fbw"]
+[ext_resource type="Texture2D" uid="uid://dgb20e1dexiuq" path="res://Items/Assets/miscellaneous.png" id="4_y4isq"]
+
+[sub_resource type="Resource" id="Resource_fd6j0"]
+script = ExtResource("2_7pytg")
+heal_amount = 6
+use_description = "Heals 6 HP"
+metadata/_custom_type_script = "uid://cau453avplpnt"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opyql"]
+atlas = ExtResource("4_y4isq")
+region = Rect2(0, 208, 16, 16)
+
+[resource]
+script = ExtResource("3_h4fbw")
+name = "Greater Potion"
+type = "Item"
+description = "Heals 6 HP upon use. The red concoction is filled with the blood of the shapes.
+"
+texture = SubResource("AtlasTexture_opyql")
+price = 20
+effects = Array[ExtResource("1_3tyic")]([SubResource("Resource_fd6j0")])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

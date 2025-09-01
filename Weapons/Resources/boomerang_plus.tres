@@ -13,7 +13,7 @@ region = Rect2(0, 0, 32, 32)
 script = ExtResource("2_nblq2")
 name = "Boomerang+"
 type = "Weapon"
-description = "Bigger boomerang!, deals 4 damage and costs 4 EP to throw.
+description = "Deals 4 damage and costs 4 EP to use. Bigger boomerangs need more energy to throw see, it should cost 2 EP but wall phasing magic makes it cost 2 more EP.
 "
 texture = SubResource("AtlasTexture_0bvjv")
 price = 100

@@ -29,6 +29,6 @@ type = "Item"
 description = "Heals 10 HP and 10 EP upon use. Wait what why is it so potent? What is this thing?
 "
 texture = SubResource("AtlasTexture_fyb50")
-price = 20
+price = 40
 effects = Array[ExtResource("1_vgcrb")]([SubResource("Resource_fd6j0"), SubResource("Resource_8rdqh")])
 metadata/_custom_type_script = "uid://dlxi15m56e0d8"

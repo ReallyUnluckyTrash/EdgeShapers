@@ -13,7 +13,7 @@ region = Rect2(0, 0, 32, 0)
 script = ExtResource("2_6t6qw")
 name = "Boomerang"
 type = "Weapon"
-description = "Ranged Weapon. Costs 2 EP to use. Deals 2 damage. (Not affected by attack speed)
+description = "Deals 2 damage and costs 2 EP to use. Throw the boomerang and it will come back to you no matter what. For some reason it goes through walls. I wonder why?
 "
 texture = SubResource("AtlasTexture_41p4g")
 price = 50

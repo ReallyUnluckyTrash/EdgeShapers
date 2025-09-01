@@ -4,7 +4,9 @@ var parent_node: Node2D
 var config: DungeonConfig
 var spawned_enemies: Array = []
 var spawned_chests:Array = []
+var spawned_statues:Array = []
 var chest_scene = preload("res://Interactables/Chests/treasure_chest.tscn")
+var statue_scene = preload("res://Interactables/Blessing Statue/blessing_statue.tscn")
 
 func setup(parent: Node2D, dungeon_config: DungeonConfig):
 	parent_node = parent
@@ -22,12 +24,17 @@ func _clear_previous_spawns():
 			chest.queue_free()
 	spawned_chests.clear()
 	
+	for statue in spawned_statues:
+		if is_instance_valid(statue):
+			statue.queue_free()
+	spawned_statues.clear()
+	
 
 func _place_objects(root_node:Branch, entrance_room:Branch):
 	_clear_previous_spawns()
 	var leaves = root_node.get_leaves()
 	for i in range(0, leaves.size()):
-		var leaf = leaves[i]
+		var leaf:Branch = leaves[i]
 		
 		#if leaf == entrance_room:
 			#print("skip the entrance room for object placement")
@@ -47,12 +54,28 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 			parent_node.add_child(chest_instance)
 			spawned_chests.append(chest_instance)
 		
+		for statue_pos in leaf.statue_positions:
+			var statue_instance = statue_scene.instantiate()
+			statue_instance.position = Vector2(
+				statue_pos.x * config.tile_size + config.tile_size/2,
+				statue_pos.y * config.tile_size + config.tile_size/2,
+			)
+			parent_node.add_child(statue_instance)
+			spawned_statues.append(statue_instance)
+		
 		for enemy_data in leaf.enemy_positions:
 			var enemy_level = enemy_data['level']
 			var enemy_pos = enemy_data['position']
 			
-			var random_index = randi_range(0, config.enemy_scenes[enemy_level].size()-1)
-			var enemy_instance = config.enemy_scenes[enemy_level][random_index].instantiate()
+			var random_index:int = 0
+			var enemy_instance:Enemy
+			
+			if PlayerManager.current_floor > 4:
+				random_index = randi_range(0, config.ench_enemy_scenes[enemy_level].size()-1)
+				enemy_instance = config.ench_enemy_scenes[enemy_level][random_index].instantiate()
+			else:
+				random_index = randi_range(0, config.enemy_scenes[enemy_level].size()-1)
+				enemy_instance = config.enemy_scenes[enemy_level][random_index].instantiate()
 			
 			enemy_instance.position = Vector2(
 				enemy_pos.x * config.tile_size + config.tile_size/2,
@@ -66,7 +89,11 @@ func _place_objects(root_node:Branch, entrance_room:Branch):
 
 func _set_chest_items():
 	for chest in spawned_chests:
-		var chest_item = config.chest_items[randi_range(1,config.chest_items.size() - 1)]
+		var chest_item:ItemData = null
+		if PlayerManager.current_floor > 4:
+			chest_item = config.enhanced_chest_items[randi_range(1,config.enhanced_chest_items.size() - 1)]
+		else:
+			chest_item = config.chest_items[randi_range(1,config.chest_items.size() - 1)]
 		
 		chest.item_data = chest_item
 		

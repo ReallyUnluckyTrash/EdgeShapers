@@ -87,15 +87,17 @@ static func _setup_easy_enemy_room(room: Branch, available_positions: Array):
 		enemy_count += 1
 	if room_area > 25:
 		enemy_count += 1
+	if room_area > 40:
+		enemy_count += 1
 	
 	# Place enemies
 	for i in range(min(enemy_count, available_positions.size())):
-		if i == 0:
+		if i < 3:
 			room.enemy_positions.append({
 				'position': available_positions.pop_front(),
 				'level': 1
 			})
-		elif i < 2:
+		else:
 			room.enemy_positions.append({
 				'position': available_positions.pop_front(),
 				'level': randi_range(1,2)
@@ -113,6 +115,8 @@ static func _setup_normal_enemy_room(room: Branch, available_positions: Array):
 		enemy_count += 1
 	if room_area > 25:
 		enemy_count += 1
+	if room_area > 40:
+		enemy_count += 2
 	
 	# Place enemies
 	for i in range(min(enemy_count, available_positions.size())):
@@ -131,19 +135,18 @@ static func _setup_normal_enemy_room(room: Branch, available_positions: Array):
 				'position': available_positions.pop_front(),
 				'level': randi_range(2,3)
 			})
+		
+	if available_positions.size() > 0 && randi_range(1,10) > 8:
+		room.chest_positions.append(available_positions.pop_front())
 
 static func _setup_hard_enemy_room(room: Branch, available_positions: Array):
 	var room_area = _get_room_area(room)
-	var base_enemies = 3
+	var base_enemies = 6
 	
 	# Scale enemies with room size
 	var enemy_count = base_enemies
-	if room_area > 20:
-		enemy_count += 1
-	if room_area > 30:
+	if room_area > 90:
 		enemy_count += 2
-	if room_area > 40:
-		enemy_count += 1
 	
 	# Place enemies
 	for i in range(min(enemy_count, available_positions.size())):
@@ -151,6 +154,10 @@ static func _setup_hard_enemy_room(room: Branch, available_positions: Array):
 			'position': available_positions.pop_front(),
 			'level': randi_range(2,3)
 		})
+	
+	#spawn one chest
+	if available_positions.size() > 0:
+		room.chest_positions.append(available_positions.pop_front())
 	pass
 
 static func _setup_mini_boss_room(room: Branch, available_positions: Array):
@@ -166,7 +173,7 @@ static func _setup_mini_boss_room(room: Branch, available_positions: Array):
 		})
 	
 	if available_positions.size() > 0:
-		room.chest_positions.append(available_positions.pop_front())
+		room.statue_positions.append(available_positions.pop_front())
 	
 	
 

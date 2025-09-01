@@ -65,7 +65,7 @@ func _take_damage(attack:Attack)-> void:
 	if hp > 0:
 		#PlayerManager.play_audio(HIT_PLAYER)
 		AudioManager.play_sfx(HIT_PLAYER)
-		#update_hp(-attack.damage)	
+		update_hp(-attack.damage)	
 		player_damaged.emit(attack)
 	pass
 

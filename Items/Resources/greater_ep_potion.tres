@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=7 format=3 uid="uid://dqgdal8ohqgh1"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_bg6sj"]
+[ext_resource type="Script" uid="uid://bkx5jcg4mq5gr" path="res://Items/Item Effects/item_effect_heal_ep.gd" id="2_h2pks"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_q4gt7"]
+[ext_resource type="Texture2D" uid="uid://dgb20e1dexiuq" path="res://Items/Assets/miscellaneous.png" id="4_ya2u7"]
+
+[sub_resource type="Resource" id="Resource_2s5rm"]
+script = ExtResource("2_h2pks")
+heal_amount = 5
+use_description = "Heals 5 EP"
+metadata/_custom_type_script = "uid://bkx5jcg4mq5gr"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcgwe"]
+atlas = ExtResource("4_ya2u7")
+region = Rect2(48, 208, 16, 16)
+
+[resource]
+script = ExtResource("3_q4gt7")
+name = "EP Potion"
+type = "Item"
+description = "Heals 5 EP. The shapes maintain their edges by using this blue liquid. No one really knows where it came from though."
+texture = SubResource("AtlasTexture_jcgwe")
+price = 10
+effects = Array[ExtResource("1_bg6sj")]([SubResource("Resource_2s5rm")])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

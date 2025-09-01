@@ -15,7 +15,8 @@ func _free_level()->void:
 	
 func setup_player():
 	PlayerManager.set_as_parent(self)
-	if PlayerManager.current_floor == 1 || PlayerManager.current_floor > 5 :
+	if PlayerManager.current_floor == 1 || PlayerManager.current_floor > 6 :
 		return
 	else:	
 		UpgradeChoiceMenu.show_menu()
+		PlayerManager.player.update_hp(99)

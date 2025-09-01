@@ -24,7 +24,7 @@ func show_menu()->void:
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
-	upgrade_choice_button.get_child(0).grab_focus()
+	upgrade_choice_button.grab_focus()
 	pass
 
 func hide_menu()->void:
@@ -52,9 +52,9 @@ func set_upgrade_choice(choice_button: UpgradeChoiceButton) -> void:
 	
 	choice_button.update_details(selected_upgrade)
 	#connect signal
-	if choice_button.button_pressed.is_connected(acquire_upgrade):
-		choice_button.button_pressed.disconnect(acquire_upgrade)
-	choice_button.button_pressed.connect(acquire_upgrade.bind(selected_upgrade))
+	if choice_button.pressed.is_connected(acquire_upgrade):
+		choice_button.pressed.disconnect(acquire_upgrade)
+	choice_button.pressed.connect(acquire_upgrade.bind(selected_upgrade))
 	
 func acquire_upgrade(_upgrade:Upgrade)->void:
 	if _upgrade is UpgradeWeapon:

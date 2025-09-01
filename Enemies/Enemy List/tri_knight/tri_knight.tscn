@@ -639,7 +639,7 @@ script = ExtResource("1_dyyud")
 hp = 20
 raycast_length = 320.0
 enemy_range = 192.0
-enemy_vp_drop = 100
+enemy_vp_drop = 25
 weapon = NodePath("WeaponPosition/Slash Weapon")
 
 [node name="HitBox" parent="." instance=ExtResource("2_e3gjf")]

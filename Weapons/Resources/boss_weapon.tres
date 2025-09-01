@@ -9,7 +9,7 @@
 script = ExtResource("2_u3xuv")
 name = "Tri-Lord Sword"
 type = "Weapon"
-description = "Shoots sword waves when used."
+description = "Deals 5 damage and shoots sword waves. The young Tribolt was blessed with the power to control lightning. With it, he slaughetered many of his own kin until the Octaking himself stopped the rabid boy. From then on, Tribolt became Octaking's sword."
 texture = ExtResource("4_mwx8x")
 price = 200
 scene = ExtResource("2_mwx8x")

@@ -39,6 +39,7 @@ func _on_player_interact():
 		return
 	is_opened = true
 	animation_player.play("opened_chest")
+	PlayerHud.hide_interact_hint()
 	
 	if item_data and quantity > 0:
 		if item_data.type == "Weapon":
@@ -48,11 +49,9 @@ func _on_player_interact():
 				PlayerHud.update_currency_label(PlayerManager.vertex_points)
 				return
 			PlayerManager.INVENTORY_WEAPON_DATA.add_item(item_data, quantity)
-			PlayerHud.hide_interact_hint()
 			
 		elif item_data.type == "Item":
 			PlayerManager.INVENTORY_ITEM_DATA.add_item(item_data, quantity)
-			PlayerHud.hide_interact_hint()
 			pass
 	
 	else:

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://bmac7gbq864fw"]
+
+[ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_rjkk4"]
+[ext_resource type="PackedScene" uid="uid://c6ekf6cyfq3b7" path="res://Weapons/Scenes/enchanced_spear.tscn" id="2_rjkk4"]
+[ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="3_wsqvx"]
+[ext_resource type="Texture2D" uid="uid://bobdcujrgmf10" path="res://Weapons/Assets/weaponicons.png" id="4_uvjqg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyroe"]
+atlas = ExtResource("4_uvjqg")
+region = Rect2(128, 96, 32, 32)
+
+[resource]
+script = ExtResource("3_wsqvx")
+name = "Enhanced Spear"
+type = "Weapon"
+description = "Deals 3 damage and costs 2 EP to use. The spear is now bigger and sharper. Pierce the heavens!"
+texture = SubResource("AtlasTexture_hyroe")
+price = 75
+scene = ExtResource("2_rjkk4")
+effects = Array[ExtResource("1_rjkk4")]([])
+metadata/_custom_type_script = "uid://dlxi15m56e0d8"

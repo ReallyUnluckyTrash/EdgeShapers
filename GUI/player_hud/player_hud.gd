@@ -28,6 +28,7 @@ func _ready() -> void:
 	LevelManager.level_load_started.connect(hide_game_over_screen)
 	boss_bar.hide()
 	interactable_indicator.hide()
+	update_floor_label(PlayerManager.current_floor)
 	pass
 
 func update_hp(_hp:int, _max_hp:int) -> void:
@@ -54,6 +55,7 @@ func show_boss_bar(boss_name:String)->void:
 
 func play_boss_defeat_message()->void:
 	boss_animation_player.play("boss_defeated")
+	boss_bar.hide()
 	pass
 
 func show_interact_hint()->void:
