@@ -27,8 +27,8 @@ var room_grammar:RoomGrammar
 
 func _ready() -> void:
 	if PlayerManager.current_floor == 1:
-		map_width = 20
-		map_height = 20
+		map_width = 30
+		map_height = 30
 	elif PlayerManager.current_floor == 2:
 		map_width = 30
 		map_height = 30

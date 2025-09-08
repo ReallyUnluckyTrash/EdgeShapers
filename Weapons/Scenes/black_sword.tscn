@@ -115,10 +115,10 @@ tracks/2/path = NodePath("HurtBoxPosition:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-8, -80)]
+"values": [Vector2(56, -16), Vector2(80, -8), Vector2(80, -56), Vector2(32, -120), Vector2(-56, -104), Vector2(-88, -48), Vector2(-80, -24)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -259,8 +259,8 @@ _data = {
 &"sword_swing": SubResource("Animation_n3cs8")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ha1pn"]
-radius = 67.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_eg3yj"]
+radius = 64.4981
 
 [node name="Slash Weapon" type="Node2D"]
 script = ExtResource("1_1gwhn")
@@ -269,7 +269,6 @@ weapon_name = "black_sword"
 damage = 4
 ep_cost = 2.0
 attack_speed = 0.7
-metadata/_edit_group_ = true
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -283,15 +282,14 @@ libraries = {
 
 [node name="HurtBoxPosition" type="Node2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(-2.4, -1.5)
+metadata/_edit_group_ = true
 
 [node name="HurtBox" parent="HurtBoxPosition" instance=ExtResource("3_gjyjn")]
 collision_mask = 256
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxPosition/HurtBox"]
-shape = SubResource("CircleShape2D_ha1pn")
-debug_color = Color(0.934948, 2.03112e-05, 0.638439, 0.42)
+shape = SubResource("CircleShape2D_eg3yj")
 
 [node name="EffectSprite" type="Sprite2D" parent="."]
 visible = false
