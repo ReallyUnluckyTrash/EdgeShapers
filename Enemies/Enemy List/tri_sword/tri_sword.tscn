@@ -546,7 +546,7 @@ collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_h2hbc")
 hp = 4
-raycast_length = 320.0
+raycast_length = 480.0
 enemy_range = 128.0
 enemy_vp_drop = 4
 weapon = NodePath("WeaponPosition/Slash Weapon")
@@ -593,6 +593,8 @@ next_state = NodePath("../Wander")
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_bfm7t")
 wander_speed = 40.0
+state_animation_duration = 2.0
+state_cycles_max = 6
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
@@ -630,7 +632,7 @@ libraries = {
 [node name="VisionArea" parent="." instance=ExtResource("12_u263i")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
-polygon = PackedVector2Array(16, 0, -16, 0, -256, -256, 256, -256)
+polygon = PackedVector2Array(128, 0, -128, 0, -256, -384, 256, -384)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -638,7 +640,7 @@ libraries = {
 }
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, -256)
+target_position = Vector2(0, -448)
 collision_mask = 20
 
 [node name="WeaponPosition" type="Node2D" parent="."]

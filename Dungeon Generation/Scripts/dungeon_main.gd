@@ -21,9 +21,9 @@ var exit_room: Branch = null
 @onready var floor_layer: TileMapLayer = $Floor
 @onready var walls_layer: TileMapLayer = $Walls
 
-var room_grammar:RoomGrammar
+var room_grammar: RoomGrammar
 
-@export var music_array:Array[AudioStream] = []
+@export var music_array: Array[AudioStream] = []
 
 func _ready() -> void:
 	if PlayerManager.current_floor == 1:
@@ -56,12 +56,10 @@ func initialize_components():
 	
 	object_spawner.setup(self, dungeon_config)
 	
-	#TODO
+	# Initialize the new grammar system
 	room_grammar = RoomGrammar.new()
 	
 	LevelManager.level_load_started.connect(_free_level)
-	
-
 
 func generate_dungeon():
 	print("Generating dungeon!")
@@ -69,58 +67,100 @@ func generate_dungeon():
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(map_width, map_height))
 	
 	# Steps 2-6: Divide areas recursively until minimal size is reached
-	root_node.split(dungeon_config.min_cell_size)
+	root_node.split(dungeon_config.min_partition_size)
 	
 	# Steps 7-8: Create rooms in each partition cell
 	root_node.create_all_rooms()
 	
-	#root_node.get_corridors() 
-	
+	# Build connections between rooms
 	root_node.build_connections()
 	
+	# Apply the new grammar system
 	_apply_room_grammar()
 	
-	#set tiles on the map
+	# Set tiles on the map
 	dungeon_renderer.render_dungeon(root_node)
 	
-	#place entities (such as enemies and chests) and set the entrance and exit points
+	# Place entities and set entrance/exit points
 	_place_entrance_exit()
 	object_spawner._place_objects(root_node, entrance_room)
 	
-	#set the player and exit collision to their proper positions and change camera bounds
+	# Set player and exit positions and change camera bounds
 	PlayerManager.set_player_position(floor_layer.map_to_local(entrance_pos))
 	floor_transition_tile.global_position = floor_layer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 
 	queue_redraw()
-	
 
 func _draw():
 	if not root_node:
 		return
 	
 	# Draw partition boundaries (for debugging)
-	#_draw_partitions(root_node)
+	_draw_partitions(root_node)
+
+#func _draw_partitions(node: Branch):
+	## Draw outline of current partition
+	#draw_rect(
+		#Rect2(
+			#node.position.x * dungeon_config.tile_size,
+			#node.position.y * dungeon_config.tile_size,
+			#node.size.x * dungeon_config.tile_size,
+			#node.size.y * dungeon_config.tile_size
+		#),
+		#Color.GREEN,
+		#false
+	#)
+	#
+	## Recursively draw child partitions
+	#if node.left_child:
+		#_draw_partitions(node.left_child)
+	#if node.right_child:
+		#_draw_partitions(node.right_child)
 
 func _draw_partitions(node: Branch):
-	# Draw outline of current partition
-	draw_rect(
-		Rect2(
+	# Only draw if this partition has a room
+	if node.has_room:
+		var rect = Rect2(
 			node.position.x * dungeon_config.tile_size,
 			node.position.y * dungeon_config.tile_size,
 			node.size.x * dungeon_config.tile_size,
 			node.size.y * dungeon_config.tile_size
-		),
-		Color.GREEN,
-		false
-	)
+		)
+		
+		# Get color based on room type
+		var room_color = _get_room_type_color(node.room_type)
+		
+		# Draw filled rectangle with 50% transparency
+		draw_rect(rect, Color(room_color.r, room_color.g, room_color.b, 0.5), true)
+		
+		# Draw border for clarity
+		draw_rect(rect, room_color, false, 2.0)
+		
+		# Draw room type label
+		var room_type_text = _terminal_to_string(node.room_type)
+		var font = ThemeDB.fallback_font
+		var font_size = 40
+		
+		# Calculate text position (center of room)
+		var text_size = font.get_string_size(room_type_text, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
+		var text_pos = Vector2(
+			rect.position.x + (rect.size.x - text_size.x) / 2,
+			rect.position.y + (rect.size.y + text_size.y) / 2
+		)
+		
+		# Draw text background for readability
+		var bg_rect = Rect2(text_pos - Vector2(4, text_size.y + 2), text_size + Vector2(8, 4))
+		draw_rect(bg_rect, Color(0, 0, 0, 0.7), true)
+		
+		# Draw the text
+		draw_string(font, text_pos, room_type_text, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size, Color.WHITE)
 	
 	# Recursively draw child partitions
 	if node.left_child:
 		_draw_partitions(node.left_child)
 	if node.right_child:
 		_draw_partitions(node.right_child)
-
 
 func _place_entrance_exit():
 	var leaves = root_node.get_leaves()
@@ -139,20 +179,18 @@ func _place_entrance_exit():
 		exit_room = rooms_with_space[-1]
 		exit_pos = exit_room.get_room_center()
 		floor_layer.set_cell(exit_pos, 4, dungeon_config.exit_tile)
-
 	else:
 		print("Warning: Not enough rooms for entrance/exit placement, regenerating dungeon")
 		_on_floor_transition_regenerate_dungeon()
 
 func _set_camera_bounds() -> Array[Vector2]:
-	var bounds : Array[Vector2] = []
+	var bounds: Array[Vector2] = []
 	var used_rect = walls_layer.get_used_rect()
 	
 	# Get actual world bounds
 	var top_left = walls_layer.map_to_local(used_rect.position)
 	var bottom_right = floor_layer.map_to_local(used_rect.end - Vector2i.ONE)
 	
-	#var tile_size = tilemaplayer.tile_set.tile_size
 	top_left -= Vector2(dungeon_config.tile_size, dungeon_config.tile_size) / 2
 	bottom_right += Vector2(dungeon_config.tile_size, dungeon_config.tile_size) / 2
 	
@@ -160,30 +198,70 @@ func _set_camera_bounds() -> Array[Vector2]:
 	bounds.append(bottom_right)
 	
 	return bounds
-
-func _apply_room_grammar()->void:
+	
+func _apply_room_grammar() -> void:
 	var leaves = root_node.get_leaves()
-	var rooms_with_space:Array[Branch] = []
+	var rooms: Array[Branch] = []
 	
 	for leaf in leaves:
 		if leaf.has_room:
-			rooms_with_space.append(leaf)
+			rooms.append(leaf)
 	
-	if rooms_with_space.is_empty():
+	if rooms.is_empty():
 		return
-	
-	var room_types = room_grammar.apply_grammar(rooms_with_space)
-	
-	for i in range(rooms_with_space.size()):
-		rooms_with_space[i].room_type = room_types[i]
-		print("Room %d: %s (Area: %d)" % [i, room_grammar._room_type_to_string(rooms_with_space[i].room_type), 
-			(rooms_with_space[i].room_bottom_right.x - rooms_with_space[i].room_top_left.x) * 
-			(rooms_with_space[i].room_bottom_right.y - rooms_with_space[i].room_top_left.y)])
-		print("Room has these many connections: " + str(rooms_with_space[i].connected_rooms.size()))
-	
 
-#TODO
-#adjust!
+	var room_types = room_grammar.apply_grammar(rooms)
+	for i in range(rooms.size()):
+		rooms[i].room_type = room_types[i]
+		rooms[i].set_object_spawn_positions()
+		
+# Helper function for debugging room types
+func _terminal_to_string(terminal: RoomGrammar.RoomTypes) -> String:
+	match terminal:
+		RoomGrammar.RoomTypes.TREASURE:
+			return "TREASURE"
+		RoomGrammar.RoomTypes.SUPER_TREASURE:
+			return "SUPER_TREASURE"
+		RoomGrammar.RoomTypes.EASY_ENEMY:
+			return "EASY_ENEMY"
+		RoomGrammar.RoomTypes.NORMAL_ENEMY:
+			return "NORMAL_ENEMY"
+		RoomGrammar.RoomTypes.HARD_ENEMY:
+			return "HARD_ENEMY"
+		RoomGrammar.RoomTypes.MINI_BOSS:
+			return "MINI_BOSS"
+		RoomGrammar.RoomTypes.ENTRANCE:
+			return "ENTRANCE"
+		RoomGrammar.RoomTypes.EXIT:
+			return "EXIT"
+		RoomGrammar.RoomTypes.EMPTY:
+			return "EMPTY"
+		_:
+			return "UNKNOWN"
+
+func _get_room_type_color(room_type: RoomGrammar.RoomTypes) -> Color:
+	match room_type:
+		RoomGrammar.RoomTypes.ENTRANCE:
+			return Color.GREEN
+		RoomGrammar.RoomTypes.EXIT:
+			return Color.BLUE
+		RoomGrammar.RoomTypes.TREASURE:
+			return Color.YELLOW
+		RoomGrammar.RoomTypes.SUPER_TREASURE:
+			return Color.GOLD
+		RoomGrammar.RoomTypes.EASY_ENEMY:
+			return Color.LIGHT_CORAL
+		RoomGrammar.RoomTypes.NORMAL_ENEMY:
+			return Color.ORANGE_RED
+		RoomGrammar.RoomTypes.HARD_ENEMY:
+			return Color.DARK_RED
+		RoomGrammar.RoomTypes.MINI_BOSS:
+			return Color.PURPLE
+		RoomGrammar.RoomTypes.EMPTY:
+			return Color.LIGHT_GRAY
+		_:
+			return Color.WHITE
+
 func _on_floor_transition_regenerate_dungeon() -> void:
 	print("regenerate the floor!")
 	await SceneTransition.fade_out()
@@ -194,7 +272,7 @@ func _on_floor_transition_regenerate_dungeon() -> void:
 	generate_dungeon()
 	pass
 
-func _free_level()->void:
+func _free_level() -> void:
 	PlayerManager.unparent_player(self)
 	LevelManager.reset_tilemap_bounds()
 	queue_free()
