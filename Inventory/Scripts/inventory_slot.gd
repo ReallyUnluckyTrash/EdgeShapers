@@ -57,6 +57,7 @@ func _on_equip_button_pressed() -> void:
 		
 	if slot_data.item_data.type == "Item":
 		if PlayerManager.equipped_item.item_data == slot_data.item_data:
+			PlayerHud.show_message("Item already equipped!")
 			print("Item already equipped!")
 			return
 		
@@ -90,5 +91,6 @@ func _on_use_button_pressed() -> void:
 			quantity.text = str(slot_data.quantity)
 			print(slot_data.item_data.name + " count: " + str(slot_data.quantity))
 	else:
+		PlayerHud.show_message("Not a usable item!")
 		print("not a usable item!")
 	pass # Replace with function body.

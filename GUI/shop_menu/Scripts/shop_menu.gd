@@ -145,6 +145,7 @@ func purchase_item(_item:ItemData)->void:
 			#if it is then purchase fails
 			if PlayerManager.INVENTORY_WEAPON_DATA.has_item_(_item):
 				print("Weapon already owned!")
+				PlayerHud.show_message("Weapon already owned!")
 				play_audio(ERROR)
 				return
 			#if it is not then add to inventory
@@ -166,6 +167,7 @@ func purchase_item(_item:ItemData)->void:
 	#if not purchasable, give error
 	else:
 		play_audio(ERROR)
+		PlayerHud.show_message("Not enough VP!")
 		error_animation_player.play("not_enough_money")
 		error_animation_player.seek(0)
 	pass
@@ -177,6 +179,7 @@ func sell_item(index:int, player_inventory:InventoryData)->void:
 		
 		if item.type == "Weapon" and PlayerManager.equipped_weapon == item:
 			print("Cannot sell equipped weapon!")
+			PlayerHud.show_message("Cannot sell equipped weapon!")
 			play_audio(ERROR)
 			#add animation for error here as well
 			return
@@ -201,6 +204,7 @@ func sell_item(index:int, player_inventory:InventoryData)->void:
 		populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
 		play_audio(PURCHASE)
 	else:
+		PlayerHud.show_message("Sell item failed!")
 		print("sell item failed!")
 	
 	pass

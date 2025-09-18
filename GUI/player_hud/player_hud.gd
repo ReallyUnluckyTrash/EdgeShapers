@@ -20,6 +20,9 @@ extends CanvasLayer
 @onready var boss_animation_player: AnimationPlayer = $BossAnimationPlayer
 @onready var interactable_indicator: Control = %InteractableIndicator
 
+@onready var print_message: Control = %PrintMessage
+@onready var print_message_label: Label = %PrintMessageLabel
+
 const LEVEL_WIN = preload("res://General/Sound Effects/level-win-6416.mp3")
 
 func _ready() -> void:
@@ -65,6 +68,12 @@ func show_interact_hint()->void:
 func hide_interact_hint()->void:
 	print("hiding interact hint")
 	boss_animation_player.play("interact_fade_out")
+
+func show_message(_message:String)->void:
+	if boss_animation_player.current_animation =="show_message":
+		boss_animation_player.stop()
+	print_message_label.text = _message
+	boss_animation_player.play("show_message")
 
 func update_floor_label(_current_floor:int)->void:
 	if _current_floor == 4:

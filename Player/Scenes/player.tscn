@@ -215,7 +215,7 @@ max_polyphony = 7
 bus = &"SFX"
 
 [node name="EP Recharge Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="EP Recharge Timer" to="." method="_on_ep_recharge_timer_timeout"]

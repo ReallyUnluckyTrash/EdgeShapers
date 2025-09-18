@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UpgradeList" load_steps=21 format=3 uid="uid://ce83bdwfl72en"]
+[gd_resource type="Resource" script_class="UpgradeList" load_steps=18 format=3 uid="uid://ce83bdwfl72en"]
 
 [ext_resource type="Script" uid="uid://mwaycafcqau2" path="res://Upgrades/Scripts/upgrade_list.gd" id="1_c5k4t"]
 [ext_resource type="Script" uid="uid://dw56r56bpmudn" path="res://Upgrades/Scripts/upgrade_player.gd" id="2_4pxih"]
@@ -12,9 +12,6 @@
 [ext_resource type="Resource" uid="uid://ckvdcoxn3or4x" path="res://Upgrades/Resources/upgrade_player_ep_common.tres" id="9_omaif"]
 [ext_resource type="Resource" uid="uid://dsfxu4q7f50v6" path="res://Upgrades/Resources/upgrade_player_ep_rare.tres" id="10_mtpgv"]
 [ext_resource type="Resource" uid="uid://bu47sjys7es0t" path="res://Upgrades/Resources/upgrade_player_ep_epic.tres" id="11_5it3u"]
-[ext_resource type="Resource" uid="uid://cba5u6pbbkgj5" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_common.tres" id="12_k6fpn"]
-[ext_resource type="Resource" uid="uid://bvclc025om24t" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_rare.tres" id="13_y7tpm"]
-[ext_resource type="Resource" uid="uid://cgtcctyyiuqev" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_epic.tres" id="14_mqlox"]
 [ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_epic.tres" id="16_yumaj"]
 [ext_resource type="Resource" uid="uid://d1svidmf4jtbg" path="res://Upgrades/Resources/upgrade_weapon_damage_rare.tres" id="17_t5b45"]
 [ext_resource type="Resource" uid="uid://mxyysa1p7ypx" path="res://Upgrades/Resources/upgrade_weapon_attack_speed_epic.tres" id="18_wspvj"]
@@ -24,5 +21,5 @@
 [resource]
 script = ExtResource("1_c5k4t")
 upgrades_weapon = Array[ExtResource("3_w55m2")]([ExtResource("16_yumaj"), ExtResource("17_t5b45"), ExtResource("18_wspvj"), ExtResource("19_afqfk"), ExtResource("20_0cmns")])
-upgrades_player = Array[ExtResource("2_4pxih")]([ExtResource("3_d4n7g"), ExtResource("4_gl5x7"), ExtResource("5_yno0g"), ExtResource("6_cfqli"), ExtResource("7_u1knl"), ExtResource("8_ihc50"), ExtResource("9_omaif"), ExtResource("10_mtpgv"), ExtResource("11_5it3u"), ExtResource("12_k6fpn"), ExtResource("13_y7tpm"), ExtResource("14_mqlox")])
+upgrades_player = Array[ExtResource("2_4pxih")]([ExtResource("3_d4n7g"), ExtResource("4_gl5x7"), ExtResource("5_yno0g"), ExtResource("6_cfqli"), ExtResource("7_u1knl"), ExtResource("8_ihc50"), ExtResource("9_omaif"), ExtResource("10_mtpgv"), ExtResource("11_5it3u")])
 metadata/_custom_type_script = "uid://mwaycafcqau2"

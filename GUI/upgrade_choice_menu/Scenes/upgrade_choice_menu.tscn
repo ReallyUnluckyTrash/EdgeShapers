@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwcvg3g5kxiou"]
+[gd_scene load_steps=19 format=3 uid="uid://bwcvg3g5kxiou"]
 
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="1_njgff"]
 [ext_resource type="Script" uid="uid://dj2drv263gkfm" path="res://GUI/upgrade_choice_menu/Scripts/upgrade_choice_menu.gd" id="1_u4ml2"]
@@ -11,23 +11,20 @@
 [ext_resource type="Resource" uid="uid://dnjkh7widamv6" path="res://Upgrades/Resources/upgrade_player_ep_regen_common.tres" id="5_owp4i"]
 [ext_resource type="Resource" uid="uid://coodcyxmcmmc" path="res://Upgrades/Resources/upgrade_player_health_epic.tres" id="5_sgmte"]
 [ext_resource type="Resource" uid="uid://bhdbchok2nfds" path="res://Upgrades/Resources/upgrade_weapon_attack_speed_common.tres" id="6_yf7a1"]
-[ext_resource type="Resource" uid="uid://cba5u6pbbkgj5" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_common.tres" id="7_2tn7x"]
 [ext_resource type="Resource" uid="uid://dsfxu4q7f50v6" path="res://Upgrades/Resources/upgrade_player_ep_rare.tres" id="9_g0dps"]
 [ext_resource type="Resource" uid="uid://ce4spqnvt58u" path="res://Upgrades/Resources/upgrade_player_ep_regen_rare.tres" id="10_4ovob"]
-[ext_resource type="Resource" uid="uid://bvclc025om24t" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_rare.tres" id="11_m5jkv"]
 [ext_resource type="Resource" uid="uid://ciqoejmpts1jw" path="res://Upgrades/Resources/upgrade_weapon_attack_speed_rare.tres" id="13_3dwhy"]
 [ext_resource type="Resource" uid="uid://bu47sjys7es0t" path="res://Upgrades/Resources/upgrade_player_ep_epic.tres" id="15_8tcgq"]
 [ext_resource type="Resource" uid="uid://bi1gkrkyt4phj" path="res://Upgrades/Resources/upgrade_weapon_damage_epic.tres" id="16_ufior"]
 [ext_resource type="Resource" uid="uid://mxyysa1p7ypx" path="res://Upgrades/Resources/upgrade_weapon_attack_speed_epic.tres" id="17_yx1l7"]
-[ext_resource type="Resource" uid="uid://cgtcctyyiuqev" path="res://Upgrades/Resources/upgrade_player_ep_regen_timer_epic.tres" id="18_4x8g7"]
 [ext_resource type="Resource" uid="uid://di2q4hkgdkbkt" path="res://Upgrades/Resources/upgrade_player_ep_regen_epic.tres" id="19_ooauc"]
 
 [node name="UpgradeChoiceMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_u4ml2")
-common_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("3_furri"), ExtResource("4_se5md"), ExtResource("5_owp4i"), ExtResource("6_yf7a1"), ExtResource("7_2tn7x")])
-rare_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("4_ldb0n"), ExtResource("9_g0dps"), ExtResource("10_4ovob"), ExtResource("11_m5jkv"), ExtResource("4_furri"), ExtResource("13_3dwhy")])
-epic_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("5_sgmte"), ExtResource("15_8tcgq"), ExtResource("16_ufior"), ExtResource("17_yx1l7"), ExtResource("18_4x8g7"), ExtResource("19_ooauc")])
+common_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("3_furri"), ExtResource("4_se5md"), ExtResource("5_owp4i"), ExtResource("6_yf7a1")])
+rare_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("4_ldb0n"), ExtResource("9_g0dps"), ExtResource("10_4ovob"), ExtResource("4_furri"), ExtResource("13_3dwhy")])
+epic_upgrade_list = Array[ExtResource("2_wsxee")]([ExtResource("5_sgmte"), ExtResource("15_8tcgq"), ExtResource("16_ufior"), ExtResource("17_yx1l7"), ExtResource("19_ooauc")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 z_index = -1

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ckfxvml6phom1" path="res://Weapons/Scripts/throw_weapon.gd" id="1_vel80"]
 [ext_resource type="PackedScene" uid="uid://cvs0fpp6do8uk" path="res://Weapons/Scenes/boomerang_plus.tscn" id="2_5aaws"]
-[ext_resource type="Texture2D" uid="uid://bqyqju65hdiif" path="res://Weapons/Assets/boomerang.png" id="2_qqswg"]
+[ext_resource type="Texture2D" uid="uid://dxfxm23guapds" path="res://Weapons/Assets/boomerang_plus.PNG" id="3_qqswg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0ouu"]
-atlas = ExtResource("2_qqswg")
+atlas = ExtResource("3_qqswg")
 region = Rect2(64, 0, 32, 32)
 
 [node name="BoomerangEquipPlus" type="Node2D"]

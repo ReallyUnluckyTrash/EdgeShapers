@@ -274,7 +274,7 @@ _data = {
 collision_layer = 256
 collision_mask = 272
 script = ExtResource("1_0twf8")
-hp = 4
+hp = 6
 raycast_length = 320.0
 enemy_vp_drop = 3
 
@@ -295,6 +295,7 @@ shape = SubResource("CircleShape2D_quokb")
 debug_color = Color(0.817399, 0.4054, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 1, 0, 1)
 scale = Vector2(0.64, 0.64)
 texture = ExtResource("4_ksoh7")
 

@@ -9,7 +9,7 @@ class_name Player extends Entity
 
 const HIT_PLAYER = preload("res://General/Sound Effects/hit_player.wav")
 signal player_damaged(attack:Attack)
-
+const USE_ITEM = preload("res://General/Sound Effects/use_item.wav")
 var invulnerable: bool = false
 var hp: float = 10.0
 var max_hp: float = 10.0
@@ -170,4 +170,5 @@ func clear_upgrades_player():
 func _on_ep_recharge_timer_timeout() -> void:
 	print("recharging ep!")
 	update_ep(ep_recharge_count)
+	AudioManager.play_sfx(USE_ITEM)
 	pass # Replace with function body.

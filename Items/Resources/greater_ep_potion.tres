@@ -13,11 +13,11 @@ metadata/_custom_type_script = "uid://bkx5jcg4mq5gr"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcgwe"]
 atlas = ExtResource("4_ya2u7")
-region = Rect2(48, 208, 16, 16)
+region = Rect2(64, 208, 16, 16)
 
 [resource]
 script = ExtResource("3_q4gt7")
-name = "EP Potion"
+name = "Greater EP Potion"
 type = "Item"
 description = "Heals 5 EP. The shapes maintain their edges by using this blue liquid. No one really knows where it came from though."
 texture = SubResource("AtlasTexture_jcgwe")

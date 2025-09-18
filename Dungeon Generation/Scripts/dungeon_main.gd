@@ -97,7 +97,7 @@ func _draw():
 		return
 	
 	# Draw partition boundaries (for debugging)
-	_draw_partitions(root_node)
+	#_draw_partitions(root_node)
 
 #func _draw_partitions(node: Branch):
 	## Draw outline of current partition

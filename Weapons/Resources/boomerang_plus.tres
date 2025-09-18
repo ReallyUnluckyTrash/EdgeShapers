@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://flyut0vmscce" path="res://Items/Item Effects/item_effect.gd" id="1_hi311"]
 [ext_resource type="PackedScene" uid="uid://c43nh00lwsuym" path="res://Weapons/Scenes/boomerang_equip_plus.tscn" id="2_0bvjv"]
 [ext_resource type="Script" uid="uid://dlxi15m56e0d8" path="res://Inventory/Scripts/item_data.gd" id="2_nblq2"]
-[ext_resource type="Texture2D" uid="uid://bqyqju65hdiif" path="res://Weapons/Assets/boomerang.png" id="3_nblq2"]
+[ext_resource type="Texture2D" uid="uid://dxfxm23guapds" path="res://Weapons/Assets/boomerang_plus.PNG" id="4_0bvjv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0bvjv"]
-atlas = ExtResource("3_nblq2")
+atlas = ExtResource("4_0bvjv")
 region = Rect2(0, 0, 32, 32)
 
 [resource]

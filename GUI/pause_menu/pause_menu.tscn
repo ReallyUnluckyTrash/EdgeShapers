@@ -432,7 +432,7 @@ theme_override_fonts/normal_font = ExtResource("14_fgl3m")
 bbcode_enabled = true
 text = "[font_size={45}]Tips[/font_size]
 [font_size={38}]  Make sure to equip healing items before you enter a boss room, you cannot open the pause menu while in a boss floor.
-You regen 1 EP every 10 seconds, this can be improved with upgrades. 
+You regen 1 EP every 5 seconds, this can be improved with upgrades. 
 Stronger weapons will require EP to use, so make sure to work on your EP!
 [/font_size]"
 fit_content = true

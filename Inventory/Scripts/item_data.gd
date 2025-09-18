@@ -13,6 +13,7 @@ class_name ItemData extends Resource
 
 func use()->bool:
 	if effects.size() == 0:
+		PlayerHud.show_message("Item does nothing!")
 		print("Item does nothing!")
 		return false
 	

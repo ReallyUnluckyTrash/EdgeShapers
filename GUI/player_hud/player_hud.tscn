@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bkonodsggwbc6"]
+[gd_scene load_steps=21 format=3 uid="uid://bkonodsggwbc6"]
 
 [ext_resource type="Script" uid="uid://jaku77anwab0" path="res://GUI/player_hud/player_hud.gd" id="1_6ggty"]
 [ext_resource type="StyleBox" uid="uid://cmvtuvru55oo0" path="res://GUI/pause_menu/panel_container_texture.tres" id="2_oghrr"]
@@ -254,6 +254,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/PrintMessage:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(428, -80)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/PrintMessage:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rxq5y"]
 resource_name = "boss_defeated"
@@ -363,12 +387,42 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_ea3vn"]
+resource_name = "show_message"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/PrintMessage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(428, -80), Vector2(424, 48), Vector2(424, 48), Vector2(424, -80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/PrintMessage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_scbx3"]
 _data = {
 &"RESET": SubResource("Animation_5bkpt"),
 &"boss_defeated": SubResource("Animation_rxq5y"),
 &"interact_fade_in": SubResource("Animation_scbx3"),
-&"interact_fade_out": SubResource("Animation_terqw")
+&"interact_fade_out": SubResource("Animation_terqw"),
+&"show_message": SubResource("Animation_ea3vn")
 }
 
 [node name="PlayerHud" type="CanvasLayer"]
@@ -665,9 +719,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -256.0
-offset_top = 240.0
+offset_top = 280.0
 offset_right = 256.0
-offset_bottom = 288.0
+offset_bottom = 328.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
@@ -696,6 +750,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Press F/Shift to Interact!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrintMessage" type="Control" parent="Control"]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = -80.0
+offset_right = 208.0
+offset_bottom = -40.0
+grow_horizontal = 2
+metadata/_edit_group_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PrintMessage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_oghrr")
+
+[node name="PrintMessageLabel" type="Label" parent="Control/PrintMessage/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Not Enough Money!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
