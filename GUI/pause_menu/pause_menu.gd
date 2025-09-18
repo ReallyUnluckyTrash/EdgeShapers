@@ -5,12 +5,19 @@ extends CanvasLayer
 
 const ERROR = preload("res://Interactables/Shop Statue/error.wav")
 
-
 @onready var item_description: Label = %ItemDescription
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = %AudioStreamPlayer2D
 @onready var menu_tabs: TabContainer = %MenuTabs
 @onready var weapon_inv_grid: InventoryUI = %WeaponInvGrid
 @onready var upgrade_details_panel: UpgradeDetailsPanel = %UpgradeDetailsPanel
+
+@onready var hp_label: Label = %"HP Label"
+@onready var ep_label: Label = %"EP Label"
+@onready var ep_regen_label: Label = %"EP Regen Label"
+@onready var damage_label: Label = %"Damage Label"
+@onready var attack_speed_label: Label = %"Attack Speed Label"
+
+
 
 var is_paused:bool = false
 @onready var inventory_blocker: ColorRect = %InventoryBlocker
@@ -22,7 +29,7 @@ func _ready() -> void:
 	inventory_blocker.visible = false
 	inventory_blocker.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	hide_pause_menu()
-
+	update_status_upgrade_table()
 
 func default_grab_focus():
 	await get_tree().process_frame
@@ -47,6 +54,7 @@ func show_pause_menu() ->void:
 	is_paused = true
 	shown.emit()
 	menu_tabs.current_tab = 0
+	update_status_upgrade_table()
 	
 
 func hide_pause_menu() ->void:
@@ -81,6 +89,13 @@ func update_item_description(new_text:String)-> void:
 func update_upgrade_details(upgrade:Upgrade)->void:
 	upgrade_details_panel.update_details(upgrade)
 	pass
+
+func update_status_upgrade_table()->void:
+	hp_label.text = "MAX HP: " + str(PlayerManager.player.max_hp)
+	ep_label.text = "MAX EP: " + str(PlayerManager.player.max_ep)
+	ep_regen_label.text = "EP REGEN: " + str(PlayerManager.player.ep_recharge_count)
+	damage_label.text = "DMG BOOST: " + str(PlayerManager.player.damage_boost)
+	attack_speed_label.text = "ATK SPD: " + str(PlayerManager.player.attack_speed)
 
 func clear_update_details()->void:
 	upgrade_details_panel.clear_details()

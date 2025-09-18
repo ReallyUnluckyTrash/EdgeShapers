@@ -5,4 +5,5 @@ class_name UpgradeWeaponAttackSpeed extends UpgradeWeapon
 
 func apply_upgrade(weapon:Weapon):
 	weapon.attack_speed += additional_attack_speed
+	PlayerManager.player.attack_speed += additional_attack_speed
 	pass

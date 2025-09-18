@@ -18,6 +18,12 @@ var ep: float = 10.0
 var max_ep:float = 10.0
 var ep_recharge_count:float = 1.0
 
+#for now these variables are here to keep track of the upgrades
+#changing these values directly does not do anything
+var damage_boost:int = 0
+var attack_speed:float = 1.0
+
+
 var current_weapon: Weapon = null
 var weapon_type = ""
 
@@ -155,6 +161,8 @@ func clear_upgrades_player():
 	max_ep = 10.0
 	ep_recharge_count = 1.0
 	ep_recharge_timer.wait_time = 10.0
+	damage_boost = 0
+	attack_speed = 0.0
 	pass
 
 ##function to test if modular system works, delete later and replace by using an inventory system

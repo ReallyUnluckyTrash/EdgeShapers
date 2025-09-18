@@ -4,4 +4,5 @@ class_name UpgradeWeaponDamage extends UpgradeWeapon
 
 func apply_upgrade(weapon:Weapon):
 	weapon.damage += additional_damage
+	PlayerManager.player.damage_boost += additional_damage
 	pass

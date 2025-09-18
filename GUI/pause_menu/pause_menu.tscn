@@ -55,10 +55,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 
 [node name="Inventory" type="Control" parent="Control/MenuTabs"]
-visible = false
 layout_mode = 2
 theme = SubResource("Theme_dvxeg")
 metadata/_tab_index = 0
@@ -70,13 +69,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -259.5
-offset_right = 116.0
-offset_bottom = -107.5
+offset_left = -178.0
+offset_top = -281.778
+offset_right = 178.0
+offset_bottom = -129.778
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
 
 [node name="WeaponInvGrid" type="GridContainer" parent="Control/MenuTabs/Inventory/Weapon Inventory"]
 unique_name_in_owner = true
@@ -105,13 +105,14 @@ layout_mode = 2
 
 [node name="Item Inventory" type="PanelContainer" parent="Control/MenuTabs/Inventory"]
 layout_mode = 2
-offset_left = 400.0
-offset_top = 285.0
-offset_right = 756.0
-offset_bottom = 437.0
+offset_left = 462.222
+offset_top = 249.778
+offset_right = 818.222
+offset_bottom = 401.778
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
 
 [node name="ItemInvGrid" type="GridContainer" parent="Control/MenuTabs/Inventory/Item Inventory"]
 layout_mode = 2
@@ -145,13 +146,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -480.0
-offset_top = -179.5
-offset_right = -396.0
-offset_bottom = 40.5
+offset_left = -435.556
+offset_top = -219.556
+offset_right = -351.556
+offset_bottom = 0.444458
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_dvxeg")
+metadata/_edit_group_ = true
 
 [node name="EquipInvGrid" type="GridContainer" parent="Control/MenuTabs/Inventory/Equipped"]
 layout_mode = 2
@@ -180,6 +182,53 @@ layout_mode = 2
 text = "Item Description"
 autowrap_mode = 3
 justification_flags = 131
+
+[node name="Status" type="PanelContainer" parent="Control/MenuTabs/Inventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -471.111
+offset_top = -264.0
+offset_right = -222.111
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_dvxeg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MenuTabs/Inventory/Status"]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+layout_mode = 2
+text = "TOTAL UPGRADES"
+
+[node name="HP Label" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MAX HP: 999"
+
+[node name="EP Label" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "MAX EP: 999"
+
+[node name="EP Regen Label" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EP REGEN: 99"
+
+[node name="Damage Label" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "DMG BOOST: 10 "
+
+[node name="Attack Speed Label" type="Label" parent="Control/MenuTabs/Inventory/Status/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ATK SPD: 1.0"
 
 [node name="Upgrades" type="Control" parent="Control/MenuTabs"]
 visible = false
@@ -299,6 +348,7 @@ offset_bottom = 573.556
 metadata/_edit_group_ = true
 
 [node name="System" type="Control" parent="Control/MenuTabs"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 

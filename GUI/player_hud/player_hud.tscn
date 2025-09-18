@@ -755,7 +755,8 @@ vertical_alignment = 1
 
 [node name="PrintMessage" type="Control" parent="Control"]
 unique_name_in_owner = true
-z_index = 20
+z_index = 4096
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
