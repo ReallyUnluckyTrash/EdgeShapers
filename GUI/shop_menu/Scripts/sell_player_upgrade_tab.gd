@@ -1,3 +1,4 @@
+#unused
 class_name SellPlayerUpgradeTab extends Control
 
 @onready var sell_plyr_up_container: GridContainer = %SellPlyrUpContainer
@@ -42,37 +43,3 @@ func sell_upgrade(_index:int):
 	else:
 		print("sell upgrade failed!")
 		
-
-
-#func sell_item(index:int, player_inventory:InventoryData)->void:
-	#if index >= 0 and index < player_inventory.slots.size():
-		#var slot = player_inventory.slots[index]
-		#var item = slot.item_data
-		#
-		#if item.type == "Weapon" and PlayerManager.equipped_weapon == item:
-			#print("Cannot sell equipped weapon!")
-			#play_audio(ERROR)
-			##add animation for error here as well
-			#return
-		#
-		##determine sell price then reduce the player's currency
-		#var sell_value:int = item.price
-		#PlayerManager.vertex_points += sell_value
-		#
-		##reduce slot quantity, if less than 1 than remove
-		#if slot.quantity > 1:
-			#slot.quantity -= 1
-		#else:
-			#player_inventory.remove_item_index(index)
-		#
-		##update currency counter
-		#update_currency()
-		#
-		##then update sell list to match the inventory
-		#populate_sell_list(sell_items_container, PlayerManager.INVENTORY_ITEM_DATA)
-		#populate_sell_list(sell_weapons_container, PlayerManager.INVENTORY_WEAPON_DATA)
-		#play_audio(PURCHASE)
-	#else:
-		#print("sell item failed!")
-	#
-	#pass

@@ -5,6 +5,8 @@ var player:Player
 
 @export var enemy:Enemy
 
+var arrow_direction:Vector2
+
 func _ready() -> void:
 	animation_player.speed_scale = attack_speed
 	call_deferred("setup_hurt_box")
@@ -18,19 +20,28 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		animation_player.play("sword_animations/idle")
 		attack_finished.emit()
 	pass
+	
+func attack():
+	if is_attacking == true:
+		return
+	is_attacking = true
+	animation_player.play("sword_swing")
+	hurt_box.monitoring = true
+	effect_sprite.visible = true
+	AudioManager.play_sfx(SWORD_SWOOSH)
+	
+	arrow_direction = enemy.cardinal_direction
+	pass
+
 
 func create_arrow()->void:
 	var new_arrow = ENEMY_BOSS_SWORD_WAVE.instantiate() as Arrow
-	player.add_sibling(new_arrow)
-	
-	#new_arrow.setup_direction(player.direction)
+	enemy.add_sibling(new_arrow)
+
 	new_arrow.setup_hurtbox(damage, knockback_force)
-	#new_arrow.shot.connect()
-	#new_arrow.queue_freed.connect()
 	
 	var shoot_direction:Vector2 = enemy.global_position.direction_to(player.global_position)
 	new_arrow.global_position = enemy.weapon_position.global_position
 	new_arrow.shoot(shoot_direction)
-	var arrow_direction:Vector2 = enemy.cardinal_direction
 	new_arrow.setup_direction(arrow_direction)
 	pass

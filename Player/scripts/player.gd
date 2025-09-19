@@ -8,8 +8,11 @@ class_name Player extends Entity
 @onready var ep_recharge_timer: Timer = $"EP Recharge Timer"
 
 const HIT_PLAYER = preload("res://General/Sound Effects/hit_player.wav")
-signal player_damaged(attack:Attack)
 const USE_ITEM = preload("res://General/Sound Effects/use_item.wav")
+
+signal player_damaged(attack:Attack)
+
+#player variables
 var invulnerable: bool = false
 var hp: float = 10.0
 var max_hp: float = 10.0
@@ -23,13 +26,9 @@ var ep_recharge_count:float = 1.0
 var damage_boost:int = 0
 var attack_speed:float = 1.0
 
-
+#weapon references
 var current_weapon: Weapon = null
 var weapon_type = ""
-
-# Export weapon scenes for easy assignment in inspector
-@export var weapon_scenes: Array[PackedScene] = []
-@export var starting_weapon_index: int = 0
 
 @onready var hit_box: HitBox = $Interactions/HitBox
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
@@ -37,19 +36,15 @@ var weapon_type = ""
 
 
 func _ready():
+	#initialize self, heal to full and activate player upgrades
 	PlayerManager.player = self
 	state_machine.initialize(self)
 	hit_box.damaged.connect(_take_damage)
 	update_hp(99.0)
-	
-	#temporary starting weapon
-	#equip_weapon(weapon_scenes[0])
-	#PlayerManager.equipped_weapon = PlayerManager.INVENTORY_WEAPON_DATA.slots[0].item_data
 	activate_upgrades_player()
 	pass
 
 func _process(_delta):
-	
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
@@ -66,23 +61,27 @@ func update_animation(anim_name : String):
 	animated_sprite_2d.animation = anim_name
 	
 func _take_damage(attack:Attack)-> void:
+	#if invulnerble dont receive damage
 	if invulnerable == true:
 		return
+	#if vulnerable deals damage to player
 	if hp > 0:
-		#PlayerManager.play_audio(HIT_PLAYER)
 		AudioManager.play_sfx(HIT_PLAYER)
 		update_hp(-attack.damage)	
 		player_damaged.emit(attack)
 	pass
 
+#update hp function
 func update_hp(delta:float) ->void:
 	hp = clamp(hp + delta, 0, max_hp)
 	pass
 
+#update ep function
 func update_ep(delta:float) ->void:
 	ep = clamp(ep + delta, 0, max_ep)
 	pass
 
+#function to turn vulnerable
 func make_invulnerable(_duration:float = 1.0)->void:
 	invulnerable = true
 	hit_box.monitoring = false
@@ -93,38 +92,44 @@ func make_invulnerable(_duration:float = 1.0)->void:
 	hit_box.monitoring = true
 	pass
 	
-func equip_weapon_by_index(index:int):
-	if index < 0 or index >= weapon_scenes.size():
-		return
-	equip_weapon(weapon_scenes[index])
-	pass
-	
+
+#function to equip weapon onto player
 func equip_weapon(weapon_scene: PackedScene):
+	#if no weapon scene is null return
 	if weapon_scene == null:
-		print("Weapon scene is null")
+		print("Player.gd::Weapon scene is null")
 		return
 	
+	#first, unequip the previous weapon
 	unequip_weapon()
 	
-	var new_weapon = weapon_scene.instantiate()
+	#instantiate weapon
+	var new_weapon = weapon_scene.instantiate() as Weapon
 	if new_weapon == null:
-		print("failed to instantiate weapon")
+		print("Player.gd::failed to instantiate weapon")
 		return
 	
+	#for bow weapons, place them in front of the player 
 	if new_weapon is BowWeapon:
 		front_weapon_position.add_child(new_weapon)
 		front_weapon_position.update_position(anim_direction())
 	else:
+		#else put them in the normal weapon position
 		weapon_position.add_child(new_weapon)
 	
+	#update weapon reference
 	current_weapon = new_weapon
 	
-	activate_upgrades_weapon()
+	#set currently equipped weapon name
 	var weapon_name = current_weapon.weapon_name
 	weapon_type = current_weapon.get_class()
-	print("Equipped weapon: ", weapon_name, " of type: ", weapon_type)
+	print("Player.gd::Equipped weapon: ", weapon_name, " of type: ", weapon_type)
+	
+	#activate the weapon upgrades on the newly equipped weapon
+	activate_upgrades_weapon()
 	pass
 
+#unequip weapon and reset upgrade trackers
 func unequip_weapon():
 	if current_weapon == null:
 		return
@@ -132,27 +137,34 @@ func unequip_weapon():
 	current_weapon.queue_free()
 	current_weapon = null
 	weapon_type = ""
-	print("weapon unequipped")
+	attack_speed = 1.0
+	damage_boost = 0
+	print("Player.gd::weapon unequipped")
 	
 	pass
 	
+
+#activate all upgrades for weapon
 func activate_upgrades_weapon():
-	print("activating weapon upgrades!")
-	var upgrade_list = PlayerManager.PLAYER_UPGRADE_LIST.upgrades_weapon
-	#weird how i have to use a dynamic variable here... maybe try a way to avoid this
-	var weapon_ref = current_weapon
-	for upgrade in upgrade_list:
+	if current_weapon == null:
+		return
+	
+	for i in range(PlayerManager.PLAYER_UPGRADE_LIST.upgrades_weapon.size()):
+		var upgrade = PlayerManager.PLAYER_UPGRADE_LIST.upgrades_weapon[i]
+		if upgrade == null:
+			continue
+		
+		var weapon_ref = current_weapon
 		upgrade.apply_upgrade(weapon_ref)
 
+#activate all upgrades for player
 func activate_upgrades_player():	
-	print("activating player upgrades!")
 	var upgrade_list = PlayerManager.PLAYER_UPGRADE_LIST.upgrades_player
-	#weird how i have to use a dynamic variable here... maybe try a way to avoid this
 	var player = self
 	for upgrade in upgrade_list:
 		upgrade.apply_player_upgrade(player)
 
-#might just not allow selling of buffs to make it less complicated
+#clear all upgrades on the player and reset trackers
 func clear_upgrades_player():
 	hp = 10.0
 	max_hp = 10.0
@@ -160,23 +172,14 @@ func clear_upgrades_player():
 	ep = 10.0
 	max_ep = 10.0
 	ep_recharge_count = 1.0
-	ep_recharge_timer.wait_time = 10.0
+	ep_recharge_timer.wait_time = 5.0
 	damage_boost = 0
-	attack_speed = 0.0
+	attack_speed = 1.0
 	pass
 
-##function to test if modular system works, delete later and replace by using an inventory system
-#func switch_to_next_weapon():
-	#if weapon_scenes.size() <= 1:
-		#return
-	#
-	#var next_index = (starting_weapon_index + 1) % weapon_scenes.size()
-	#starting_weapon_index = next_index
-	#equip_weapon_by_index(next_index)
-	#
-	
+#on timeout recharge ep
 func _on_ep_recharge_timer_timeout() -> void:
-	print("recharging ep!")
+	if ep != max_ep:
+		AudioManager.play_sfx(USE_ITEM)
 	update_ep(ep_recharge_count)
-	AudioManager.play_sfx(USE_ITEM)
-	pass # Replace with function body.
+	pass 

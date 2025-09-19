@@ -1,6 +1,8 @@
+#code based on Michael Games' Make a 2D action & adventure RPG in Godot 4 Youtube Series
 @tool
 class_name TreasureChest
 extends Interactable
+
 
 @export var item_data:ItemData: set = _set_item_data
 @export var quantity: int = 1:set = _set_quantity

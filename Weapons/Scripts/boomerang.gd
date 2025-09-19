@@ -1,3 +1,5 @@
+#code based on Michael Games' Make a 2D action & adventure RPG in Godot 4 Youtube Series
+
 class_name Boomerang extends Node2D
 
 enum BoomerangState {INACTIVE, THROW, RETURN}

@@ -10,22 +10,25 @@ func setup(floormap: TileMapLayer, wallmap:TileMapLayer, dungeon_config: Dungeon
 	floor_layer = floormap
 	wall_layer = wallmap
 	config = dungeon_config
-	
+
+#render dungeon function, clears tiles present and places different kinds of tiles
 func render_dungeon(root_node: Branch):
 	_clear_previous_render()
 	_place_floor_tiles(root_node)
 	_place_corridor_tiles(root_node)
 	_place_wall_tiles()
 
+#function to clear all tiles
 func _clear_previous_render():
 	floor_layer.clear()
 	floor_tiles.clear()
 	wall_layer.clear()
 
+#function that places wall tiles surrounding floor tiles
 func _place_wall_tiles():
-	var wall_positions = {}  # Use dictionary for O(1) lookup
+	var wall_positions = {}
 	
-	# Collect all potential wall positions first
+	#collect all potential wall positions first
 	for floor_pos in floor_tiles:
 		for dx in range(-1, 2):
 			for dy in range(-1, 2):
@@ -34,17 +37,19 @@ func _place_wall_tiles():
 				
 				var wall_pos = Vector2i(floor_pos.x + dx, floor_pos.y + dy)
 				
-				# Only add if not already a floor tile
+				#only add if not already a floor tile
 				if not _is_floor_tile(wall_pos):
 					wall_positions[wall_pos] = true
 	
-	# Place all wall tiles at once
+	#place all wall tiles at once
 	for wall_pos in wall_positions:
 		wall_layer.set_cell(wall_pos, 4, config.wall_tile)
 
+#function to check if floor tile
 func _is_floor_tile(pos: Vector2i) -> bool:
 	return pos in floor_tiles
 
+#function to check if wall tile
 func _is_wall_tile(pos: Vector2i) -> bool:
 	var cell_data = floor_layer.get_cell_source_id(pos)
 	if cell_data == -1:
@@ -52,17 +57,18 @@ func _is_wall_tile(pos: Vector2i) -> bool:
 	var atlas_coords = floor_layer.get_cell_atlas_coords(pos)
 	return atlas_coords == config.wall_tile
 
-
-func _place_corridor_tiles(root_node:Branch):
-	# Place floor tiles for corridors
+#function that places corridor tiles
+func _place_corridor_tiles(root_node:Branch)->void:
+	#place floor tiles for corridors
 	var corridors = root_node.original_corridors
 	for corridor in corridors:
 		_create_corridor_tiles(corridor['start'], corridor['end'])
 
+#function to create the corridor tiles alignment
 func _create_corridor_tiles(start: Vector2i, end: Vector2i):
-	# Create L-shaped corridor: horizontal first, then vertical
+	#create L-shaped corridor: horizontal first, then vertical
 	
-	# Horizontal segment
+	#horizontal segment
 	var start_x = min(start.x, end.x)
 	var end_x = max(start.x, end.x)
 	for x in range(start_x, end_x + 1):
@@ -71,7 +77,7 @@ func _create_corridor_tiles(start: Vector2i, end: Vector2i):
 		if pos not in floor_tiles:
 			floor_tiles.append(pos)
 	
-	# Vertical segment
+	#vertical segment
 	var start_y = min(start.y, end.y)
 	var end_y = max(start.y, end.y)
 	for y in range(start_y, end_y + 1):
@@ -81,7 +87,7 @@ func _create_corridor_tiles(start: Vector2i, end: Vector2i):
 			floor_tiles.append(pos)
 
 func _place_floor_tiles(root_node:Branch):
-	# Place floor tiles for rooms
+	#place floor tiles for rooms
 	var leaves = root_node.get_leaves()
 	for leaf in leaves:
 		if leaf.has_room:
@@ -99,7 +105,6 @@ func _set_camera_bounds() -> Array[Vector2]:
 	var top_left = floor_layer.map_to_local(used_rect.position)
 	var bottom_right = floor_layer.map_to_local(used_rect.end - Vector2i.ONE)
 	
-	#var tile_size = floor_layer.tile_set.tile_size
 	top_left -= Vector2(config.tile_size, config.tile_size) / 2
 	bottom_right += Vector2(config.tile_size, config.tile_size) / 2
 	

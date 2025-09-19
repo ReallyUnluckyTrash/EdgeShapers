@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://sr47jxr80pkj"]
-
-[ext_resource type="Script" uid="uid://byvrv8elg58cb" path="res://Scripts/bsp.gd" id="1_d7dhw"]
-
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_d7dhw")

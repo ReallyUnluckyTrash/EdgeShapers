@@ -17,7 +17,6 @@ config/icon="uid://1w7sx5301v17"
 
 [autoload]
 
-PlayerVariables="*res://00_Globals/player_variables.gd"
 PlayerManager="*res://00_Globals/player_manager.gd"
 PauseMenu="*res://GUI/pause_menu/pause_menu.tscn"
 ShopMenu="*res://GUI/shop_menu/Scenes/shop_menu.tscn"
@@ -25,7 +24,6 @@ UpgradeChoiceMenu="*res://GUI/upgrade_choice_menu/Scenes/upgrade_choice_menu.tsc
 SceneTransition="*res://GUI/scene_transition/scene_transition.tscn"
 PlayerHud="*res://GUI/player_hud/player_hud.tscn"
 LevelManager="*res://00_Globals/level_manager.gd"
-SaveManager="*res://00_Globals/save_manager.gd"
 AudioManager="*res://00_Globals/audio_manager.gd"
 
 [display]

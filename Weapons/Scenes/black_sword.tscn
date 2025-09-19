@@ -268,7 +268,7 @@ knockback_force = 600.0
 weapon_name = "black_sword"
 damage = 4
 ep_cost = 2.0
-attack_speed = 0.7
+attack_speed = 0.9
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)

@@ -1,3 +1,5 @@
+#autoload script 
+#UpgradeChoiceMenu
 extends CanvasLayer
 
 @onready var upgrade_choice_button: UpgradeChoiceButton = %UpgradeChoiceButton

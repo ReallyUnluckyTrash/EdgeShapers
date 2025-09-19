@@ -1,3 +1,6 @@
+#code based on Michael Games' Make a 2D action & adventure RPG in Godot 4 Youtube Series
+#https://www.youtube.com/watch?v=ozUS1cSgFKs&list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa&index=3
+
 class_name PlayerStateMachine extends Node
 
 var states : Array[ State ]

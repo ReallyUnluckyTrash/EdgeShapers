@@ -1,3 +1,4 @@
+#state where boss summons a sphere around it
 class_name BossStateSphere extends EnemyStateAttack
 
 @onready var effect_sprite: Sprite2D = $"../../EffectSprite"

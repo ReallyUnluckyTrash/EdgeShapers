@@ -44,10 +44,8 @@ func _ready() -> void:
 func _player_entered(_player: Node2D) -> void:
 	if PlayerManager.current_floor == 4:
 		LevelManager.load_new_level(pseudo_boss_room, target_transition_area, Vector2.ZERO)
-		PlayerManager.pause_menu_disabled = true
 	elif PlayerManager.current_floor == 7:
 		LevelManager.load_new_level(boss_room, target_transition_area, Vector2.ZERO)
-		PlayerManager.pause_menu_disabled = true
 	else:
 		LevelManager.load_new_level(level, target_transition_area, Vector2.ZERO)
 	pass

@@ -1,3 +1,8 @@
+#autoload script
+#ShopMenu
+#code based on Michael Games' Make a 2D action & adventure RPG in Godot 4 Youtube Series
+#https://www.youtube.com/watch?v=IUuhehTgB90
+
 extends CanvasLayer
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D

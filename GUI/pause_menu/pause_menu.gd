@@ -1,7 +1,6 @@
+#autoload script
+#PauseMenu
 extends CanvasLayer
-
-@onready var button_save: Button = %Button_Save
-@onready var button_load: Button = %Button_Load
 
 const ERROR = preload("res://Interactables/Shop Statue/error.wav")
 
@@ -16,8 +15,6 @@ const ERROR = preload("res://Interactables/Shop Statue/error.wav")
 @onready var ep_regen_label: Label = %"EP Regen Label"
 @onready var damage_label: Label = %"Damage Label"
 @onready var attack_speed_label: Label = %"Attack Speed Label"
-
-
 
 var is_paused:bool = false
 @onready var inventory_blocker: ColorRect = %InventoryBlocker
@@ -62,23 +59,6 @@ func hide_pause_menu() ->void:
 	visible = false
 	is_paused = false
 	hidden.emit()
-
-
-func _on_button_save_pressed() -> void:
-	if is_paused == false:
-		return
-	SaveManager.save_game()
-	hide_pause_menu()
-	pass # Replace with function body.
-
-func _on_button_load_pressed() -> void:
-	if is_paused == false:
-		return
-	SaveManager.load_game()
-	await LevelManager.level_load_started
-	hide_pause_menu()
-	pass # Replace with function body.
-	
 	
 func update_item_description(new_text:String)-> void:
 	if item_description:

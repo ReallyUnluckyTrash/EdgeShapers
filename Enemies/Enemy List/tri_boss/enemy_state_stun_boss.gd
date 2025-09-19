@@ -17,10 +17,11 @@ func process(_delta : float) -> EnemyState:
 	enemy.velocity -= enemy.velocity * decelerate_speed * _delta
 	return null
 
+#enemy boss does not get stunned while attacking, and also takes half damage 
 func _on_enemy_damaged(attack:Attack) -> void:
 	_attack = attack
 	if state_machine.current_state is EnemyStateAttack:
-		print("not being stunned!")
+		enemy.hp += floor(attack.damage/2)
 		return
 	else:
 		state_machine.change_state(self)

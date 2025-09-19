@@ -42,8 +42,6 @@ music_array = Array[AudioStream]([ExtResource("2_xn7ua"), ExtResource("3_7bo7e")
 
 [node name="DungeonConfig" type="Node" parent="."]
 script = ExtResource("4_3v8vx")
-floor_tile = Vector2i(4, 5)
-wall_tile = Vector2i(4, 4)
 chest_items = Array[ExtResource("3_ftq75")]([ExtResource("4_tsfrk"), ExtResource("6_d3gie"), ExtResource("7_udhsc"), ExtResource("9_fa8sl"), ExtResource("10_mjhrc"), ExtResource("11_s7sig")])
 enhanced_chest_items = Array[ExtResource("3_ftq75")]([ExtResource("7_udhsc"), ExtResource("8_dipqf"), ExtResource("6_d3gie"), ExtResource("16_h6te3"), ExtResource("17_nvfpt"), ExtResource("11_s7sig"), ExtResource("4_tsfrk"), ExtResource("5_o6v26"), ExtResource("10_mjhrc"), ExtResource("14_ql5vo"), ExtResource("9_fa8sl"), ExtResource("13_uavdt"), ExtResource("21_qs4qa")])
 enemy_level_1_scenes = Array[PackedScene]([ExtResource("7_ipsl2")])

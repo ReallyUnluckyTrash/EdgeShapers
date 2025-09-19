@@ -7,7 +7,6 @@ signal queue_freed
 func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 	animation_player.play("spawn")
-	#PlayerManager.play_audio(LIGHTNING)
 	AudioManager.play_sfx(LIGHTNING)
 
 func _on_animation_finished(anim_name: String)->void:

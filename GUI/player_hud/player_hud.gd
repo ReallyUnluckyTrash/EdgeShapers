@@ -1,3 +1,5 @@
+#autoload script 
+#PlayerHud
 extends CanvasLayer
 
 @onready var health_bar: TextureProgressBar = %HealthBar

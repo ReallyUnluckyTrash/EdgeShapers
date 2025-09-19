@@ -13,6 +13,8 @@ func _on_area_entered(area:Area2D)->void:
 	AudioManager.play_music(music)
 	gates.show()
 	gates.collision_enabled = true
+	PlayerManager.pause_menu_disabled = true
+	PlayerHud.show_message("Pause menu disabled!")
 	if boss:
 		boss.vision_area.collision_mask = 1
 		PlayerHud.show_boss_bar(boss.enemy_name)

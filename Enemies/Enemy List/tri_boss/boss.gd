@@ -1,10 +1,15 @@
 class_name Boss extends Enemy
-
 @export var max_hp:int = 0
 
 signal spawn_lightning
 const LIGHTNING_HIT = preload("res://Enemies/Enemy List/tri_boss/lightning_hit.tscn")
 @onready var vision_area: VisionArea = $VisionArea
+
+#lightning spawn variables
+var lightning_strikes_count:int = 0
+var current_lightning_wave:int = 0
+var max_waves:int = 4
+var current_wave_centers:Array[Vector2i] = []
 
 func _ready() -> void:
 	state_machine.initialize(self)
@@ -13,6 +18,7 @@ func _ready() -> void:
 	spawn_lightning.connect(_on_spawn_lightning)
 	pass
 
+#boss has health bar, update boss hp
 func _process(_delta: float) -> void:
 	PlayerHud.update_boss_hp(hp, max_hp)
 	if hp < 0:
@@ -40,6 +46,7 @@ func _on_spawn_lightning()->void:
 		
 	pass
 
+#function to set group lightning positions
 func set_group_lightning_positions(initial_position:Vector2i)->Array[Vector2i]:
 	var positions:Array[Vector2i] = []
 	for x in range (-1, 2):
@@ -47,11 +54,7 @@ func set_group_lightning_positions(initial_position:Vector2i)->Array[Vector2i]:
 			positions.append(initial_position + Vector2i(x, y))
 	return positions
 
-var lightning_strikes_count:int = 0
-var current_lightning_wave:int = 0
-var max_waves:int = 4
-var current_wave_centers:Array[Vector2i] = []
-
+#when lightning finished, spawn next wave unless it is the final wave
 func _on_lightning_finished()->void:
 	lightning_strikes_count += 1
 	
@@ -67,6 +70,7 @@ func _on_lightning_finished()->void:
 			current_wave_centers.clear()
 	pass
 
+#function to spawn lightning on multiple waves with different positions
 func _spawn_next_wave()->void:
 	var boss_tile_pos = LevelManager.local_to_map(global_position)
 	var positions: Array[Vector2i] = []

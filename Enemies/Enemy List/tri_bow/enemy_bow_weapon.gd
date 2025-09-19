@@ -23,23 +23,25 @@ func attack():
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "shoot":
+		#after animation finishes, create arrow
 		create_arrow()
 		is_attacking = false
 		animation_player.play("idle")
 		attack_finished.emit()
-	pass # Replace with function body.
+	pass 
 
+#create arrow function
 func create_arrow()->void:
+	#instantiate arrow and add as sibling
 	var new_arrow = ARROW.instantiate() as Arrow
 	enemy.add_sibling(new_arrow)
 	
-	#new_arrow.setup_direction(player.direction)
+	#setup the hurtbox with damage and knockback force
 	new_arrow.setup_hurtbox(damage, knockback_force)
-	#new_arrow.shot.connect()
-	#new_arrow.queue_freed.connect()
 	
+	#gets the direction towards the player to shoot the arrow at, while also adjusting the
+	#rotation of the arrow
 	var shoot_direction:Vector2 = enemy.global_position.direction_to(player.global_position)
-	
 	new_arrow.global_position = enemy.weapon_position.global_position
 	new_arrow.shoot(shoot_direction)
 	var arrow_direction:Vector2 = enemy.cardinal_direction

@@ -1,3 +1,4 @@
+#state where boss summons lightning
 class_name BossStateLightning extends EnemyStateAttack
 
 @onready var effect_sprite: Sprite2D = $"../../EffectSprite"
