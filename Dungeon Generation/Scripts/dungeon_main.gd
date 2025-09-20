@@ -101,7 +101,7 @@ func generate_dungeon()->void:
 	floor_transition_tile.global_position = floor_layer.map_to_local(exit_pos)
 	LevelManager.change_tilemap_bounds(_set_camera_bounds())
 
-	#queue_redraw()
+	queue_redraw()
 
 func _draw():
 	if not root_node:
@@ -110,24 +110,7 @@ func _draw():
 	#draw partition boundaries (for debugging)
 	#_draw_partitions(root_node)
 
-#func _draw_partitions(node: Branch):
-	## Draw outline of current partition
-	#draw_rect(
-		#Rect2(
-			#node.position.x * dungeon_config.tile_size,
-			#node.position.y * dungeon_config.tile_size,
-			#node.size.x * dungeon_config.tile_size,
-			#node.size.y * dungeon_config.tile_size
-		#),
-		#Color.GREEN,
-		#false
-	#)
-	#
-	## Recursively draw child partitions
-	#if node.left_child:
-		#_draw_partitions(node.left_child)
-	#if node.right_child:
-		#_draw_partitions(node.right_child)
+
 
 func _draw_partitions(node: Branch)->void:
 	#draw if this partition has a room

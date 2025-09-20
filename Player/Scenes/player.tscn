@@ -1,9 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc0hyu7yps2kh"]
+[gd_scene load_steps=27 format=3 uid="uid://bc0hyu7yps2kh"]
 
 [ext_resource type="Script" uid="uid://bs5umt74x0kwy" path="res://Player/Scripts/player.gd" id="1_1yy2w"]
-[ext_resource type="PackedScene" uid="uid://b3hic50tuoiph" path="res://Weapons/Scenes/slash_weapon.tscn" id="2_bf386"]
-[ext_resource type="PackedScene" uid="uid://0ceh7d0bc60j" path="res://Weapons/Scenes/black_sword.tscn" id="3_17k2o"]
-[ext_resource type="PackedScene" uid="uid://b7vi7ofwvn7oj" path="res://Weapons/Scenes/thrust_weapon.tscn" id="4_e0sep"]
 [ext_resource type="Texture2D" uid="uid://ca45giadvu0dt" path="res://Player/Sprites/player_down.png" id="5_ut808"]
 [ext_resource type="Texture2D" uid="uid://1w7sx5301v17" path="res://Player/Sprites/player_idle.png" id="6_aytf0"]
 [ext_resource type="Texture2D" uid="uid://nglxsihcymas" path="res://Player/Sprites/player_left.png" id="7_p0l7e"]
@@ -138,7 +135,6 @@ _data = {
 z_index = 5
 collision_mask = 16
 script = ExtResource("1_1yy2w")
-weapon_scenes = Array[PackedScene]([ExtResource("2_bf386"), ExtResource("3_17k2o"), ExtResource("4_e0sep")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

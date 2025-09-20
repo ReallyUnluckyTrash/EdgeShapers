@@ -21,7 +21,7 @@ var player_spawned:bool = false
 
 #current floor tracker and currency tracker
 var vertex_points:int = 100
-var current_floor:int = 1 :set = set_floor
+var current_floor:int = 5 :set = set_floor
 
 #bool to prevent pause menu appearing
 var pause_menu_disabled:bool = false

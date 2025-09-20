@@ -1,0 +1,36 @@
+Asset origins:
+Player and enemies made in : https://www.pixilart.com/art/layers-tutorial-2bbffdaf4349335
+
+Art and sound effects: https://michaelgames.itch.io/2d-action-adventure-rpg-assets
+
+Weapons: https://rgsdev-weapon-generator.netlify.app/
+
+Shop statue: https://firemagestudio.itch.io/angel-stone-statue-pixel-art-asset-pack
+
+Health and EP bars: https://adwitr.itch.io/pixel-health-bar-asset-pack-2 
+
+Tileset: https://opengameart.org/content/top-down-dungeon-tiles-64x64
+
+Bow Sprite :  https://opengameart.org/content/bow-and-arrow-spritesheet
+
+Arrow Sprite: https://kenam0.itch.io/arrows-pack
+
+Shields: https://free-game-assets.itch.io/free-shield-and-amulet-rpg-icons 
+
+Sword Slash Effects: https://itch.io/queue/c/3852212/pixel-art-animations?game_id=3239819&password=
+
+Lightning Effects:
+https://frostwindz.itch.io/pixel-art-skill-animations-lightning
+
+Sound Effects:
+https://leohpaz.itch.io/rpg-essentials-sfx-free
+https://pixabay.com/sound-effects/electricity-sparks-long-64783/
+https://pixabay.com/id/sound-effects/level-win-6416/
+
+Bow effect:
+https://pixabay.com/id/sound-effects/bow-loading-38752/
+https://pixabay.com/id/sound-effects/bow-release-bow-and-arrow-4-101936/
+
+Music: https://makai-symphony.com/9-2/  
+
+Some other inventory stuff: https://ochiogrande.itch.io/free-assets-16x16-by-olteanu-v-3-0/devlog/438721/free-assets-16x16-pixel-art-by-olteanu-version-o8
