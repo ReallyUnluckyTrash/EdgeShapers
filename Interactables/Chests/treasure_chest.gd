@@ -38,11 +38,9 @@ func _set_quantity(value:int)->void:
 	
 func _on_player_interact():
 	if is_opened == true:
-		PlayerHud.hide_interact_hint()
 		return
 	is_opened = true
 	animation_player.play("opened_chest")
-	PlayerHud.hide_interact_hint()
 	
 	if item_data and quantity > 0:
 		if item_data.type == "Weapon":
@@ -51,11 +49,13 @@ func _on_player_interact():
 				print("Weapon already owned, automatically sold!")
 				PlayerManager.vertex_points += item_data.price
 				PlayerHud.update_currency_label(PlayerManager.vertex_points)
+				#PlayerHud.hide_interact_hint()
 				return
 			PlayerManager.INVENTORY_WEAPON_DATA.add_item(item_data, quantity)
 			
 		elif item_data.type == "Item":
 			PlayerManager.INVENTORY_ITEM_DATA.add_item(item_data, quantity)
+			#PlayerHud.hide_interact_hint()
 			pass
 	
 	else:
@@ -82,7 +82,6 @@ func _on_area_entered(_area:Area2D):
 
 func _on_area_exited(_area:Area2D):
 	PlayerManager.interact_pressed.disconnect(_on_player_interact)
-	if is_opened == false:
-		PlayerHud.hide_interact_hint()
+	PlayerHud.hide_interact_hint()
 	pass
 	

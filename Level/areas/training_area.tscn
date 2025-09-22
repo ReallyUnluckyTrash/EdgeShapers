@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cqmbuomhnj6f2"]
+[gd_scene load_steps=10 format=4 uid="uid://cqmbuomhnj6f2"]
 
 [ext_resource type="Script" uid="uid://c7asogvh768mr" path="res://Level/level.gd" id="1_x10vi"]
 [ext_resource type="TileSet" uid="uid://dfjvqgjrwaohm" path="res://art/tileset/dungeon_tileset.tres" id="2_wq8iw"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://by0xqcdmoe3h6" path="res://Level/transitions/level_transition.tscn" id="5_lrh6b"]
 [ext_resource type="PackedScene" uid="uid://cpngj2ie0hwl8" path="res://Interactables/Chests/treasure_chest.tscn" id="9_0236u"]
 [ext_resource type="Resource" uid="uid://ck2tecjs5rlxy" path="res://Weapons/Resources/black_sword.tres" id="10_lrh6b"]
-[ext_resource type="PackedScene" uid="uid://dv85qtp6vhi7d" path="res://Enemies/Enemy List/tri_sword/tri_sword.tscn" id="10_wq8iw"]
-[ext_resource type="PackedScene" uid="uid://bf6qspf2t4oet" path="res://Enemies/Enemy List/tri_sword/tri_sword_enhanced.tscn" id="11_ne6i0"]
 [ext_resource type="Resource" uid="uid://br0pif840r0bh" path="res://Weapons/Resources/basic_spear.tres" id="11_wq8iw"]
 [ext_resource type="PackedScene" uid="uid://bo0i07yv53pxj" path="res://Interactables/Shop Statue/shop_statue.tscn" id="12_ne6i0"]
 
@@ -35,19 +33,21 @@ level = "uid://dl6i50h1yuifo"
 target_transition_area = "TrainingAreaTransition"
 size = 3
 
+[node name="TreasureChest4" parent="." instance=ExtResource("9_0236u")]
+position = Vector2(344, 536)
+item_data = ExtResource("10_lrh6b")
+
 [node name="TreasureChest" parent="." instance=ExtResource("9_0236u")]
-position = Vector2(288, 528)
+position = Vector2(224, 528)
 item_data = ExtResource("10_lrh6b")
 
 [node name="TreasureChest2" parent="." instance=ExtResource("9_0236u")]
 position = Vector2(112, 528)
 item_data = ExtResource("11_wq8iw")
 
+[node name="TreasureChest3" parent="." instance=ExtResource("9_0236u")]
+position = Vector2(216, 424)
+item_data = ExtResource("11_wq8iw")
+
 [node name="ShopStatue" parent="." instance=ExtResource("12_ne6i0")]
 position = Vector2(544, 672)
-
-[node name="TriSword" parent="." instance=ExtResource("10_wq8iw")]
-position = Vector2(136, 104)
-
-[node name="TriSword2" parent="." instance=ExtResource("11_ne6i0")]
-position = Vector2(104, 272)

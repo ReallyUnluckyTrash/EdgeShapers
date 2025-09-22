@@ -27,12 +27,17 @@ extends CanvasLayer
 
 const LEVEL_WIN = preload("res://General/Sound Effects/level-win-6416.mp3")
 
+var interact_hint_count: int = 0
+var is_hint_visible: bool = false
+
+
 func _ready() -> void:
 	update_currency_label(PlayerManager.vertex_points)
 	hide_game_over_screen()
 	LevelManager.level_load_started.connect(hide_game_over_screen)
 	boss_bar.hide()
 	interactable_indicator.hide()
+	boss_animation_player.animation_finished.connect(_on_animation_finished)
 	update_floor_label(PlayerManager.current_floor)
 	pass
 
@@ -65,14 +70,21 @@ func play_boss_defeat_message()->void:
 
 func show_interact_hint()->void:
 	print("Showing interact hint")
-	boss_animation_player.play("interact_fade_in")
+	interact_hint_count += 1
+	if interact_hint_count == 1 and not is_hint_visible:
+		is_hint_visible = true
+		interactable_indicator.show()
+		boss_animation_player.play("interact_fade_in")
 
 func hide_interact_hint()->void:
-	print("hiding interact hint")
-	boss_animation_player.play("interact_fade_out")
+	interact_hint_count = max(0, interact_hint_count - 1)
+	if interact_hint_count == 0 and is_hint_visible:
+		print("hiding interact hint")
+		is_hint_visible = false
+		boss_animation_player.play("interact_fade_out")
 
 func show_message(_message:String)->void:
-	if boss_animation_player.current_animation =="show_message":
+	if boss_animation_player.is_playing() and boss_animation_player.current_animation == "show_message":
 		boss_animation_player.stop()
 	print_message_label.text = _message
 	boss_animation_player.play("show_message")
@@ -120,3 +132,7 @@ func _on_title_button_pressed() -> void:
 	LevelManager.load_new_level("res://GUI/main_menu/main_menu.tscn", "", Vector2.ZERO)
 	
 	pass # Replace with function body.
+
+func _on_animation_finished(anim_name: String)->void:
+	if anim_name == "interact_fade_out":
+		interactable_indicator.hide()
